@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Defaults
+PREFIX="/usr/local"
+
+# Parse options
+case $1 in
+    -h | --help)
+        echo './configure --prefix=/usr/local'
+	exit 0
+        ;;
+    --prefix=*)
+        PREFIX=${1#--prefix=}
+	sed -i -e "s|^DESTDIR=.*$|DESTDIR=$PREFIX|g" Makefile
+        ;;
+esac

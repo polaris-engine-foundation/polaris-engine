@@ -1,0 +1,4 @@
+func main() {
+    s2_clear_msgbox();
+    s2_hide_namebox();
+}

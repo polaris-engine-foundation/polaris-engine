@@ -1,0 +1,142 @@
+#
+# Library
+#  - ゲームごとにカスタマイズして使ってください
+#
+
+#
+# ここから下のマクロは&runするまで反映されません。
+#
+
+# &in キャラ名
+#
+# [目的]
+#  - キャラを入場させます
+#
+# [使い方]
+#  - &in midori
+
+:in
+@cl.enter name=&1
+@return
+
+# &out キャラ名
+#
+# [目的]
+#  - キャラを退場させます
+#
+# [使い方]
+#  - &out midori
+
+:out
+@cl.leave name=&1
+@return
+
+# &clear
+#
+# [目的]
+#  - キャラをすべて退場させます
+#
+# [使い方]
+#  - &clear
+
+:clear
+@cl.leave name=all
+@return
+
+# &cg キャラ名 画像ファイル名
+#
+# [目的]
+#  - キャラの画像を表示します
+#  - 画像はキャラ名のフォルダに入れておきます
+#
+# [使い方]
+#  - &cg midori happy
+
+:cg
+@cl.file name=&1 file=&1/&2
+@return
+
+# &left キャラ名 横方向の補正
+#
+# [目的]
+#  - キャラの表示位置を左寄せにします
+#
+# [使い方]
+#  - &left midori 0
+
+:left
+@cl.pos name=&1 align=left x+=&2
+@return
+
+# &right キャラ名 横方向の補正
+#
+# [目的]
+#  - キャラの表示位置を左寄せにします
+#
+# [使い方]
+#  - &right midori 0
+
+:right
+@cl.pos name=&1 align=right x+=&2
+@return
+
+# &center キャラ名 横方向の補正
+#
+# [目的]
+#  - キャラの表示位置を中央寄せにします
+#
+# [使い方]
+#  - &center midori 0
+
+:center
+@cl.pos name=&1 align=center x+=&2
+@return
+
+#
+# ここより上のマクロを実際に表示に反映するマクロです。
+#
+
+# &run
+#
+# [目的]
+#  - 演出を実行します
+#
+# [使い方]
+#  - &run
+
+:run
+@cl.time t=0.5
+@cl.run
+@return
+
+#
+# ここから下のマクロは&runを実行しなくても反映されます。
+#
+
+# &bg 背景ファイル
+#
+# [目的]
+#  - 背景画像を変更します。
+#
+# [使い方]
+#  - &bg roof
+
+:bg
+@cl.file name=bg file=&1
+@cl.time t=0.5
+@cl.run
+@return
+
+# &move-x キャラ名 横方向のピクセル数 秒数
+#
+# [目的]
+#  - キャラの画像を指定したピクセル数だけ移動します
+#
+# [使い方]
+#  - &move-x midori 100 0.5
+#  - &move-x midori -100 0.5
+
+:move-x
+@cl.move name=&1 x+=&2 t=&3
+@cl.run
+@return

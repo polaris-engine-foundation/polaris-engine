@@ -1,0 +1,16 @@
+#include "windows.h"
+#include "resource.h"
+
+IDI_ICON ICON DISCARDABLE "icon.ico"
+CREATE_PROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "manifest.xml"
+
+IDR_ACCELERATOR ACCELERATORS {
+	"^O", ID_OPEN
+	"^L", ID_RELOAD
+	"^S", ID_SAVE
+	"^Q", ID_QUIT
+	"^R", ID_RESUME
+	"^N", ID_NEXT
+	"^P", ID_PAUSE
+	"^E", ID_ERROR
+}

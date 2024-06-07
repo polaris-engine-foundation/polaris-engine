@@ -1,0 +1,120 @@
+###
+### メッセージ履歴画面のGUI定義
+###
+
+# このファイルの基本設定
+global {
+    # 下記の画像を使用する
+    base:   system/history/base.png;
+    idle:   system/history/idle.png;
+    hover:  system/history/hover.png;
+    active: system/history/active.png;
+
+    # 1画面あたりの履歴表示数を指定
+    historyslots: 1;
+
+    # 右クリックによるキャンセル時のSE
+    cancelse: click.ogg;
+
+    # フェードイン時間(秒)
+    #fadein: 0.5;
+
+    # フェードアウト時間(秒)
+    #fadeout: 0.5;
+
+    # 読み上げテキスト
+    alt: ヒストリー画面が表示されています。左右のキーを押してください。;
+}
+
+# 元の画面に戻るボタン
+BACK {
+    # 種類:キャンセル
+    type: cancel;
+
+    # 座標とサイズ
+    x: 33;
+    y: 605;
+    width: 245;
+    height: 78;
+
+    # ポイントされたときの効果音
+    pointse: btn-change.ogg;
+
+    # クリックされたときの効果音
+    clickse: click.ogg;
+
+    # 読み上げテキスト
+    alt: ゲームに戻るボタンです。;
+}
+
+# 履歴スロット1
+HISTORYSLOT1 {
+    # 種類:履歴
+    type: history;
+
+    # 履歴スロット0番目
+    index: 0;
+
+    # 座標とサイズ
+    x: 290;
+    y: 38;
+    width: 770;
+    height: 627;
+
+    # テキストのマージン
+    margin: 0;
+
+    # ポイントされたときの効果音
+    pointse: btn-change.ogg;
+
+    # クリア用の色(背景色を設定しないと擬似的なフォントのふちどりが生じる)
+    clear-r: 255;
+    clear-g: 255;
+    clear-b: 255;
+
+    # 読み上げテキスト
+    alt: ヒストリーです。リターンキーを押すと読み上げます。;
+}
+
+# スクロールバー
+SCROLL {
+    # 種類:スクロールバー
+    type: historyscroll;
+
+    # 座標とサイズ
+    x: 1148;
+    y: 77;
+    width: 66;
+    height: 566;
+
+    # ポイントされたときの効果音
+    pointse: btn-change.ogg;
+
+    # 読み上げテキスト
+    alt: スクロールバーです。上下のキーで操作できます。;
+}
+
+# タイトルへ戻るボタン
+TITLE {
+    # 種類:タイトルへ戻る
+    type: title;
+
+    # 移動先のシナリオファイル
+    file: init.txt;
+
+    # 座標とサイズ
+    x: 33;
+    y: 512;
+    width: 245;
+    height: 78;
+
+    # ポイントされたときの効果音
+    pointse: btn-change.ogg;
+
+    # クリックされたときの効果音
+    clickse: click.ogg;
+
+    # 読み上げテキスト
+    alt: このボタンはゲームのタイトル画面に戻るものです。;
+}
+

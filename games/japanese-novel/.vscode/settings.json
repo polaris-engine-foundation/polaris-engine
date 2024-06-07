@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "**/txt/*.txt": "x-engine-scenario",
+        "**/gui/*.txt": "x-engine-gui",
+        "**/wms/*.txt": "x-engine-wms",
+        "**/anime/*.txt": "x-engine-anime"
+    }
+}

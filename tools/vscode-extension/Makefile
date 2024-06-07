@@ -1,0 +1,2 @@
+package:
+	vsce package

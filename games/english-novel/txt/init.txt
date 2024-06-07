@@ -1,0 +1,52 @@
+# Magic
+PageMode
+AutoLineMode
+
+@bg coast.png
+
+\===
+Do you want to change the background?
+\---
+@ichoose YES "Yes, I do." NO "No, I don't."
+
+:YES
+@bg roof.png 1.0
+
+:NO
+
+\===
+Going to show a character.
+
+@ch center 001-happy.png 1.0
+
+\===
+The first screen. Here we wait for a click.
+\---
+We can continue a message after a click.
+\---
+You can write more, but you don't have an auto-scrolling.
+\---
+
+\===
+The second screen.
+\---
+Let me explain how to make a line break.
+\---
+This sentence will make a line feed because of its length: Lorem ipsum dolor
+sit amet,
+\---
+but you can make line
+\n
+feeds manually.
+
+\===
+The third screen.
+\---
+Here I'll explain a way to put a line.
+\---
+Midori: Hello!
+\---
+
+\===
+That's all.
+\---

@@ -1,0 +1,111 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "x-engine-wms",
+	"patterns": [
+		{"include": "#main"},
+		{"include": "#func"},
+		{"include": "#s2-method"},
+		{"include": "#method"},
+		{"include": "#comment-slash"},
+		{"include": "#other"},
+		{"include": "#string"}
+	],
+
+	"repository": {
+		"main":{
+			"patterns": [{
+				"match": "(func)\\s*(main)\\s*\\(.*?\\)",
+				"captures": {
+					"1":{"patterns": [{"include": "#main-func"}]},
+					"2":{"patterns": [{"include": "#main-name"}]}
+				}
+			}],
+			"comment": "main関数",
+
+			"repository":{
+				"main-func":{
+					"patterns":[
+						{
+							"name":"storage.type",
+							"match":"func"
+						}
+					]
+				},
+				"main-name":{
+					"patterns":[
+						{
+							"name":"entity.name.type.class",
+							"match":"main"
+						}
+					]
+				}
+			}
+		},
+		"func":{
+			"patterns": [{
+				"match":"(func)\\s*(\\S+)\\s*\\(.*?\\)",
+				"captures": {
+					"1":{"patterns": [{"include": "#func-type"}]},
+					"2":{"patterns": [{"include": "#func-name"}]}
+				}
+			}],
+			"comment": "関数",
+			"repository":{
+				"func-type":{
+					"name":"storage.type",
+					"match":"func"
+				},
+				"func-name":{
+					"name":"entity.name.function",
+					"match":"\\S+"
+				}
+			}
+		},
+		"s2-method":{
+			"patterns": [{
+				"match": "(s2_\\S+|print)\\(.*?\\)",
+				"captures": {
+					"1":{"patterns": [{"include": "#s2_met-name"}]}
+				}
+			}],
+			"comment": "s2関数の実行",
+			"repository":{
+				"s2_met-name":{
+					"name":"entity.name.type.class",
+					"match":"s2_\\S+|print"
+				}
+			}
+		},
+		"method":{
+			"patterns": [{
+				"match": "(\\S+)\\(.*?\\)",
+				"captures": {
+					"1":{"patterns": [{"include": "#met-name"}]}
+				}
+			}],
+			"comment": "関数の実行",
+			"repository":{
+				"met-name":{
+					"name":"entity.name.function",
+					"match":"\\S+"
+				}
+			}
+		},
+		"comment-slash":{
+			"name":"comment.line",
+			"comment": "コメント",
+			"match": "//.*"
+		},
+		"other":{
+			"name":"keyword.control",
+			"comment":"色々",
+			"match": "break|else|case|continue"
+		},
+		"string":{
+			"name":"string.quoted.double",
+			"comment":"文字列",
+			"match": "\".*?\""
+		}
+	},
+	"scopeName": "source-wms.txt"
+}

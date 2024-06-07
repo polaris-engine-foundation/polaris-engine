@@ -1,0 +1,88 @@
+{
+    "name": "x-engine-extension",
+    "displayName": "x-engine Extension",
+    "description": "x-engine Extension",
+    "version": "0.0.3",
+    "publisher": "xdev-001",
+    "repository": "https://github.com/xdev-001/x-engine",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Snippets", "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "x-engine-scenario",
+            "extensions": [
+                ".txt"
+            ],
+            "aliases": [
+                "x-engine Scenario",
+                "txt"
+            ],
+            "configuration": "./language-scenario.json"
+        },
+        {
+            "id": "x-engine-gui",
+            "extensions": [
+                ".txt"
+            ],
+            "aliases": [
+                "x-engine GUI",
+                "txt"
+            ],
+            "configuration": "./language-gui.json"
+        },
+        {
+            "id": "x-engine-wms",
+            "extensions": [
+                ".txt"
+            ],
+            "aliases": [
+                "x-engine WMS",
+                "txt"
+            ],
+            "configuration": "./language-wms.json"
+        },
+        {
+            "id": "x-engine-anime",
+            "extensions": [
+                ".txt"
+            ],
+            "aliases": [
+                "x-engine Anime",
+                "txt"
+            ],
+            "configuration": "./language-anime.json"
+        }],
+        "grammars": [
+            {
+            "language": "x-engine-scenario",
+            "scopeName": "source-sc.txt",
+            "path": "./syntaxes/x-engine-scenario.tmLanguage.json"
+            },
+            {
+                "language": "x-engine-wms",
+                "scopeName": "source-wms.txt",
+                "path": "./syntaxes/x-engine-wms.tmLanguage.json"
+            }
+        ],
+        "snippets": [{
+            "language": "x-engine-scenario",
+            "path": "./snippets-scenario.json"
+        },
+        {
+            "language": "x-engine-gui",
+            "path": "./snippets-gui.json"
+        },
+        {
+            "language": "x-engine-wms",
+            "path": "./snippets-wms.json"
+        },
+        {
+            "language": "x-engine-anime",
+            "path": "./snippets-anime.json"
+        }]
+    }
+}

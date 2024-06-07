@@ -1,0 +1,286 @@
+{
+	"func":{
+		"prefix": "func",
+		"body":[
+			"func ${1:関数名}(${2:引数}) {",
+			"\t$3",
+			"}"
+		],
+		"description": "関数の定義"
+	},
+	"main":{
+		"prefix": "func main()",
+		"body":[
+			"func main(${1:引数}) {",
+			"\t$2",
+			"}"
+		],
+		"description": "wmsはこの関数から始まる"
+	},
+	"print":{
+		"prefix": "print()",
+		"body":[
+			"print(${1:表示するもの});"
+		],
+		"description": "アラートを表示"
+	},
+	"for":{
+		"prefix": "for()",
+		"body":[
+			"for(${1:変数名} in ${2:開始} .. ${3:終了}){",
+			"\t$4",
+			"}"
+		],
+		"description": "繰り返し"
+	},
+	"while":{
+		"prefix": "while()",
+		"body":[
+			"while(${1:変数名} ${2|==,>=,<=,>,<,!=|} ${3:条件}){",
+			"\t$4",
+			"}"
+		],
+		"description": "条件を満たす間、繰り返す"
+	},
+	"if":{
+		"prefix": "if()",
+		"body":[
+			"if(${1:変数名} ${2|==,>=,<=,>,<,!=|} ${3:条件}1){",
+			"\t$4",
+			"}"
+		],
+		"description": "分岐"
+	},
+	"else":{
+		"prefix": "else",
+		"body":[
+			"else {",
+			"\t$1",
+			"}"
+		],
+		"description": "ifに当てはまらなかった時、実行される"
+	},
+	"break":{
+		"prefix": "break",
+		"body":[
+			"break;"
+		],
+		"description": "forやwhileの処理を中断する"
+	},
+	"continue":{
+		"prefix": "continue",
+		"body":[
+			"continue;"
+		],
+		"description": "forやwhileの現在の処理を飛ばし、次の繰り返しに進む"
+	},
+	"remove":{
+		"prefix": "remove();",
+		"body":[
+			"remove(${1:変数名},${2:削除する要素});"
+		],
+		"description": "指定した配列の要素を削除する"
+	},
+	"size":{
+		"prefix": "size();",
+		"body":[
+			"size(${1:配列名});"
+		],
+		"description": "指定した配列のサイズを取得する"
+	},
+	"s2_get_variable":{
+		"prefix": "s2_get_variable();",
+		"body":[
+			"s2_get_variable(${1:変数名});"
+		],
+		"description": "エンジンの変数を取得する"
+	},
+	"s2_get_name_variable":{
+		"prefix": "s2_get_name_variable();",
+		"body":[
+			"s2_get_name_variable(${1:変数名});"
+		],
+		"description": "エンジンの名前変数を取得する"
+	},
+	"s2_set_variable":{
+		"prefix": "s2_set_variable();",
+		"body":[
+			"s2_set_variable(${1:変数名},${2:値});"
+		],
+		"description": "エンジンの変数を設定する"
+	},
+	"s2_set_name_variable":{
+		"prefix": "s2_set_name_ariable();",
+		"body":[
+			"s2_set_variable(${1:変数名},${2:値});"
+		],
+		"description": "エンジンの名前変数を設定する"
+	},
+	"s2_get_year":{
+		"prefix": "s2_get_year();",
+		"body":[
+			"s2_get_year();"
+		],
+		"description": "現在の年を取得する"
+	},
+	"s2_get_month":{
+		"prefix": "s2_get_month();",
+		"body":[
+			"s2_get_month();"
+		],
+		"description": "現在の月を取得する"
+	},
+	"s2_get_day":{
+		"prefix": "s2_get_day();",
+		"body":[
+			"s2_get_day();"
+		],
+		"description": "現在の日を取得する"
+	},
+	"s2_get_hour":{
+		"prefix": "s2_get_hour();",
+		"body":[
+			"s2_get_hour();"
+		],
+		"description": "現在の時を取得する"
+	},
+	"s2_get_minute":{
+		"prefix": "s2_get_minute();",
+		"body":[
+			"s2_get_minute();"
+		],
+		"description": "現在の分を取得する"
+	},
+	"s2_get_second":{
+		"prefix": "s2_get_second();",
+		"body":[
+			"s2_get_second();"
+		],
+		"description": "現在の秒を取得する"
+	},
+	"s2_get_wday":{
+		"prefix": "s2_get_wday();",
+		"body":[
+			"s2_get_wday();"
+		],
+		"description": "現在の曜日を取得する（日＝０　月＝１ ...）"
+	},
+	"s2_random":{
+		"prefix": "s2_random();",
+		"body": "s2_random()",
+		"description": "0~99999の乱数を返します"
+	},
+	"s2_round":{
+		"prefix": "s2_round();",
+		"body": "s2_round(${1:値})",
+		"description": "小数点以下を四捨五入した値を返します"
+	},
+	"s2_ceil":{
+		"prefix": "s2_ceil();",
+		"body": "s2_ceil(${1:値})",
+		"description": "小数点以下を切り上げした値を返します"
+	},
+	"s2_floor":{
+		"prefix": "s2_floor();",
+		"body": "s2_floor(${1:値})",
+		"description": "小数点以下を切り捨てした値を返します"
+	},
+	"s2_set_config":{
+		"prefix": "s2_set_config();",
+		"body":[
+			"s2_set_config(${1:設定名},${2:値});"
+		],
+		"description": "コンフィグを上書きする"
+	},
+	"s2_reflect_msgbox_and_namebox_config":{
+		"prefix": "s2_reflect_msgbox_and_namebox_config();",
+		"body":[
+			"s2_reflect_msgbox_and_namebox_config();"
+		],
+		"description": "メッセージボックスと名前ボックスを更新する"
+	},
+	"s2_clear_history":{
+		"prefix":"s2_clear_history()",
+		"body":[
+			"s2_clear_history()"
+		],
+		"description":"ヒストリーを削除"
+	},
+	"s2_clear_msgbox":{
+		"prefix":"s2_clear_msgbox()",
+		"body":[
+			"s2_clear_msgbox()"
+		],
+		"description":"メッセージボックスーの文字を削除"
+	},
+	"s2_clear_namebox":{
+		"prefix":"s2_clear_namebox()",
+		"body":[
+			"s2_clear_namebox()"
+		],
+		"description":"ネームボックスの文字を削除"
+	},
+	"s2_hide_msgbox":{
+		"prefix":"s2_hide_msgbox()",
+		"body":[
+			"s2_hide_msgbox()"
+		],
+		"description":"メッセージボックスーを隠す"
+	},
+	"s2_hide_namebox":{
+		"prefix":"s2_hide_namebox()",
+		"body":[
+			"s2_hide_namebox()"
+		],
+		"description":"ネームボックスを隠す"
+	},
+	"s2_save_global":{
+		"prefix":"s2_save_global()",
+		"body":[
+			"s2_save_global"
+		],
+		"description":"グローバル変数を保存"
+	},
+	"s2_remove_local_save":{
+		"prefix":"s2_remove_local_save()",
+		"body":[
+			"s2_remove_local_save(${1:変数名})"
+		],
+		"description":"ローカル変数を初期化"
+	},
+	"s2_remove_global_save":{
+		"prefix":"s2_remove_global_save()",
+		"body":[
+			"s2_remove_global_save(${1:変数名})"
+		],
+		"description":"グローバル変数を初期化"
+	},
+	"s2_reset_local_variables":{
+		"prefix":"s2_reset_local_variables()",
+		"body":[
+			"s2_reset_local_variables()"
+		],
+		"description":"ローカル変数を全て初期化"
+	},
+	"s2_reset_global_variables":{
+		"prefix":"s2_reset_global_variables()",
+		"body":[
+			"s2_reset_global_variables()"
+		],
+		"description":"グローバル変数を全て初期化"
+	},
+	"s2_quick_save_extra":{
+		"prefix":"s2_quick_save_extra()",
+		"body":[
+			"s2_quick_save_extra()"
+		],
+		"description":"クイックセーブを保存"
+	},
+	"s2_load_save_extra":{
+		"prefix":"s2_load_save_extra()",
+		"body":[
+			"s2_load_save_extra()"
+		],
+		"description":"クイックセーブを読み込み"
+	}
+}

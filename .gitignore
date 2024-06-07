@@ -1,0 +1,218 @@
+#
+# Credentials
+# (For safety: we don't use the following actually.)
+#
+
+.env
+.passwd
+
+#
+# Garbages
+#
+
+.DS_Store
+*~
+log.txt
+sav
+
+#
+# Engine
+#
+
+# mingw-w64 (i686)
+build/engine-windows/*.o
+build/engine-windows/libroot
+build/engine-windows/libroot-windows.tar.gz
+build/engine-windows/tmp
+build/engine-windows/*.exe
+build/engine-windows/*.aps
+build/engine-windows-custom-*
+
+# mingw-w64 (x86_64)
+build/engine-windows-64/*.o
+build/engine-windows-64/libroot
+build/engine-windows-64/*.exe
+build/engine-windows-64/*.aps
+build/engine-windows-64/libroot-windows-64.tar.gz
+build/engine-windows-64/llvm*
+
+# mingw-w64 (arm64)
+build/engine-windows-arm64/*.o
+build/engine-windows-arm64/libroot
+build/engine-windows-arm64/*.exe
+build/engine-windows-arm64/*.aps
+build/engine-windows-arm64/llvm*
+build/engine-windows-arm-64/libroot-windows-arm64.tar.gz
+
+# Visual Studio 2022 (for debug only)
+build/engine-windows-vs2022/.vs
+build/engine-windows-vs2022/zlib
+build/engine-windows-vs2022/libpng
+build/engine-windows-vs2022/libogg
+build/engine-windows-vs2022/libvorbis
+build/engine-windows-vs2022/freetype
+build/engine-windows-vs2022/jpeg
+build/engine-windows-vs2022/bzip2
+build/engine-windows-vs2022/libwebp
+build/engine-windows-vs2022/obj
+build/engine-windows-vs2022/Debug
+build/engine-windows-vs2022/Release
+build/engine-windows-vs2022/ARM64
+build/engine-windows-vs2022/x64
+build/engine-windows-vs2022/testgame
+
+# macOS
+build/engine-macos/engine-macos.xcodeproj/project.xcworkspace
+build/engine-macos/engine-macos.xcodeproj/xcuserdata
+build/engine-macos/libroot
+build/engine-macos/libroot-macos.tar.gz
+build/engine-macos/game.dmg
+build/engine-macos/build
+build/engine-macos/macos-src
+
+# iOS
+build/engine-ios/libroot
+build/engine-ios/libroot-device
+build/engine-ios/libroot-sim
+build/engine-ios/engine-ios.xcodeproj/project.xcworkspace
+build/engine-ios/engine-ios.xcodeproj/xcuserdata
+build/engine-ios/engine-ios/data01.arc
+build/engine-ios/ios-src
+build/engine-ios/libroot-ios.tar.gz
+build/engine-ios/build
+build/engine-ios/tmp
+
+# Android
+build/engine-android/.idea
+build/engine-android/app/.cxx
+build/engine-android/app/src/main/assets
+build/engine-android/app/src/main/cpp
+build/engine-android/cmdline-tools
+build/engine-android/commandlinetools-linux-*.zip
+build/engine-android/android-src
+
+# Wasm
+build/engine-wasm/html
+build/engine-wasm/emsdk
+build/engine-wasm/data01.arc
+build/engine-wasm/libwebp-1.3.2
+
+# X11
+build/engine-x11/x-engine-runtime
+build/engine-x11/*.o
+build/engine-x11/libroot
+x-engine-runtime
+x-engine
+
+# Unity
+build/engine-unity/Assets/*.meta
+build/engine-unity/StreamingAssets
+build/engine-unity/*.o
+build/engine-unity/*.so
+build/engine-unity/*.dll
+build/engine-unity/*.dylib
+build/engine-unity/unity-src
+build/engine-unity/libroot-*
+build/engine-unity/llvm*
+build/engine-unity/nso-src
+
+#
+# Editor
+#
+
+# mingw-w64 (i686)
+build/pro-windows/*.o
+build/pro-windows/libroot
+build/pro-windows/*.exe
+build/pro-windows/*.aps
+build/pro-windows/libroot-windows.tar.gz
+
+# mingw-w64 (x86_64)
+build/pro-windows-64/*.o
+build/pro-windows-64/libroot
+build/pro-windows-64/*.exe
+build/pro-windows-64/*.aps
+
+# mingw-w64 (arm64)
+build/pro-windows-arm64/*.o
+build/pro-windows-arm64/libroot
+build/pro-windows-arm64/*.exe
+build/pro-windows-arm64/*.aps
+build/pro-windows-arm64/llvm
+build/pro-windows-arm-64/llvm-mingw-*-aarch64.tar.xz*
+
+# Visual Studio 2022 (for debug only)
+build/pro-windows-vs2022/.vs/
+build/pro-windows-vs2022/Debug/
+build/pro-windows-vs2022/Release/
+build/pro-windows-vs2022/bzip2/
+build/pro-windows-vs2022/freetype/
+build/pro-windows-vs2022/jpeg/
+build/pro-windows-vs2022/libogg/
+build/pro-windows-vs2022/libpng/
+build/pro-windows-vs2022/libvorbis/
+build/pro-windows-vs2022/libwebp/
+build/pro-windows-vs2022/obj/
+build/pro-windows-vs2022/x64/
+build/pro-windows-vs2022/zlib/
+
+# macOS
+build/pro-macos/pro-macos.xcodeproj/project.xcworkspace
+build/pro-macos/pro-macos.xcodeproj/xcuserdata
+build/pro-macos/libroot
+build/pro-macos/libroot-macos.tar.gz
+build/pro-macos/build
+build/pro-macos/tmp
+build/pro-macos/x-engine.dmg
+
+# iOS
+build/pro-ios/pro-ios.xcodeproj/project.xcworkspace
+build/pro-ios/pro-ios.xcodeproj/xcuserdata
+build/pro-ios/libroot*
+build/pro-ios/build
+build/pro-ios/tmp
+
+# Android
+build/pro-android/.idea
+build/pro-android/app/src/main/assets
+build/pro-android/app/src/main/cpp
+build/pro-android/app/release
+build/pro-android/app/debug
+
+# Qt6
+build/pro-qt/deps
+build/pro-qt/build
+build/pro-qt/CMakeLists.txt.user
+
+# Wasm
+build/pro-wasm/html
+build/pro-wasm/emsdk
+build/pro-wasm/data01.arc
+
+# Web-test
+tools/web-test/web-test.exe
+
+#
+# Installer
+#
+build/installer-windows/games
+build/installer-windows/tools
+build/installer-windows/x-engine-installer.exe
+build/installer-windows/x-engine.exe
+
+#
+# Visual Studio Code Extension
+#
+tools/vscode-extension/*.vsix
+
+#
+# Games
+#
+
+games/**/txt/orbis.txt
+
+#
+# Misc.
+#
+build/engine-windows-private-*
+web/dl/latest.txt

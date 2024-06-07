@@ -1,0 +1,237 @@
+{
+    "anime":{
+        "prefix":["@anime","@アニメ"],
+        "body":["@anime file=${1:ファイル名} ${2|sync,async|} ${3:option}"],
+        "description":["アニメファイルを再生する"]
+    },
+    "layer":{
+        "prefix":["@layer","@レイヤー"],
+        "body":["@layer name=${1|bg,bg2,effect5,effect6,effect7,effect8,chd,chl,chlc,chr,chrc,chc,effect1,effect2,effect3,effect4,text3,text4,text5,text6,text7,text8|} file=${2:画像名} x=${3:X座標} y=${4:Y座標} a=${5:透明度}"],
+        "description":["レイヤに画像を読み込む(file=noneで削除)"]
+    },
+    "bg":{
+        "prefix":["@bg","@背景"],
+        "body":["@bg file=${1:ファイル名} duration=${2:秒} effect=${3|normal,rule:,melt:,curtain-right,curtain-left,curtain-up,curtain-down,slide-right,slide-left,slide-up,slide-down,shutter-right,shutter-left,shutter-up,shutter-down,clockwise,counterclockwise,clockwise20,counterclockwise20,clockwise30,counterclockwise30,eye-open,eye-close,eye-open-v,eye-close-v,slit-open,slit-close,slit-open-v,slit-close-v|}"],
+        "description":["背景を変更する"]
+    },
+    "bgm":{
+        "prefix":["@bgm","@音楽"],
+        "body":["@bgm file=${1:ファイル名} ${2:option}"],
+        "description":["BGMを再生します。"]
+    },
+    "se":{
+        "prefix":["@se","@効果音"],
+        "body":["@se file=${1:ファイル名} ${2:option}"],
+        "description":["SE(効果音)を再生します。"]
+    },
+    "vol":{
+        "prefix":["@vol","@音量"],
+        "body":["@vol track=${1|bgm,voice,se|} volume=${2:0~1} duration=${3:秒数}"],
+        "description":["時間を指定してボリュームを調整します。"]
+    },
+    "wait":{
+        "prefix":["@wait","@時間ち"],
+        "body":["@wait duration=${1:秒数}"],
+        "description":["時間を指定して待機します。キーボード・マウスの入力があると待機は中断されます"]
+    },
+    "ch":{
+        "prefix":["@ch","@キャラ"],
+        "body":["@ch position=${1|left,left-center,center,right-center,right,back,face|} duration=${2:秒数} effect=${3|ormal,rule:,melt:,curtain-right,curtain-left,curtain-up,curtain-down,slide-right,slide-left,slide-up,slide-down,shutter-right,shutter-left,shutter-up,shutter-down,clockwise,counterclockwise,clockwise20,counterclockwise20,clockwise30,counterclockwise30,eye-open,eye-close,eye-open-v,eye-close-v,slit-open,slit-close,slit-open-v,slit-close-v|} right=${4:Xオフセット} down=${5:Yオフセット} alpha=${6:アルファ}"],
+        "description":["キャラクタを表示、変更、消去します。"]
+    },
+    "cha":{
+        "prefix":["@cha","@キャラ移動"],
+        "body":["@cha position=${1|left,left-center,center,right-center,right,back,face|} duration=${2:秒数} acceleration=${3|move,accel,brake|} x=${4:Xオフセット} y=${5:Yオフセット} alpha=${6:透過度} ${7:option}"],
+        "description":["キャラクタの移動を行います"]
+    },
+    "chapter":{
+        "prefix":["@chapter","@章"],
+        "body":["@chapter title=${1:章タイトル}"],
+        "description":["章のタイトルを設定します。"]
+    },
+    "choose":{
+        "prefix":["@choose","@選択肢"],
+        "body":["@choose destination1=${1:行き先1} option1=${2:選択肢1} destination2=${3:行き先2} option2=${4:選択肢2}"],
+        "description":["選択肢を表示してラベルにジャンプします。選択肢の数は最大で8つです。"]
+    },
+    "ichoose":{
+        "prefix":["@ichoose","@インライン選択肢"],
+        "body":["@ichoose destination1=${1:行き先1} option1=${2:選択肢1} destination2=${3:行き先2} option2=${4:選択肢2}"],
+        "description":["メッセージボックス内に選択肢を表示してラベルにジャンプします。選択肢の数は最大で8つです。この機能を使用するときには、コンフィグの switch.bg.file と switch.fg.file に透明な画像を指定してください。"]
+    },
+    "all":{
+        "prefix":["@all","@chsx","@場面転換X"],
+        "body":["@all $1"],
+        "description":["キャラクタの一括変更を行います。背景のみの変更や、キャラクタと同時に背景も変更できます。このコマンドに限って、center= のような引数の名前が必須です。その代わり、引数の指定順に制限がありません。"]
+    },
+    "click":{
+        "prefix":["@click","@クリック"],
+        "body":["@click"],
+        "description":["クリックを待ちます。待っている間、メッセージボックスは非表示となります。"]
+    },
+    "gosub":{
+        "prefix":["@gosub"],
+        "body":["@gosub ${1:行先のラベル}"],
+        "description":["サブルーチンにジャンプします。 @return で戻ります。"]
+    },
+    "goto":{
+        "prefix":["@goto"],
+        "body":["@goto destination=${1:行先のラベル}"],
+        "description":["ラベルにジャンプします。"]
+    },
+    "gui":{
+        "prefix":["@gui","@メニュー"],
+        "body":["@gui file=${1:GUIファイル} ${2:option}"],
+        "description":["GUIを表示します。cancelで右クリックによるキャンセルを許可します"]
+    },
+    "if":{
+        "prefix":["@if","@フラグでジャンプ"],
+        "body":["@if ${1:変数名など}${2|==,>=,<=,>,<,!=|} ${3:ラベル名}"],
+        "description":["条件式とマッチするときだけラベルにジャンプします。"]
+    },
+    "load":{
+        "prefix":["@load","@シナリオ"],
+        "body":["@load file=${1:ファイル名}"],
+        "description":["スクリプトファイルにジャンプします。"]
+    },
+    "return":{
+        "prefix":["@return"],
+        "body":["@return"],
+        "description":["サブルーチンから戻ります。"]
+    },
+    "set":{
+        "prefix":["@set","@フラグをセット"],
+        "body":["@set ${1:変数名} ${2|=,+=,-=,*=,/=,%=|}"],
+        "description":["ローカル変数、グローバル変数、名前変数に値をセットします。"]
+    },
+    "setconfig":{
+        "prefix":["@setconfig"],
+        "body":["@setconfig ${1:コンフィグ名} ${2:値}"],
+        "description":["コンフィグを書き換える"]
+    },
+    "setsave":{
+        "prefix":["@setsave"],
+        "body":["@setsave ${1|disable,enable|}"],
+        "description":["セーブ・ロードを禁止・解禁します。"]
+    },
+    "shake":{
+        "prefix":["@shake","@振動"],
+        "body":["@shake ${1|horizontal,vertical| duration=${2:秒数} times=${3:回数} amplitude=${4:大きさ}"],
+        "description":["画面を揺らします。"]
+    },
+    "skip":{
+        "prefix":["@skip"],
+        "body":["@skip ${1|enable,disable|}"],
+        "description":["待ち時間のあるコマンドのスキップを禁止・解禁します。"]
+    },
+    "video":{
+        "prefix":["@video","@動画"],
+        "body":["@video file=${1:ファイル名}"],
+        "description":["動画を再生します。"]
+    },
+    "wms":{
+        "prefix":["@wms","@スクリプト"],
+        "body":["@wms file=${1:ファイル名}"],
+        "description":["WMSを実行します。"]
+    },
+    "prencil":{
+        "prefix":["@pencil"],
+        "body":["@pencil ${1|text1,text2,text3,text4,text5,text6,text7,text8|} ${2:テキスト}"],
+        "description":["テキストレイヤにテキストを描画します。あらかじめ利用するテキストレイヤに、@layerコマンドで画像を読み込んでおく必要があります。"]
+    },
+    "cl-enter":{
+        "prefix":["@cl.enter"],
+        "body":["@cl.enter name=${1:名前}"],
+        "description":["ステージにキャラを入場させる。入場は1回でよい。退場させるまで名前が有効。"]
+    },
+    "cl-leave":{
+        "prefix":["@cl.leave"],
+        "body":["@cl.leave name=${1:名前}"],
+        "description":["ステージからキャラを退場させる。name=allで全員退場。"]
+    },
+    "cl-file":{
+        "prefix":["@cl.file"],
+        "body":["@cl.file name=${1:名前} sile=${2:画像名}"],
+        "description":["指定した名前のキャラのファイルを指定する(拡張子は省略可)。name=bgで背景も指定可能。"]
+    },
+    "cl-pos":{
+        "prefix":["@cl.pos"],
+        "body":["@cl.pos name=${1:名前} ${2|align,x,x+,x-|}=$3 ${4|valign,y,y+,y-|}=$5"],
+        "description":["キャラの位置を指定する"]
+    },
+    "cl-alpha":{
+        "prefix":["@cl.alpha"],
+        "body":["@cl.alpha name=${1:名前} a=${2:透過度}"],
+        "description":["キャラのアルファ値を指定する"]
+    },
+    "cl-dim":{
+        "prefix":["@cl.dim"],
+        "body":["@cl.dim name=${1:名前} dim=${2|true,false|}"],
+        "description":["話していないキャラを暗くするかの手動設定を行う。"]
+    },
+    "cl-time":{
+        "prefix":["@cl.time"],
+        "body":["@cl.time t=${1:秒数}"],
+        "description":["フェードやアニメの時間を指定する"]
+    },
+    "cl-effect":{
+        "prefix":["@cl.effect"],
+        "body":["@cl.effect effect=${1|normal,rule:,melt:,curtain-right,curtain-left,curtain-up,curtain-down,slide-right,slide-left,slide-up,slide-down,shutter-right,shutter-left,shutter-up,shutter-down,clockwise,counterclockwise,clockwise20,counterclockwise20,clockwise30,counterclockwise30,eye-open,eye-close,eye-open-v,eye-close-v,slit-open,slit-close,slit-open-v,slit-close-v|}"],
+        "description":["フェードのエフェクトを指定する"]
+    },
+    "cl-move":{
+        "prefix":["@cl.move"],
+        "body":["@cl.move name=${1:名前} t=${2:秒数} ${3|x,x+,x-|}=$4 ${5|y,y+,y-|}=$6 a=$7"],
+        "description":["アニメの指定を追加する。"]
+    },
+    "cl-run":{
+        "prefix":["@cl.run"],
+        "body":["@cl.run"],
+        "description":["蓄積されたcielコマンドを実行します。"]
+    },
+    "using":{
+        "prefix":["using"],
+        "body":["using ${1:ファイル名}"],
+        "description":["指定ファイルの内容をusingの場所に挿入します"]
+    },
+	"slash-wait":{
+		"prefix": "\\w{}",
+		"body":"\\w{${1:秒数}}",
+		"description": "文章中で待機"
+	},
+	"slash-color":{
+		"prefix": "\\#{}",
+		"body": "\\#{${1:RRGGBB}}",
+		"description": "文章中で文字の色変更"
+	},
+	"slash-size":{
+		"prefix": "\\@{}",
+		"body": "\\@{${1:フォントサイズ}}",
+		"description": "文章中で文字サイズ変更"
+	},
+    "slash-line":{
+        "prefix":"\\n",
+        "body":"\\n",
+        "description":["改行する"]
+    },
+    "slash-ruby":{
+        "prefix":"\\^",
+        "body":"\\^{${1:ルビ}}",
+        "description":["ルビを振る"]
+    },
+    "slash-font-change":{
+        "prefix":["\\f"],
+        "body":["\\f{${1|g,m,a,b|}}"],
+        "description":["フォントの変更 g=グローバルフォント a=代替フォント１ b=代替フォント2"]
+    },
+    "slash-font-edging":{
+        "prefix":["\\o"],
+        "body":["\\o{${1|+,-|}}"],
+        "description":["フォントの縁取りを変更 +=ON -=OFF"]
+    },
+    "slash-pencil-position":{
+        "prefix":["\\p"],
+        "body":["\\p{${1:X座標},${2:Y座標}}"],
+        "description":["@pencil の描画位置を変更します"]
+    }
+}

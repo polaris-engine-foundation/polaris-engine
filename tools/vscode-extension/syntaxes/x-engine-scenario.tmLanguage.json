@@ -1,0 +1,131 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "x-engine-scenario",
+	"patterns": [
+		{
+			"include": "#backslash-command"
+		},
+		{
+			"include": "#sharp-comment"
+		},
+		{
+			"include": "#label"
+		},
+		{
+			"include": "#ciel"
+		},
+		{
+			"include": "#command"
+		},
+		{
+			"include": "#parameter"
+		},
+		{
+			"include": "#other-param"
+		},
+		{
+			"include": "#chara-voice"
+		},
+		{
+			"include": "#chara-name"
+		},
+		{
+			"include": "#<<<>>>"
+		},
+		{
+			"include": "#switch-if-else"
+		},
+		{
+			"include": "#macro"
+		}
+	],
+
+	"repository": {
+		"backslash-command":{
+			"name":"constant.character.escape",
+			"comment": "文章中にバックスラッシュで挟むコマンド",
+			"match": "\\\\.*?\\{.*?\\}|\\\\n|\\\\^"
+		},
+		"sharp-comment":{
+			"name":"comment.line.number-sign",
+			"comment":"一行コメント",
+			"match": "#.*"
+		},
+		"label":{
+			"name":"keyword.control",
+			"comment": "ラベル",
+			"match": ":.*"
+		},
+		"ciel":{
+			"name":"entity.name.function.member",
+			"comment": "コマンド",
+			"match": "@cl\\..*?\\s"
+		},
+		"command":{
+			"name":"storage.type",
+			"comment": "コマンド",
+			"match": "@.*?\\s"
+		},
+		"parameter": {
+			"patterns": [
+				{
+					"match": "(\\S+)\\s*=\\s*(\\S+)(\\s|\\n)",
+					"captures": {
+						"1": {"patterns": [{"include": "#p-name"}]},
+						"2": {"patterns": [{"include": "#p-string"}]}
+					}
+				}
+			],
+			"repository": {
+				"p-name": {
+					"patterns": [
+						{
+							"name" : "support.type.property-name",
+							"match": "\\S+"
+						}
+					]
+				},
+				"p-string": {
+					"patterns": [
+						{
+							"name": "constant.numeric.example",
+							"match": "\\S+"
+						}
+					]
+				}
+			}
+		},
+
+		"other-param":{
+			"name":"support.type.property-name",
+			"comment": "単語一つのパラメーター",
+			"match": "(cancel|enable|loop|disable|unregister|register|stop-all|sync|async|nosysmenu|showmsgbox|消去)\\s"
+		},
+		"chara-voice":{
+			"name":"string.quoted.double",
+			"comment": "キャラの名前とボイス",
+			"match": "\\*.*?\\*.*?\\.(mp3|ogg)\\*"
+		},
+		"chara-name":{
+			"name":"string.quoted.double",
+			"comment": "キャラの名前",
+			"match": "\\*.*?\\*"
+		},
+		"<<<>>>":{
+			"name":"constant.character.escape",
+			"comment": "拡張構文",
+			"match": "<<<|>>>"
+		},
+		"switch-if-else":{
+			"name":"constant.character.escape",
+			"comment": "拡張構文の色々",
+			"match": "switch|case|break|if|else"
+		},
+		"macro":{
+			"name":"storage.type",
+			"comment": "マクロの短縮記法",
+			"match": "&.*?(\\n|\\s)"
+		}
+	},
+	"scopeName": "source-sc.txt"
+}

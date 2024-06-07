@@ -1,0 +1,116 @@
+#
+# FreeBSD
+#
+
+include ../common.mk
+
+#
+# Toolchain selection
+#
+
+CC = cc
+
+#
+# CPPFLAGS
+#
+
+CPPFLAGS = \
+	-DNO_GST \
+	-I/usr/include/freetype2 \
+	-I/usr/local/include \
+	-I/usr/local/include/freetype2
+
+#
+# CFLAGS
+#
+
+CFLAGS = \
+	-O3 \
+	-ffast-math \
+	-ftree-vectorize \
+	-std=gnu11 \
+	-Wall \
+	-Werror \
+	-Wextra \
+	-Wundef \
+	-Wconversion \
+	-Wno-multichar
+
+#
+# LDFLAGS
+#
+
+LDFLAGS = \
+	-lpng16 \
+	-ljpeg \
+	-lwebp \
+	-lfreetype \
+	-lvorbisfile \
+	-lvorbis \
+	-logg \
+	-lz \
+	-lbz2 \
+	-lbrotlicommon \
+	-lbrotlidec \
+	-L/usr/local/lib \
+	-lasound \
+	-lX11 \
+	-lXpm \
+	-lGL \
+	-lpthread \
+	-lm \
+	-Wl,--gc-sections
+
+#
+# Source files
+#
+
+SRCS_LINUX = \
+	../../src/linux/asound.c \
+	../../src/linux/gstplay.c \
+	../../src/linux/x11main.c
+
+SRCS_KHRONOS = \
+	../../src/khronos/glrender.c
+
+HDRS = \
+	../../src/khronos/glrender.h \
+	../../src/linux/asound.h \
+	../../src/linux/gstplay.h
+
+#
+# .c.o compilation rules
+#
+
+OBJS = \
+	$(SRCS_KHRONOS:../../src/khronos/%.c=%.o) \
+	$(SRCS_LINUX:../../src/linux/%.c=%.o) \
+	$(SRCS_MAIN:../../src/%.c=%.o)
+
+%.o: ../../src/khronos/%.c
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+
+%.o: ../../src/linux/%.c
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+
+%.o: ../../src/%.c
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+
+#
+# Target
+#
+
+all: x-engine-runtime
+
+x-engine-runtime: $(OBJS) $(HDRS) $(HDRS_MAIN)
+	$(CC) -o x-engine-runtime $(OBJS) $(LDFLAGS)
+
+#
+# Phony
+#
+
+install: x-engine-runtime
+	cp x-engine-runtime ../../x-engine-runtime
+
+clean:
+	rm -rf *~ *.o x-engine-runtime log.txt sav tmp

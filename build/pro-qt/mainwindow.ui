@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1024</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="OpenGLWidget" name="openGLWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>840</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="controlPanel" native="true">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>945</x>
+      <y>0</y>
+      <width>440</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>340</width>
+      <height>720</height>
+     </size>
+    </property>
+    <widget class="QPushButton" name="continueButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>100</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Continue</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nextButton">
+     <property name="geometry">
+      <rect>
+       <x>115</x>
+       <y>0</y>
+       <width>100</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Next</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="moveButton">
+     <property name="geometry">
+      <rect>
+       <x>215</x>
+       <y>0</y>
+       <width>100</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Move</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stopButton">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>0</y>
+       <width>100</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Stop</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="fileNameTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>40</y>
+       <width>190</width>
+       <height>32</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="openScriptFileButton">
+     <property name="geometry">
+      <rect>
+       <x>205</x>
+       <y>40</y>
+       <width>30</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>...</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="scriptView">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>85</y>
+       <width>420</width>
+       <height>260</height>
+      </rect>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="errorButton">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>355</y>
+       <width>100</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Search error</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="variableLabel">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>440</y>
+       <width>300</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Variables (non-initial value):</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="variableTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>385</y>
+       <width>315</width>
+       <height>100</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="writeButton">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>385</y>
+       <width>95</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Write Vars</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_Project"/>
+    <addaction name="actionNew_Project_English"/>
+    <addaction name="actionNew_Project_English_Novel"/>
+    <addaction name="actionNew_Project_Japanese_Light"/>
+    <addaction name="actionNew_Project_Japanese_Dark"/>
+    <addaction name="actionNew_Project_Japanese_Novel"/>
+    <addaction name="actionNew_Project_Japanese_Tategaki"/>
+   </widget>
+   <widget class="QMenu" name="menuExport">
+    <property name="title">
+     <string>Export</string>
+    </property>
+    <addaction name="actionExport_for_Linux"/>
+    <addaction name="actionExport_for_Web"/>
+    <addaction name="actionExport_package_only"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuExport"/>
+  </widget>
+  <action name="actionNew_Project_English">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionNew_Project_English_Novel">
+   <property name="text">
+    <string>English Novel</string>
+   </property>
+  </action>
+  <action name="actionNew_Project_Japanese_Light">
+   <property name="text">
+    <string>Japanese Light</string>
+   </property>
+  </action>
+  <action name="actionNew_Project_Japanese_Dark">
+   <property name="text">
+    <string>Japanese Dark</string>
+   </property>
+  </action>
+  <action name="actionNew_Project_Japanese_Novel">
+   <property name="text">
+    <string>Japanese Novel</string>
+   </property>
+  </action>
+  <action name="actionNew_Project_Japanese_Tategaki">
+   <property name="text">
+    <string>Japanese Tategaki</string>
+   </property>
+  </action>
+  <action name="actionOpen_Project">
+   <property name="text">
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionExport_for_Linux">
+   <property name="text">
+    <string>Export for Linux</string>
+   </property>
+  </action>
+  <action name="actionExport_for_Windows">
+   <property name="text">
+    <string>Export for Windows</string>
+   </property>
+  </action>
+  <action name="actionExport_for_macOS">
+   <property name="text">
+    <string>Export for macOS</string>
+   </property>
+  </action>
+  <action name="actionExport_for_iOS">
+   <property name="text">
+    <string>Export for iOS</string>
+   </property>
+  </action>
+  <action name="actionExport_for_Android">
+   <property name="text">
+    <string>Export for iOS</string>
+   </property>
+  </action>
+  <action name="actionExport_for_Web">
+   <property name="text">
+    <string>Export for Web</string>
+   </property>
+  </action>
+  <action name="actionExport_package_only">
+   <property name="text">
+    <string>Export for package only</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>OpenGLWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>openglwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
