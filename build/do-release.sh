@@ -201,7 +201,6 @@ cp engine-wasm/html/index.html installer-windows/tools/web/index.html
 cp engine-wasm/html/index.js installer-windows/tools/web/index.js
 cp engine-wasm/html/index.wasm installer-windows/tools/web/index.wasm
 cp ../tools/web-test/web-test.exe installer-windows/tools/web-test.exe
-cp -R ../tools/installer installer-windows/tools/installer
 
 # Make an installer
 cd installer-windows
