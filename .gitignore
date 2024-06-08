@@ -14,6 +14,9 @@
 *~
 log.txt
 sav
+x-engine-*.exe
+x-engine-*.dmg
+
 
 #
 # Engine
@@ -114,7 +117,9 @@ build/engine-unity/*.dylib
 build/engine-unity/unity-src
 build/engine-unity/libroot-*
 build/engine-unity/llvm*
-build/engine-unity/nso-src
+build/engine-unity/switch-src
+build/engine-unity/ps45-src
+build/engine-unity/xbox-src
 
 #
 # Editor
