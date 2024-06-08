@@ -128,6 +128,9 @@ public class MainActivity extends Activity {
     // The view for video playback.
     private VideoSurfaceView videoView;
 
+    // The layout for videoView.
+    private LinearLayout videoLayout;
+
     // A flag that indicates if we are right after back from video playback.
     private boolean resumeFromVideo;
 
@@ -156,6 +159,10 @@ public class MainActivity extends Activity {
 
         // Prepare the video view.
         videoView = new VideoSurfaceView(this);
+        videoLayout = new LinearLayout(this);
+        videoLayout.setGravity(Gravity.CENTER);
+        videoLayout.setBackgroundColor(Color.BLACK);
+        videoLayout.addView(videoView);
         Thread videoThread = new Thread(videoView);
         videoThread.start();
     }
@@ -446,11 +453,7 @@ public class MainActivity extends Activity {
 				new Handler(Looper.getMainLooper()).post(() -> {
 					synchronized(syncObj) {
 						view.setRenderMode(RENDERMODE_WHEN_DIRTY);
-						LinearLayout layout = new LinearLayout(this);
-						layout.setGravity(Gravity.CENTER);
-                        layout.setBackgroundColor(Color.BLACK);
-						layout.addView(videoView);
-						setContentView(layout);
+						setContentView(videoLayout);
 						videoView.measure(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 						video.start();
 					}
