@@ -503,8 +503,6 @@ static bool dispatch_command(bool *cont)
 	case COMMAND_ICHOOSE:
 	case COMMAND_MCHOOSE:
 	case COMMAND_MICHOOSE:
-	case COMMAND_SWITCH:	/* deprecated */
-	case COMMAND_NEWS:	/* deprecated */
 		if (!switch_command())
 			return false;
 		break;
