@@ -255,6 +255,7 @@ static void render_collapsed_sysmenu_extended(void);
 
 /* その他 */
 static void play_se(const char *file);
+static void run_anime(int unfocus_index, int focus_index);
 
 /* クリーンアップ */
 static bool cleanup(void);
@@ -1223,6 +1224,7 @@ static void process_main_input(void)
 		    parent_button[new_pointed_index].msg != NULL) {
 			speak_text(NULL);
 			speak_text(parent_button[pointed_index].msg);
+			run_anime(old_pointed_index, new_pointed_index);
 		}
 	} else {
 		old_pointed_index = pointed_index;
@@ -1234,17 +1236,22 @@ static void process_main_input(void)
 		    child_button[selected_parent_index][new_pointed_index].msg != NULL) {
 			speak_text(NULL);
 			speak_text(child_button[selected_parent_index][pointed_index].msg);
+			run_anime(old_pointed_index, new_pointed_index);
 		}
 	}
 	if (new_pointed_index != -1 &&
 	    new_pointed_index != old_pointed_index &&
 	    !is_sysmenu_finished) {
 		if (!is_left_clicked) {
-			if (!is_first_frame)
+			if (!is_first_frame) {
 				play_se(get_command_type() == COMMAND_NEWS ? conf_news_change_se : conf_switch_change_se);
+				run_anime(old_pointed_index, new_pointed_index);
+			}
 		} else {
-			if (!is_first_frame)
+			if (!is_first_frame) {
 				play_se(conf_switch_parent_click_se_file);
+				run_anime(old_pointed_index, new_pointed_index);
+			}
 		}
 	}
 	pointed_index = new_pointed_index;
@@ -1281,13 +1288,16 @@ static void process_main_input(void)
 	    !is_sysmenu_finished) {
 		if (selected_parent_index == -1) {
 			play_se(conf_switch_parent_click_se_file);
-			if (!parent_button[pointed_index].has_child)
+			if (!parent_button[pointed_index].has_child) {
 				stop_command_repetition();
-			else
+				run_anime(pointed_index, -1);
+			} else {
 				selected_parent_index = pointed_index;
+			}
 		} else {
 			play_se(conf_switch_child_click_se_file);
 			stop_command_repetition();
+			run_anime(pointed_index, -1);
 		}
 	}
 
@@ -1325,6 +1335,8 @@ static void process_main_input(void)
 		sysmenu_pointed_index = get_pointed_sysmenu_item_extended();
 		old_sysmenu_pointed_index = sysmenu_pointed_index;
 		is_sysmenu_finished = false;
+
+		run_anime(pointed_index, -1);
 		return;
 	}
 }
@@ -1752,6 +1764,18 @@ static void play_se(const char *file)
 	set_mixer_input(SYS_STREAM, w);
 }
 
+/* アニメを実行する */
+static void run_anime(int unfocus_index, int focus_index)
+{
+	/* フォーカスされなくなる項目のアニメ */
+	if (unfocus_index != -1 && conf_switch_anime_unfocus[unfocus_index] != NULL)
+		load_anime_from_file(conf_switch_anime_unfocus[unfocus_index], -1, NULL);
+
+	/* フォーカスされる項目のアニメ */
+	if (focus_index != -1 && conf_switch_anime_focus[focus_index] != NULL)
+		load_anime_from_file(conf_switch_anime_focus[focus_index], -1, NULL);
+}
+
 /*
  * クリーンアップ
  */
@@ -1760,6 +1784,10 @@ static void play_se(const char *file)
 static bool cleanup(void)
 {
 	int i, j;
+
+	/* アニメを停止する */
+	for (i = 0; i < CHOOSE_COUNT; i++)
+		run_anime(i, -1);
 
 	/* 画像を破棄する */
 	for (i = 0; i < CHOOSE_COUNT; i++) {

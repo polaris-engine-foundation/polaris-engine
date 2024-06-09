@@ -216,6 +216,8 @@ float conf_switch_timed;
 char *conf_switch_parent_click_se_file;
 char *conf_switch_child_click_se_file;
 char *conf_switch_change_se;
+char *conf_switch_anime_focus[10];
+char *conf_switch_anime_unfocus[10];
 
 /*
  * NEWSの設定
@@ -731,6 +733,26 @@ static struct rule {
 	{"switch.x10", 'i', &conf_switch_x[9], OPTIONAL, SAVE},
 	{"switch.y10", 'i', &conf_switch_y[9], OPTIONAL, SAVE},
 	{"switch.timed", 'f', &conf_switch_timed, OPTIONAL, NOSAVE},
+	{"switch.anime.focus1", 's', &conf_switch_anime_focus[0], OPTIONAL, SAVE},
+	{"switch.anime.unfocus1", 's', &conf_switch_anime_unfocus[0], OPTIONAL, SAVE},
+	{"switch.anime.focus2", 's', &conf_switch_anime_focus[1], OPTIONAL, SAVE},
+	{"switch.anime.unfocus2", 's', &conf_switch_anime_unfocus[1], OPTIONAL, SAVE},
+	{"switch.anime.focus3", 's', &conf_switch_anime_focus[2], OPTIONAL, SAVE},
+	{"switch.anime.unfocus3", 's', &conf_switch_anime_unfocus[2], OPTIONAL, SAVE},
+	{"switch.anime.focus4", 's', &conf_switch_anime_focus[3], OPTIONAL, SAVE},
+	{"switch.anime.unfocus4", 's', &conf_switch_anime_unfocus[3], OPTIONAL, SAVE},
+	{"switch.anime.focus5", 's', &conf_switch_anime_focus[4], OPTIONAL, SAVE},
+	{"switch.anime.unfocus5", 's', &conf_switch_anime_unfocus[4], OPTIONAL, SAVE},
+	{"switch.anime.focus6", 's', &conf_switch_anime_focus[5], OPTIONAL, SAVE},
+	{"switch.anime.unfocus6", 's', &conf_switch_anime_unfocus[5], OPTIONAL, SAVE},
+	{"switch.anime.focus7", 's', &conf_switch_anime_focus[6], OPTIONAL, SAVE},
+	{"switch.anime.unfocus7", 's', &conf_switch_anime_unfocus[6], OPTIONAL, SAVE},
+	{"switch.anime.focus8", 's', &conf_switch_anime_focus[7], OPTIONAL, SAVE},
+	{"switch.anime.unfocus8", 's', &conf_switch_anime_unfocus[7], OPTIONAL, SAVE},
+	{"switch.anime.focus9", 's', &conf_switch_anime_focus[8], OPTIONAL, SAVE},
+	{"switch.anime.unfocus9", 's', &conf_switch_anime_unfocus[8], OPTIONAL, SAVE},
+	{"switch.anime.focus10", 's', &conf_switch_anime_focus[9], OPTIONAL, SAVE},
+	{"switch.anime.unfocus10", 's', &conf_switch_anime_unfocus[9], OPTIONAL, SAVE},
 	{"news.bg.file", 's', &conf_news_bg_file, OPTIONAL, SAVE},
 	{"news.fg.file", 's', &conf_news_fg_file, OPTIONAL, SAVE},
 	{"news.margin", 'i', &conf_news_margin, OPTIONAL, SAVE},

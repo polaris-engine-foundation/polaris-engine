@@ -435,6 +435,40 @@ switch.change.se=btn-change.ogg
 #switch.fg.file7=system/choose/hover-2.png
 #switch.x7=200
 #switch.y7=700
+#switch.bg.file8=system/choose/idle-2.png
+#switch.fg.file8=system/choose/hover-2.png
+#switch.x8=200
+#switch.y8=700
+#switch.bg.file9=system/choose/idle-2.png
+#switch.fg.file9=system/choose/hover-2.png
+#switch.x9=200
+#switch.y9=700
+#switch.bg.file10=system/choose/idle-2.png
+#switch.fg.file10=system/choose/hover-2.png
+#switch.x10=200
+#switch.y10=700
+
+# [選択肢がポイントされたときに実行されるアニメファイル] (省略可)
+switch.anime.focus1=switch-focus-1.txt
+switch.anime.unfocus1=switch-unfocus-1.txt
+switch.anime.focus1=switch-focus-2.txt
+switch.anime.unfocus1=switch-unfocus-2.txt
+switch.anime.focus1=switch-focus-3.txt
+switch.anime.unfocus1=switch-unfocus-3.txt
+#switch.anime.focus1=switch-focus-4.txt
+#switch.anime.unfocus1=switch-unfocus-4.txt
+#switch.anime.focus1=switch-focus-5.txt
+#switch.anime.unfocus1=switch-unfocus-5.txt
+#switch.anime.focus1=switch-focus-6.txt
+#switch.anime.unfocus1=switch-unfocus-6.txt
+#switch.anime.focus1=switch-focus-7.txt
+#switch.anime.unfocus1=switch-unfocus-7.txt
+#switch.anime.focus1=switch-focus-8.txt
+#switch.anime.unfocus1=switch-unfocus-8.txt
+#switch.anime.focus1=switch-focus-9.txt
+#switch.anime.unfocus1=switch-unfocus-9.txt
+#switch.anime.focus1=switch-focus-10.txt
+#switch.anime.unfocus1=switch-unfocus-10.txt
 
 ###
 ### セーブ・ロード画面の設定

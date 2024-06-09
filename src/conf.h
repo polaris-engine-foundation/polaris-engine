@@ -223,6 +223,8 @@ extern float conf_switch_timed;
 extern char *conf_switch_parent_click_se_file;
 extern char *conf_switch_child_click_se_file;
 extern char *conf_switch_change_se;
+extern char *conf_switch_anime_focus[10];
+extern char *conf_switch_anime_unfocus[10];
 
 /*
  * NEWSの設定
