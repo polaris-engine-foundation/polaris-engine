@@ -4,9 +4,12 @@ This file is referred by the automatic release script.
 
 [Release History (Japanese)]
 <!-- BEGIN-LATEST-JP -->
+# x-engine 1.1.0 2024/6/10
+* 選択肢のポイントが変化した際にアニメを実行できるように機能追加
+* 古い2階層のswitchを削除(予告済み)
+<!-- END-LATEST-JP -->
 # x-engine 1.0.2 2024/6/9
 * 再リリース
-<!-- END-LATEST-JP -->
 # x-engine 1.0.1 2024/6/8
 * Androidでの動画再生のクラッシュを修正
 # x-engine 1.0.0 2024/6/8

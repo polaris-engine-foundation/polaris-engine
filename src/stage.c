@@ -5,33 +5,6 @@
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-/*
- * [Changes]
- *  - 2016-06-14 作成
- *  - 2017-08-13 スイッチに対応
- *  - 2017-09-25 セリフの色付けに対応
- *  - 2018-08-28 不要なエラーログの削除
- *  - 2019-09-17 NEWSに対応
- *  - 2021-06-05 背景フェードの追加
- *  - 2021-06-10 マスクつき描画の対応
- *  - 2021-06-10 キャラのアニメ対応
- *  - 2021-06-12 画面揺らしモードの対応
- *  - 2021-06-16 時計フェードの対応
- *  - 2021-07-19 複数キャラ・背景同時変更の対応
- *  - 2021-07-19 リファクタ
- *  - 2021-07-20 @chsにエフェクト追加
- *  - 2022-06-29 ルール付き描画に対応, マスクつき描画の削除
- *  - 2022-07-16 システムメニューを追加
- *  - 2022-10-20 キャラ顔絵を追加
- *  - 2023-01-06 日本語の指定に対応
- *  - 2023-08-20 アニメサブシステムの導入, @chaをアニメサブシステムへ移行
- *  - 2023-08-29 @chsxを追加
- *  - 2023-09-14 テキストレイヤ、エフェクトレイヤを追加
- *  - 2023-09-18 リファクタリング
- *  - 2023-12-16 スケーリング対応
- *  - 2024-04-11 x-engine
- */
-
 #include "xengine.h"
 
 /* false assertion */
@@ -236,7 +209,6 @@ static bool setup_namebox(void);
 static bool setup_msgbox(bool no_bg, bool no_fg);
 static bool setup_click(void);
 static bool setup_switch(bool no_bg, bool no_fg, int index);
-static bool setup_news(void);
 static bool setup_sysmenu(void);
 static bool setup_banners(void);
 static bool setup_kirakira(void);
@@ -339,10 +311,6 @@ bool reload_stage(void)
 
 	/* スイッチをセットアップする */
 	if (!setup_switch(false, false, -1))
-		return false;
-
-	/* NEWSをセットアップする */
-	if (!setup_news())
 		return false;
 
 	/* システムメニューをセットアップする */
@@ -551,38 +519,6 @@ static bool setup_switch(bool no_bg, bool no_fg, int index)
 			if (switch_fg_image[i] == NULL)
 				return false;
 		}
-	}
-
-	return true;
-}
-
-/* 選択肢をセットアップする */
-static bool setup_news(void)
-{
-	/* 再初期化時に破棄する */
-	if (news_bg_image != NULL) {
-		destroy_image(news_bg_image);
-		news_bg_image = NULL;
-	}
-	if (news_fg_image != NULL) {
-		destroy_image(news_fg_image);
-		news_fg_image = NULL;
-	}
-
-	/* NEWSの非選択イメージを読み込む */
-	if (conf_news_bg_file != NULL) {
-		news_bg_image = create_image_from_file(CG_DIR,
-						       conf_news_bg_file);
-		if (news_bg_image == NULL)
-			return false;
-	}
-
-	/* NEWSの非選択イメージを読み込む */
-	if (conf_news_fg_file != NULL) {
-		news_fg_image = create_image_from_file(CG_DIR,
-						       conf_news_fg_file);
-		if (news_fg_image == NULL)
-			return false;
 	}
 
 	return true;
@@ -4165,50 +4101,6 @@ void get_switch_rect(int index, int *x, int *y, int *w, int *h)
 }
 
 /*
- * NEWSの矩形を取得する
- */
-void get_news_rect(int index, int *x, int *y, int *w, int *h)
-{
-	const int NORTH = 0;
-	const int EAST = 1;
-	const int WEST = 2;
-	const int SOUTH = 3;
-	const int SWITCH_BASE = 4;
-
-	struct image *bg;
-
-	bg = news_bg_image != NULL ? news_bg_image : switch_bg_image[0];
-
-	if (index == NORTH) {
-		*w = bg->width;
-		*h = bg->height;
-		*x = (conf_window_width - *w) / 2;
-		*y = conf_switch_y[0];
-	} else if (index == EAST) {
-		*w = bg->width;
-		*h = bg->height;
-		*x = conf_window_width - *w - conf_news_margin;
-		*y = conf_switch_y[0] + *h + conf_news_margin;
-	} else if (index == WEST) {
-		*w = bg->width;
-		*h = bg->height;
-		*x = conf_news_margin;
-		*y = conf_switch_y[0] + *h + conf_news_margin;
-	} else if (index == SOUTH) {
-		*w = bg->width;
-		*h = bg->height;
-		*x = (conf_window_width - *w) / 2;
-		*y = conf_switch_y[0] + (*h + conf_news_margin) * 2;
-	} else {
-		*w = switch_bg_image[0]->width;
-		*h = switch_bg_image[0]->height;
-		*x = conf_switch_x[0];
-		*y = conf_switch_y[0] + (*h + conf_news_margin) * 3 +
-			(switch_bg_image[0]->height + conf_switch_margin_y) * (index - SWITCH_BASE);
-	}
-}
-
-/*
  * スイッチの非選択イメージを描画する
  */
 void draw_switch_bg_image(struct image *target, int index)
@@ -4234,30 +4126,6 @@ void draw_switch_fg_image(struct image *target, int index)
 			switch_fg_image[index]->width,
 			switch_fg_image[index]->height,
 			0, 0);
-}
-
-/*
- * NEWSの非選択イメージを描画する
- */
-void draw_news_bg_image(struct image *target)
-{
-	struct image *img;
-
-	img = news_bg_image != NULL ? news_bg_image : switch_bg_image[0];
-
-	draw_image_copy(target, 0, 0, img, img->width, img->height, 0, 0);
-}
-
-/*
- * NEWSの選択イメージを描画する
- */
-void draw_news_fg_image(struct image *target)
-{
-	struct image *img;
-
-	img = news_fg_image != NULL ? news_fg_image : switch_fg_image[0];
-
-	draw_image_copy(target, 0, 0, img, img->width, img->height, 0, 0);
 }
 
 /*

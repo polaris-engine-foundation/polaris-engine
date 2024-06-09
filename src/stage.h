@@ -477,26 +477,17 @@ void show_click(bool show);
 void set_click_index(int index);
 
 /*
- * スイッチ(@choose, @select, @switch, @news)の描画
+ * スイッチ(@choose)の描画
  */
 
 /* スイッチの矩形を取得する */
 void get_switch_rect(int index, int *x, int *y, int *w, int *h);
-
-/* NEWSの矩形を取得する */
-void get_news_rect(int index, int *x, int *y, int *w, int *h);
 
 /* スイッチの非選択イメージを描画する */
 void draw_switch_bg_image(struct image *target, int index);
 
 /* スイッチの選択イメージを描画する */
 void draw_switch_fg_image(struct image *target, int index);
-
-/* NEWSの非選択イメージを描画する */
-void draw_news_bg_image(struct image *target);
-
-/* NEWSの選択イメージを描画する */
-void draw_news_fg_image(struct image *target);
 
 /*
  * 文字描画

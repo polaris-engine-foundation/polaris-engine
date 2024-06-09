@@ -396,14 +396,11 @@ switch.color.active.outline.r=0
 switch.color.active.outline.g=80
 switch.color.active.outline.b=10
 
-# [選択肢を選択したときの効果音] (省略可)
-switch.parent.click.se.file=click.ogg
-
-# [@switchで2階層目の選択肢を選択したときの効果音] (省略可)
-switch.child.click.se.file=click.ogg
-
 # [選択肢の選択項目が変更されたときのSE] (省略可)
 switch.change.se=btn-change.ogg
+
+# [選択肢を選択したときのSE] (省略可)
+switch.click.se=click.ogg
 
 # [選択肢ごとに画像や位置を変える場合] (省略可)
 #  - 指定しなければ縦方向にswitch.margin.yピクセルの間隔で配置される
@@ -411,6 +408,7 @@ switch.change.se=btn-change.ogg
 #  - 10まで指定可能（選択肢の最大表示個数も10）
 #  - ゲーム中に座標を変更したい場合、あらかじめswitch.bg.file～の#を外して有効にしたうえで設定する
 #    - @setconfig switch.x2 300
+
 #switch.bg.file2=system/choose/idle-2.png
 #switch.fg.file2=system/choose/hover-2.png
 #switch.x2=200
@@ -435,6 +433,32 @@ switch.change.se=btn-change.ogg
 #switch.fg.file7=system/choose/hover-2.png
 #switch.x7=200
 #switch.y7=700
+
+# [選択肢がポイントされたときに実行されるアニメファイル] (省略可)
+#  - focusX   ... 選択肢がポイントされたときに実行されるアニメファイル
+#  - unfocusX ... 選択肢のポイントが解除されたときに実行されるアニメファイル
+
+#switch.anime.focus1=switch-focus-1.txt
+#switch.anime.focus2=switch-focus-2.txt
+#switch.anime.focus3=switch-focus-3.txt
+#switch.anime.focus4=switch-focus-4.txt
+#switch.anime.focus5=switch-focus-5.txt
+#switch.anime.focus6=switch-focus-6.txt
+#switch.anime.focus7=switch-focus-7.txt
+#switch.anime.focus8=switch-focus-8.txt
+#switch.anime.focus9=switch-focus-9.txt
+#switch.anime.focus10=switch-focus-10.txt
+
+#switch.anime.unfocus1=switch-unfocus-1.txt
+#switch.anime.unfocus2=switch-unfocus-2.txt
+#switch.anime.unfocus3=switch-unfocus-3.txt
+#switch.anime.unfocus4=switch-unfocus-4.txt
+#switch.anime.unfocus5=switch-unfocus-5.txt
+#switch.anime.unfocus6=switch-unfocus-6.txt
+#switch.anime.unfocus7=switch-unfocus-7.txt
+#switch.anime.unfocus8=switch-unfocus-8.txt
+#switch.anime.unfocus9=switch-unfocus-9.txt
+#switch.anime.unfocus10=switch-unfocus-10.txt
 
 ###
 ### セーブ・ロード画面の設定

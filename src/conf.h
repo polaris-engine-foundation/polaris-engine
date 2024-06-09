@@ -220,20 +220,10 @@ extern int conf_switch_color_active_outline_r;
 extern int conf_switch_color_active_outline_g;
 extern int conf_switch_color_active_outline_b;
 extern float conf_switch_timed;
-extern char *conf_switch_parent_click_se_file;
-extern char *conf_switch_child_click_se_file;
 extern char *conf_switch_change_se;
+extern char *conf_switch_click_se;
 extern char *conf_switch_anime_focus[10];
 extern char *conf_switch_anime_unfocus[10];
-
-/*
- * NEWSの設定
- */
-extern char *conf_news_bg_file;
-extern char *conf_news_fg_file;
-extern int conf_news_margin;
-extern int conf_news_text_margin_y;
-extern char *conf_news_change_se;
 
 /*
  * セーブ・ロード画面の設定

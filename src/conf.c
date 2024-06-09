@@ -213,20 +213,10 @@ int conf_switch_color_active_outline_r;
 int conf_switch_color_active_outline_g;
 int conf_switch_color_active_outline_b;
 float conf_switch_timed;
-char *conf_switch_parent_click_se_file;
-char *conf_switch_child_click_se_file;
+char *conf_switch_click_se;
 char *conf_switch_change_se;
 char *conf_switch_anime_focus[10];
 char *conf_switch_anime_unfocus[10];
-
-/*
- * NEWSの設定
- */
-char *conf_news_bg_file;
-char *conf_news_fg_file;
-int conf_news_margin;
-int conf_news_text_margin_y;
-char *conf_news_change_se;
 
 /*
  * セーブ・ロード画面の設定
@@ -693,9 +683,11 @@ static struct rule {
 	{"switch.color.active.outline.r", 'i', &conf_switch_color_active_outline_r, OPTIONAL, SAVE},
 	{"switch.color.active.outline.g", 'i', &conf_switch_color_active_outline_g, OPTIONAL, SAVE},
 	{"switch.color.active.outline.b", 'i', &conf_switch_color_active_outline_b, OPTIONAL, SAVE},
-	{"switch.parent.click.se.file", 's', &conf_switch_parent_click_se_file, OPTIONAL, SAVE},
-	{"switch.child.click.se.file", 's', &conf_switch_child_click_se_file, OPTIONAL, SAVE},
 	{"switch.change.se", 's', &conf_switch_change_se, OPTIONAL, SAVE},
+	{"switch.click.se", 's', &conf_switch_click_se, OPTIONAL, SAVE},
+	{"switch.click.se.file", 's', &conf_switch_click_se, OPTIONAL, SAVE},		/* for comaptibility */
+	{"switch.parent.click.se.file", 's', &conf_switch_click_se, OPTIONAL, SAVE},	/* for comaptibility */
+	{"switch.child.click.se.file", 's', NULL, OPTIONAL, SAVE},			/* for comaptibility */
 	{"switch.bg.file2", 's', &conf_switch_bg_file[1], OPTIONAL, SAVE},
 	{"switch.fg.file2", 's', &conf_switch_fg_file[1], OPTIONAL, SAVE},
 	{"switch.x2", 'i', &conf_switch_x[1], OPTIONAL, SAVE},
@@ -753,11 +745,6 @@ static struct rule {
 	{"switch.anime.unfocus9", 's', &conf_switch_anime_unfocus[8], OPTIONAL, SAVE},
 	{"switch.anime.focus10", 's', &conf_switch_anime_focus[9], OPTIONAL, SAVE},
 	{"switch.anime.unfocus10", 's', &conf_switch_anime_unfocus[9], OPTIONAL, SAVE},
-	{"news.bg.file", 's', &conf_news_bg_file, OPTIONAL, SAVE},
-	{"news.fg.file", 's', &conf_news_fg_file, OPTIONAL, SAVE},
-	{"news.margin", 'i', &conf_news_margin, OPTIONAL, SAVE},
-	{"news.text.margin.y", 'i', &conf_news_text_margin_y, OPTIONAL, SAVE},
-	{"news.change.se", 's', &conf_news_change_se, OPTIONAL, SAVE},
 	{"save.data.thumb.width", 'i', &conf_save_data_thumb_width, MUST, NOSAVE},
 	{"save.data.thumb.height", 'i', &conf_save_data_thumb_height, MUST, NOSAVE},
 	{"save.data.new", 's', &conf_save_data_new, OPTIONAL, NOSAVE},
