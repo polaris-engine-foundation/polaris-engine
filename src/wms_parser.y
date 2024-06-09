@@ -2,7 +2,7 @@
 /*
  * Watermelon Script
  * x-engine
- * Copyright (c) 2001-2024, Keiichi Tabata. All rights reserved.
+ * Copyright (c) 2024, The Authors. All rights reserved.
  */
 #include <stdio.h>
 #include "wms_core.h"
