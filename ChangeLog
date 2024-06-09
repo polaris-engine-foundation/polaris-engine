@@ -4,10 +4,12 @@ This file is referred by the automatic release script.
 
 [Release History (Japanese)]
 <!-- BEGIN-LATEST-JP -->
+# x-engine 1.1.1 2024/6/10
+* switch/newsコマンドの削除が不完全な点を修正
+<!-- END-LATEST-JP -->
 # x-engine 1.1.0 2024/6/10
 * 選択肢のポイントが変化した際にアニメを実行できるように機能追加
 * 古い2階層のswitchを削除(予告済み)
-<!-- END-LATEST-JP -->
 # x-engine 1.0.2 2024/6/9
 * 再リリース
 # x-engine 1.0.1 2024/6/8

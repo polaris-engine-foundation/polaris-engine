@@ -35,11 +35,9 @@
  */
 
 /*
- * コマンドの引数の最大数
- *  - コマンド名も含める
- *  - TODO: @switchを廃止して、引数の最大値を大幅に小さくする
+ * コマンドの引数の最大数 (コマンド名[0]も含めた数)
  */
-#define PARAM_SIZE	(137)
+#define PARAM_SIZE	(48)
 
 /* コマンド配列 */
 static struct command {
@@ -289,8 +287,6 @@ struct insn_item {
 	/* @cl.* are excluded. */
 
 	/* deprecated */
-	{"@news", COMMAND_NEWS, 9, 136},
-	{"@switch", COMMAND_SWITCH, 9, 136},
 	{"@chs", COMMAND_CHS, 4, 7},
 	{U8("@場面転換"), COMMAND_CHS, 4, 7},
 };
