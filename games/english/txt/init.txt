@@ -32,7 +32,7 @@
 @bgm file=00.ogg
 
 # Show the menu background image.
-@bg file=cg/title/idle.png 1.0
+@bg file=title.png 1.0
 
 # This is the menu top. We'll be back here when LOAD or CONFIG is selected.
 :MENU
@@ -41,7 +41,7 @@
 @chapter "Menu"
 
 # Call the menu.
-@gui file=title.txt nofadein
+@gui file=title.txt
 
 # When START is selected:
 :START
@@ -102,7 +102,7 @@
 
 *Midori*e005.ogg*Now, you're probably wondering why I skipped the remedial class, right?
 *Midori*e006.ogg*Oh actually, I should probably introduce myself first, shouldn't I?
-*Midori*e007.ogg*My name's \#{00ff00}Midori\#{ffffff}, nice to meet you!
+*Midori*e007.ogg*My name's \#{00ff00}Midori\#{DEF}, nice to meet you!
 
 *Midori*e008.ogg*I'm a senior student here. If you couldn't already tell, I love watermelon, my parents even own a watermelon farm!
 

@@ -65,9 +65,9 @@ SAVESLOT1 {
     margin: 20;
 
     # 背景色(スロットが白や黒のときに目立たないようにする)
-    #clear-r: 255;
-    #clear-g: 255;
-    #clear-b: 255;
+    clear-r: 255;
+    clear-g: 255;
+    clear-b: 255;
 
     # ポイントされたときの効果音
     pointse: btn-change.ogg;
@@ -97,9 +97,9 @@ SAVESLOT2 {
     margin: 20;
 
     # 背景色(スロットが白や黒のときに目立たないようにする)
-    #clear-r: 255;
-    #clear-g: 255;
-    #clear-b: 255;
+    clear-r: 255;
+    clear-g: 255;
+    clear-b: 255;
 
     # ポイントされたときの効果音
     pointse: btn-change.ogg;
@@ -129,9 +129,9 @@ SAVESLOT3 {
     margin: 20;
 
     # 背景色(スロットが白や黒のときに目立たないようにする)
-    #clear-r: 255;
-    #clear-g: 255;
-    #clear-b: 255;
+    clear-r: 255;
+    clear-g: 255;
+    clear-b: 255;
 
     # ポイントされたときの効果音
     pointse: btn-change.ogg;

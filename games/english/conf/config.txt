@@ -408,6 +408,7 @@ switch.click.se=click.ogg
 #  - 10まで指定可能（選択肢の最大表示個数も10）
 #  - ゲーム中に座標を変更したい場合、あらかじめswitch.bg.file～の#を外して有効にしたうえで設定する
 #    - @setconfig switch.x2 300
+
 #switch.bg.file2=system/choose/idle-2.png
 #switch.fg.file2=system/choose/hover-2.png
 #switch.x2=200
@@ -432,6 +433,18 @@ switch.click.se=click.ogg
 #switch.fg.file7=system/choose/hover-2.png
 #switch.x7=200
 #switch.y7=700
+#switch.bg.file8=system/choose/idle-2.png
+#switch.fg.file8=system/choose/hover-2.png
+#switch.x8=200
+#switch.y8=700
+#switch.bg.file9=system/choose/idle-2.png
+#switch.fg.file9=system/choose/hover-2.png
+#switch.x9=200
+#switch.y9=700
+#switch.bg.file10=system/choose/idle-2.png
+#switch.fg.file10=system/choose/hover-2.png
+#switch.x10=200
+#switch.y10=700
 
 # [選択肢がポイントされたときに実行されるアニメファイル] (省略可)
 #  - focusX   ... 選択肢がポイントされたときに実行されるアニメファイル
@@ -954,15 +967,15 @@ msgbox.show.on.bg=0
 #  - 1: 隠さない
 msgbox.show.on.choose=0
 
-# [セリフをカギカッコで囲う] (省略可)
-#  - 0: 囲わない
-#  - 1: 囲う
-serif.quote=0
-
 # [セリフをカギカッコで囲ったときに２行目以降をインデントする] (省略可)
 #  - 0: インデントしない
 #  - 1: インデントする
 serif.quote.indent=1
+
+# [セリフをカギカッコで囲う] (省略可)
+#  - 0: 囲わない
+#  - 1: 囲う
+serif.quote=0
 
 # [キャラ/背景の変更中に折りたたみシステムメニューを表示する] (省略可)
 #  - 0: 表示しない

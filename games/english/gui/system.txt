@@ -107,7 +107,7 @@ VOICE {
     type: voicevol;
 
     # スライダーが変更されたときに再生するCVファイル
-    file: e025.ogg;
+    file: 025.ogg;
 
     # 座標とサイズ
     x: 258;

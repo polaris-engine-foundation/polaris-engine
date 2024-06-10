@@ -64,6 +64,11 @@ HISTORYSLOT1 {
     # テキストのマージン
     margin: 15;
 
+    # 背景色(スロットが白や黒のときに目立たないようにする)
+    clear-r: 255;
+    clear-g: 255;
+    clear-b: 255;
+
     # ポイントされたときの効果音
     pointse: btn-change.ogg;
 
@@ -88,6 +93,11 @@ HISTORYSLOT2 {
     # テキストのマージン
     margin: 15;
 
+    # 背景色(スロットが白や黒のときに目立たないようにする)
+    clear-r: 255;
+    clear-g: 255;
+    clear-b: 255;
+
     # ポイントされたときの効果音
     pointse: btn-change.ogg;
 
@@ -111,6 +121,11 @@ HISTORYSLOT3 {
 
     # テキストのマージン
     margin: 15;
+
+    # 背景色(スロットが白や黒のときに目立たないようにする)
+    clear-r: 255;
+    clear-g: 255;
+    clear-b: 255;
 
     # ポイントされたときの効果音
     pointse: btn-change.ogg;

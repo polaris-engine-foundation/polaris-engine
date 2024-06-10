@@ -4,6 +4,9 @@
 
 # このファイルの基本設定
 global {
+    # 背景やキャラを描画するという意味の指定（代わりに画像を指定することも可能）
+    base:   none;
+
     # 下記の画像を使用する
     idle:   title/idle.png;
     hover:  title/hover.png;
@@ -12,10 +15,10 @@ global {
     active: title/hover.png;
 
     # フェードイン時間(秒) [この画面ではフェードインを使わない]
-    # fadein: 1.0;
+    fadein: 0.2;
 
     # フェードアウト時間(秒) [この画面ではフェードアウトを使わない]
-    # fadeout: 1.0;
+    fadeout: 0.2;
 
     # 読み上げ
     alt: ゲームのメニュー画面が表示されています。左右のキーを押してください。;
@@ -30,10 +33,10 @@ START {
     label: START;
 
     # 座標とサイズ
-    x: 33;
-    y: 491;
-    width: 323;
-    height: 196;
+    x: 854;
+    y: 352;
+    width: 238;
+    height: 63;
 
     # ポイントされたときの効果音
     pointse: btn-change.ogg;
@@ -54,10 +57,10 @@ LOAD {
     label: LOAD;
 
     # 座標とサイズ
-    x: 356;
-    y: 493;
-    width: 321;
-    height: 205;
+    x: 888;
+    y: 459;
+    width: 184;
+    height: 59;
 
     # ポイントされたときの効果音
     pointse: btn-change.ogg;
@@ -78,10 +81,10 @@ CONFIG {
     label: CONFIG;
 
     # 座標とサイズ
-    x: 677;
-    y: 496;
-    width: 321;
-    height: 193;
+    x: 913;
+    y: 554;
+    width: 139;
+    height: 58;
 
     # ポイントされたときの効果音
     pointse: btn-change.ogg;

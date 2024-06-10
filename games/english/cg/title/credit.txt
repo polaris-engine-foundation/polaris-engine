@@ -1,4 +1,3 @@
 ***CREDIT***
 
-idle.png by heath
-hover.png by heath
+idle.png and hover.png by A

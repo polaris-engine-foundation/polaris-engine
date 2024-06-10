@@ -1,13 +1,16 @@
 ***CREDIT***
 
-Poniko (ぽにこ):
+Poniko (ぽにこ) (copyright was yielded to K):
   001-angry.png
   001-fun.png
   001-happy.png
   001-normal.png
   001-sad.png
 
-Becta (Ｂecta) (copyright holder is K):
+SOrow:
+  001-fun_eye.png
+
+Becta (Ｂecta) (copyright was yielded to K):
   luxion.png
 
 K:
