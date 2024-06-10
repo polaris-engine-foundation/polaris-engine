@@ -175,7 +175,10 @@ static ViewController *theViewController;
     }
 }
 
-- (void)enterFullScreen { 
+- (void)setWindowTitle:(NSString *)name {
+}
+
+- (void)enterFullScreen {
 }
 
 
