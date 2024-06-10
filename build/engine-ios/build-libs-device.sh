@@ -4,7 +4,7 @@ set -eu
 
 PREFIX=`pwd`/libroot-device
 
-rm -rf tmp libroot libroot-sim libroot-device
+rm -rf tmp libroot-device
 mkdir -p tmp libroot-device libroot-device/include libroot-device/lib libroot-device/bin
 
 cd tmp

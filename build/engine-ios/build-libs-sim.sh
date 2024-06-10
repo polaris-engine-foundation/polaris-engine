@@ -4,8 +4,8 @@ set -eu
 
 PREFIX=`pwd`/libroot-sim
 
-rm -rf tmp libroot libroot-sim
-mkdir -p tmp libroot libroot-sim/include libroot-sim/lib libroot-sim/bin
+rm -rf tmp libroot-sim
+mkdir -p tmp libroot-sim libroot-sim/include libroot-sim/lib libroot-sim/bin
 
 cd tmp
 
