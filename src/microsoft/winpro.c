@@ -1253,14 +1253,6 @@ static VOID InitMenu(HWND hWnd)
 	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
 	EnableMenuItem(hMenu, ID_EXPORT_WIN, MF_GRAYED);
 
-	/* Windows EXEインストーラを作成するを作成する */
-	mi.wID = ID_EXPORT_WIN_INST;
-	mi.dwTypeData = bEnglish ?
-		L"Export a Windows game (installer)" :
-		L"Windowsゲームをエクスポートする(インストーラ)";
-	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
-	EnableMenuItem(hMenu, ID_EXPORT_WIN_INST, MF_GRAYED);
-
 	/* Unityプロジェクトをエクスポートする(Windows)を作成する */
 	mi.wID = ID_EXPORT_UNITY_WINDOWS;
 	mi.dwTypeData = bEnglish ?
@@ -1564,7 +1556,6 @@ static VOID StartGame(void)
 		EnableMenuItem(hMenu, ID_PAUSE, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_ERROR, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_WIN, MF_ENABLED);
-		EnableMenuItem(hMenu, ID_EXPORT_WIN_INST, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_MAC, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_WEB, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_ANDROID, MF_ENABLED);
@@ -3113,7 +3104,6 @@ void on_change_running_state(bool running, bool request_stop)
 		EnableMenuItem(hMenu, ID_PAUSE, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_ERROR, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_WIN, MF_GRAYED);
-		EnableMenuItem(hMenu, ID_EXPORT_WIN_INST, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_MAC, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_WEB, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_ANDROID, MF_GRAYED);
@@ -3150,7 +3140,6 @@ void on_change_running_state(bool running, bool request_stop)
 		EnableMenuItem(hMenu, ID_PAUSE, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_ERROR, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_WIN, MF_GRAYED);
-		EnableMenuItem(hMenu, ID_EXPORT_WIN_INST, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_MAC, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_WEB, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_EXPORT_ANDROID, MF_GRAYED);
@@ -3187,7 +3176,6 @@ void on_change_running_state(bool running, bool request_stop)
 		EnableMenuItem(hMenu, ID_PAUSE, MF_GRAYED);
 		EnableMenuItem(hMenu, ID_ERROR, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_WIN, MF_ENABLED);
-		EnableMenuItem(hMenu, ID_EXPORT_WIN_INST, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_MAC, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_WEB, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_ANDROID, MF_ENABLED);
