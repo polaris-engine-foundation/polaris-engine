@@ -55,13 +55,10 @@ window.resize=2
 ###
 
 # [メッセージのフォント選択] (省略可)
-#  - 0: グローバル
-#  - 1: main
-#  - 2: alt1
-#  - 3: alt2
-#  - ゲーム中での変更方法
-#    - WMSの s2_set_config("font.select", "0"); で変更可能
-#    - コマンドの @setconfig font.select 0 で変更可能
+#  - 0: global (\f{g})
+#  - 1: main   (\f{m})
+#  - 2: alt1   (\f{a})
+#  - 3: alt2   (\f{b})
 font.select=0
 
 # [グローバルフォント]

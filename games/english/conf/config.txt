@@ -1,96 +1,90 @@
 ###
-### コンフィグファイル
-###  - 全般的な設定が行えます
-###  - ほとんどの項目は、@setconfigを使えばゲームの中で変更できます
-###  - 省略可能で0か1の値を取る項目は、指定しないと0になります
+### The Configuration File
+###  - If you omit a config, then the value of the config will be zero or empty
 ###
 
 ###
-### スクリプトモードの設定
+### Script Mode
 ###
 
-# クリック待ちを明示する「ページモード」を使用するか (省略可)
-#  - 0: いいえ
-#  - 1: はい (全画面スタイルのノベル)
+# Page Mode (explicit pagenation and click wait) (optional)
+#  - 0: No
+#  - 1: Yes (NVL style)
 script.page=0
 
 ###
-### ウィンドウの設定
+### Windows Settings
 ###
 
-# ウィンドウのタイトル
-window.title=テンプレートゲーム
+# Window Title
+window.title=Template Game
 
-# ウィンドウの幅
+# Window Width
 window.width=1280
 
-# ウィンドウの高さ
+# Window Height
 window.height=720
 
-# 背景の色
-#  - 0: 黒
-#  - 1: 白
+# Background Color
+#  - 0: Black
+#  - 1: White
 window.white=1
 
-# メニューバーを表示するか
-#  - 0: 表示しない
-#  - 1: 表示する
+# Show menu bar?
+#  - 0: No
+#  - 1: Yes
 window.menubar=0
 
-# ウィンドウのリサイズ許可 (省略可)
-#  - 0: 許可しない
-#  - 1: 許可する(アスペクト比を固定しない、余白あり)
-#  - 2: 許可する(アスペクト比を固定する、余白なし)
+# Allow window resize? (optional)
+#  - 0: No
+#  - 1: Yes (with free aspect ratio)
+#  - 2: Yes (fixed aspect ratio)
 window.resize=2
 
-# 拡大/縮小用のウィンドウサイズ (省略可)
-#  - 起動時に拡大/縮小しておきたいときに利用
-#  - 指定しなければ window.width と window.height が利用される
-#  - 今のところWindows専用
+# Scaled window size for debugging (optional)
+#  - If your screen is smaller than the window size, please use this option to
+#    avoid a startup error on Windows
 #window.default.width=0
 #window.default.height=0
 
 ###
-### フォントの設定
+### Font Settings
 ###
 
-# [メッセージのフォント選択] (省略可)
-#  - 0: グローバル
-#  - 1: main
-#  - 2: alt1
-#  - 3: alt2
-#  - ゲーム中での変更方法
-#    - WMSの s2_set_config("font.select", "0"); で変更可能
-#    - コマンドの @setconfig font.select 0 で変更可能
+# Message Font Selection (optional)
+#  - 0: global (\f{g})
+#  - 1: main   (\f{m})
+#  - 2: alt1   (\f{a})
+#  - 3: alt2   (\f{b})
 font.select=0
 
-# [グローバルフォント]
-#  - コンフィグ画面で選択されるフォント
-#  - グローバルセーブデータに保存される
-#  - このフォント名はセーブデータがないときの初期値として必須
+# Global Font
+#  - A font that is user-selected in a config screen
+#  - Global font setting is stored to the global save data
+#  - This config is used when there is no global save data
 font.file=rounded-l-mplus-1c-bold.ttf
 
-# [メインフォント] (省略可)
-#  - ゲーム内からは変更できないコンフィグ
+# Main Font (optional)
+#  - This file name setting is not changeable from a game
 #font.main.file=
 
-# [alt1フォント] (省略可)
-#  - ゲーム内からは変更できないコンフィグ
+# Alt1 Font (optional)
+#  - This file name setting is not changeable from a game
 #font.alt1.file=
 
-# [alt2フォント] (省略可)
-#  - ゲーム内からは変更できないコンフィグ
+# Alt2 Font (optional)
+#  - This file name setting is not changeable from a game
 #font.alt2.file=
 
-# [メッセージのフォントサイズ]
+# Font Size of Message
 font.size=34
 
-# [メッセージのフォントの色]
+# Font Color of Message
 font.color.r=80
 font.color.g=40
 font.color.b=10
 
-# [メッセージのフォントのふちどり] (省略可)
+# Font Outline of Message (optional)
 #  - 0: あり
 #  - 1: なし
 font.outline.remove=0
