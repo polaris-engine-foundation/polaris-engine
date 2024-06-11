@@ -9,14 +9,14 @@
  * x-engine (Editor) for Windows
  */
 
-/* x-engine Base */
+/* Base */
 #include "../xengine.h"
 
-/* x-engine (Editor) */
+/* Editor */
 #include "../pro.h"
 #include "../package.h"
 
-/* x-engine HAL Implementaions */
+/* HAL Implementaions */
 #include "dx9render.h"		/* Graphics HAL */
 #include "dsound.h"			/* Sound HAL */
 #include "dsvideo.h"		/* Video HAL */
@@ -5166,6 +5166,9 @@ static VOID OnExportIOS(void)
 				 "data01.arcの移動に失敗しました。");
 		return;
 	}
+
+	/* movをコピーする */
+	CopyMovFiles(L".\\mov\\*.mp4", L".\\ios-export\\Resources\\mov\\");
 
 	MessageBox(hWndMain, bEnglish ?
 			   L"Will open the exported source code folder.\n"

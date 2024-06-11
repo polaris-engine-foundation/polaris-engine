@@ -75,6 +75,7 @@
 		26BF135D2B29E2EB006A0F6E /* wms_lexer.yy.c in Sources */ = {isa = PBXBuildFile; fileRef = 26BF131F2B29E2EB006A0F6E /* wms_lexer.yy.c */; };
 		26BF135E2B29E2EB006A0F6E /* cmd_message.c in Sources */ = {isa = PBXBuildFile; fileRef = 26BF13202B29E2EB006A0F6E /* cmd_message.c */; };
 		26C2315A2BB06321003DC0D6 /* ciel.c in Sources */ = {isa = PBXBuildFile; fileRef = 26C231592BB0630F003DC0D6 /* ciel.c */; };
+		CE3EAE922C18804B00E8A009 /* mov in Resources */ = {isa = PBXBuildFile; fileRef = CE3EAE912C18804B00E8A009 /* mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +184,7 @@
 		26BF13232B29E2EB006A0F6E /* wms_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wms_core.h; path = ../../src/wms_core.h; sourceTree = "<group>"; };
 		26C231592BB0630F003DC0D6 /* ciel.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ciel.c; path = ../../src/ciel.c; sourceTree = "<group>"; };
 		26FECC312BB4B263002CB40D /* ciel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ciel.h; path = ../../src/ciel.h; sourceTree = "<group>"; };
+		CE3EAE912C18804B00E8A009 /* mov */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mov; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 		267492BC2BCDB2FC00943F71 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE3EAE912C18804B00E8A009 /* mov */,
 				267492BD2BCDB34F00943F71 /* data01.arc */,
 			);
 			path = Resources;
@@ -404,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3EAE922C18804B00E8A009 /* mov in Resources */,
 				26A500162B29F54500C1ED7D /* LaunchScreen.storyboard in Resources */,
 				267492BE2BCDB34F00943F71 /* data01.arc in Resources */,
 				26A500152B29F54100C1ED7D /* Main.storyboard in Resources */,

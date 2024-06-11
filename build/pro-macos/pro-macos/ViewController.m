@@ -1267,6 +1267,18 @@ static ViewController *theViewController;
         return;
     }
 
+    NSArray *contents = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/mov", [fileManager currentDirectoryPath]] error:nil];
+    for (NSString *item in contents) {
+        if ([[item pathExtension] isEqualToString:@"mp4"]) {
+            if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/mov/%@", [fileManager currentDirectoryPath], item]
+                                      toPath:[NSString stringWithFormat:@"%@/Resources/mov/%@", exportPath, item]
+                                       error:nil]) {
+                log_warn("Copy error (3).");
+                return;
+            }
+        }
+    }
+
     log_info(_isEnglish ? "Successflully exported" : "エクスポートに成功しました。");
 
     // IPA作成の確認のダイアログを開く

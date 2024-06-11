@@ -85,96 +85,97 @@ font.color.g=40
 font.color.b=10
 
 # Font Outline of Message (optional)
-#  - 0: あり
-#  - 1: なし
+#  - 0: Enable
+#  - 1: Disable
 font.outline.remove=0
 
-# [メッセージのフォントのふちどりの色] (省略可)
+# Font Outline Color of Message (optional)
 font.outline.color.r=255
 font.outline.color.g=255
 font.outline.color.b=255
 
-# [メッセージのフォントのふちどりのを太くする量] (省略可)
-# -  0: デフォルトの2ピクセル
-# - -1: 細めの1ピクセル
-# -  1: 太めの3ピクセル
-# -  2: 極太の4ピクセル
+# Font Outline Amount (optional)
+#  -  0: 2px (default)
+#  - -1: 1px (thin)
+#  -  1: 3px (bold)
+#  -  2: 4px (bold)
 font.outline.add=1
 
-# [メッセージと名前のルビのフォントサイズ] (省略可)
+# Ruby Font Size for Message and Name (optional)
+#  - "Ruby" is a kind of Japanese writing system
+#  - Ignore this in the English world
 font.ruby.size=16
 
 ###
 ### 名前ボックスの設定
 ###
 
-# [名前ボックス画像のファイル名]
+# NameBox File Name
 namebox.file=system/namebox/idle.png
 
-# [名前ボックスのフォント選択] (省略可)
-#  - 0: グローバル
-#  - 1: main
-#  - 2: alt1
-#  - 3: alt2
+# Font Selection for NameBox (optional)
+#  - 0: global (\f{g})
+#  - 1: main   (\f{m})
+#  - 2: alt1   (\f{a})
+#  - 3: alt2   (\f{b})
 namebox.font.select=0
 
-# [名前ボックスのフォントサイズ] (省略可)
-#  - 0を指定するか省略するとメッセージと同じになる
+# Font Size for NameBox (optional)
 namebox.font.size=30
 
-# [名前ボックスのフォントのふちどり] (省略可)
-#  - 0: メッセージボックスと同じ設定
-#  - 1: ふちどりあり
-#  - 2: ふちどりなし
+# Font Outline for NameBox (optional)
+#  - 0: Same as Message
+#  - 1: Force Enable Outline
+#  - 2: Force Disable Outline
 namebox.font.outline=0
 
-# [名前ボックス画像を表示する位置]
+# Position of NameBox
 namebox.x=160
 namebox.y=496
 
-# [名前ボックス画像内のテキスト上端マージン]
+# Top Margin of NameBox Text
 namebox.margin.top=10
 
-# [名前の中央揃え] (省略可)
-#  - 0: 中央揃え
-#  - 1: 左揃え
+# NameBox Text Centering (optional)
+#  - 0: Center
+#  - 1: Leftify
 namebox.centering.no=0
 
-# [名前を左揃えにするときのテキスト左端マージン] (省略可)
+# Left Margin of NameBox Text when leftify (optional)
 namebox.margin.left=0
 
-# [名前ボックスを隠す] (省略可)
-#  - 1: 隠す
-#  - 0: 隠さない
+# Visibility of NameBox (optional)
+#  - 0: Show
+#  - 1: Hide
 namebox.hidden=0
 
 ###
-### メッセージボックスの設定
+### MessageBox Settings
 ###
 
-# [メッセージボックスの背景の画像ファイル名]
+# MessageBox File Name
 msgbox.bg.file=system/msgbox/idle.png
 
-# [メッセージボックスの前景の画像ファイル名]
+# MessageBox File Name (for when pointed its button)
 msgbox.fg.file=system/msgbox/hover.png
 
-# [メッセージボックス画像を表示する位置]
+# Position to show MessageBox
 msgbox.x=0
 msgbox.y=530
 
-# [メッセージボックス画像内のテキスト左端マージン]
+# Left Margin of Text inside MessageBox
 msgbox.margin.left=240
 
-# [メッセージボックス画像内のテキスト上端マージン]
+# Top Margin of Text inside MessageBox
 msgbox.margin.top=41
 
-# [メッセージボックス画像内のテキスト右端マージン]
+# Right Margin of Text inside MessageBox
 msgbox.margin.right=240
 
-# [メッセージボックス画像内のテキスト下端マージン]
+# Bottom Margin of Text inside MessageBox
 msgbox.margin.bottom=50
 
-# [メッセージの行間]
+# Line Height of Text (Line Margin)
 msgbox.margin.line=55
 
 # [メッセージの文字間隔]
@@ -183,7 +184,7 @@ msgbox.margin.char=0
 # [メッセージのスピード(毎秒x文字表示する)]
 msgbox.speed=40.0
 
-# [メッセージボックスを非表示にするボタンの座標] (省略可)
+# [メッセージボックスを非表示にするボタンの座標] (optional)
 #  - メッセージボックス内の座標
 msgbox.btn.hide.x=1078
 msgbox.btn.hide.y=20
@@ -246,33 +247,33 @@ msgbox.btn.hide.height=50
 # msgbox.btn.config.width=0
 # msgbox.btn.config.height=0
 
-# [ポイントされているボタンが変化したときのSE] (省略可)
+# [ポイントされているボタンが変化したときのSE] (optional)
 msgbox.btn.change.se=btn-change.ogg
 
-# [上キーもしくはマウスホイールでヒストリ画面を呼び出すときのSE] (省略可)
+# [上キーもしくはマウスホイールでヒストリ画面を呼び出すときのSE] (optional)
 msgbox.history.se=click.ogg
 
-# [ESCキーでコンフィグ画面を呼び出すときのSE] (省略可)
+# [ESCキーでコンフィグ画面を呼び出すときのSE] (optional)
 msgbox.config.se=click.ogg
 
-# [メッセージボックスを非表示にするときのSE] (省略可)
+# [メッセージボックスを非表示にするときのSE] (optional)
 msgbox.hide.se=click.ogg
 
-# [メッセージボックスを表示するときのSE] (省略可)
+# [メッセージボックスを表示するときのSE] (optional)
 msgbox.show.se=click.ogg
 
-# [オートモードをキャンセルするときのSE] (省略可)
+# [オートモードをキャンセルするときのSE] (optional)
 msgbox.auto.cancel.se=click.ogg
 
-# [スキップモードをキャンセルするときのSE] (省略可)
+# [スキップモードをキャンセルするときのSE] (optional)
 msgbox.skip.cancel.se=click.ogg
 
-# [未読でもスキップする] (省略可)
+# [未読でもスキップする] (optional)
 #  - 0: スキップしない
 #  - 1: スキップする
 msgbox.skip.unseen=0
 
-# [既読メッセージの色を変更する] (省略可)
+# [既読メッセージの色を変更する] (optional)
 #  - color=0: 無効(通常)
 #  - color=1: 有効(色を変更する)
 msgbox.seen.color=0
@@ -283,7 +284,7 @@ msgbox.seen.outline.color.r=40
 msgbox.seen.outline.color.g=40
 msgbox.seen.outline.color.b=40
 
-# [全画面小説モードで読んだメッセージを暗くする] (省略可)
+# [全画面小説モードで読んだメッセージを暗くする] (optional)
 #  - dim=0: 無効(通常)
 #  - dim=1: 有効(暗くする)
 msgbox.dim=0
@@ -311,7 +312,7 @@ msgbox.fill.color.a=255
 click.x=1060
 click.y=660
 
-# [クリックアニメーションの位置を移動するか] (省略可)
+# [クリックアニメーションの位置を移動するか] (optional)
 #  - 0: 移動しない
 #  - 1: 移動する
 click.move=0
@@ -319,14 +320,14 @@ click.move=0
 # [クリックアニメーション画像のファイル名]
 click.file1=system/click/click1.png
 
-# [クリックアニメーション画像のファイル名] (省略可)
+# [クリックアニメーション画像のファイル名] (optional)
 #  - click.file16まで指定可能
 click.file2=system/click/click2.png
 
 # [クリックアニメーションの時間間隔(秒)]
 click.interval=1.0
 
-# [クリックアニメーションを表示しない] (省略可)
+# [クリックアニメーションを表示しない] (optional)
 #  - 0: 表示する
 #  - 1: 表示しない
 click.disable=0
@@ -341,18 +342,18 @@ switch.bg.file=system/choose/idle.png
 # [選択肢（選択中）画像のファイル名]
 switch.fg.file=system/choose/hover.png
 
-# [選択肢のフォント] (省略可)
+# [選択肢のフォント] (optional)
 #  - 0: グローバル
 #  - 1: main
 #  - 2: alt1
 #  - 3: alt2
 switch.font.select=0
 
-# [選択肢のフォントサイズ] (省略可)
+# [選択肢のフォントサイズ] (optional)
 #  - 0を指定するか省略するとメッセージと同じになる
 switch.font.size=38
 
-# [選択肢のフォントのふちどり] (省略可)
+# [選択肢のフォントのふちどり] (optional)
 #  - 0: メッセージボックスと同じ設定
 #  - 1: ふちどりあり
 #  - 2: ふちどりなし
@@ -368,7 +369,7 @@ switch.margin.y=20
 # [選択肢画像のテキストの縦方向マージン]
 switch.text.margin.y=15
 
-# [ポイントされていない項目のテキスト色] (省略可)
+# [ポイントされていない項目のテキスト色] (optional)
 #  - inactive=0: 無効
 #  - inactive=1: 有効
 switch.color.inactive=0
@@ -379,7 +380,7 @@ switch.color.inactive.outline.r=0
 switch.color.inactive.outline.g=32
 switch.color.inactive.outline.b=0
 
-# [ポイントされた項目のテキスト色] (省略可)
+# [ポイントされた項目のテキスト色] (optional)
 #  - active=0: 無効
 #  - active=1: 有効
 switch.color.active=1
@@ -390,13 +391,13 @@ switch.color.active.outline.r=80
 switch.color.active.outline.g=0
 switch.color.active.outline.b=0
 
-# [選択肢の選択項目が変更されたときのSE] (省略可)
+# [選択肢の選択項目が変更されたときのSE] (optional)
 switch.change.se=btn-change.ogg
 
-# [選択肢を選択したときのSE] (省略可)
+# [選択肢を選択したときのSE] (optional)
 switch.click.se=click.ogg
 
-# [選択肢ごとに画像や位置を変える場合] (省略可)
+# [選択肢ごとに画像や位置を変える場合] (optional)
 #  - 指定しなければ縦方向にswitch.margin.yピクセルの間隔で配置される
 #  - 座標を変えるだけの場合もbg.file～・fg.file～の指定が必要（switch.bg.file・switch.fg.fileと同じでもOK）
 #  - 10まで指定可能（選択肢の最大表示個数も10）
@@ -440,7 +441,7 @@ switch.click.se=click.ogg
 #switch.x10=200
 #switch.y10=700
 
-# [選択肢がポイントされたときに実行されるアニメファイル] (省略可)
+# [選択肢がポイントされたときに実行されるアニメファイル] (optional)
 #  - focusX   ... 選択肢がポイントされたときに実行されるアニメファイル
 #  - unfocusX ... 選択肢のポイントが解除されたときに実行されるアニメファイル
 
@@ -550,58 +551,58 @@ sysmenu.config.width=80
 sysmenu.config.height=80
 
 # [サンプルでは未使用]
-# システムメニューのユーザ定義ボタン1の座標(システムメニュー画像内での座標) (省略可)
+# システムメニューのユーザ定義ボタン1の座標(システムメニュー画像内での座標) (optional)
 #sysmenu.custom1.x=0
 #sysmenu.custom1.y=0
 #sysmenu.custom1.width=0
 #sysmenu.custom1.height=0
 
 # [サンプルでは未使用]
-# システムメニューのユーザ定義ボタン1が選択されたときのSE(省略可)
+# システムメニューのユーザ定義ボタン1が選択されたときのSE(optional)
 #sysmenu.custom1.se=click.ogg
 
 # [サンプルでは未使用]
-# システムメニューのユーザ定義ボタン2の座標(システムメニュー画像内での座標) (省略可)
+# システムメニューのユーザ定義ボタン2の座標(システムメニュー画像内での座標) (optional)
 #sysmenu.custom2.x=0
 #sysmenu.custom2.y=0
 #sysmenu.custom2.width=0
 #sysmenu.custom2.height=0
 
 # [サンプルでは未使用]
-# システムメニューのユーザ定義ボタン2が選択されたときのSE(省略可)
+# システムメニューのユーザ定義ボタン2が選択されたときのSE(optional)
 #sysmenu.custom2.se=click.ogg
 
-# [システムメニューを呼び出すときのSE] (省略可)
+# [システムメニューを呼び出すときのSE] (optional)
 sysmenu.enter.se=click.ogg
 
-# [システムメニューをキャンセルするときのSE] (省略可)
+# [システムメニューをキャンセルするときのSE] (optional)
 sysmenu.leave.se=click.ogg
 
-# [システムメニューの選択されている項目が変わったときのSE] (省略可)
+# [システムメニューの選択されている項目が変わったときのSE] (optional)
 sysmenu.change.se=btn-change.ogg
 
-# [システムメニューのクイックセーブが選択されたときのSE] (省略可)
+# [システムメニューのクイックセーブが選択されたときのSE] (optional)
 sysmenu.qsave.se=click.ogg
 
-# [システムメニューのクイックロードが選択されたときのSE] (省略可)
+# [システムメニューのクイックロードが選択されたときのSE] (optional)
 sysmenu.qload.se=click.ogg
 
-# [システムメニューのセーブが選択されたときのSE] (省略可)
+# [システムメニューのセーブが選択されたときのSE] (optional)
 sysmenu.save.se=click.ogg
 
-# [システムメニューのロードが選択されたときのSE] (省略可)
+# [システムメニューのロードが選択されたときのSE] (optional)
 sysmenu.load.se=click.ogg
 
-# [システムメニューのオートが選択されたときのSE] (省略可)
+# [システムメニューのオートが選択されたときのSE] (optional)
 sysmenu.auto.se=click.ogg
 
-# [システムメニューのスキップが選択されたときのSE] (省略可)
+# [システムメニューのスキップが選択されたときのSE] (optional)
 sysmenu.skip.se=click.ogg
 
-# [システムメニューのヒストリが選択されたときのSE] (省略可)
+# [システムメニューのヒストリが選択されたときのSE] (optional)
 sysmenu.history.se=click.ogg
 
-# [システムメニューのコンフィグが選択されたときのSE] (省略可)
+# [システムメニューのコンフィグが選択されたときのSE] (optional)
 sysmenu.config.se=click.ogg
 
 # [折りたたみシステムメニュー画像の座標]
@@ -614,10 +615,10 @@ sysmenu.collapsed.idle.file=system/sysmenu-collapsed/idle.png
 # [折りたたみシステムメニュー画像(選択時)のファイル名]
 sysmenu.collapsed.hover.file=system/sysmenu-collapsed/hover.png
 
-# [折りたたみシステムメニューが選択されたときのSE] (省略可)
+# [折りたたみシステムメニューが選択されたときのSE] (optional)
 sysmenu.collapsed.se=btn-change.ogg
 
-# [システムメニューを隠す] (省略可)
+# [システムメニューを隠す] (optional)
 #  - 0: 隠さない
 #  - 1: 選択肢以外では隠す
 #  - 2: 常に隠す
@@ -653,23 +654,23 @@ skipmode.banner.y=186
 ### システムGUIの設定
 ###
 
-# [ヒストリとセーブアイテムにルビを表示するか] (省略可)
+# [ヒストリとセーブアイテムにルビを表示するか] (optional)
 #  - 0: 表示しない
 #  - 1: 表示する
 gui.ruby=1
 
-# [セーブのフォント] (省略可)
+# [セーブのフォント] (optional)
 #  - 0: グローバル
 #  - 1: main
 #  - 2: alt1
 #  - 3: alt2
 gui.save.font.select=0
 
-# [セーブのフォントサイズ] (省略可)
+# [セーブのフォントサイズ] (optional)
 #  - 0を指定するか省略するとメッセージと同じになる
 gui.save.font.size=30
 
-# [セーブのフォントのふちどり] (省略可)
+# [セーブのフォントのふちどり] (optional)
 #  - 0: メッセージボックスと同じ設定
 #  - 1: ふちどりあり
 #  - 2: ふちどりなし
@@ -682,23 +683,23 @@ gui.save.font.outline=4
 # [セーブのルビのフォントサイズ]
 gui.save.font.ruby.size=16
 
-# [セーブの縦書き] (省略可)
+# [セーブの縦書き] (optional)
 #  - 0: 横書き
 #  - 1: 縦書き
 gui.save.tategaki=0
 
-# [ヒストリのフォント] (省略可)
+# [ヒストリのフォント] (optional)
 #  - 0: グローバル
 #  - 1: main
 #  - 2: alt1
 #  - 3: alt2
 gui.history.font.select=0
 
-# [ヒストリのフォントサイズ] (省略可)
+# [ヒストリのフォントサイズ] (optional)
 #  - 0を指定するか省略するとメッセージと同じになる
 gui.history.font.size=30
 
-# [ヒストリのフォントのふちどり] (省略可)
+# [ヒストリのフォントのふちどり] (optional)
 #  - 0: メッセージボックスと同じ設定
 #  - 1: ふちどりあり
 #  - 2: ふちどりなし
@@ -708,18 +709,18 @@ gui.history.font.size=30
 #  - 6: ふちどりあり(メッセージボックス設定4px)
 gui.history.font.outline=4
 
-# [ヒストリのルビのフォントサイズ] (省略可)
+# [ヒストリのルビのフォントサイズ] (optional)
 gui.history.font.ruby.size=16
 
-# [ヒストリの行間] (省略可)
+# [ヒストリの行間] (optional)
 gui.history.margin.line=48
 
-# [ヒストリの縦書き] (省略可)
+# [ヒストリの縦書き] (optional)
 #  - 0: 横書き
 #  - 1: 縦書き
 gui.history.tategaki=0
 
-# [ヒストリでカラーを無効にする] (省略可)
+# [ヒストリでカラーを無効にする] (optional)
 #  - 0: カラーを有効にする
 #  - 1: カラーを無効にする(メッセージの色を使う)
 #  - 2: カラーを無効にする(ヒストリの色を使う)
@@ -741,7 +742,7 @@ gui.history.quote.prefix=\n
 gui.history.quote.start=「
 gui.history.quote.end=」
 
-# [プレビューの縦書き] (省略可)
+# [プレビューの縦書き] (optional)
 #  - 0: 横書き
 #  - 1: 縦書き
 gui.preview.tategaki=0
@@ -777,7 +778,7 @@ sound.character.name1=みどり
 ### セリフの色の設定
 ###
 
-# [セリフの色は名前だけに適用する] (省略可)
+# [セリフの色は名前だけに適用する] (optional)
 #  - 0: 本文も色を付ける
 #  - 1: 名前だけ色を付ける
 serif.color.name.only=1
@@ -796,7 +797,7 @@ serif.color1.outline.b=48
 ### キャラクタ名と画像ファイルのマッピング
 ###
 
-# [自動明暗:話しているキャラクタ以外を自動で暗くするか] (省略可)
+# [自動明暗:話しているキャラクタ以外を自動で暗くするか] (optional)
 #  - 0: 無効(手動)
 #  - 1: 有効(暗くする, 新たに登場したときは明るくする)
 #  - 2: 有効(暗くする, 新たに登場したときは暗くする)
@@ -862,16 +863,16 @@ stage.ch.margin.right=0
 ### タップ時のキラキラエフェクト
 ###
 
-# [キラキラエフェクトを使う] (省略可)
+# [キラキラエフェクトを使う] (optional)
 #  - 0: 使わない
 #  - 1: 使う(加算合成:明るくする)
 #  - 2: 使う(通常合成)
 kirakira.on=0
 
-# [キラキラエフェクトの1フレームの時間(秒)] (省略可)
+# [キラキラエフェクトの1フレームの時間(秒)] (optional)
 kirakira.frame=0.333
 
-# [キラキラエフェクトのファイル名(1から16まで)] (省略可)
+# [キラキラエフェクトのファイル名(1から16まで)] (optional)
 #kirakira.file1=kira1.png
 #kirakira.file2=kira2.png
 #kirakira.file3=kira3.png
@@ -922,61 +923,61 @@ var.global.name2=名前をつけてくださいC
 ### その他
 ###
 
-# [クリックでボイスを止めるか] (省略可)
+# [クリックでボイスを止めるか] (optional)
 #  - 0: 止める
 #  - 1: 止めない
 voice.stop.off=0
 
-# [フルスクリーンを無効にする] (省略可)
+# [フルスクリーンを無効にする] (optional)
 #  - 0: 有効にする
 #  - 1: 無効にする
 window.fullscreen.disable=0
 
-# [ウィンドウの最大化を無効にする] (省略可)
+# [ウィンドウの最大化を無効にする] (optional)
 #  - 0: 有効にする
 #  - 1: 無効にする
 window.maximize.disable=0
 
-# [ウィンドウタイトルと章タイトルの間のセパレータ] (省略可)
+# [ウィンドウタイトルと章タイトルの間のセパレータ] (optional)
 window.title.separator= 
 
-# [章タイトルをウィンドウタイトルに反映しない] (省略可)
+# [章タイトルをウィンドウタイトルに反映しない] (optional)
 #  - 0: 反映する
 #  - 1: 反映しない
 window.title.chapter.disable=0
 
-# [キャラクタの変更中にメッセージボックスを隠さない] (省略可)
+# [キャラクタの変更中にメッセージボックスを隠さない] (optional)
 #  - 0: 隠す
 #  - 1: 隠さない
 msgbox.show.on.ch=0
 
-# [背景の変更中にメッセージボックスを隠さない] (省略可)
+# [背景の変更中にメッセージボックスを隠さない] (optional)
 #  - 0: メッセージボックスをフェードアウトする
 #  - 1: メッセージボックスを常に表示する
 #  - 2: メッセージボックスを瞬時に隠す
 msgbox.show.on.bg=0
 
-# [選択肢の表示中にメッセージボックスを隠さない] (省略可)
+# [選択肢の表示中にメッセージボックスを隠さない] (optional)
 #  - 0: 隠す
 #  - 1: 隠さない
 msgbox.show.on.choose=0
 
-# [セリフをカギカッコで囲ったときに２行目以降をインデントする] (省略可)
+# [セリフをカギカッコで囲ったときに２行目以降をインデントする] (optional)
 #  - 0: インデントしない
 #  - 1: インデントする
 serif.quote.indent=1
 
-# [セリフをカギカッコで囲う] (省略可)
+# [セリフをカギカッコで囲う] (optional)
 #  - 0: 囲わない
 #  - 1: 囲う
 serif.quote=0
 
-# [キャラ/背景の変更中に折りたたみシステムメニューを表示する] (省略可)
+# [キャラ/背景の変更中に折りたたみシステムメニューを表示する] (optional)
 #  - 0: 表示しない
 #  - 1: 表示する ※ロゴ画面を簡単に作るために、スキップの禁止中は、折りたたみシステムメニューは表示されません
 sysmenu.transition=0
 
-# [上キーとマウスホイールでヒストリを表示しない] (省略可)
+# [上キーとマウスホイールでヒストリを表示しない] (optional)
 #  - 0: 表示する
 #  - 1: 表示しない
 msgbox.history.disable=0
@@ -987,21 +988,21 @@ msgbox.history.disable=0
 ### - WMSのs2_set_configでも設定可能
 ###
 
-# [メッセージの瞬間表示を行う] (省略可)
+# [メッセージの瞬間表示を行う] (optional)
 #  - 0: 瞬間表示しない
 #  - 1: 瞬間表示する
 #  - ゲーム中1を入れるとnowaitに。0で元の速度に戻る。
 #    - @setconfig msgbox.nowait 1
 #msgbox.nowait=0
 
-# [選択肢に制限時間を付与する] (省略可)
+# [選択肢に制限時間を付与する] (optional)
 #  - スクリプトでは以下のように秒数を設定する
 #   - @setconfig switch.timed 1.0
 #  - 解除する時は以下のように0を設定する
 #   - @setconfig switch.timed 0
 #switch.timed=0
 
-# [メッセージをヒストリに追加するか] (省略可)
+# [メッセージをヒストリに追加するか] (optional)
 #  - no-history: 追加しない
 #  - only-history: メッセージをヒストリに追加するが表示はしない
 #  - normal: 追加する（デフォルト）
@@ -1015,13 +1016,13 @@ msgbox.history.disable=0
 ### テキスト読み上げ
 ###
 
-# テキスト読み上げを有効にする (省略可)
+# テキスト読み上げを有効にする (optional)
 #  0: 無効
 #  1: 有効 (視覚障害者モード: 選択肢やボタンのガイダンスがある)
 #  2: 有効 (晴眼者モード: 選択肢やボタンのガイダンスがない)
 tts.enable=0
 
-# ユーザがテキスト読み上げを有効にできる (省略可)
+# ユーザがテキスト読み上げを有効にできる (optional)
 #  0: 無効
 #  1: Vキーで有効/無効にできる (視覚障害者モード)
 #  2: Vキーで有効/無効にできる (晴眼者モード)
@@ -1043,14 +1044,14 @@ tts.user=1
 #gui.history.ignore.last=0
 
 ###
-### 言語設定 (省略可)
+### 言語設定 (optional)
 ###
 
-# [システムの地域設定の上書き] (省略可)
+# [システムの地域設定の上書き] (optional)
 #  - Web版は日本がデフォルトなので、英語を指定したい場合などにご使用ください
 # locale.force=en
 
-# [言語マッピング] (省略可)
+# [言語マッピング] (optional)
 #  - OSの言語設定がxxのとき、シナリオのyyの言語を使う、の意味(+yy+の表記のこと)
 #  - 初めはすべてjaにしておいて、翻訳できた言語から順にマッピングを変える、などが可能
 language.en=en
@@ -1081,7 +1082,7 @@ sav.name=/sav-sample
 ###  - "Program Files"以下にはセーブデータを保存できないため、この機能があります
 ###
 
-# [リリースモード] (省略可)
+# [リリースモード] (optional)
 #  - 0: 無効
 #  - 1: 有効
 release=0

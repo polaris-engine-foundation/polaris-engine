@@ -304,7 +304,7 @@ char *make_valid_path(const char *dir, const char *fname)
         if(dir != NULL && strcmp(dir, MOV_DIR) == 0) {
             // 動画のパスを返す
             *strstr(fname, ".") = '\0';
-            NSString *basename = [[NSString alloc] initWithUTF8String:fname];
+            NSString *basename = [NSString stringWithFormat:@"mov/%s", fname];
             NSString *path = [[NSBundle mainBundle] pathForResource:basename ofType:@"mp4"];
             const char *cstr = [path UTF8String];
             return strdup(cstr);

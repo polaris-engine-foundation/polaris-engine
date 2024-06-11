@@ -119,6 +119,7 @@ src: libroot-device libroot-sim
 	@cp -Ra libroot-device ios-src/
 	@cp -Ra libroot-sim ios-src/
 	@mkdir ios-src/Resources
+	@mkdir ios-src/Resources/mov
 
 libroot-device:
 	./build-libs-device.sh
