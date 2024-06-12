@@ -114,12 +114,7 @@ echo "Building Unity source tree."
 say "Unity用のソースコードをビルドしています" &
 cd engine-unity
 make clean
-make src-main
-make src-switch
-make src-ps45
-make src-xbox
-make dll-win64
-make dll-mac
+make
 cd ..
 
 #

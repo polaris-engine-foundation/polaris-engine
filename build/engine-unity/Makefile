@@ -11,7 +11,7 @@ OBJS = $(SRCS_UNITY:../../src/%.c=%.o)
 #
 # Make a source tree
 #
-src-main: libxengine-win64.dll libxengine-macos.dylib
+all: libxengine-win64.dll libxengine-macos.dylib
 	@rm -rf unity-src
 	@mkdir unity-src
 	@cp -v -R ProjectSettings unity-src/
