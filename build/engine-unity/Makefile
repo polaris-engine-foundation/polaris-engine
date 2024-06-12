@@ -65,7 +65,7 @@ libxengine-win64.dll: $(SRCS_UNITY)
 #
 # macOS DLL for Test Run
 #
-libpolaris-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
+libxengine-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
 	/usr/bin/clang \
 		-O2 \
 		-arch arm64 \
