@@ -5,10 +5,13 @@ This file is referred by the automatic release script.
 [Release History (Japanese)]
 
 <!-- BEGIN-LATEST-JP -->
+# x-engine 1.1.8 2024/6/12
+* Unityエクスポートのバグ修正
+<!-- END-LATEST-JP -->
+
 # x-engine 1.1.7 2024/6/12
 * MacでのUnityエクスポートを追加
 * ゲーム機用のUnityエクスポートを改善
-<!-- END-LATEST-JP -->
 
 # x-engine 1.1.6 2024/6/12
 * Windows用インストーラのエクスポートを削除

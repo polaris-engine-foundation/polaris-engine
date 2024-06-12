@@ -28,11 +28,13 @@ all: libxengine-win64.dll libxengine-macos.dylib
 	@cp libxengine-macos.dylib unity-src/
 	@cp README.txt unity-src/
 	@mkdir unity-src/dll-src
+	@cp build-libs.sh unity-src/dll-src/
 	@cp console.mk unity-src/Makefile
 	@cp $(SRCS_UNITY) unity-src/dll-src/
 	@cp ps45.mk unity-src/dll-src/
 	@cp xbox.mk unity-src/dll-src/
 	@cp switch.mk unity-src/dll-src/
+	@cp -R ../libsrc unity-src/
 
 #
 # Windows 64bit DLL for Test Run
