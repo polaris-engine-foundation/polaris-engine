@@ -5148,7 +5148,7 @@ static VOID OnExportUnity(void)
 	}
 
 	/* DLLをコピーする */
-	if (!CopyLibraryFiles(L"tools\\unity-src\\libxengine-win64.dll", L"unity-export\\Assets\\"))
+	if (!CopyLibraryFiles(L"tools\\unity-src\\libxengine-win64.dll", L"unity-export\\Assets\\libxengine.dll"))
 	{
 		log_info(bEnglish ?
 				 "Failed to copy source files for Unity." :

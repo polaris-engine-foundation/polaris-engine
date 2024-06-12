@@ -175,102 +175,93 @@ msgbox.margin.right=240
 # Bottom Margin of Text inside MessageBox
 msgbox.margin.bottom=50
 
-# Line Height of Text (Line Margin)
+# Line Height of Text in MessageBox (Line Margin)
 msgbox.margin.line=55
 
-# [メッセージの文字間隔]
+# Character Margin of Text in MessageBox
 msgbox.margin.char=0
 
-# [メッセージのスピード(毎秒x文字表示する)]
+# Message Speed (characters per second)
 msgbox.speed=40.0
 
-# [メッセージボックスを非表示にするボタンの座標] (optional)
-#  - メッセージボックス内の座標
+# "Hide" Button Position and Size inside MessageBox (optional)
 msgbox.btn.hide.x=1078
 msgbox.btn.hide.y=20
 msgbox.btn.hide.width=50
 msgbox.btn.hide.height=50
 
-# [サンプルでは未使用]
-# メッセージボックス内のセーブボタンの座標(メッセージボックス内の座標, 省略可)
+# "Save" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.save.x=0
 # msgbox.btn.save.y=0
 # msgbox.btn.save.width=0
 # msgbox.btn.save.height=0
 
-# [サンプルでは未使用]
-# メッセージボックス内のロードボタンの座標(メッセージボックス内の座標, 省略可)
+# "Load" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.load.x=0
 # msgbox.btn.load.y=0
 # msgbox.btn.load.width=0
 # msgbox.btn.load.height=0
 
-# [サンプルでは未使用]
-# メッセージボックス内のクイックセーブボタンの座標(メッセージボックス内の座標, 省略可)
+# "QuickSave" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.qsave.x=0
 # msgbox.btn.qsave.y=0
 # msgbox.btn.qsave.width=0
 # msgbox.btn.qsave.height=0
 
-# [サンプルでは未使用]
-# メッセージボックス内のクイックロードボタンの座標(メッセージボックス内の座標, 省略可)
+# "QuickLoad" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.qload.x=0
 # msgbox.btn.qload.y=0
 # msgbox.btn.qload.width=0
 # msgbox.btn.qload.height=0
 
-# [サンプルでは未使用]
-# メッセージボックス内のオートボタンの座標(メッセージボックス内の座標, 省略可)
+# "AutoMode" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.auto.x=0
 # msgbox.btn.auto.y=0
 # msgbox.btn.auto.width=0
 # msgbox.btn.auto.height=0
 
-# [サンプルでは未使用]
-# メッセージボックス内のスキップボタンの座標(メッセージボックス内の座標, 省略可)
+# "SkipMode" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.skip.x=0
 # msgbox.btn.skip.y=0
 # msgbox.btn.skip.width=0
 # msgbox.btn.skip.height=0
 
-# [サンプルでは未使用]
-# メッセージボックス内のログボタンの座標(メッセージボックス内の座標, 省略可)
+# "History" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.history.x=0
 # msgbox.btn.history.y=0
 # msgbox.btn.history.width=0
 # msgbox.btn.history.height=0
 
-# [サンプルでは未使用]
-# メッセージボックス内のコンフィグボタンの座標(メッセージボックス内の座標, 省略可)
+# "Config" Button Position and Size inside MessageBox (optional)
 # msgbox.btn.config.x=0
 # msgbox.btn.config.y=0
 # msgbox.btn.config.width=0
 # msgbox.btn.config.height=0
 
-# [ポイントされているボタンが変化したときのSE] (optional)
+# Sound Effect on Button Point (optional)
 msgbox.btn.change.se=btn-change.ogg
 
-# [上キーもしくはマウスホイールでヒストリ画面を呼び出すときのSE] (optional)
+# Sound Effect on Calling History by Click, UpArrow Key, Mouse Wheel, or Swipe (optional)
 msgbox.history.se=click.ogg
 
-# [ESCキーでコンフィグ画面を呼び出すときのSE] (optional)
+# Sound Effect on Calling Config by Click (optional)
 msgbox.config.se=click.ogg
 
-# [メッセージボックスを非表示にするときのSE] (optional)
+# Sound Effect on Hiding MessageBox (optional)
 msgbox.hide.se=click.ogg
 
-# [メッセージボックスを表示するときのSE] (optional)
+# Sound Effect on Showing MessageBox (optional)
 msgbox.show.se=click.ogg
 
-# [オートモードをキャンセルするときのSE] (optional)
+# Sound Effect on Stopping AutoMode (optional)
 msgbox.auto.cancel.se=click.ogg
 
-# [スキップモードをキャンセルするときのSE] (optional)
+# Sound Effect on Stoppint SkipMode (optional)
 msgbox.skip.cancel.se=click.ogg
 
-# [未読でもスキップする] (optional)
-#  - 0: スキップしない
-#  - 1: スキップする
+# Skip Unseen Message (optional)
+#  - 0: Don't skip
+#  - 1: Do skip
 msgbox.skip.unseen=0
 
 # [既読メッセージの色を変更する] (optional)
