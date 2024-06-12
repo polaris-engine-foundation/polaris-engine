@@ -4,25 +4,18 @@
 ## 注意事項
 * x-engineの開発者はゲーム機のSDKを持っていないです
 * なので想像だけで開発されています
-
-## Windows版のビルド手順
-* そのままUnityで開いてください
-* `Script`を`XEngineScript.cs`と紐づけしてください
-* `BGM`, `SE`, `Voice`, `SysSE`を`XEngineAudio.cs`と紐づけしてください
-* これは動作確認されています
-
-## Mac版のビルド手順
-* そのままUnityで開いてください
-* `Script`を`XEngineScript.cs`と紐づけしてください
-* `BGM`, `SE`, `Voice`, `SysSE`を`XEngineAudio.cs`と紐づけしてください
-* これはあまり動作確認されていません
+* Windowsでの動作以外は一切確認されていません
 
 ## ゲーム機版のビルド手順
 * まずSDKのコンパイラを使えるターミナルを開いてください
-* `dll-src`フォルダに入ってください
-* `Makefile`の先頭2行、CC=とAR=について、実際のコマンド名に書き換えてください
+* ゲーム機ごとの作業
+  * PlayStation 4/5の場合、
+    * `dll-src/ps45.mk` の先頭2行、`CC=`と`AR=`について、実際のコマンド名に書き換えてください
+  * Xbox Series X|Sの場合、
+    * `dll-src/xbox.mk` の先頭2行、`CC=`と`AR=`について、実際のコマンド名に書き換えてください
+  * Switchの場合、
+    * `dll-src/switch.mk` の先頭2行、`CC=`と`AR=`について、実際のコマンド名に書き換えてください
 * `make`を実行してください
 * そのあとでUnityで開いてください
 * `Script`を`XEngineScript.cs`と紐づけしてください
 * `BGM`, `SE`, `Voice`, `SysSE`を`XEngineAudio.cs`と紐づけしてください
-* これは一切動作確認されていません

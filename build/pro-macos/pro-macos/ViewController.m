@@ -1356,6 +1356,52 @@ static ViewController *theViewController;
     system([command UTF8String]);
 }
 
+- (IBAction)onMenuExportForUnity:(id)sender {
+    if (!create_package("")) {
+        log_info("Export error.");
+        return;
+    }
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *exportPath = [NSString stringWithFormat:@"%@/export-unity", [fileManager currentDirectoryPath]];
+    [fileManager removeItemAtURL:[NSURL fileURLWithPath:exportPath] error:nil];
+    if (![fileManager createDirectoryAtURL:[NSURL fileURLWithPath:exportPath] withIntermediateDirectories:NO attributes:nil error:nil]) {
+        log_warn("mkdir error (1).");
+        return;
+    }
+    
+    NSArray *appArray = @[@"Assets", @"Library", @"Packages", @"ProjectSettings", @"dll-src", @"Makefile", @"README.txt", @"libxengine-win64.dll", @"libxengine-macos.dylib"];
+    for (NSString *sub in appArray) {
+        if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/Contents/Resources/unity-src/%@", [[NSBundle  mainBundle] bundlePath], sub]
+                                  toPath:[NSString stringWithFormat:@"%@/%@", exportPath, sub]
+                                   error:nil]) {
+            log_warn("Copy error (2).");
+            return;
+        }
+    }
+
+    if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/Contents/Resources/unity-src/libxengine-macos.dylib", [[NSBundle  mainBundle] bundlePath]]
+                              toPath:[NSString stringWithFormat:@"%@/Assets/libxengine.dylib", exportPath]
+                               error:nil]) {
+        log_warn("Copy error (3).");
+        return;
+    }
+
+    NSArray *subfolderArray = @[@"anime", @"bg", @"bgm", @"cg", @"ch", @"conf", @"cv", @"font", @"gui", @"mov", @"rule", @"se", @"txt", @"wms"];
+    for (NSString *sub in subfolderArray) {
+        if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/%@", [fileManager currentDirectoryPath], sub]
+                                  toPath:[NSString stringWithFormat:@"%@/export-unity/Assets/Resources/StreamingAssets/%@", exportPath, sub]
+                                   error:nil]) {
+            log_warn("Copy error (4).");
+            return;
+        }
+    }
+
+    log_info(_isEnglish ? "Successflully exported" : "エクスポートに成功しました。");
+    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:[[fileManager currentDirectoryPath] stringByAppendingString:@"/export-unity"]]];
+}
+
 - (IBAction)onMenuExportPackage:(id)sender {
     if (!create_package("")) {
         log_info("Export error.");

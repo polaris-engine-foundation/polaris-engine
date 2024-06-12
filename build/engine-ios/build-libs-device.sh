@@ -43,8 +43,8 @@ make install
 cd ..
 
 echo 'building libpng...'
-tar xzf ../../libsrc/libpng-1.6.35.tar.gz
-cd libpng-1.6.35
+tar xzf ../../libsrc/libpng-1.6.43.tar.gz
+cd libpng-1.6.43
 ./configure --prefix=$PREFIX --host=arm-apple-darwin --disable-shared CPPFLAGS=-I$PREFIX/include CFLAGS="-O3 -arch arm64 -isysroot `xcrun -sdk iphoneos --show-sdk-path` -fembed-bitcode -mios-version-min=8.0" LDFLAGS="-L$PREFIX/lib -arch arm64"
 make -j4
 make install

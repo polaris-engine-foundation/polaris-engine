@@ -69,13 +69,8 @@
 #define ID_EXPORT_MAC                       232
 #define ID_EXPORT_WEB                       233
 #define ID_EXPORT_WIN                       234
-#define ID_EXPORT_WIN_INST                  235
-#define ID_EXPORT_UNITY_SWITCH              236
-#define ID_EXPORT_UNITY_PS45                237
-#define ID_EXPORT_UNITY_XBOXXS              238
-#define ID_EXPORT_UNITY_WINDOWS             239
-#define ID_EXPORT_UNITY_MAC                 240
-#define ID_EXPORT_PACKAGE                   241
+#define ID_EXPORT_UNITY                     235
+#define ID_EXPORT_PACKAGE                   236
 
 /* RichEdit */
 #define ID_RICHEDIT                         250

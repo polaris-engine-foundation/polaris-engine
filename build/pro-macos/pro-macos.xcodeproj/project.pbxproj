@@ -80,7 +80,6 @@
 		26A1BAF32B2AD7D700761444 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 26A1BAF02B2AD7D700761444 /* index.js */; };
 		26A1BAF42B2AD7D700761444 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 26A1BAF12B2AD7D700761444 /* index.html */; };
 		26A1BAF52B2AD7D700761444 /* index.wasm in Resources */ = {isa = PBXBuildFile; fileRef = 26A1BAF22B2AD7D700761444 /* index.wasm */; };
-		26A1BAF92B2AD7F600761444 /* game.exe in Resources */ = {isa = PBXBuildFile; fileRef = 26A1BAF82B2AD7F600761444 /* game.exe */; };
 		26B806B62BC2900A00A92A02 /* english-novel.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B806B02BC2900A00A92A02 /* english-novel.png */; };
 		26B806B72BC2900A00A92A02 /* japanese-tategaki.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B806B12BC2900A00A92A02 /* japanese-tategaki.png */; };
 		26B806B82BC2900A00A92A02 /* japanese-light.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B806B22BC2900A00A92A02 /* japanese-light.png */; };
@@ -96,6 +95,9 @@
 		26CC0D432BCDA2FA000F490E /* macos-src in Resources */ = {isa = PBXBuildFile; fileRef = 26CC0D422BCDA2FA000F490E /* macos-src */; };
 		26F4E5AF2B32CE61003E4B5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F4E5B12B32CE61003E4B5A /* Main.storyboard */; };
 		CE88EEFE2C02C6CF0084B2D4 /* game.dmg in Resources */ = {isa = PBXBuildFile; fileRef = CE88EEFD2C02C6CF0084B2D4 /* game.dmg */; };
+		CEA974142C1944FF00D013AF /* unity-src in Resources */ = {isa = PBXBuildFile; fileRef = CEA974102C1944FF00D013AF /* unity-src */; };
+		CEA974282C19455000D013AF /* libsrc in Resources */ = {isa = PBXBuildFile; fileRef = CEA974272C19455000D013AF /* libsrc */; };
+		CEA9742F2C19684B00D013AF /* game.exe in Resources */ = {isa = PBXBuildFile; fileRef = CEA9742E2C19684B00D013AF /* game.exe */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,7 +214,6 @@
 		26A1BAF02B2AD7D700761444 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.js; path = "../../engine-wasm/html/index.js"; sourceTree = "<group>"; };
 		26A1BAF12B2AD7D700761444 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "../../engine-wasm/html/index.html"; sourceTree = "<group>"; };
 		26A1BAF22B2AD7D700761444 /* index.wasm */ = {isa = PBXFileReference; lastKnownFileType = file; name = index.wasm; path = "../../engine-wasm/html/index.wasm"; sourceTree = "<group>"; };
-		26A1BAF82B2AD7F600761444 /* game.exe */ = {isa = PBXFileReference; lastKnownFileType = file; name = game.exe; path = "../../engine-windows/game.exe"; sourceTree = "<group>"; };
 		26B806B02BC2900A00A92A02 /* english-novel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "english-novel.png"; sourceTree = "<group>"; };
 		26B806B12BC2900A00A92A02 /* japanese-tategaki.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "japanese-tategaki.png"; sourceTree = "<group>"; };
 		26B806B22BC2900A00A92A02 /* japanese-light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "japanese-light.png"; sourceTree = "<group>"; };
@@ -230,6 +231,9 @@
 		26DB400C2BC8E348008F6F9C /* xengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xengine.h; path = ../../src/xengine.h; sourceTree = "<group>"; };
 		26F4E5B02B32CE61003E4B5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE88EEFD2C02C6CF0084B2D4 /* game.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; name = game.dmg; path = "../../engine-macos/game.dmg"; sourceTree = "<group>"; };
+		CEA974102C1944FF00D013AF /* unity-src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "unity-src"; path = "../../engine-unity/unity-src"; sourceTree = "<group>"; };
+		CEA974272C19455000D013AF /* libsrc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libsrc; path = ../../libsrc; sourceTree = "<group>"; };
+		CEA9742E2C19684B00D013AF /* game.exe */ = {isa = PBXFileReference; lastKnownFileType = file; name = game.exe; path = "../../engine-windows/game.exe"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,8 +251,8 @@
 		2610CC822B2878AE00300004 /* x-engine */ = {
 			isa = PBXGroup;
 			children = (
-				26DB400C2BC8E348008F6F9C /* xengine.h */,
 				26495D092B2A7BF20050EDDF /* apple */,
+				26DB400C2BC8E348008F6F9C /* xengine.h */,
 				2610CC8D2B287ACC00300004 /* anime.c */,
 				2610CC9E2B287ACC00300004 /* anime.h */,
 				267E34132BAB7D0A007AE3BE /* ciel.c */,
@@ -341,23 +345,25 @@
 		2610CD1B2B287C9100300004 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				26B806BF2BC2901700A92A02 /* english */,
-				26B806BD2BC2901700A92A02 /* english-novel */,
 				26B806BC2BC2901700A92A02 /* japanese-dark */,
 				26B806BE2BC2901700A92A02 /* japanese-light */,
 				26B806C12BC2901700A92A02 /* japanese-novel */,
 				26B806C02BC2901700A92A02 /* japanese-tategaki */,
+				26B806BD2BC2901700A92A02 /* english-novel */,
+				26B806BF2BC2901700A92A02 /* english */,
 				26B806B02BC2900A00A92A02 /* english-novel.png */,
 				26B806B32BC2900A00A92A02 /* english.png */,
 				26B806B52BC2900A00A92A02 /* japanese-dark.png */,
 				26B806B22BC2900A00A92A02 /* japanese-light.png */,
 				26B806B42BC2900A00A92A02 /* japanese-novel.png */,
 				26B806B12BC2900A00A92A02 /* japanese-tategaki.png */,
+				CEA974102C1944FF00D013AF /* unity-src */,
 				26CC0D422BCDA2FA000F490E /* macos-src */,
 				26A1BAE22B2AD78700761444 /* ios-src */,
 				26A1BAE62B2AD79E00761444 /* android-src */,
-				26A1BAF82B2AD7F600761444 /* game.exe */,
+				CEA974272C19455000D013AF /* libsrc */,
 				CE88EEFD2C02C6CF0084B2D4 /* game.dmg */,
+				CEA9742E2C19684B00D013AF /* game.exe */,
 				26A1BAF12B2AD7D700761444 /* index.html */,
 				26A1BAF02B2AD7D700761444 /* index.js */,
 				26A1BAF22B2AD7D700761444 /* index.wasm */,
@@ -455,7 +461,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					2669F7072B283866001AEF17 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -494,13 +500,15 @@
 				26B806B72BC2900A00A92A02 /* japanese-tategaki.png in Resources */,
 				26CC0D432BCDA2FA000F490E /* macos-src in Resources */,
 				26B806C52BC2901700A92A02 /* english in Resources */,
+				CEA974142C1944FF00D013AF /* unity-src in Resources */,
+				CEA974282C19455000D013AF /* libsrc in Resources */,
+				CEA9742F2C19684B00D013AF /* game.exe in Resources */,
 				26B806B62BC2900A00A92A02 /* english-novel.png in Resources */,
 				26B806B82BC2900A00A92A02 /* japanese-light.png in Resources */,
 				26A1BAE32B2AD78800761444 /* ios-src in Resources */,
 				26B806B92BC2900A00A92A02 /* english.png in Resources */,
 				26B806BB2BC2900A00A92A02 /* japanese-dark.png in Resources */,
 				26B806C72BC2901700A92A02 /* japanese-novel in Resources */,
-				26A1BAF92B2AD7F600761444 /* game.exe in Resources */,
 				26A1BAF52B2AD7D700761444 /* index.wasm in Resources */,
 				26A1BAF32B2AD7D700761444 /* index.js in Resources */,
 				26B806C22BC2901700A92A02 /* japanese-dark in Resources */,

@@ -4,7 +4,7 @@ set -eu
 
 PREFIX=`pwd`/libroot
 
-export MACOSX_DEPLOYMENT_TARGET=11.0
+export MACOSX_DEPLOYMENT_TARGET=10.13
 
 rm -rf tmp libroot
 mkdir -p tmp libroot/include libroot/lib
@@ -27,8 +27,8 @@ make install
 cd ..
 
 echo 'building libpng...'
-tar xzf ../../libsrc/libpng-1.6.35.tar.gz
-cd libpng-1.6.35
+tar xzf ../../libsrc/libpng-1.6.43.tar.gz
+cd libpng-1.6.43
 ./configure --prefix=$PREFIX --disable-shared CPPFLAGS=-I$PREFIX/include CFLAGS="-arch arm64 -arch x86_64" LDFLAGS="-L$PREFIX/lib -arch arm64 -arch x86_64"
 make
 make install

@@ -9,21 +9,9 @@ include ../common.mk
 OBJS = $(SRCS_UNITY:../../src/%.c=%.o)
 
 #
-# Show help
-#
-help:
-	@echo 'Usage:'
-	@echo '  make src-main   ... make a main source tree of Unity export'
-	@echo '  make src-switch ... make a DLL source tree for Switch'
-	@echo '  make src-ps45   ... make a DLL source tree for PS4/5'
-	@echo '  make src-xboxxs ... make a DLL source tree for Xbox X|S'
-	@echo '  make dll-win64  ... make a DLL for Windows x64'
-	@echo '  make dll-macos  ... make a DLL for macOS arm64'
-
-#
 # Make a source tree
 #
-src-main:
+src-main: libxengine-win64.dll libxengine-macos.dylib
 	@rm -rf unity-src
 	@mkdir unity-src
 	@cp -v -R ProjectSettings unity-src/
@@ -34,45 +22,22 @@ src-main:
 	@cp -v Assets/XEngineScript.cs unity-src/Assets/
 	@cp -v Assets/XEngineAudio.cs unity-src/Assets/
 	@mkdir unity-src/Assets/Resources
+	@mkdir unity-src/Assets/Resources/StreamingAssets
 	@cp -v Assets/Resources/NormalShader.shader unity-src/Assets/Resources/
+	@cp libxengine-win64.dll unity-src/
+	@cp libxengine-macos.dylib unity-src/
+	@cp README.txt unity-src/
+	@mkdir unity-src/dll-src
+	@cp console.mk unity-src/Makefile
+	@cp $(SRCS_UNITY) unity-src/dll-src/
+	@cp ps45.mk unity-src/dll-src/
+	@cp xbox.mk unity-src/dll-src/
+	@cp switch.mk unity-src/dll-src/
 
 #
-# Switch DLL Source Tree
-#  - Note that the author does not have a copy of SDK for Xbox and this was done by his imagination
+# Windows 64bit DLL for Test Run
 #
-src-switch:
-	rm -rf switch-src
-	mkdir switch-src
-	cp build-libs.sh switch-src/
-	cp switch.mk switch-src/Makefile
-	cp $(SRCS_UNITY) switch-src/
-
-#
-# PS4/5 DLL source tree
-#  - Note that the author does not have a copy of SDK for Xbox and this was done by his imagination
-#
-src-ps45:
-	rm -rf ps45-src
-	mkdir ps45-src
-	cp build-libs.sh ps45-src/
-	cp ps45.mk ps45-src/Makefile
-	cp $(SRCS_UNITY) ps45-src/
-
-#
-# Xbox Series X|S DLL source tree
-#  - Note that the author does not have a copy of SDK for Xbox and this was done by his imagination
-#
-src-xbox:
-	rm -rf xbox-src
-	mkdir xbox-src
-	cp build-libs.sh xbox-src/
-	cp xbox.mk xbox-src/Makefile
-	cp $(SRCS_UNITY) xbox-src/
-
-#
-# Windows 64bit DLL
-#
-dll-win64: $(SRCS_UNITY)
+libxengine-win64.dll: $(SRCS_UNITY)
 	rm -rf *.o libroot-x86_64 libxengine-win64.dll
 	../engine-windows-64/llvm/bin/x86_64-w64-mingw32-gcc \
 		-shared \
@@ -98,9 +63,9 @@ dll-win64: $(SRCS_UNITY)
 		../engine-windows-64/libroot/lib/libogg.a
 
 #
-# macOS DLL
+# macOS DLL for Test Run
 #
-dll-mac: ../engine-macos/libroot $(SRCS_UNITY)
+libpolaris-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
 	/usr/bin/clang \
 		-O2 \
 		-arch arm64 \
@@ -130,4 +95,4 @@ dll-mac: ../engine-macos/libroot $(SRCS_UNITY)
 # Cleanup
 #
 clean:
-	@rm -rf libxengine-switch.so libxengine-ps45.so libxengine-xbox.dll libxengine-win64.dll libxengine-macos.dylib libroot* *.o
+	@rm -rf libxengine-win64.dll libxengine-macos.dylib libroot* *.o

@@ -42,7 +42,7 @@ cp libz.a ../../libroot/lib/
 cd ..
 
 echo 'Building libpng...'
-tar xzf ../../libsrc/libpng-1.6.35.tar.gz
+tar xzf ../../libsrc/libpng-1.6.43.tar.gz
 cd libpng-1.6.35
 ./configure --prefix=$PREFIX --enable-static --disable-shared --host=i686-w64-mingw32 CPPFLAGS=-I$PREFIX/include CFLAGS="-O3 -ffunction-sections -fdata-sections -no-pthread" LDFLAGS="-L$PREFIX/lib -no-pthread" CC=i686-w64-mingw32-gcc
 make

@@ -357,7 +357,7 @@ static VOID RunWebTest(void);
 static VOID OnExportAndroid(void);
 static VOID RunAndroidBuild(void);
 static VOID OnExportIOS(void);
-static VOID OnExportUnity(const wchar_t *szSrcPath, const wchar_t *szDstPath, BOOL bLibSrc);
+static VOID OnExportUnity(void);
 static VOID OnFont(void);
 static VOID OnHighlightMode(void);
 static VOID OnDarkMode(void);
@@ -1253,45 +1253,13 @@ static VOID InitMenu(HWND hWnd)
 	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
 	EnableMenuItem(hMenu, ID_EXPORT_WIN, MF_GRAYED);
 
-	/* Unityプロジェクトをエクスポートする(Windows)を作成する */
-	mi.wID = ID_EXPORT_UNITY_WINDOWS;
+	/* Unityプロジェクトをエクスポートするを作成する */
+	mi.wID = ID_EXPORT_UNITY;
 	mi.dwTypeData = bEnglish ?
-		L"Export Unity project (Windows)" :
-		L"Unityプロジェクトをエクスポートする (Windows)";
+		L"Export Unity project" :
+		L"Unityプロジェクトをエクスポートする";
 	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
-	EnableMenuItem(hMenu, ID_EXPORT_UNITY_WINDOWS, MF_GRAYED);
-
-	/* Unityプロジェクトをエクスポートする(Mac)を作成する */
-	mi.wID = ID_EXPORT_UNITY_MAC;
-	mi.dwTypeData = bEnglish ?
-		L"Export Unity project (Mac)" :
-		L"Unityプロジェクトをエクスポートする (Mac)";
-	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
-	EnableMenuItem(hMenu, ID_EXPORT_UNITY_MAC, MF_GRAYED);
-
-	/* Unityプロジェクトをエクスポートする(Switch)を作成する */
-	mi.wID = ID_EXPORT_UNITY_SWITCH;
-	mi.dwTypeData = bEnglish ?
-		L"Export Unity project (Switch)" :
-		L"Unityプロジェクトをエクスポートする (Switch)";
-	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
-	EnableMenuItem(hMenu, ID_EXPORT_UNITY_SWITCH, MF_GRAYED);
-
-	/* Unityプロジェクトをエクスポートする(PlayStation 4/5)を作成する */
-	mi.wID = ID_EXPORT_UNITY_PS45;
-	mi.dwTypeData = bEnglish ?
-		L"Export Unity project (PlayStation 4/5)" :
-		L"Unityプロジェクトをエクスポートする (PlayStation 4/5)";
-	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
-	EnableMenuItem(hMenu, ID_EXPORT_UNITY_PS45, MF_GRAYED);
-
-	/* Unityプロジェクトをエクスポートする(Xbox Series X|S)を作成する */
-	mi.wID = ID_EXPORT_UNITY_XBOXXS;
-	mi.dwTypeData = bEnglish ?
-		L"Export Unity project (Xbox Series X|S)" :
-		L"Unityプロジェクトをエクスポートする (Xbox Series X|S)";
-	InsertMenuItem(hMenuExport, nOrder++, TRUE, &mi);
-	EnableMenuItem(hMenu, ID_EXPORT_UNITY_XBOXXS, MF_GRAYED);
+	EnableMenuItem(hMenu, ID_EXPORT_UNITY, MF_GRAYED);
 
 	/* パッケージをエクスポートするを作成する */
 	mi.wID = ID_EXPORT_PACKAGE;
@@ -1560,11 +1528,7 @@ static VOID StartGame(void)
 		EnableMenuItem(hMenu, ID_EXPORT_WEB, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_ANDROID, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_IOS, MF_ENABLED);
-		EnableMenuItem(hMenu, ID_EXPORT_UNITY_WINDOWS, MF_ENABLED);
-		EnableMenuItem(hMenu, ID_EXPORT_UNITY_MAC, MF_ENABLED);
-		EnableMenuItem(hMenu, ID_EXPORT_UNITY_SWITCH, MF_ENABLED);
-		EnableMenuItem(hMenu, ID_EXPORT_UNITY_PS45, MF_ENABLED);
-		EnableMenuItem(hMenu, ID_EXPORT_UNITY_XBOXXS, MF_ENABLED);
+		EnableMenuItem(hMenu, ID_EXPORT_UNITY, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_EXPORT_PACKAGE, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_CMD_MESSAGE, MF_ENABLED);
 		EnableMenuItem(hMenu, ID_CMD_SERIF, MF_ENABLED);
@@ -2339,20 +2303,8 @@ static void OnCommand(WPARAM wParam, LPARAM lParam)
 	case ID_EXPORT_IOS:
 		OnExportIOS();
 		break;
-	case ID_EXPORT_UNITY_WINDOWS:
-		OnExportUnity(L"tools\\libxengine-win64.dll", L".\\unity-export\\Assets\\libxengine.dll", FALSE);
-		break;
-	case ID_EXPORT_UNITY_MAC:
-		OnExportUnity(L"tools\\libxengine-macos.dylib", L".\\unity-export\\Assets\\libxengine.dylib", FALSE);
-		break;
-	case ID_EXPORT_UNITY_SWITCH:
-		OnExportUnity(L"tools\\switch-src", L".\\unity-export\\dll-src", TRUE);
-		break;
-	case ID_EXPORT_UNITY_PS45:
-		OnExportUnity(L"tools\\ps45-src", L".\\unity-export\\dll-src", TRUE);
-		break;
-	case ID_EXPORT_UNITY_XBOXXS:
-		OnExportUnity(L"tools\\xbox-src", L".\\unity-export\\dll-src", TRUE);
+	case ID_EXPORT_UNITY:
+		OnExportUnity();
 		break;
 	case ID_EXPORT_PACKAGE:
 		OnExportPackage();
@@ -5171,7 +5123,7 @@ static VOID OnExportIOS(void)
 }
 
 /* Unityプロジェクトをエクスポートのメニューが押下されたときの処理を行う */
-static VOID OnExportUnity(const wchar_t *szSrcPath, const wchar_t *szDstPath, BOOL bLibSrc)
+static VOID OnExportUnity(void)
 {
 	if (MessageBox(hWndMain, bEnglish ?
 				   L"Attention: This feature is still in alpha version.\n"
@@ -5196,26 +5148,13 @@ static VOID OnExportUnity(const wchar_t *szSrcPath, const wchar_t *szDstPath, BO
 	}
 
 	/* DLLをコピーする */
-	if (!CopyLibraryFiles(szSrcPath, szDstPath))
+	if (!CopyLibraryFiles(L"tools\\unity-src\\libxengine-win64.dll", L"unity-export\\Assets\\"))
 	{
 		log_info(bEnglish ?
 				 "Failed to copy source files for Unity." :
-				 "ソースコードのコピーに失敗しました。"
+				 "DLLのコピーに失敗しました。"
 				 "最新のtools/unity-srcフォルダが存在するか確認してください。");
 		return;
-	}
-
-	/* ライブラリをコピーする */
-	if (bLibSrc)
-	{
-		if (!CopyLibraryFiles(L"tools\\lib-src", L".\\unity-export\\"))
-		{
-			log_info(bEnglish ?
-					 "Failed to copy library source files for Unity." :
-					 "ライブラリソースのコピーに失敗しました。"
-					 "最新のtools/lib-srcフォルダが存在するか確認してください。");
-			return;
-		}
 	}
 
 	/* アセットをコピーする */

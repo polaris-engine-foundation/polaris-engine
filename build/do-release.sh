@@ -180,12 +180,6 @@ cp -R engine-macos/macos-src installer-windows/tools/macos-src
 cp -R engine-ios/ios-src installer-windows/tools/ios-src
 cp -R engine-android/android-src installer-windows/tools/android-src
 cp -R engine-unity/unity-src installer-windows/tools/
-cp engine-unity/README.txt installer-windows/tools/unity-src/
-cp -R engine-unity/switch-src installer-windows/tools/
-cp -R engine-unity/ps45-src installer-windows/tools/
-cp -R engine-unity/xbox-src installer-windows/tools/
-cp engine-unity/libxengine-win64.dll installer-windows/tools/
-cp engine-unity/libxengine-macos.dylib installer-windows/tools/
 mkdir -p installer-windows/tools/lib-src
 cp libsrc/brotli-1.1.0.tar.gz installer-windows/tools/lib-src/
 cp libsrc/freetype-2.13.2.tar.gz installer-windows/tools/lib-src/

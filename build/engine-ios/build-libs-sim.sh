@@ -43,8 +43,8 @@ make install
 cd ..
 
 echo 'building libpng...'
-tar xzf ../../libsrc/libpng-1.6.35.tar.gz
-cd libpng-1.6.35
+tar xzf ../../libsrc/libpng-1.6.43.tar.gz
+cd libpng-1.6.43
 ./configure --prefix=$PREFIX --host=arm-apple-darwin --disable-shared CPPFLAGS=-I$PREFIX/include CFLAGS="-O3 -arch arm64 -arch x86_64 -isysroot `xcrun -sdk iphonesimulator --show-sdk-path`" LDFLAGS="-L$PREFIX/lib -arch arm64 -arch x86_64"
 make
 make install

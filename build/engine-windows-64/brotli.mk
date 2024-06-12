@@ -1,5 +1,5 @@
-CPPFLAGS = -Ic/include
-CFLAGS = -no-pthread
+CPPFLAGS=-Ic/include
+CFLAGS=
 
 SRC_COMMON = \
 	c/common/constants.c \

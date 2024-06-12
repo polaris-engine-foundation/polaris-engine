@@ -1,4 +1,4 @@
-DESTDIR=/usr/local
+DESTDIR=/Users/ktabata/polaris-engine-foundation/x-engine/build/engine-windows-64/libroot
 
 build: x-engine-runtime x-engine
 
