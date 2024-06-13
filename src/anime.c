@@ -1,7 +1,7 @@
 /* -*- Coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * Animation Subsystem
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 #define INVALID_ACCEL_TYPE	(0)
 

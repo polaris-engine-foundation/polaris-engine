@@ -118,10 +118,10 @@ make
 cd ..
 
 #
-# Build "x-engine.exe".
+# Build "polaris-engine.exe".
 #
 echo ""
-echo "Building x-engine.exe"
+echo "Building polaris-engine.exe"
 say "Windows用の開発ツールをビルドしています" &
 cd pro-windows
 make clean
@@ -153,7 +153,7 @@ cp ../tools/library/orbis.txt ../games/japanese-dark/txt/library/
 cp ../tools/library/orbis.txt ../games/japanese-tategaki/txt/library/
 
 # /
-cp -v pro-windows/x-engine.exe installer-windows/x-engine.exe
+cp -v pro-windows/polaris-engine.exe installer-windows/polaris-engine.exe
 
 # /games
 rm -rf installer-windows/games
@@ -197,19 +197,48 @@ make
 cd ..
 
 #
-# Build "x-engine.app".
+# Build "polaris-engine.app".
 #
 echo ""
-echo "Building x-engine.app (x-engine.dmg)"
+echo "Building polaris-engine.app (polaris-engine.dmg)"
 say "Mac用の開発ツールをビルドしています" &
 cd pro-macos
-rm -f x-engine.dmg
+rm -f polaris-engine.dmg
 make
 cd ..
 
 rm ../games/japanese-light/txt/library/orbis.txt
 rm ../games/japanese-dark/txt/library/orbis.txt
 rm ../games/japanese-tategaki/txt/library/orbis.txt
+
+#
+# Upload.
+#
+echo ""
+echo "Uploading files."
+say "Webサーバにアップロード中です" &
+until ftp-upload.sh installer-windows/polaris-engine-installer.exe "dl/polaris-engine-$VERSION.exe"; do echo "retrying..."; done
+until ftp-upload.sh pro-macos/polaris-engine.dmg "dl/polaris-engine-$VERSION.dmg"; do echo "retrying..."; done
+echo "Upload completed."
+
+#
+# Update the Web site.
+#
+echo ""
+echo "Updating the Web site."
+say "Webページを更新するにはリターンキーを押してください" &
+read str
+say "Webページを更新中です"
+cd ../../polaris-engine.com && \
+    ./update-version.sh && \
+    ftp-upload.sh dl/index.html && \
+    ftp-upload.sh en/dl/index.html && \
+    echo "$VERSION" > dl/latest.txt && \
+    ftp-upload.sh dl/latest.txt && \
+    git add -u dl/index.html en/dl/index.html && \
+    git commit -m "web: release $VERSION" && \
+    ftp-upload.sh ../install-polaris-engine.sh dl/ && \
+    cd ..
 
 #
 # Make a release on GitHub.
@@ -220,11 +249,7 @@ say "GitHubでリリースを作成中です"
 git push github master
 git tag -a "v$VERSION" -m "release"
 git push github "v$VERSION"
-mv installer-windows/x-engine-installer.exe "x-engine-$VERSION.exe"
-mv pro-macos/x-engine.dmg "x-engine-$VERSION.dmg"
-yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP" "x-engine-$VERSION.exe" "x-engine-$VERSION.dmg"
-rm "x-engine-$VERSION.exe"
-rm "x-engine-$VERSION.dmg"
+yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP"
 
 #
 # Finish.

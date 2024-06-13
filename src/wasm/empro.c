@@ -1,7 +1,7 @@
 /* -*- tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,13 +9,13 @@
  * HAL and Pro HAL for Emscripten
  */
 
-/* x-engine Base */
-#include "../xengine.h"
+/* Polaris Engine Base */
+#include "../polarisengine.h"
 
-/* x-engine Graphics HAL for OpenGL */
+/* Polaris Engine Graphics HAL for OpenGL */
 #include "../khronos/glrender.h"
 
-/* x-engine Sound HAL for Emscripten OpenAL */
+/* Polaris Engine Sound HAL for Emscripten OpenAL */
 #include "alsound.h"
 
 /* Emscripten Core */
@@ -836,7 +836,7 @@ void update_window_title(void)
 	chapter = get_chapter_name();
 
 	EM_ASM_({
-		document.title = 'x-engine WASM - ' + Module.UTF8ToString($0) + Module.UTF8ToString($1) + Module.UTF8ToString($2);
+		document.title = 'Polaris Engine WASM - ' + Module.UTF8ToString($0) + Module.UTF8ToString($1) + Module.UTF8ToString($2);
 	}, conf_window_title, separator, chapter);
 }
 

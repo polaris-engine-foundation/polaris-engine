@@ -1,14 +1,14 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 #ifndef XENGINE_EMOPENAL_H
 #define XENGINE_EMOPENAL_H
 
-#include "../xengine.h"
+#include "../polarisengine.h"
 
 /* OpenALの初期化処理を行う */
 bool init_openal(void);

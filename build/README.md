@@ -1,15 +1,15 @@
 HOW TO BUILD
 ============
  
-This document provides instructions for building various `x-engine` apps from the source code.
+This document provides instructions for building various `Polaris Engine` apps from the source code.
 
 ## Getting Started
 
-Firstly, you have to get the `x-engine` repository using `Git`.
+Firstly, you have to get the `Polaris Engine` repository using `Git`.
 
 * From the terminal, run the following command:
 ```
-git clone https://github.com/xdev-001/x-engine.git
+git clone https://github.com/xdev-001/Polaris Engine.git
 ```
 
 # Game Runtime (the main engine)
@@ -49,13 +49,13 @@ This method will utilize `Xcode` and terminal to build macOS main engine binary.
 
 * Use macOS 14
 * Install Xcode 15
-* Run `x-engine` and export a macOS source code tree
+* Run `Polaris Engine` and export a macOS source code tree
 * From Xcode, open the exported project
 * Build the app
 
 ## Web Game
 
-This method will build the Wasm version of `x-engine`.
+This method will build the Wasm version of `Polaris Engine`.
 
 * Build instructions
   * From the terminal, navigate to the source code directory
@@ -93,7 +93,7 @@ This method will utilize `Xcode` and terminal to build an iOS app.
 
 * Use macOS 14
 * Install Xcode 15
-* Run `x-engine` and export an iOS source code tree
+* Run `Polaris Engine` and export an iOS source code tree
 * From Xcode, open the exported project
 * Set the build target to your device (or a simulator)
 * Build the app
@@ -101,12 +101,12 @@ This method will utilize `Xcode` and terminal to build an iOS app.
 ## Android Game
 
 * Method 1
-  * Run `x-engine` and export an Android source code tree
+  * Run `Polaris Engine` and export an Android source code tree
   * Press YES to the "Would you like to build APK?" dialog
 * Method 2
   * This method requires `Android Studio` to build the Android app.
   * Install `Android Studio`
-  * Run `x-engine` and export an Android source code tree
+  * Run `Polaris Engine` and export an Android source code tree
   * Open the exported project from `Android Studio`
   * Build the project
 
@@ -114,7 +114,7 @@ This method will utilize `Xcode` and terminal to build an iOS app.
 
 ## Windows Dev Tool
 
-This method will build an app of `x-engine` for Windows on Ubuntu or macOS.
+This method will build an app of `Polaris Engine` for Windows on Ubuntu or macOS.
 
 * Prerequisite
   * Use Ubuntu or macOS
@@ -150,7 +150,7 @@ This method will utilize `Xcode` to build an iOS Pro app.
 
 ## Linux Dev Tool
 
-This method will build a Linux version of x-engine using Qt6.
+This method will build a Linux version of Polaris Engine using Qt6.
 
 * Prerequisite
   * Use Ubuntu
@@ -167,7 +167,7 @@ This method will build a Linux version of x-engine using Qt6.
 
 ## Web Dev Tool
 
-This method will build a Web version of `x-engine`.
+This method will build a Web version of `Polaris Engine`.
 
 * Use Ubuntu or macOS
 * From the terminal, navigate to the source code directory and run the following command:

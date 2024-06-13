@@ -1,13 +1,13 @@
 /* -*- coding: utf-8; tab-width: 4; indent-tabs-mode: nil; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 // Base
 extern "C" {
-#include "xengine.h"
+#include "polarisengine.h"
 };
 
 // Editor
@@ -276,7 +276,7 @@ void MainWindow::on_errorButton_clicked()
     // Show a dialog if no error.
     QMessageBox msgbox(nullptr);
     msgbox.setIcon(QMessageBox::Question);
-    msgbox.setWindowTitle("x-engine");
+    msgbox.setWindowTitle("Polaris Engine");
     msgbox.setText(m_isEnglish ? "No error." : "エラーはありません。");
     msgbox.addButton(QMessageBox::Close);
     msgbox.exec();
@@ -516,7 +516,7 @@ void MainWindow::on_actionNew_Project_Japanese_Tategaki_triggered()
 void MainWindow::startWithTemplateGame(QString name)
 {
     // Open a project file.
-    QString filename = QFileDialog::getSaveFileName(this, "Create", QString("game.xengine"), QObject::tr("x-engine Project (*.xengine)"), nullptr);
+    QString filename = QFileDialog::getSaveFileName(this, "Create", QString("game.polarisengine"), QObject::tr("Polaris Engine Project (*.polarisengine)"), nullptr);
     if (filename.isEmpty())
         return;
 
@@ -545,7 +545,7 @@ void MainWindow::startWithTemplateGame(QString name)
 bool MainWindow::copyNewTemplateGame(const QString& name)
 {
     QDir src = QApplication::applicationDirPath();
-    src.cd("../share/x-engine/" + name);
+    src.cd("../share/Polaris Engine/" + name);
 
     // Copy a template directory.
     if (!copyFiles(src.path(), QDir::current().canonicalPath()))
@@ -560,7 +560,7 @@ bool MainWindow::copyNewTemplateGame(const QString& name)
 void MainWindow::on_actionOpen_Project_triggered()
 {
     // Open a project file.
-    QString filename = QFileDialog::getOpenFileName(this, "Open", QString(), QObject::tr("x-engine Project (*.xengine)"), nullptr);
+    QString filename = QFileDialog::getOpenFileName(this, "Open", QString(), QObject::tr("Polaris Engine Project (*.polarisengine)"), nullptr);
     if (filename.isEmpty())
         return;
 
@@ -837,7 +837,7 @@ void MainWindow::on_actionExport_package_only_triggered()
 bool MainWindow::copyExportTemplateWithGame(const QString& name, bool copyArc)
 {
     QDir src = QApplication::applicationDirPath();
-    src.cd("../share/x-engine/" + name);
+    src.cd("../share/Polaris Engine/" + name);
 
     QDir dst = QDir::current();
     dst.mkpath(name);

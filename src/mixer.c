@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,10 +9,10 @@
  * [Changes]
  *  - 2016-06-28 作成
  *  - 2021-06-03 マスターボリュームを追加
- *  - 2024-04-11 x-engine
+ *  - 2024-04-11 Polaris Engine
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 /* PCMストリーム */
 static struct wave *pcm[MIXER_STREAMS];

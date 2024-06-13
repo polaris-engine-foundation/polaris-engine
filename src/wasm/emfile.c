@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * File I/O implementation for Browser's File System API
  */
 
-#include "../xengine.h"
+#include "../polarisengine.h"
 
 #include <emscripten.h>
 

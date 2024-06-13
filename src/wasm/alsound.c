@@ -1,7 +1,7 @@
 /* -*- tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * OpenAL 1.1 sound module for Emscripten
  */
 
-#include "../xengine.h"
+#include "../polarisengine.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>

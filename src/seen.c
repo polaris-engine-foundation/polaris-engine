@@ -1,17 +1,17 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 /*
  * [Changes]
  *  - 2021-07-31 Created.
- *  - 2024-04-11 x-engine
+ *  - 2024-04-11 Polaris Engine
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 /* 既読フラグ */
 #ifndef USE_EDITOR

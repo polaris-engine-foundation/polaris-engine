@@ -1,7 +1,7 @@
 %{
 /*
  * Watermelon Script
- * x-engine
+ * Polaris Engine
  * Copyright (c) 2001-2024, Keiichi Tabata. All rights reserved.
  */
 

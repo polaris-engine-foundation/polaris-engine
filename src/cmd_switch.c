@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -23,7 +23,7 @@
  *  - sysmenu.hidden=2なら、選択肢コマンドでも折りたたみシステムメニューを表示しない
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 /* false assertion */
 #define ASSERT_INVALID_BTN_INDEX (0)

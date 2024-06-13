@@ -1,15 +1,15 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 /*
- * HAL API definition for x-engine's runtime (engine-*)
+ * HAL API definition for Polaris Engine's runtime (engine-*)
  *
  * [HAL]
- *  HAL (Hardware Abstraction Layer) is a thin layer to port x-engine to
+ *  HAL (Hardware Abstraction Layer) is a thin layer to port Polaris Engine to
  *  various platforms. For a porting, only the functions listed in this
  *  header file need to be implemented.
  *

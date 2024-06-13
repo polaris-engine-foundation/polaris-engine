@@ -1,7 +1,7 @@
 /* -*- tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -22,26 +22,26 @@
 #include <sys/time.h>	/* gettimeofday() */
 #include <unistd.h>	/* usleep(), access() */
 
-/* x-engine Base */
-#include "../xengine.h"
+/* Polaris Engine Base */
+#include "../polarisengine.h"
 
-/* x-engine HAL implementation for sound output */
+/* Polaris Engine HAL implementation for sound output */
 #include "asound.h"
 
-/* x-engine HAL implementation for video playback */
+/* Polaris Engine HAL implementation for video playback */
 #include "gstplay.h"
 
-/* x-engine HAL implementation for graphics */
+/* Polaris Engine HAL implementation for graphics */
 #include <GL/gl.h>
 #include <GL/glx.h>
 #include "../khronos/glrender.h"
 
-/* x-engine Capture */
+/* Polaris Engine Capture */
 #ifdef USE_CAPTURE
 #include "capture.h"
 #endif
 
-/* x-engine Replay */
+/* Polaris Engine Replay */
 #ifdef USE_REPLAY
 #include "replay.h"
 #endif

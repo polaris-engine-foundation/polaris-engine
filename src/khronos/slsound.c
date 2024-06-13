@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,8 +9,8 @@
  * The HAL for OpenGL
  */
 
-/* x-engine Base */
-#include "xengine.h"
+/* Polaris Engine Base */
+#include "polarisengine.h"
 
 /* OpenSLES */
 #include <SLES/OpenSLES.h>

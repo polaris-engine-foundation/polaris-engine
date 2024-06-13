@@ -1,10 +1,10 @@
 /*
  * Watermelon Script
- * x-engine
+ * Polaris Engine
  * Copyright (c) 2024, The Authors. All rights reserved.
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 #include "wms_core.h"
 
 #ifdef _MSC_VER

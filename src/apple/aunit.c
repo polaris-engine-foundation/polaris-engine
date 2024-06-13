@@ -1,7 +1,7 @@
 /* -*- indent-tabs-mode: nil; tab-width: 4; c-basic-offset: 4; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -12,7 +12,7 @@
 #include <AudioUnit/AudioUnit.h>
 #include <pthread.h>
 
-#include "xengine.h"
+#include "polarisengine.h"
 #include "aunit.h"
 
 /* フォーマット */

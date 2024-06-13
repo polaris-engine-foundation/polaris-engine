@@ -1,11 +1,11 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 #include "wms.h"
 
 #include <time.h>
@@ -128,7 +128,7 @@ static bool s2_get_variable(struct wms_runtime *rt)
 	if (!wms_get_int_value(rt, index, &index_i))
 		return false;
 
-	/* Get the value of the x-engine variable. */
+	/* Get the value of the Polaris Engine variable. */
 	value = get_variable(index_i);
 
 	/* Set the return value. */
@@ -158,7 +158,7 @@ static bool s2_set_variable(struct wms_runtime *rt)
 	if (!wms_get_int_value(rt, value, &value_i))
 		return false;
 
-	/* Set the value of the x-engine variable. */
+	/* Set the value of the Polaris Engine variable. */
 	set_variable(index_i, value_i);
 
 	return true;
@@ -181,7 +181,7 @@ static bool s2_get_name_variable(struct wms_runtime *rt)
 	if (!wms_get_int_value(rt, index, &index_i))
 		return false;
 
-	/* Get the value of the x-engine name variable. */
+	/* Get the value of the Polaris Engine name variable. */
 	value = get_name_variable(index_i);
 
 	/* Set the return value. */
@@ -212,7 +212,7 @@ static bool s2_set_name_variable(struct wms_runtime *rt)
 	if (!wms_get_str_value(rt, value, &value_s))
 		return false;
 
-	/* Set the value of the x-engine name variable. */
+	/* Set the value of the Polaris Engine name variable. */
 	if (!set_name_variable(index_i, value_s))
 		return false;
 
@@ -486,7 +486,7 @@ static bool s2_set_config(struct wms_runtime *rt)
 	if (!wms_get_str_value(rt, value, &value_s))
 		return false;
 
-	/* Set the value of the x-engine variable. */
+	/* Set the value of the Polaris Engine variable. */
 	if (!overwrite_config(key_s, value_s))
 		return false;
 

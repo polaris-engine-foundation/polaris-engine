@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -13,9 +13,9 @@
 #define XENGINE_GLRENDER_H
 
 #if !defined(USE_QT) && !defined(XENGINE_TARGET_ANDROID)
-#include "../xengine.h"
+#include "../polarisengine.h"
 #else
-#include "xengine.h"
+#include "polarisengine.h"
 #endif
 
 /* OpenGLの初期化処理を行う */

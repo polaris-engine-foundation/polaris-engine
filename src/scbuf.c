@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,12 +9,12 @@
  * Scnan conversion buffer
  *
  * 走査変換バッファ
- *  - x-engineは当初、3Dアクセラレータを用いていなかったので、自前で走査変換を用意している
+ *  - Polaris Engineは当初、3Dアクセラレータを用いていなかったので、自前で走査変換を用意している
  *  - 現状ではclockwiseエフェクトの塗り潰し専用で、Z座標とテクスチャ座標を保持していない
  *  - clockwiseはruleやmeltで置き換え可能であるため、本機能は削除も可能である
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 /*
  * 走査変換バッファ

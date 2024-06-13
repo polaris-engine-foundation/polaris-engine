@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 4; c-basic-offset: 4; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -561,7 +561,7 @@ public class XEngineScript : MonoBehaviour
 	// Native Code
 	//
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void init_hal_func_table(
 		IntPtr log_info,
 		IntPtr log_warn,
@@ -600,49 +600,49 @@ public class XEngineScript : MonoBehaviour
 		IntPtr write_save_file,
 		IntPtr close_save_file);
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void init_locale_code();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe int init_conf();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe int on_event_init();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_cleanup();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe int on_event_frame();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_key_press(int key);
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_key_release(int key);
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_mouse_press(int button, int x, int y);
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_mouse_release(int button, int x, int y);
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_mouse_move(int x, int y);
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_touch_cancel();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_swipe_down();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	static extern unsafe void on_event_swipe_up();
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	public static extern unsafe int get_wave_samples(byte *w, uint *buf, int samples);
 
-	[DllImport("libxengine")]
+	[DllImport("libpolarisengine")]
 	public static extern unsafe bool is_wave_eos(byte *w);
 
 	//

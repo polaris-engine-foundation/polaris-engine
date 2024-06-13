@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -10,7 +10,7 @@
  */
 
 /* Base */
-#include "xengine.h"
+#include "polarisengine.h"
 
 /* HAL */
 #include "ndkmain.h"
@@ -69,10 +69,10 @@ struct rfile *delayed_rfile_free_slot[DELAYED_RFILE_FREE_SLOTS];
 static void do_delayed_remove_rfile_ref(void);
 
 /*
- * com.xengine.engineandroid.MainActivity.nativeInitGame()
+ * com.polarisengine.engineandroid.MainActivity.nativeInitGame()
  */
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeInitGame(
+Java_com_polarisengine_engineandroid_MainActivity_nativeInitGame(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -84,7 +84,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeInitGame(
 	/* Clear the video state. */
 	state_video = false;
 
-	/* Init x-engine engine. */
+	/* Init Polaris Engine engine. */
 	init_locale_code();
 	if (!init_conf()) {
 		log_error("Failed to initialize config.");
@@ -104,7 +104,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeInitGame(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeReinitOpenGL(
+Java_com_polarisengine_engineandroid_MainActivity_nativeReinitOpenGL(
         JNIEnv *env,
         jobject instance)
 {
@@ -125,7 +125,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeReinitOpenGL(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeCleanup(
+Java_com_polarisengine_engineandroid_MainActivity_nativeCleanup(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -144,7 +144,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeCleanup(
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeRunFrame(
+Java_com_polarisengine_engineandroid_MainActivity_nativeRunFrame(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -153,7 +153,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeRunFrame(
 	/* Process a video playback. */
 	bool do_render = true;
 	if (state_video) {
-		jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/engineandroid/MainActivity");
+		jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/engineandroid/MainActivity");
 		jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeIsVideoPlaying", "()Z");
 		if ((*jni_env)->CallBooleanMethod(jni_env, main_activity, mid))
 			do_render = false;
@@ -214,7 +214,7 @@ static void do_delayed_remove_rfile_ref(void)
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeOnPause(
+Java_com_polarisengine_engineandroid_MainActivity_nativeOnPause(
         JNIEnv *env,
         jobject instance)
 {
@@ -226,7 +226,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeOnPause(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeOnResume(
+Java_com_polarisengine_engineandroid_MainActivity_nativeOnResume(
         JNIEnv *env,
         jobject instance)
 {
@@ -238,7 +238,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeOnResume(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeOnTouchStart(
+Java_com_polarisengine_engineandroid_MainActivity_nativeOnTouchStart(
         JNIEnv *env,
         jobject instance,
         jint x,
@@ -256,7 +256,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeOnTouchStart(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeOnTouchMove(
+Java_com_polarisengine_engineandroid_MainActivity_nativeOnTouchMove(
 	JNIEnv *env,
 	jobject instance,
 	jint x,
@@ -283,7 +283,7 @@ Java_com_xengine_engineandroid_MainActivity_nativeOnTouchMove(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_engineandroid_MainActivity_nativeOnTouchEnd(
+Java_com_polarisengine_engineandroid_MainActivity_nativeOnTouchEnd(
 	JNIEnv *env,
 	jobject instance,
 	jint x,
@@ -345,7 +345,7 @@ bool log_info(const char *s, ...)
 
 	va_start(ap, s);
 	vsnprintf(buf, sizeof(buf), s, ap);
-	__android_log_print(ANDROID_LOG_INFO, "x-engine", "%s", buf);
+	__android_log_print(ANDROID_LOG_INFO, "Polaris Engine", "%s", buf);
 	va_end(ap);
 	return true;
 }
@@ -357,7 +357,7 @@ bool log_warn(const char *s, ...)
 
 	va_start(ap, s);
 	vsnprintf(buf, sizeof(buf), s, ap);
-	__android_log_print(ANDROID_LOG_WARN, "x-engine", "%s", buf);
+	__android_log_print(ANDROID_LOG_WARN, "Polaris Engine", "%s", buf);
 	va_end(ap);
 	return true;
 }
@@ -369,7 +369,7 @@ bool log_error(const char *s, ...)
 
 	va_start(ap, s);
 	vsnprintf(buf, sizeof(buf), s, ap);
-	__android_log_print(ANDROID_LOG_ERROR, "x-engine", "%s", buf);
+	__android_log_print(ANDROID_LOG_ERROR, "Polaris Engine", "%s", buf);
 	va_end(ap);
 	return true;
 }
@@ -599,7 +599,7 @@ bool play_video(const char *fname, bool is_skippable)
 
 	jstring file = (*jni_env)->NewStringUTF(jni_env, fname);
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/engineandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/engineandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgePlayVideo", "(Ljava/lang/String;Z)V");
 	(*jni_env)->CallVoidMethod(jni_env,
 				   main_activity,
@@ -614,7 +614,7 @@ void stop_video(void)
 {
 	state_video = false;
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/engineandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/engineandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeStopVideo", "()V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid);
 }
@@ -622,7 +622,7 @@ void stop_video(void)
 bool is_video_playing(void)
 {
 	if (state_video) {
-		jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/engineandroid/MainActivity");
+		jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/engineandroid/MainActivity");
 		jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeIsVideoPlaying", "()Z");
 		if (!(*jni_env)->CallBooleanMethod(jni_env, main_activity, mid)) {
 			state_video = false;

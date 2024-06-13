@@ -5,9 +5,12 @@ This file is referred by the automatic release script.
 [Release History (Japanese)]
 
 <!-- BEGIN-LATEST-JP -->
+# Polaris Engine 1.4.0 2024/6/14
+* リブランド
+<!-- END-LATEST-JP -->
+
 # x-engine 1.1.10 2024/6/13
 * Unityエクスポートの改善
-<!-- END-LATEST-JP -->
 
 # x-engine 1.1.9 2024/6/13
 * Unityエクスポートのバグ修正

@@ -1,11 +1,11 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 static int chpos;
 static int layer;

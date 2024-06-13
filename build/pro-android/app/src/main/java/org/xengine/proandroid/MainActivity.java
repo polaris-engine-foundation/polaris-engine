@@ -1,11 +1,11 @@
 /* -*- coding: utf-8; tab-width: 4; indent-tabs-mode: nil; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-package com.xengine.proandroid;
+package com.polarisengine.proandroid;
 
 import android.annotation.SuppressLint;
 import android.content.res.AssetFileDescriptor;
@@ -43,12 +43,12 @@ import java.util.zip.ZipInputStream;
  */
 public class MainActivity extends ComponentActivity {
 	// The app name for logging.
-	public static final String APP_NAME = "x-engine";
+	public static final String APP_NAME = "Polaris Engine";
 
 	// JNI
     static {
-		// Load libxengine.so and native*() methods will be available.
-		System.loadLibrary("xengine");
+		// Load libpolarisengine.so and native*() methods will be available.
+		System.loadLibrary("polarisengine");
 	}
 	public native void nativeInitGame(String basePath);
 	public native void nativeReinitOpenGL();
@@ -240,9 +240,9 @@ public class MainActivity extends ComponentActivity {
 						// Get the real path.
 						basePath = FileUtil.getFullPathFromTreeUri(uri, MainActivity.instance);
 
-						// Append the "x-engine" directory path/
-						if (!basePath.endsWith("/x-engine"))
-							basePath = basePath + "/x-engine/";
+						// Append the "Polaris Engine" directory path/
+						if (!basePath.endsWith("/Polaris Engine"))
+							basePath = basePath + "/Polaris Engine/";
 						else
 							basePath = basePath + "/";
 
@@ -254,7 +254,7 @@ public class MainActivity extends ComponentActivity {
 							!new File(basePath + "txt/init.txt").exists())
 							extractTemplateGame(basePath);
 
-						// Initialize the x-engine in the rendering thread.
+						// Initialize the Polaris Engine in the rendering thread.
 						synchronized (MainActivity.instance.syncObj) {
 							MainActivity.instance.isProjectOpened = true;
 						}

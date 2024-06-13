@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * Ogg Vorbis decoder
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 /* vorbisfile.hのconversionの問題を無視する */
 #if defined(__llvm__)

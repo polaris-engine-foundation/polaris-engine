@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * GUI
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 #include "wms.h"
 
 /* ボタンの最大数 */

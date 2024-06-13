@@ -1,7 +1,7 @@
 // -*- coding: utf-8; indent-tabs-mode: nil; tab-width: 4; c-basic-offset: 4; -*-
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 202r, The Authors. All rights reserved.
  */
 

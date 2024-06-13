@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -357,7 +357,7 @@ static void draw_elements_3d(float x1,
 static void update_texture_if_needed(struct image *img);
 
 /*
- * Initialize the x-engine's OpenGL rendering subsystem.
+ * Initialize the Polaris Engine's OpenGL rendering subsystem.
  */
 bool init_opengl(void)
 {
@@ -598,7 +598,7 @@ cleanup_fragment_shader(
 #endif	/* ifndef USE_QT */
 
 /*
- * Cleanup the x-engine's OpenGL rendering subsystem.
+ * Cleanup the Polaris Engine's OpenGL rendering subsystem.
  *  - Note: On Emscripten, this will never be called
  */
 void cleanup_opengl(void)
@@ -667,7 +667,7 @@ void opengl_end_rendering(void)
 /*
  * Texture manipulation:
  *  - "Texture" here is a GPU backend of an image.
- *  - x-engine abstracts modifications of textures by "notify" operations.
+ *  - Polaris Engine abstracts modifications of textures by "notify" operations.
  *  - Updated textures will be uploaded to GPU using glTexImage2D() when they are rendered.
  */
 

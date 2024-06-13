@@ -1,5 +1,5 @@
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -25,7 +25,7 @@
 #include <QAudioFormat>
 #include <QAudioSink>
 #include <QIODevice>
-#include "xengine.h"
+#include "polarisengine.h"
 #endif
 
 QT_BEGIN_NAMESPACE

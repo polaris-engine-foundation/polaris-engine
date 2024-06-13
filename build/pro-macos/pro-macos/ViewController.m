@@ -1,7 +1,7 @@
 // -*- coding: utf-8; indent-tabs-mode: nil; tab-width: 4; c-basic-offset: 4; -*-
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -12,8 +12,8 @@
 
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
-// x-engine Base
-#import "xengine.h"
+// Polaris Engine Base
+#import "polarisengine.h"
 #import "pro.h"
 #import "package.h"
 
@@ -355,7 +355,7 @@ static ViewController *theViewController;
     // Create a project file.
     NSString *path = [[panel directoryURL] path];
     [[NSFileManager defaultManager] changeCurrentDirectoryPath:path];
-    FILE *fp = fopen([[[[panel URL] path] stringByAppendingString:@"/game.xengine"] UTF8String], "w");
+    FILE *fp = fopen([[[[panel URL] path] stringByAppendingString:@"/game.polarisengine"] UTF8String], "w");
     if (fp == NULL) {
         NSAlert *alert;
         alert = [[NSAlert alloc] init];
@@ -402,7 +402,7 @@ static ViewController *theViewController;
             return NO;
 
         NSString *path = [[panel URL] path];
-        if ([[path lastPathComponent] hasSuffix:@"xengine"]) {
+        if ([[path lastPathComponent] hasSuffix:@"polarisengine"]) {
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:_isEnglish ?
              @"Please select a game folder, not a project file." :
@@ -528,7 +528,7 @@ static ViewController *theViewController;
 
 - (IBAction)onAbout:(id)sender {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:@"x-engine\nCopyright (C) 2001-2024, The Authors. All rights reserved."];
+    [alert setMessageText:@"Polaris Engine\nCopyright (C) 2001-2024, The Authors. All rights reserved."];
     [alert setAlertStyle:NSAlertStyleInformational];
     [alert runModal];
 }
@@ -1370,7 +1370,7 @@ static ViewController *theViewController;
         return;
     }
     
-    NSArray *appArray = @[@"Assets", @"Library", @"Packages", @"ProjectSettings", @"dll-src", @"Makefile", @"README.txt", @"libxengine-win64.dll", @"libxengine-macos.dylib"];
+    NSArray *appArray = @[@"Assets", @"Library", @"Packages", @"ProjectSettings", @"dll-src", @"Makefile", @"README.txt", @"libpolarisengine-win64.dll", @"libpolarisengine-macos.dylib"];
     for (NSString *sub in appArray) {
         if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/Contents/Resources/unity-src/%@", [[NSBundle  mainBundle] bundlePath], sub]
                                   toPath:[NSString stringWithFormat:@"%@/%@", exportPath, sub]
@@ -1380,8 +1380,8 @@ static ViewController *theViewController;
         }
     }
 
-    if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/Contents/Resources/unity-src/libxengine-macos.dylib", [[NSBundle  mainBundle] bundlePath]]
-                              toPath:[NSString stringWithFormat:@"%@/Assets/libxengine.dylib", exportPath]
+    if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/Contents/Resources/unity-src/libpolarisengine-macos.dylib", [[NSBundle  mainBundle] bundlePath]]
+                              toPath:[NSString stringWithFormat:@"%@/Assets/libpolarisengine.dylib", exportPath]
                                error:nil]) {
         log_warn("Copy error (3).");
         return;
@@ -1415,9 +1415,9 @@ static ViewController *theViewController;
 
 - (IBAction)onHelp:(id)sender {
     if (_isEnglish) {
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://x-engine.com/en/wiki/"]];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://Polaris Engine.com/en/wiki/"]];
     } else {
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://x-engine.com/wiki/"]];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://Polaris Engine.com/wiki/"]];
     }
 }
 

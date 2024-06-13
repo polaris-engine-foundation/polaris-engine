@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; indent-tabs-mode: t; tab-width: 4; c-basic-offset: 4; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * Dummy ALSA Sound Module (for when sound is not available)
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 bool init_asound(void)
 {

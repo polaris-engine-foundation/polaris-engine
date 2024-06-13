@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -53,7 +53,7 @@
 #include "wave.h"	/* The sound stream subsystem */
 #include "wms.h"	/* The WMS subsystem */
 
-/* x-engine Pro */
+/* Polaris Engine Pro */
 #if defined(USE_EDITOR)
 #include "pro.h"
 #endif

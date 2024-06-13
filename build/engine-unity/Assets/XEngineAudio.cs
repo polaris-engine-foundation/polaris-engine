@@ -1,12 +1,12 @@
 /* -*- coding: utf-8; tab-width: 4; c-basic-offset: 4; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2001-2024, The Authors. All rights reserved.
  */
 
 /*
- * The x-engine Audio HAL for Unity.
+ * The Polaris Engine Audio HAL for Unity.
  */
 
 using UnityEngine;

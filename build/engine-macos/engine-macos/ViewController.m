@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 4; indent-tabs-mode: nil; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -10,7 +10,7 @@
 #import "GameRenderer.h"
 
 // Base
-#import "xengine.h"
+#import "polarisengine.h"
 #import "uimsg.h"
 
 // Standard C

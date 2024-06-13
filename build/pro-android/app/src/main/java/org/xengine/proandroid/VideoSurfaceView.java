@@ -1,11 +1,11 @@
 /* -*- coding: utf-8; tab-width: 4; indent-tabs-mode: nil; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-package com.xengine.proandroid;
+package com.polarisengine.proandroid;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

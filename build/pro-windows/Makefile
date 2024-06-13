@@ -112,10 +112,10 @@ OBJS = \
 # Target
 #
 
-all: x-engine.exe
+all: polaris-engine.exe
 
-x-engine.exe: libroot $(OBJS) $(HDRS_MAIN) $(HDRS)
-	$(CC) -s -o x-engine.exe $(OBJS) $(LDFLAGS) -no-pthread
+polaris-engine.exe: libroot $(OBJS) $(HDRS_MAIN) $(HDRS)
+	$(CC) -s -o polaris-engine.exe $(OBJS) $(LDFLAGS) -no-pthread
 
 libroot:
 	./build-libs.sh
@@ -125,10 +125,10 @@ libroot:
 #
 
 clean:
-	rm -rf *.o *~ x-engine.exe log.txt sav tmp
+	rm -rf *.o *~ polaris-engine.exe log.txt sav tmp
 
 erase:
-	rm -rf *.o *~ x-engine.exe log.txt sav tmp libroot
+	rm -rf *.o *~ polaris-engine.exe log.txt sav tmp libroot
 
 analyze:
 	$(CC) $(CPPFLAGS) -municode -fanalyzer -finput-charset=utf-8 -c $(SRCS_C) $(SRCS_CC)

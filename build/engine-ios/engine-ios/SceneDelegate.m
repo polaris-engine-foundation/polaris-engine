@@ -1,13 +1,13 @@
 /* -*- coding: utf-8; tab-width: 4; indent-tabs-mode: nil; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 #import "SceneDelegate.h"
 
-#import "xengine.h"
+#import "polarisengine.h"
 
 @interface SceneDelegate ()
 @end

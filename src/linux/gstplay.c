@@ -1,7 +1,7 @@
 /* -*- c-basic-offset: 2; indent-tabs-mode: nil; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * [Changes]
  *  - 2022-10-24 Created.
  *  - 2024-03-31 Added avoidance for LGPL (NO_GST)
- *  - 2024-04-11 x-engine
+ *  - 2024-04-11 Polaris Engine
  */
 
 #include "gstplay.h"

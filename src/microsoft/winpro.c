@@ -1,16 +1,16 @@
 /* -*- coding: utf-8; indent-tabs-mode: t; tab-width: 4; c-basic-offset: 4; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 /*
- * x-engine (Editor) for Windows
+ * Polaris Engine (Editor) for Windows
  */
 
 /* Base */
-#include "../xengine.h"
+#include "../polarisengine.h"
 
 /* Editor */
 #include "../pro.h"
@@ -49,7 +49,7 @@
  */
 
 /* The window title of message boxes. */
-#define TITLE				L"x-engine"
+#define TITLE				L"Polaris Engine"
 
 /* The font name for the controls. */
 #define CONTROL_FONT		L"Yu Gothic UI"
@@ -59,7 +59,7 @@
 #define SCRIPT_FONT_EN		L"Courier New"
 
 /* The version string. */
-#define PROGRAM				"x-engine"
+#define PROGRAM				"Polaris Engine"
 #define VERSION_HELPER(x)	#x
 #define VERSION_STR(x)		VERSION_HELPER(x)
 #define COPYRIGHT			"Copyright (c) 2001-2024, The Authors. All rights reserved."
@@ -444,10 +444,10 @@ static void SIGSEGV_Handler(int n)
 	bEnglish = strcmp(get_system_locale(), "ja") != 0;
 
 	log_error(bEnglish ?
-			  "Sorry, x-engine was crashed.\n"
+			  "Sorry, Polaris Engine was crashed.\n"
 			  "Please send a bug report to the author." :
 			  "ご迷惑をかけ申し訳ございません。\n"
-			  "x-engineがクラッシュしました。\n"
+			  "Polaris Engineがクラッシュしました。\n"
 			  "バグ報告をいただけますと幸いです。\n");
 	exit(1);
 }
@@ -457,7 +457,7 @@ static BOOL InitApp(HINSTANCE hInstance, int nCmdShow)
 {
 	conf_window_width = 1280;
 	conf_window_height = 720;
-	conf_window_title = strdup("x-engine");
+	conf_window_title = strdup("Polaris Engine");
 
 	/* Initialize the window. */
 	if (!InitWindow(hInstance, nCmdShow))
@@ -4026,16 +4026,16 @@ static BOOL CreateProjectFromTemplate(const wchar_t *pszTemplate)
 	{
 		/* Show a save dialog. */
 		ZeroMemory(&ofn, sizeof(OPENFILENAMEW));
-		wcscpy(&wszPath[0], L"game.xengine");
+		wcscpy(&wszPath[0], L"game.polarisengine");
 		ofn.lStructSize = sizeof(OPENFILENAMEW);
 		ofn.nFilterIndex  = 1;
 		ofn.lpstrFile = wszPath;
 		ofn.nMaxFile = sizeof(wszPath) / sizeof(wchar_t);
 		ofn.Flags = OFN_OVERWRITEPROMPT;
 		ofn.lpstrFilter = bEnglish ?
-			L"x-engine Project Files\0*.xengine\0\0" :
-			L"x-engine プロジェクトファイル\0*.xengine\0\0";
-		ofn.lpstrDefExt = L".xengine";
+			L"Polaris Engine Project Files\0*.polarisengine\0\0" :
+			L"Polaris Engine プロジェクトファイル\0*.polarisengine\0\0";
+		ofn.lpstrDefExt = L".polarisengine";
 		if (!GetSaveFileNameW(&ofn))
 			return FALSE;
 		if (ofn.lpstrFile[0] == L'\0')
@@ -4103,7 +4103,7 @@ static BOOL ChooseProject(void)
 
 	/* Open a file dialog. */
 	ZeroMemory(&ofn, sizeof(OPENFILENAMEW));
-	wcscpy(&wszPath[0], L"game.xengine");
+	wcscpy(&wszPath[0], L"game.polarisengine");
 	ofn.lStructSize = sizeof(OPENFILENAMEW);
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = wszPath;
@@ -4111,9 +4111,9 @@ static BOOL ChooseProject(void)
 	ofn.nMaxFile = sizeof(wszPath) / sizeof(wchar_t);
 	ofn.Flags = OFN_FILEMUSTEXIST;
 	ofn.lpstrFilter = bEnglish ?
-		L"x-engine Project Files\0*.xengine\0" :
-		L"x-engine プロジェクトファイル\0\0";
-	ofn.lpstrDefExt = L".xengine";
+		L"Polaris Engine Project Files\0*.polarisengine\0" :
+		L"Polaris Engine プロジェクトファイル\0\0";
+	ofn.lpstrDefExt = L".polarisengine";
 
 	/* This will set the working directory to the game directory. */
 	bRet = GetOpenFileNameW(&ofn);
@@ -4197,7 +4197,7 @@ static void ReadProjectFile(void)
 	CheckMenuItem(hMenu, ID_DARKMODE, MF_UNCHECKED);
 
 	/* Read the preference. */
-	fp = fopen("game.xengine", "r");
+	fp = fopen("game.polarisengine", "r");
 	if (fp == NULL)
 		log_info("failed to read the project file.");
 	while (1)
@@ -4248,7 +4248,7 @@ static void WriteProjectFile(void)
 {
 	FILE *fp;
 
-	fp = fopen("game.xengine", "w");
+	fp = fopen("game.polarisengine", "w");
 	if (fp == NULL)
 		return;
 
@@ -5148,7 +5148,7 @@ static VOID OnExportUnity(void)
 	}
 
 	/* DLLをコピーする */
-	if (!CopyLibraryFiles(L"tools\\unity-src\\libxengine-win64.dll", L"unity-export\\Assets\\libxengine.dll"))
+	if (!CopyLibraryFiles(L"tools\\unity-src\\libpolarisengine-win64.dll", L"unity-export\\Assets\\libpolarisengine.dll"))
 	{
 		log_info(bEnglish ?
 				 "Failed to copy source files for Unity." :
@@ -5493,7 +5493,7 @@ static VOID OnAutoUpdate(BOOL bSilent)
 			break;
 
 		/* インストーラをダウンロードする */
-		snprintf(szURL, sizeof(szURL), "https://xxxxxxx.com/dl/x-engine-%s.exe", szVer);
+		snprintf(szURL, sizeof(szURL), "https://xxxxxxx.com/dl/Polaris Engine-%s.exe", szVer);
 		if (URLDownloadToFileW(NULL, conv_utf8_to_utf16(szURL), L"installer.exe", 0, NULL) != S_OK)
 		{
 			MessageBox(hWndMain,
@@ -5538,7 +5538,7 @@ static VOID OnAutoUpdate(BOOL bSilent)
 #endif
 
 /*
- * x-engineコマンドの挿入
+ * Polaris Engineコマンドの挿入
  */
 
 static VOID OnInsertMessage(void)

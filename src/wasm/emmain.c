@@ -1,7 +1,7 @@
 /* -*- tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -17,9 +17,9 @@
 #include <sys/time.h>	/* gettimeofday() */
 
 /*
- * x-engine Base
+ * Polaris Engine Base
  */
-#include "../xengine.h"
+#include "../polarisengine.h"
 
 /*
  * HAL
@@ -74,8 +74,8 @@ int main(void)
 
 	/* IDBFSのセーブデータをマウントする */
 	EM_ASM_({
-		FS.mkdir("x-engine-sav");
-		FS.mount(IDBFS, {}, "x-engine-sav");
+		FS.mkdir("Polaris Engine-sav");
+		FS.mount(IDBFS, {}, "Polaris Engine-sav");
 		FS.syncfs(true, function (err) { Module.ccall('main_continue', 'v'); });
 	});
 
@@ -743,7 +743,7 @@ char *make_valid_path(const char *dir, const char *fname)
 		if (conf_sav_name[0] == '/')
 			conf_sav_name[0] = '_';
 
-		snprintf(buf, sizeof(buf), "x-engine-sav/%s-%s", conf_sav_name, fname);
+		snprintf(buf, sizeof(buf), "Polaris Engine-sav/%s-%s", conf_sav_name, fname);
 		ret = strdup(buf);
 		if (ret == NULL) {
 			log_memory();

@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 4; indent-tabs-mode: nil; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -10,7 +10,7 @@
 #import "GameRenderer.h"
 
 // Base
-#import "xengine.h"
+#import "polarisengine.h"
 
 // HAL
 #import "aunit.h"
@@ -42,7 +42,7 @@ static ViewController *theViewController;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Initialize the x-engine.
+    // Initialize the Polaris Engine.
     init_locale_code();
     if(!init_file())
         exit(1);

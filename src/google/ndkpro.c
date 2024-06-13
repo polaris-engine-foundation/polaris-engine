@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,10 +9,10 @@
  * JNI code for pro-android
  */
 
-/* x-engine Base */
-#include "xengine.h"
+/* Polaris Engine Base */
+#include "polarisengine.h"
 
-/* x-engine Pro */
+/* Polaris Engine Pro */
 #include "pro.h"
 
 /* HAL */
@@ -94,7 +94,7 @@ static void do_delayed_remove_rfile_ref(void);
  */
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeInitGame(
+Java_com_polarisengine_proandroid_MainActivity_nativeInitGame(
 	JNIEnv *env,
 	jobject instance,
 	jstring basePath)
@@ -152,7 +152,7 @@ Java_com_xengine_proandroid_MainActivity_nativeInitGame(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeReinitOpenGL(
+Java_com_polarisengine_proandroid_MainActivity_nativeReinitOpenGL(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -174,7 +174,7 @@ Java_com_xengine_proandroid_MainActivity_nativeReinitOpenGL(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeRunFrame(
+Java_com_polarisengine_proandroid_MainActivity_nativeRunFrame(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -183,7 +183,7 @@ Java_com_xengine_proandroid_MainActivity_nativeRunFrame(
 	/* Process video playback. */
 	bool draw = true;
 	if (state_video) {
-		jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+		jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 		jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "isVideoPlaying", "()Z");
 		if ((*jni_env)->CallBooleanMethod(jni_env, main_activity, mid))
 			draw = false;
@@ -238,7 +238,7 @@ static void do_delayed_remove_rfile_ref(void)
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeOnPause(
+Java_com_polarisengine_proandroid_MainActivity_nativeOnPause(
         JNIEnv *env,
         jobject instance)
 {
@@ -248,7 +248,7 @@ Java_com_xengine_proandroid_MainActivity_nativeOnPause(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeOnResume(
+Java_com_polarisengine_proandroid_MainActivity_nativeOnResume(
         JNIEnv *env,
         jobject instance)
 {
@@ -258,7 +258,7 @@ Java_com_xengine_proandroid_MainActivity_nativeOnResume(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeOnTouchStart(
+Java_com_polarisengine_proandroid_MainActivity_nativeOnTouchStart(
         JNIEnv *env,
         jobject instance,
         jint x,
@@ -276,7 +276,7 @@ Java_com_xengine_proandroid_MainActivity_nativeOnTouchStart(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeOnTouchMove(
+Java_com_polarisengine_proandroid_MainActivity_nativeOnTouchMove(
 	JNIEnv *env,
 	jobject instance,
 	jint x,
@@ -303,7 +303,7 @@ Java_com_xengine_proandroid_MainActivity_nativeOnTouchMove(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeOnTouchEnd(
+Java_com_polarisengine_proandroid_MainActivity_nativeOnTouchEnd(
 	JNIEnv *env,
 	jobject instance,
 	jint x,
@@ -355,7 +355,7 @@ Java_com_xengine_proandroid_MainActivity_nativeOnTouchEnd(
 }
 
 JNIEXPORT jint JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeGetIntConfigForKey(
+Java_com_polarisengine_proandroid_MainActivity_nativeGetIntConfigForKey(
 	JNIEnv *env,
 	jobject instance,
 	jstring key)
@@ -369,7 +369,7 @@ Java_com_xengine_proandroid_MainActivity_nativeGetIntConfigForKey(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeSetContinueFlag(
+Java_com_polarisengine_proandroid_MainActivity_nativeSetContinueFlag(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -377,7 +377,7 @@ Java_com_xengine_proandroid_MainActivity_nativeSetContinueFlag(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeSetNextFlag(
+Java_com_polarisengine_proandroid_MainActivity_nativeSetNextFlag(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -385,7 +385,7 @@ Java_com_xengine_proandroid_MainActivity_nativeSetNextFlag(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeSetStopFlag(
+Java_com_polarisengine_proandroid_MainActivity_nativeSetStopFlag(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -393,7 +393,7 @@ Java_com_xengine_proandroid_MainActivity_nativeSetStopFlag(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeSetOpenFlag(
+Java_com_polarisengine_proandroid_MainActivity_nativeSetOpenFlag(
 	JNIEnv *env,
 	jobject instance,
 	jstring file)
@@ -411,7 +411,7 @@ Java_com_xengine_proandroid_MainActivity_nativeSetOpenFlag(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeSetLineFlag(
+Java_com_polarisengine_proandroid_MainActivity_nativeSetLineFlag(
 	JNIEnv *env,
 	jobject instance,
 	jint line)
@@ -421,7 +421,7 @@ Java_com_xengine_proandroid_MainActivity_nativeSetLineFlag(
 }
 
 JNIEXPORT void JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeSaveScript(
+Java_com_polarisengine_proandroid_MainActivity_nativeSaveScript(
 	JNIEnv *env,
 	jobject instance,
 	jint line)
@@ -430,7 +430,7 @@ Java_com_xengine_proandroid_MainActivity_nativeSaveScript(
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeUpdateScriptModel(
+Java_com_polarisengine_proandroid_MainActivity_nativeUpdateScriptModel(
 	JNIEnv *env,
 	jobject instance,
 	jstring script)
@@ -487,7 +487,7 @@ Java_com_xengine_proandroid_MainActivity_nativeUpdateScriptModel(
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_xengine_proandroid_MainActivity_nativeGetScript(
+Java_com_polarisengine_proandroid_MainActivity_nativeGetScript(
 	JNIEnv *env,
 	jobject instance)
 {
@@ -543,10 +543,10 @@ bool log_info(const char *s, ...)
 
 	va_start(ap, s);
 	vsnprintf(buf, sizeof(buf), s, ap);
-	__android_log_print(ANDROID_LOG_INFO, "x-engine", "%s", buf);
+	__android_log_print(ANDROID_LOG_INFO, "Polaris Engine", "%s", buf);
 	va_end(ap);
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeAlert", "(Ljava/lang/String;)V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid, (*jni_env)->NewStringUTF(jni_env, buf));
 
@@ -560,10 +560,10 @@ bool log_warn(const char *s, ...)
 
 	va_start(ap, s);
 	vsnprintf(buf, sizeof(buf), s, ap);
-	__android_log_print(ANDROID_LOG_WARN, "x-engine", "%s", buf);
+	__android_log_print(ANDROID_LOG_WARN, "Polaris Engine", "%s", buf);
 	va_end(ap);
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeAlert", "(Ljava/lang/String;)V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid, (*jni_env)->NewStringUTF(jni_env, buf));
 
@@ -577,10 +577,10 @@ bool log_error(const char *s, ...)
 
 	va_start(ap, s);
 	vsnprintf(buf, sizeof(buf), s, ap);
-	__android_log_print(ANDROID_LOG_ERROR, "x-engine", "%s", buf);
+	__android_log_print(ANDROID_LOG_ERROR, "Polaris Engine", "%s", buf);
 	va_end(ap);
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeAlert", "(Ljava/lang/String;)V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid, (*jni_env)->NewStringUTF(jni_env, buf));
 
@@ -834,7 +834,7 @@ bool play_video(const char *fname, bool is_skippable)
 {
 	state_video = true;
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "playVideo", "(Ljava/lang/String;Z)V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid, (*jni_env)->NewStringUTF(jni_env, fname), is_skippable ? JNI_TRUE : JNI_FALSE);
 
@@ -845,7 +845,7 @@ void stop_video(void)
 {
 	state_video = false;
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "stopVideo", "()V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid);
 }
@@ -853,7 +853,7 @@ void stop_video(void)
 bool is_video_playing(void)
 {
 	if (state_video) {
-		jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+		jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 		jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "isVideoPlaying", "()Z");
 		if (!(*jni_env)->CallBooleanMethod(jni_env, main_activity, mid)) {
 			state_video = false;
@@ -1001,7 +1001,7 @@ void on_change_running_state(bool running, bool request_stop)
 {
 	assert(jni_env != NULL);
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeChangeRunningState", "(ZZ)V");
 	(*jni_env)->CallVoidMethod(jni_env,
 				   main_activity,
@@ -1019,7 +1019,7 @@ void on_load_script(void)
 	jstring file = (*jni_env)->NewStringUTF(jni_env, cfile);
 	jstring content = make_script_jstring();
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeLoadScript", "(Ljava/lang/String;Ljava/lang/String;)V"); 
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid, file, content);
 
@@ -1033,7 +1033,7 @@ void on_change_position(void)
 
 	int line = get_expanded_line_num();
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeChangePosition", "(I)V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid, line);
 }
@@ -1042,7 +1042,7 @@ void on_update_variable(void)
 {
 	assert(jni_env != NULL);
 
-	jclass cls = (*jni_env)->FindClass(jni_env, "com/xengine/proandroid/MainActivity");
+	jclass cls = (*jni_env)->FindClass(jni_env, "com/polarisengine/proandroid/MainActivity");
 	jmethodID mid = (*jni_env)->GetMethodID(jni_env, cls, "bridgeUpdateVariables", "()V");
 	(*jni_env)->CallVoidMethod(jni_env, main_activity, mid);
 }

@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 4; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -10,7 +10,7 @@
  * (See also src/google/ndk*.c for the C language part.)
  */
 
-package com.xengine.engineandroid;
+package com.polarisengine.engineandroid;
 
 import static android.opengl.GLSurfaceView.RENDERMODE_CONTINUOUSLY;
 import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
     //
 
     // window.title
-    private static final String APP_NAME = "x-engine";
+    private static final String APP_NAME = "Polaris Engine";
 
     // window.width
     private static final int VIEWPORT_WIDTH = 1280;
@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 
     // Load an Android NDK library.
     static {
-        System.loadLibrary("xengine");
+        System.loadLibrary("polarisengine");
     }
 
     // These are the native methods implemented in ndk*.c

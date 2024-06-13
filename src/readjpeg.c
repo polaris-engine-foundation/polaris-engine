@@ -1,13 +1,13 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 #if !defined(NO_JPEG)
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 #if __has_include(<jpeglib.h>)
 #include <jpeglib.h>

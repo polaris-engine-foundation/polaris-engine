@@ -1,6 +1,6 @@
 /*
  * Watermelon Script
- * x-engine
+ * Polaris Engine
  * Copyright (c) 2024, The Authors. All rights reserved.
  */
 

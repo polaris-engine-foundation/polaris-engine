@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; indent-tabs-mode: t; tab-width: 4; c-basic-offset: 4; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -12,7 +12,7 @@
 #ifndef XENGINE_DSVIDEO_H
 #define XENGINE_DSVIDEO_H
 
-#include "../xengine.h"
+#include "../polarisengine.h"
 
 #include <windows.h>
 

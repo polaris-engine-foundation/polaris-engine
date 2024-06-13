@@ -1,19 +1,19 @@
 /* -*- tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
 /*
- * x-engine HAL Implementation for ALSA
+ * Polaris Engine HAL Implementation for ALSA
  */
 
-/* x-engine Base */
+/* Polaris Engine Base */
 #if !defined(USE_QT)
-#include "../xengine.h"
+#include "../polarisengine.h"
 #else
-#include "xengine.h"
+#include "polarisengine.h"
 #endif
 
 /* POSIX */

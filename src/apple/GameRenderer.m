@@ -1,7 +1,7 @@
 // -*- coding: utf-8; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4; -*-
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
  
@@ -17,7 +17,7 @@
 #import "GameViewControllerProtocol.h"
 
 // Base
-#import "xengine.h"
+#import "polarisengine.h"
 
 // POSIX
 #import <sys/time.h>

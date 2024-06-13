@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; indent-tabs-mode: t; tab-width: 4; c-basic-offset: 4; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,10 +9,10 @@
  * The HAL for Windows
  */
 
-/* x-engine Base */
-#include "../xengine.h"
+/* Polaris Engine Base */
+#include "../polarisengine.h"
 
-/* x-engine HAL Implementaions */
+/* Polaris Engine HAL Implementaions */
 #include "dx9render.h"		/* Graphics HAL */
 #include "dsound.h"			/* Sound HAL */
 #include "dsvideo.h"		/* Video HAL */

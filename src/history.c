@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 8; indent-tabs-mode: t; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -9,7 +9,7 @@
  * History management (to be moved to main.c)
  */
 
-#include "xengine.h"
+#include "polarisengine.h"
 
 /* テキストのサイズ(名前とメッセージを連結するため) */
 #define TEXT_SIZE	(1024)
