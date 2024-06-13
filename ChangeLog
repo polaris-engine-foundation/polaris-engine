@@ -5,9 +5,12 @@ This file is referred by the automatic release script.
 [Release History (Japanese)]
 
 <!-- BEGIN-LATEST-JP -->
+# x-engine 1.1.10 2024/6/13
+* Unityエクスポートの改善
+<!-- END-LATEST-JP -->
+
 # x-engine 1.1.9 2024/6/13
 * Unityエクスポートのバグ修正
-<!-- END-LATEST-JP -->
 
 # x-engine 1.1.8 2024/6/12
 * Unityエクスポートのバグ修正

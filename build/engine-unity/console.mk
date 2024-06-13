@@ -7,10 +7,13 @@ help:
 	@echo '  make macos  ... switch to a DLL for test run on macOS'
 
 ps45:
+	rm -f Assets/*.so Assets/*.dll Assets/*.nso
 	cd dll-src && make -f ps45.mk && cd ..
 
-xbox:
+xbox
+	rm -f Assets/*.so Assets/*.dll Assets/*.nso
 	cd dll-src && make -f xbox.mk && cd ..
 
 switch:
+	rm -f Assets/*.so Assets/*.dll Assets/*.nso
 	cd dll-src && make -f switch.mk && cd ..
