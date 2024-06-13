@@ -95,7 +95,7 @@ src: libroot
 	@cp ../../src/stage.h macos-src/engine-macos/
 	@cp ../../src/uimsg.h macos-src/engine-macos/
 	@cp ../../src/uimsg.c macos-src/engine-macos/
-	@cp ../../src/xengine.h macos-src/engine-macos/
+	@cp ../../src/polarisengine.h macos-src/engine-macos/
 	@cp ../../src/types.h macos-src/engine-macos/
 	@cp ../../src/vars.c macos-src/engine-macos/
 	@cp ../../src/vars.h macos-src/engine-macos/

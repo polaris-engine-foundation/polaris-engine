@@ -86,7 +86,6 @@
 		260EDAE62B2A7C30006C214F /* aunit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aunit.h; path = ../../src/apple/aunit.h; sourceTree = "<group>"; };
 		260EDAE72B2A7C30006C214F /* GameRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameRenderer.h; path = ../../src/apple/GameRenderer.h; sourceTree = "<group>"; };
 		260EDAE82B2A7C30006C214F /* GameShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; name = GameShaders.metal; path = ../../src/apple/GameShaders.metal; sourceTree = "<group>"; };
-		2652EACD2BC8CB0800B0F5EA /* xengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xengine.h; path = ../../src/xengine.h; sourceTree = "<group>"; };
 		267492BD2BCDB34F00943F71 /* data01.arc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data01.arc; sourceTree = "<group>"; };
 		26A500002B29E4BA00C1ED7D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26A500012B29E4BA00C1ED7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -184,6 +183,7 @@
 		26BF13232B29E2EB006A0F6E /* wms_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wms_core.h; path = ../../src/wms_core.h; sourceTree = "<group>"; };
 		26C231592BB0630F003DC0D6 /* ciel.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ciel.c; path = ../../src/ciel.c; sourceTree = "<group>"; };
 		26FECC312BB4B263002CB40D /* ciel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ciel.h; path = ../../src/ciel.h; sourceTree = "<group>"; };
+		CE0AFB3F2C1B9D2100648270 /* polarisengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = polarisengine.h; path = ../../src/polarisengine.h; sourceTree = "<group>"; };
 		CE3EAE912C18804B00E8A009 /* mov */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mov; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				260EDAE12B2A7C21006C214F /* apple */,
+				CE0AFB3F2C1B9D2100648270 /* polarisengine.h */,
 				26BF12FE2B29E2EA006A0F6E /* cmd_anime.c */,
 				26BF12FB2B29E2EA006A0F6E /* cmd_bg.c */,
 				26BF12CD2B29E2EA006A0F6E /* cmd_bgm.c */,
@@ -317,7 +318,6 @@
 				26BF13062B29E2EB006A0F6E /* main.h */,
 				26BF12D72B29E2EA006A0F6E /* mixer.c */,
 				26BF13212B29E2EB006A0F6E /* mixer.h */,
-				2652EACD2BC8CB0800B0F5EA /* xengine.h */,
 				26BF12D82B29E2EA006A0F6E /* readimage.c */,
 				26BF12F42B29E2EA006A0F6E /* readjpeg.c */,
 				26BF13192B29E2EB006A0F6E /* readpng.c */,

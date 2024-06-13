@@ -87,7 +87,6 @@
 		2662CFD62B2A7BC800CB3DBE /* GameShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameShaderTypes.h; path = ../../src/apple/GameShaderTypes.h; sourceTree = "<group>"; };
 		2662CFD72B2A7BC800CB3DBE /* GameRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameRenderer.h; path = ../../src/apple/GameRenderer.h; sourceTree = "<group>"; };
 		2662CFD82B2A7BC800CB3DBE /* aunit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aunit.h; path = ../../src/apple/aunit.h; sourceTree = "<group>"; };
-		26867EB82BC8D05D001026A8 /* xengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xengine.h; path = ../../src/xengine.h; sourceTree = "<group>"; };
 		268EAEAA2B21E41400CF559E /* GameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameView.h; sourceTree = "<group>"; };
 		268EAEAB2B21E41400CF559E /* GameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameView.m; sourceTree = "<group>"; };
 		268EAEAE2B23C12800CF559E /* hal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hal.h; path = ../../src/hal.h; sourceTree = "<group>"; };
@@ -183,6 +182,7 @@
 		26EAF30D2B2049FC003530F4 /* CoreAudioTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioTypes.framework; path = System/Library/Frameworks/CoreAudioTypes.framework; sourceTree = SDKROOT; };
 		26EAF3122B206E0E003530F4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		26EAF3132B206E0E003530F4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CE10BB152C1B9C6C00CC6A1C /* polarisengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = polarisengine.h; path = ../../src/polarisengine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				2662CFD12B2A7BBA00CB3DBE /* apple */,
+				CE10BB152C1B9C6C00CC6A1C /* polarisengine.h */,
 				26EAF27A2B202CEC003530F4 /* cmd_anime.c */,
 				26EAF2792B202CEC003530F4 /* cmd_bg.c */,
 				26EAF2922B202CEC003530F4 /* cmd_bgm.c */,
@@ -314,7 +315,6 @@
 				26EAF2DC2B202D86003530F4 /* main.h */,
 				26EAF2C72B202D86003530F4 /* mixer.c */,
 				26EAF2E72B202D87003530F4 /* mixer.h */,
-				26867EB82BC8D05D001026A8 /* xengine.h */,
 				26EAF2E82B202D87003530F4 /* readimage.c */,
 				26EAF2D32B202D86003530F4 /* readjpeg.c */,
 				26EAF2C12B202D86003530F4 /* readpng.c */,

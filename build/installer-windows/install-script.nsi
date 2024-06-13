@@ -2,9 +2,9 @@
 !define MUI_ICON "icon.ico"
 !define MUI_UNICON "icon.ico"
 
-Name "x-engine"
-OutFile "x-engine-installer.exe"
-InstallDir "$APPDATA\Local\x-engine"
+Name "Polaris Engine"
+OutFile "polaris-engine-installer.exe"
+InstallDir "$APPDATA\Local\polaris-engine"
 
 RequestExecutionLevel user
 SetCompressor /SOLID /FINAL lzma
@@ -17,44 +17,44 @@ Page instfiles
 Section "Install"
   SetOutPath "$INSTDIR"
   RMDir /r "$INSTDIR"
-  File "x-engine.exe"
+  File "polaris-engine.exe"
   File /r "games"
   File /r "tools"
   File "icon.ico"
   WriteUninstaller "$INSTDIR\Uninstall.exe"
-  CreateDirectory "$SMPROGRAMS\x-engine"
-  CreateShortcut "$SMPROGRAMS\x-engine\x-engine.lnk" "$INSTDIR\x-engine.exe" ""
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\x-engine" "InstDir" '"$INSTDIR"'
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\x-engine" "DisplayName" "x-engine"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\x-engine" "DisplayIcon" '"$INSTDIR\icon.ico"'
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\x-engine" "DisplayVersion" "1"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\x-engine" "Publisher" "The x-engine Developers"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\x-engine" "UninstallString" '"$INSTDIR\Uninstall.exe"'
-  WriteRegStr HKCU "Software\Classes\.xengine" "" "x-engine.project"
-  WriteRegStr HKCU "Software\Classes\x-engine.project" "" "x-engine Project"
-  WriteRegStr HKCU "Software\Classes\x-engine.project\DefaultIcon" "" "$INSTDIR\x-engine.exe"
-  WriteRegStr HKCU "Software\Classes\x-engine.project\Shell\open\command" "" '"$INSTDIR\x-engine.exe" "%1"'
+  CreateDirectory "$SMPROGRAMS\polaris-engine"
+  CreateShortcut "$SMPROGRAMS\polaris-engine\polaris-engine.lnk" "$INSTDIR\polaris-engine.exe" ""
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\polaris-engine" "InstDir" '"$INSTDIR"'
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\polaris-engine" "DisplayName" "polaris-engine"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\polaris-engine" "DisplayIcon" '"$INSTDIR\icon.ico"'
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\polaris-engine" "DisplayVersion" "1"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\polaris-engine" "Publisher" "The polaris-engine Developers"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\polaris-engine" "UninstallString" '"$INSTDIR\Uninstall.exe"'
+  WriteRegStr HKCU "Software\Classes\.polaris" "" "polaris-engine.project"
+  WriteRegStr HKCU "Software\Classes\polaris-engine.project" "" "polaris-engine Project"
+  WriteRegStr HKCU "Software\Classes\polaris-engine.project\DefaultIcon" "" "$INSTDIR\polaris-engine.exe"
+  WriteRegStr HKCU "Software\Classes\polaris-engine.project\Shell\open\command" "" '"$INSTDIR\polaris-engine.exe" "%1"'
   SetShellVarContext current
-  CreateShortCut "$DESKTOP\x-engine.lnk" "$INSTDIR\x-engine.exe"
+  CreateShortCut "$DESKTOP\polaris-engine.lnk" "$INSTDIR\polaris-engine.exe"
 SectionEnd
 
 Section "Uninstall"
   Delete "$INSTDIR\Uninstall.exe"
-  Delete "$INSTDIR\x-engine.exe"
+  Delete "$INSTDIR\polaris-engine.exe"
   Delete "$INSTDIR\games"
   Delete "$INSTDIR\tools"
-  Delete "$SMPROGRAMS\x-engine\x-engine.lnk"
-  RMDir "$SMPROGRAMS\x-engine"
-  DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\x-engine"
-  Delete "$DESKTOP\x-engine.lnk"
-  DeleteRegKey HKCU "Software\Classes\.xengine"
-  DeleteRegKey HKCU "Software\Classes\x-engine.project"
-  DeleteRegKey HKCU "Software\Classes\x-engine.project\DefaultIcon"
-  DeleteRegKey HKCU "Software\Classes\x-engine.project\Shell\open\command"
+  Delete "$SMPROGRAMS\polaris-engine\polaris-engine.lnk"
+  RMDir "$SMPROGRAMS\polaris-engine"
+  DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\polaris-engine"
+  Delete "$DESKTOP\polaris-engine.lnk"
+  DeleteRegKey HKCU "Software\Classes\.polaris"
+  DeleteRegKey HKCU "Software\Classes\polaris-engine.project"
+  DeleteRegKey HKCU "Software\Classes\polaris-engine.project\DefaultIcon"
+  DeleteRegKey HKCU "Software\Classes\polaris-engine.project\Shell\open\command"
 SectionEnd
 
 Function .OnInstSuccess
-  Exec "$INSTDIR\x-engine.exe"
+  Exec "$INSTDIR\polaris-engine.exe"
 FunctionEnd
 
 !insertmacro MUI_LANGUAGE "English"

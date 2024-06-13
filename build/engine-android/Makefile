@@ -15,7 +15,7 @@ debug:
 	@cp ../../src/khronos/glrender.c app/src/main/cpp/
 	@cp ../../src/khronos/slsound.h app/src/main/cpp/
 	@cp ../../src/khronos/slsound.c app/src/main/cpp/
-	@cp ../../src/xengine.h app/src/main/cpp/
+	@cp ../../src/polarisengine.h app/src/main/cpp/
 	@cp ../../src/anime.h app/src/main/cpp/
 	@cp ../../src/anime.c app/src/main/cpp/
 	@cp ../../src/conf.h app/src/main/cpp/
@@ -155,7 +155,7 @@ src:
 	@cp ../../src/khronos/glrender.c android-src/app/src/main/cpp/
 	@cp ../../src/khronos/slsound.h android-src/app/src/main/cpp/
 	@cp ../../src/khronos/slsound.c android-src/app/src/main/cpp/
-	@cp ../../src/xengine.h android-src/app/src/main/cpp/
+	@cp ../../src/polarisengine.h android-src/app/src/main/cpp/
 	@cp ../../src/anime.h android-src/app/src/main/cpp/
 	@cp ../../src/anime.c android-src/app/src/main/cpp/
 	@cp ../../src/conf.h android-src/app/src/main/cpp/

@@ -238,7 +238,7 @@ cd ../../polaris-engine.com && \
     git add -u dl/index.html en/dl/index.html && \
     git commit -m "web: release $VERSION" && \
     ftp-upload.sh ../install-polaris-engine.sh dl/ && \
-    cd ..
+    cd ../../x-engine
 
 #
 # Make a release on GitHub.

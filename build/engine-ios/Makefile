@@ -75,7 +75,7 @@ src: libroot-device libroot-sim
 	@cp ../../src/stage.h ios-src/engine-ios/
 	@cp ../../src/uimsg.c ios-src/engine-ios/
 	@cp ../../src/uimsg.h ios-src/engine-ios/
-	@cp ../../src/xengine.h ios-src/engine-ios/
+	@cp ../../src/polarisengine.h ios-src/engine-ios/
 	@cp ../../src/types.h ios-src/engine-ios/
 	@cp ../../src/vars.c ios-src/engine-ios/
 	@cp ../../src/vars.h ios-src/engine-ios/

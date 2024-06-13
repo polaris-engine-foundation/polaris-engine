@@ -4,7 +4,7 @@
 
 # Headers for Main Engine
 HDRS_MAIN = \
-	../../src/xengine.h \
+	../../src/polarisengine.h \
 	../../src/anime.h \
 	../../src/conf.h \
 	../../src/event.h \

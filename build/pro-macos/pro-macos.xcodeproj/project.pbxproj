@@ -195,7 +195,7 @@
 		26495D102B2A7BFD0050EDDF /* GameShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameShaderTypes.h; path = ../../src/apple/GameShaderTypes.h; sourceTree = "<group>"; };
 		2662D0E62B5A5E860019B596 /* WindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		2662D0E72B5A5E860019B596 /* WindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
-		2669F7082B283866001AEF17 /* x-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "x-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2669F7082B283866001AEF17 /* polaris-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "polaris-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2669F7CA2B2843D5001AEF17 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2669F7CD2B284675001AEF17 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2669F7CE2B284675001AEF17 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -228,8 +228,8 @@
 		26B806C12BC2901700A92A02 /* japanese-novel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "japanese-novel"; path = "../../../games/japanese-novel"; sourceTree = "<group>"; };
 		26B806C92BC2978E00A92A02 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		26CC0D422BCDA2FA000F490E /* macos-src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "macos-src"; path = "../../engine-macos/macos-src"; sourceTree = "<group>"; };
-		26DB400C2BC8E348008F6F9C /* xengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = xengine.h; path = ../../src/xengine.h; sourceTree = "<group>"; };
 		26F4E5B02B32CE61003E4B5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE843CB92C1B9DE700BBDFF6 /* polarisengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = polarisengine.h; path = ../../src/polarisengine.h; sourceTree = "<group>"; };
 		CE88EEFD2C02C6CF0084B2D4 /* game.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; name = game.dmg; path = "../../engine-macos/game.dmg"; sourceTree = "<group>"; };
 		CEA974102C1944FF00D013AF /* unity-src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "unity-src"; path = "../../engine-unity/unity-src"; sourceTree = "<group>"; };
 		CEA974272C19455000D013AF /* libsrc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libsrc; path = ../../libsrc; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				26495D092B2A7BF20050EDDF /* apple */,
-				26DB400C2BC8E348008F6F9C /* xengine.h */,
+				CE843CB92C1B9DE700BBDFF6 /* polarisengine.h */,
 				2610CC8D2B287ACC00300004 /* anime.c */,
 				2610CC9E2B287ACC00300004 /* anime.h */,
 				267E34132BAB7D0A007AE3BE /* ciel.c */,
@@ -399,7 +399,7 @@
 		2669F7092B283866001AEF17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2669F7082B283866001AEF17 /* x-engine.app */,
+				2669F7082B283866001AEF17 /* polaris-engine.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -437,9 +437,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2669F7072B283866001AEF17 /* x-engine */ = {
+		2669F7072B283866001AEF17 /* polaris-engine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2669F71B2B283867001AEF17 /* Build configuration list for PBXNativeTarget "x-engine" */;
+			buildConfigurationList = 2669F71B2B283867001AEF17 /* Build configuration list for PBXNativeTarget "polaris-engine" */;
 			buildPhases = (
 				2669F7042B283866001AEF17 /* Sources */,
 				2669F7052B283866001AEF17 /* Frameworks */,
@@ -449,9 +449,9 @@
 			);
 			dependencies = (
 			);
-			name = "x-engine";
+			name = "polaris-engine";
 			productName = "pro-macos";
-			productReference = 2669F7082B283866001AEF17 /* x-engine.app */;
+			productReference = 2669F7082B283866001AEF17 /* polaris-engine.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -482,7 +482,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2669F7072B283866001AEF17 /* x-engine */,
+				2669F7072B283866001AEF17 /* polaris-engine */,
 			);
 		};
 /* End PBXProject section */
@@ -849,7 +849,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2669F71B2B283867001AEF17 /* Build configuration list for PBXNativeTarget "x-engine" */ = {
+		2669F71B2B283867001AEF17 /* Build configuration list for PBXNativeTarget "polaris-engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2669F71C2B283867001AEF17 /* Debug */,
