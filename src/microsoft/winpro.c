@@ -62,7 +62,7 @@
 #define PROGRAM				"Polaris Engine"
 #define VERSION_HELPER(x)	#x
 #define VERSION_STR(x)		VERSION_HELPER(x)
-#define COPYRIGHT			"Copyright (c) 2001-2024, The Authors. All rights reserved."
+#define COPYRIGHT			"Copyright (c) 2024, The Authors. All rights reserved."
 
 /* The minimum window size. */
 #define WINDOW_WIDTH_MIN	(800)
@@ -4026,16 +4026,16 @@ static BOOL CreateProjectFromTemplate(const wchar_t *pszTemplate)
 	{
 		/* Show a save dialog. */
 		ZeroMemory(&ofn, sizeof(OPENFILENAMEW));
-		wcscpy(&wszPath[0], L"game.polarisengine");
+		wcscpy(&wszPath[0], L"game.polaris");
 		ofn.lStructSize = sizeof(OPENFILENAMEW);
 		ofn.nFilterIndex  = 1;
 		ofn.lpstrFile = wszPath;
 		ofn.nMaxFile = sizeof(wszPath) / sizeof(wchar_t);
 		ofn.Flags = OFN_OVERWRITEPROMPT;
 		ofn.lpstrFilter = bEnglish ?
-			L"Polaris Engine Project Files\0*.polarisengine\0\0" :
-			L"Polaris Engine プロジェクトファイル\0*.polarisengine\0\0";
-		ofn.lpstrDefExt = L".polarisengine";
+			L"Polaris Engine Project Files\0*.polaris\0\0" :
+			L"Polaris Engine プロジェクトファイル\0*.polaris\0\0";
+		ofn.lpstrDefExt = L".polaris";
 		if (!GetSaveFileNameW(&ofn))
 			return FALSE;
 		if (ofn.lpstrFile[0] == L'\0')
@@ -4103,7 +4103,7 @@ static BOOL ChooseProject(void)
 
 	/* Open a file dialog. */
 	ZeroMemory(&ofn, sizeof(OPENFILENAMEW));
-	wcscpy(&wszPath[0], L"game.polarisengine");
+	wcscpy(&wszPath[0], L"game.polaris");
 	ofn.lStructSize = sizeof(OPENFILENAMEW);
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = wszPath;
@@ -4111,9 +4111,9 @@ static BOOL ChooseProject(void)
 	ofn.nMaxFile = sizeof(wszPath) / sizeof(wchar_t);
 	ofn.Flags = OFN_FILEMUSTEXIST;
 	ofn.lpstrFilter = bEnglish ?
-		L"Polaris Engine Project Files\0*.polarisengine\0" :
+		L"Polaris Engine Project Files\0*.polaris\0\0" :
 		L"Polaris Engine プロジェクトファイル\0\0";
-	ofn.lpstrDefExt = L".polarisengine";
+	ofn.lpstrDefExt = L".polaris";
 
 	/* This will set the working directory to the game directory. */
 	bRet = GetOpenFileNameW(&ofn);
@@ -4197,7 +4197,7 @@ static void ReadProjectFile(void)
 	CheckMenuItem(hMenu, ID_DARKMODE, MF_UNCHECKED);
 
 	/* Read the preference. */
-	fp = fopen("game.polarisengine", "r");
+	fp = fopen("game.polaris", "r");
 	if (fp == NULL)
 		log_info("failed to read the project file.");
 	while (1)
@@ -4248,7 +4248,7 @@ static void WriteProjectFile(void)
 {
 	FILE *fp;
 
-	fp = fopen("game.polarisengine", "w");
+	fp = fopen("game.polaris", "w");
 	if (fp == NULL)
 		return;
 

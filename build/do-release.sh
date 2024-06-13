@@ -229,6 +229,7 @@ echo "Updating the Web site."
 say "Webページを更新するにはリターンキーを押してください" &
 read str
 say "Webページを更新中です"
+SAVE_DIR=`pwd`
 cd ../../polaris-engine.com && \
     ./update-version.sh && \
     ftp-upload.sh dl/index.html && \
@@ -237,8 +238,8 @@ cd ../../polaris-engine.com && \
     ftp-upload.sh dl/latest.txt && \
     git add -u dl/index.html en/dl/index.html && \
     git commit -m "web: release $VERSION" && \
-    ftp-upload.sh ../install-polaris-engine.sh dl/ && \
-    cd ../../x-engine
+    ftp-upload.sh ../install-polaris-engine.sh dl/
+cd "$SAVE_DIR"
 
 #
 # Make a release on GitHub.
