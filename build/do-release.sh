@@ -41,6 +41,7 @@ VERSION=`echo $VERSION | cut -d ' ' -f 3`
 # Get the release notes.
 #
 NOTE_JP=`cat ../ChangeLog | awk '/BEGIN-LATEST-JP/,/END-LATEST-JP/' | tail -n +2 | $HEAD -n -1`
+NOTE_EN=`cat ../ChangeLog | awk '/BEGIN-LATEST-EN/,/END-LATEST-EN/' | tail -n +2 | $HEAD -n -1`
 
 #
 # Do an interactive confirmation.
@@ -50,6 +51,9 @@ echo "Are you sure you want to release version $VERSION?"
 echo ""
 echo "[Japanese Note]"
 echo "$NOTE_JP"
+echo ""
+echo "[English Note]"
+echo "$NOTE_EN"
 echo ""
 echo "(press enter to proceed)"
 read str
@@ -212,14 +216,18 @@ rm ../games/japanese-dark/txt/library/orbis.txt
 rm ../games/japanese-tategaki/txt/library/orbis.txt
 
 #
-# Upload.
+# Make a release on GitHub.
 #
 echo ""
-echo "Uploading files."
-say "Webサーバにアップロード中です" &
-until ftp-upload.sh installer-windows/polaris-engine-installer.exe "dl/polaris-engine-$VERSION.exe"; do echo "retrying..."; done
-until ftp-upload.sh pro-macos/polaris-engine.dmg "dl/polaris-engine-$VERSION.dmg"; do echo "retrying..."; done
-echo "Upload completed."
+echo "Making a release on GitHub."
+say "GitHubでリリースを作成中です"
+git push github master
+git tag -a "v$VERSION" -m "release"
+git push github "v$VERSION"
+mv installer-windows/polaris-engine-installer.exe "polaris-engine-$VERSION.exe"
+mv pro-macos/polaris-engine.dmg "polaris-engine-$VERSION.dmg"
+yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_EN" "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
+rm "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
 
 #
 # Update the Web site.
@@ -230,25 +238,12 @@ say "Webページを更新するにはリターンキーを押してください
 read str
 say "Webページを更新中です"
 SAVE_DIR=`pwd`
-cd ../../polaris-engine.com && \
-    ./update-version.sh && \
-    ftp-upload.sh dl/index.html && \
-    ftp-upload.sh en/dl/index.html && \
-    echo "$VERSION" > dl/latest.txt && \
-    ftp-upload.sh dl/latest.txt && \
-    ftp-upload.sh ../install-polaris-engine.sh dl/
+cd ../../site
+./update-version.sh
+git add -u
+git commit -m "updated"
+git push github main
 cd "$SAVE_DIR"
-
-#
-# Make a release on GitHub.
-#
-echo ""
-echo "Making a release on GitHub."
-say "GitHubでリリースを作成中です"
-git push github master
-git tag -a "v$VERSION" -m "release"
-git push github "v$VERSION"
-yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP"
 
 #
 # Finish.

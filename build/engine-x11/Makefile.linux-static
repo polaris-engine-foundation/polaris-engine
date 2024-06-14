@@ -89,10 +89,10 @@ OBJS = \
 # Target
 #
 
-all: x-engine-runtime
+all: polaris-engine-runtime
 
-x-engine-runtime: libroot $(OBJS) $(HDRS) $(HDRS_MAIN)
-	$(CC) -o x-engine-runtime $(OBJS) $(LDFLAGS) `pkg-config --libs gstreamer-1.0 gstreamer-video-1.0`
+polaris-engine-runtime: libroot $(OBJS) $(HDRS) $(HDRS_MAIN)
+	$(CC) -o polaris-engine-runtime $(OBJS) $(LDFLAGS) `pkg-config --libs gstreamer-1.0 gstreamer-video-1.0`
 
 libroot:
 	./build-libs.sh
@@ -101,14 +101,14 @@ libroot:
 # Phony
 #
 
-install: x-engine-runtime
-	cp x-engine-runtime ../../x-engine-runtime
+install: polaris-engine-runtime
+	cp polaris-engine-runtime ../../polaris-engine-runtime
 
 clean:
-	rm -rf *~ *.o x-engine-runtime log.txt sav tmp
+	rm -rf *~ *.o polaris-engine-runtime log.txt sav tmp
 
 erase:
-	rm -rf *~ *.o x-engine-runtime log.txt sav tmp libroot
+	rm -rf *~ *.o polaris-engine-runtime log.txt sav tmp libroot
 
 lines:
 	cat ../../src/*.[ch] ../../src/microsoft/* ../../src/apple/* ../../src/google/* ../../src/khronos/* | wc -l
@@ -123,5 +123,5 @@ clang-analyze:
 
 valgrind:
 	cp -R ../../game/demo ./demo
-	cd demo && valgrind --leak-check=full ./x-engine-runtime && cd ..
+	cd demo && valgrind --leak-check=full ./polaris-engine-runtime && cd ..
 	rm -rf demo

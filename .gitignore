@@ -14,8 +14,8 @@
 *~
 log.txt
 sav
-x-engine-*.exe
-x-engine-*.dmg
+polaris-engine-*.exe
+polaris-engine-*.dmg
 
 
 #
@@ -101,11 +101,11 @@ build/engine-wasm/data01.arc
 build/engine-wasm/libwebp-1.3.2
 
 # X11
-build/engine-x11/x-engine-runtime
+build/engine-x11/polaris-engine-runtime
 build/engine-x11/*.o
 build/engine-x11/libroot
-x-engine-runtime
-x-engine
+polaris-engine-runtime
+polaris-engine
 
 # Unity
 build/engine-unity/Assets/*.meta
@@ -168,7 +168,7 @@ build/pro-macos/libroot
 build/pro-macos/libroot-macos.tar.gz
 build/pro-macos/build
 build/pro-macos/tmp
-build/pro-macos/x-engine.dmg
+build/pro-macos/polaris-engine.dmg
 
 # iOS
 build/pro-ios/pro-ios.xcodeproj/project.xcworkspace
@@ -202,8 +202,8 @@ tools/web-test/web-test.exe
 #
 build/installer-windows/games
 build/installer-windows/tools
-build/installer-windows/x-engine-installer.exe
-build/installer-windows/x-engine.exe
+build/installer-windows/polaris-engine.exe
+build/installer-windows/polaris-engine-installer.exe
 
 #
 # Visual Studio Code Extension

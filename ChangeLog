@@ -5,70 +5,19 @@ This file is referred by the automatic release script.
 [Release History (Japanese)]
 
 <!-- BEGIN-LATEST-JP -->
-<li>Polaris Engine 1.4.3 2024/6/14
+<li>Polaris Engine 1.4.5 2024/6/15
   <ul>
-    <li>リブランド</li>
+    <li>GitHubにアップロードするように変更</li>
   </ul>
 </li>
 <!-- END-LATEST-JP -->
 
-# Polaris Engine 1.4.2 2024/6/14
-* サイト修正
-
-# Polaris Engine 1.4.1 2024/6/14
-* サイト修正
-
-# Polaris Engine 1.4.0 2024/6/14
-* リブランド
-
-# x-engine 1.1.10 2024/6/13
-* Unityエクスポートの改善
-
-# x-engine 1.1.9 2024/6/13
-* Unityエクスポートのバグ修正
-
-# x-engine 1.1.8 2024/6/12
-* Unityエクスポートのバグ修正
-
-# x-engine 1.1.7 2024/6/12
-* MacでのUnityエクスポートを追加
-* ゲーム機用のUnityエクスポートを改善
-
-# x-engine 1.1.6 2024/6/12
-* Windows用インストーラのエクスポートを削除
-
-# x-engine 1.1.5 2024/6/11
-* iOSエクスポートで動画をコピーするように改善
-
-# x-engine 1.1.4 2024/6/10
-* Updated the English template
-
-# x-engine 1.1.3 2024/6/10
-* iOSエクスポートの実行時エラーを修正
-
-# x-engine 1.1.2 2024/6/10
-* iOSエクスポートのビルドエラーを修正
-
-# x-engine 1.1.1 2024/6/10
-* switch/newsコマンドの削除が不完全な点を修正
-
-# x-engine 1.1.0 2024/6/10
-* 選択肢のポイントが変化した際にアニメを実行できるように機能追加
-* 古い2階層のswitchを削除(予告済み)
-
-# x-engine 1.0.2 2024/6/9
-* 再リリース
-
-# x-engine 1.0.1 2024/6/8
-* Androidでの動画再生のクラッシュを修正
-
-# x-engine 1.0.0 2024/6/8
-* 最初のリリース
+[Release History (English)]
 
 <!-- BEGIN-LATEST-EN -->
-<li>Polaris Engine 1.4.3 2024/6/14
+<li>Polaris Engine 1.4.4 2024/6/14
   <ul>
-    <li>Rebranded</li>
+    <li>Changed to upload to GitHub</li>
   </ul>
 </li>
 <!-- END-LATEST-EN -->

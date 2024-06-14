@@ -93,17 +93,17 @@ OBJS = \
 # Target
 #
 
-all: x-engine-runtime
+all: polaris-engine-runtime
 
-x-engine-runtime: $(OBJS) $(HDRS) $(HDRS_MAIN)
-	$(CC) -o x-engine-runtime $(OBJS) $(LDFLAGS) `pkg-config --libs gstreamer-1.0 gstreamer-video-1.0`
+polaris-engine-runtime: $(OBJS) $(HDRS) $(HDRS_MAIN)
+	$(CC) -o polaris-engine-runtime $(OBJS) $(LDFLAGS) `pkg-config --libs gstreamer-1.0 gstreamer-video-1.0`
 
 #
 # Phony
 #
 
-install: x-engine-runtime
-	cp x-engine-runtime ../../x-engine-runtime
+install: polaris-engine-runtime
+	cp polaris-engine-runtime ../../polaris-engine-runtime
 
 clean:
-	rm -rf *~ *.o x-engine-runtime log.txt sav tmp
+	rm -rf *~ *.o polaris-engine-runtime log.txt sav tmp
