@@ -236,8 +236,6 @@ cd ../../polaris-engine.com && \
     ftp-upload.sh en/dl/index.html && \
     echo "$VERSION" > dl/latest.txt && \
     ftp-upload.sh dl/latest.txt && \
-    git add -u dl/index.html en/dl/index.html && \
-    git commit -m "web: release $VERSION" && \
     ftp-upload.sh ../install-polaris-engine.sh dl/
 cd "$SAVE_DIR"
 
