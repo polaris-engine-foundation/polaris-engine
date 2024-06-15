@@ -5,19 +5,31 @@ This file is referred by the automatic release script.
 [Release History (Japanese)]
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 1.4.6 2024/6/15
+  <ul>
+    <li>GitHubでの自動ビルドに変更</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 1.4.5 2024/6/15
   <ul>
     <li>GitHubにアップロードするように変更</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
 
 [Release History (English)]
 
 <!-- BEGIN-LATEST-EN -->
-<li>Polaris Engine 1.4.4 2024/6/14
+<li>Polaris Engine 1.4.6 2024/6/15
+  <ul>
+    <li>Changed to auto build on GitHub</li>
+  </ul>
+</li>
+<!-- END-LATEST-EN -->
+
+<li>Polaris Engine 1.4.5 2024/6/14
   <ul>
     <li>Changed to upload to GitHub</li>
   </ul>
 </li>
-<!-- END-LATEST-EN -->
