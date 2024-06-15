@@ -95,8 +95,7 @@
 		26CC0D432BCDA2FA000F490E /* macos-src in Resources */ = {isa = PBXBuildFile; fileRef = 26CC0D422BCDA2FA000F490E /* macos-src */; };
 		26F4E5AF2B32CE61003E4B5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F4E5B12B32CE61003E4B5A /* Main.storyboard */; };
 		CE88EEFE2C02C6CF0084B2D4 /* game.dmg in Resources */ = {isa = PBXBuildFile; fileRef = CE88EEFD2C02C6CF0084B2D4 /* game.dmg */; };
-		CEA974142C1944FF00D013AF /* unity-src in Resources */ = {isa = PBXBuildFile; fileRef = CEA974102C1944FF00D013AF /* unity-src */; };
-		CEA974282C19455000D013AF /* libsrc in Resources */ = {isa = PBXBuildFile; fileRef = CEA974272C19455000D013AF /* libsrc */; };
+		CE9A4B352C1DBFBF008FCBA5 /* unity-src in Resources */ = {isa = PBXBuildFile; fileRef = CE9A4B342C1DBFBF008FCBA5 /* unity-src */; };
 		CEA9742F2C19684B00D013AF /* game.exe in Resources */ = {isa = PBXBuildFile; fileRef = CEA9742E2C19684B00D013AF /* game.exe */; };
 /* End PBXBuildFile section */
 
@@ -231,8 +230,7 @@
 		26F4E5B02B32CE61003E4B5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE843CB92C1B9DE700BBDFF6 /* polarisengine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = polarisengine.h; path = ../../src/polarisengine.h; sourceTree = "<group>"; };
 		CE88EEFD2C02C6CF0084B2D4 /* game.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; name = game.dmg; path = "../../engine-macos/game.dmg"; sourceTree = "<group>"; };
-		CEA974102C1944FF00D013AF /* unity-src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "unity-src"; path = "../../engine-unity/unity-src"; sourceTree = "<group>"; };
-		CEA974272C19455000D013AF /* libsrc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libsrc; path = ../../libsrc; sourceTree = "<group>"; };
+		CE9A4B342C1DBFBF008FCBA5 /* unity-src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "unity-src"; path = "../../engine-unity/unity-src"; sourceTree = "<group>"; };
 		CEA9742E2C19684B00D013AF /* game.exe */ = {isa = PBXFileReference; lastKnownFileType = file; name = game.exe; path = "../../engine-windows/game.exe"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,7 +246,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2610CC822B2878AE00300004 /* x-engine */ = {
+		2610CC822B2878AE00300004 /* polaris-engine */ = {
 			isa = PBXGroup;
 			children = (
 				26495D092B2A7BF20050EDDF /* apple */,
@@ -339,7 +337,7 @@
 				2610CCD62B287ACD00300004 /* wms_parser.tab.h */,
 				2610CCD22B287ACD00300004 /* wms.h */,
 			);
-			name = "x-engine";
+			name = "polaris-engine";
 			sourceTree = "<group>";
 		};
 		2610CD1B2B287C9100300004 /* Resources */ = {
@@ -357,16 +355,15 @@
 				26B806B22BC2900A00A92A02 /* japanese-light.png */,
 				26B806B42BC2900A00A92A02 /* japanese-novel.png */,
 				26B806B12BC2900A00A92A02 /* japanese-tategaki.png */,
-				CEA974102C1944FF00D013AF /* unity-src */,
 				26CC0D422BCDA2FA000F490E /* macos-src */,
 				26A1BAE22B2AD78700761444 /* ios-src */,
 				26A1BAE62B2AD79E00761444 /* android-src */,
-				CEA974272C19455000D013AF /* libsrc */,
-				CE88EEFD2C02C6CF0084B2D4 /* game.dmg */,
-				CEA9742E2C19684B00D013AF /* game.exe */,
+				CE9A4B342C1DBFBF008FCBA5 /* unity-src */,
 				26A1BAF12B2AD7D700761444 /* index.html */,
 				26A1BAF02B2AD7D700761444 /* index.js */,
 				26A1BAF22B2AD7D700761444 /* index.wasm */,
+				CE88EEFD2C02C6CF0084B2D4 /* game.dmg */,
+				CEA9742E2C19684B00D013AF /* game.exe */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -389,7 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				2669F70A2B283866001AEF17 /* pro-macos */,
-				2610CC822B2878AE00300004 /* x-engine */,
+				2610CC822B2878AE00300004 /* polaris-engine */,
 				2610CD1B2B287C9100300004 /* Resources */,
 				2669F7092B283866001AEF17 /* Products */,
 				2669F7C92B2843D5001AEF17 /* Frameworks */,
@@ -500,8 +497,6 @@
 				26B806B72BC2900A00A92A02 /* japanese-tategaki.png in Resources */,
 				26CC0D432BCDA2FA000F490E /* macos-src in Resources */,
 				26B806C52BC2901700A92A02 /* english in Resources */,
-				CEA974142C1944FF00D013AF /* unity-src in Resources */,
-				CEA974282C19455000D013AF /* libsrc in Resources */,
 				CEA9742F2C19684B00D013AF /* game.exe in Resources */,
 				26B806B62BC2900A00A92A02 /* english-novel.png in Resources */,
 				26B806B82BC2900A00A92A02 /* japanese-light.png in Resources */,
@@ -509,6 +504,7 @@
 				26B806B92BC2900A00A92A02 /* english.png in Resources */,
 				26B806BB2BC2900A00A92A02 /* japanese-dark.png in Resources */,
 				26B806C72BC2901700A92A02 /* japanese-novel in Resources */,
+				CE9A4B352C1DBFBF008FCBA5 /* unity-src in Resources */,
 				26A1BAF52B2AD7D700761444 /* index.wasm in Resources */,
 				26A1BAF32B2AD7D700761444 /* index.js in Resources */,
 				26B806C22BC2901700A92A02 /* japanese-dark in Resources */,
@@ -745,7 +741,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pro-macos/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "x-engine";
+				INFOPLIST_KEY_CFBundleDisplayName = "Polaris Engine";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (c) 2001-2024, The Authors. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -776,7 +772,7 @@
 					"-lbrotlidec",
 					"-lbrotlicommon",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.x-engine.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polaris-engine.pro-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -799,7 +795,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pro-macos/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "x-engine";
+				INFOPLIST_KEY_CFBundleDisplayName = "Polaris Engine";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (c) 2001-2024, The Authors. All rights reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -830,7 +826,7 @@
 					"-lbrotlidec",
 					"-lbrotlicommon",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.x-engine.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polaris-engine.pro-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
