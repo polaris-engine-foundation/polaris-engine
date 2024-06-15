@@ -26,15 +26,18 @@ jobs:
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
           PP_RT_PATH=$RUNNER_TEMP/rt.mobileprovision
           PP_DT_PATH=$RUNNER_TEMP/dt.mobileprovision
+
           echo -n "$DEV_ID_CERTIFICATE" | base64 --decode -o $CERTIFICATE_PATH
           echo -n "$RUNTIME_PROFILE" | base64 --decode -o $PP_RT_PATH
           echo -n "$DEVTOOL_PROFILE" | base64 --decode -o $PP_DT_PATH
+
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security import $CERTIFICATE_PATH -P "$DEV_ID_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
+
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_RT_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
           cp $PP_DT_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
