@@ -30,7 +30,10 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		-configuration Release \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 		-allowProvisioningUpdates \
-		PROVISIONING_PROFILE="02d79750-7036-42ae-83a4-fa8ac48c2fda" \
+		DEVELOPMENT_TEAM="DT727R68TR" \
+		CODE_SIGN_STYLE="manual" \
+		CODE_SIGN_IDENTITY="Developer ID Application" \
+		PROVISIONING_PROFILE_SPECIFIER="02d79750-7036-42ae-83a4-fa8ac48c2fda" \
 		archive
 	@echo 'archiving...'
 	@xcodebuild \

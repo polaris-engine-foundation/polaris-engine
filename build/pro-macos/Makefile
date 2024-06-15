@@ -28,7 +28,10 @@ polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 		-configuration Release \
 		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
 		-allowProvisioningUpdates \
-		PROVISIONING_PROFILE="0c8ec9aa-8add-4548-9553-551d2c7b761b" \
+		DEVELOPMENT_TEAM="DT727R68TR" \
+		CODE_SIGN_STYLE="manual" \
+		CODE_SIGN_IDENTITY="Developer ID Application" \
+		PROVISIONING_PROFILE_SPECIFIER="0c8ec9aa-8add-4548-9553-551d2c7b761b" \
 		archive
 	@xcodebuild \
 		-quiet \
