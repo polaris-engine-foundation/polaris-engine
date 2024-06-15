@@ -21,11 +21,30 @@ main: polaris-engine.dmg
 polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 	@echo "Building polaris-engine.app"
 	@rm -rf build
-	@xcodebuild -quiet -scheme pro-macos -project pro-macos.xcodeproj -configuration Release -archivePath `pwd`/build/Release/pro-macos.xcarchive -allowProvisioningUpdates archive
-	@xcodebuild -quiet -exportArchive -archivePath `pwd`/build/Release/pro-macos.xcarchive -exportOptionsPlist export-options.plist -allowProvisioningUpdates -exportPath `pwd`/build/Release/pro-macos.xcarchive
+	@xcodebuild \
+		-quiet \
+		-scheme pro-macos \
+		-project pro-macos.xcodeproj \
+		-configuration Release \
+		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
+		-allowProvisioningUpdates \
+		PROVISIONING_PROFILE="0c8ec9aa-8add-4548-9553-551d2c7b761b" \
+		archive
+	@xcodebuild \
+		-quiet \
+		-exportArchive \
+		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
+		-allowProvisioningUpdates \
+		-exportOptionsPlist export-options.plist \
+		-exportPath `pwd`/build/Release/pro-macos.xcarchive
 	@rm -rf "build/Release/polaris-engine.app"
 	@until \
-		xcodebuild -quiet -exportNotarizedApp -archivePath `pwd`/build/Release/pro-macos.xcarchive -allowProvisioningUpdates -exportPath `pwd`/build/Release; \
+		xcodebuild \
+			-quiet \
+			-exportNotarizedApp \
+			-archivePath `pwd`/build/Release/pro-macos.xcarchive \
+			-allowProvisioningUpdates \
+			-exportPath `pwd`/build/Release > /dev/null 2>&1; \
 	do \
 		echo "Waiting 10 seconds for notarization..."; \
 		sleep 10; \

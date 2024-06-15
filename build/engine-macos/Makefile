@@ -28,8 +28,9 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		-scheme engine-macos \
 		-project engine-macos.xcodeproj \
 		-configuration Release \
-		-allowProvisioningUpdates \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
+		-allowProvisioningUpdates \
+		PROVISIONING_PROFILE="02d79750-7036-42ae-83a4-fa8ac48c2fda" \
 		archive
 	@echo 'archiving...'
 	@xcodebuild \
