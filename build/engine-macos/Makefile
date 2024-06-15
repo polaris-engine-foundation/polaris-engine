@@ -22,7 +22,7 @@ FILES_APPLE = \
 game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 	@echo "Building Game.app"
 	@rm -rf build
-	@echo 'building...'
+	@echo 'archiving...'
 	@xcodebuild \
 		DEVELOPMENT_TEAM="DT727R68TR" \
 		CODE_SIGN_STYLE="manual" \
@@ -35,7 +35,7 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 		-allowProvisioningUpdates \
 		archive
-	@echo 'archiving...'
+	@echo 'uploading...'
 	@xcodebuild \
 		DEVELOPMENT_TEAM="DT727R68TR" \
 		CODE_SIGN_STYLE="manual" \
