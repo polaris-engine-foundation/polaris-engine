@@ -41,14 +41,12 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		-quiet \
 		-exportArchive \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
-		-allowProvisioningUpdates \
 		-exportOptionsPlist export-options.plist
 	@echo 'exporting...'
 	@until \
 		xcodebuild \
 			-quiet \
 			-exportNotarizedApp \
-			-allowProvisioningUpdates \
 			-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 			-exportPath `pwd`/build/Release > /dev/null 2>&1; \
 	do \
