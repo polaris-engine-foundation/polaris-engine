@@ -29,34 +29,37 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		CODE_SIGN_IDENTITY="Developer ID Application" \
 		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
 		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
+		-quiet \
+		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 		-scheme engine-macos \
 		-project engine-macos.xcodeproj \
 		-configuration Release \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
-		-allowProvisioningUpdates \
 		archive
 	@echo 'uploading...'
 	@xcodebuild \
-		DEVELOPMENT_TEAM="DT727R68TR" \
-		CODE_SIGN_STYLE="manual" \
-		CODE_SIGN_IDENTITY="Developer ID Application" \
-		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
-		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
+		-quiet \
+		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 		-exportArchive \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
-		-allowProvisioningUpdates \
 		-exportOptionsPlist export-options.plist
 	@echo 'exporting...'
 	@until \
 		xcodebuild \
-			DEVELOPMENT_TEAM="DT727R68TR" \
-			CODE_SIGN_STYLE="manual" \
-			CODE_SIGN_IDENTITY="Developer ID Application" \
-			CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
-			PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
+			-quiet \
+			-allowProvisioningUpdates \
+			-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+			-authenticationKeyID K7DHBQG97K \
+			-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 			-exportNotarizedApp \
 			-archivePath `pwd`/build/Release/engine-macos.xcarchive \
-			-exportPath `pwd`/build/Release > /dev/null 2>&1; \
+			-exportPath `pwd`/build/Release; \
 	do \
 		echo "Waiting 10 seconds for notarization..."; \
 		sleep 10; \

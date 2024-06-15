@@ -18,19 +18,26 @@ jobs:
           KEYCHAIN_PASSWORD: ${{ secrets.PASSWD }}
           RUNTIME_PROFILE: ${{ secrets.RUNTIME_PROFILE }}
           DEVTOOL_PROFILE: ${{ secrets.DEVTOOL_PROFILE }}
+          AUTH_KEY: ${{ secrets.AUTH_KEY }}
         run: |
+          echo 'Setting Languages...'
           LANG=en_US.UTF-8
           LANGUAGE=english
 
+          echo 'Creating Key Files...'
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
           PP_RT_PATH=$RUNNER_TEMP/rt.mobileprovision
           PP_DT_PATH=$RUNNER_TEMP/dt.mobileprovision
-
+          AUTH_KEY_RT_PATH=build/engine-macos/AuthKey_K7DHBQG97K.p8
+          AUTH_KEY_DT_PATH=build/pro-macos/AuthKey_K7DHBQG97K.p8
           echo -n "$DEV_ID_CERTIFICATE" | base64 --decode -o $CERTIFICATE_PATH
           echo -n "$RUNTIME_PROFILE" | base64 --decode -o $PP_RT_PATH
           echo -n "$DEVTOOL_PROFILE" | base64 --decode -o $PP_DT_PATH
+          echo -n "AUTH_KEY" | base64 --decode -o $AUTH_KEY_RT_PATH
+          echo -n "AUTH_KEY" | base64 --decode -o $AUTH_KEY_DT_PATH
 
+          echo 'Creating KeyChain...'
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
@@ -38,18 +45,14 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
 
+          echo 'Copying Provisioning Profiles...'
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_RT_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
           cp $PP_DT_PATH ~/Library/MobileDevice/Provisioning\ Profiles/
 
-          echo "Building macOS source tree."
-          brew install gsed coreutils create-dmg cmake
-          cd build/engine-macos
-          ./build-libs.sh
-          make
-          cd ../..
-
+          echo 'Installing libraries...'
           brew install mingw-w64 gsed coreutils emscripten makensis create-dmg cmake
+
           echo 'Building libraries...'
           cd build/engine-windows
           ./build-libs.sh

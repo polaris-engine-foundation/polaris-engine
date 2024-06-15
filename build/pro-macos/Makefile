@@ -16,38 +16,47 @@ FILES_MACOS = \
 	../../src/apple/GameRenderer.m \
 	../../src/apple/GameShaders.metal
 
-main: polaris-engine.dmg
-
 polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 	@echo "Building polaris-engine.app"
 	@rm -rf build
+	@echo 'archiving...'
 	@xcodebuild \
-		-quiet \
-		-scheme pro-macos \
-		-project pro-macos.xcodeproj \
-		-configuration Release \
-		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
-		-allowProvisioningUpdates \
 		DEVELOPMENT_TEAM="DT727R68TR" \
 		CODE_SIGN_STYLE="manual" \
 		CODE_SIGN_IDENTITY="Developer ID Application" \
 		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
 		PROVISIONING_PROFILE_SPECIFIER="465f3957-3f75-418d-ab03-cb77360ee9f2" \
+		-quiet \
+		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
+		-scheme pro-macos \
+		-project pro-macos.xcodeproj \
+		-configuration Release \
+		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
 		archive
+	@echo 'uploading...'
 	@xcodebuild \
 		-quiet \
+		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 		-exportArchive \
 		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
-		-allowProvisioningUpdates \
-		-exportOptionsPlist export-options.plist \
-		-exportPath `pwd`/build/Release/pro-macos.xcarchive
+		-exportOptionsPlist export-options.plist
 	@rm -rf "build/Release/polaris-engine.app"
+	@echo 'exporting...'
 	@until \
 		xcodebuild \
 			-quiet \
+			-allowProvisioningUpdates \
+			-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+			-authenticationKeyID K7DHBQG97K \
+			-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 			-exportNotarizedApp \
 			-archivePath `pwd`/build/Release/pro-macos.xcarchive \
-			-allowProvisioningUpdates \
 			-exportPath `pwd`/build/Release > /dev/null 2>&1; \
 	do \
 		echo "Waiting 10 seconds for notarization..."; \
