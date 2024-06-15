@@ -2,15 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>destination</key>
-    <string>upload</string>
-    <key>method</key>
-    <string>developer-id</string>
-    <key>signingCertificate</key>
-    <string>8791B1BF3393E633CC3AC91E80F381994ABCF073</string>
-    <key>signingStyle</key>
-    <string>automatic</string>
-    <key>teamID</key>
-    <string>DT727R68TR</string>
+  <key>destination</key>
+  <string>upload</string>
+  <key>method</key>
+  <string>developer-id</string>
+  <key>provisioningProfiles</key>
+  <dict>
+    <key>com.polaris-engine.engine-macos</key>
+    <string>Polaris Engine Runtime</string>
+  </dict>
+  <key>signingCertificate</key>
+  <string>Developer ID Application</string>
+  <key>signingStyle</key>
+  <string>manual</string>
+  <key>teamID</key>
+  <string>DT727R68TR</string>
 </dict>
 </plist>

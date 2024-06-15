@@ -14,22 +14,27 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
       - name: Build
         env:
-          BUILD_CERTIFICATE_BASE64: ${{ secrets.DEV_ID }}
+          DIV_ID_CERTIFICATE: ${{ secrets.DEV_ID }}
           DEV_ID_PASSWORD: ${{ secrets.DEV_ID_PW }}
           KEYCHAIN_PASSWORD: ${{ secrets.PASSWD }}
+          RUNTIME_PROFILE: ${{ secrets.RUNTIME_PROFILE }}
         run: |
           LANG=en_US.UTF-8
           LANGUAGE=english
 
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          echo -n "$DEV_ID_CERTIFICATE" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$RUNTIME_PROFILE" | base64 --decode -o $PP_PATH
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security import $CERTIFICATE_PATH -P "$DEV_ID_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
           brew install mingw-w64 gsed coreutils emscripten makensis create-dmg cmake
           echo 'Building libraries...'
