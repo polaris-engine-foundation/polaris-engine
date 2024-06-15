@@ -32,7 +32,7 @@ polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 		CODE_SIGN_STYLE="manual" \
 		CODE_SIGN_IDENTITY="Developer ID Application" \
 		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="YES" \
-		PROVISIONING_PROFILE_SPECIFIER="0c8ec9aa-8add-4548-9553-551d2c7b761b" \
+		PROVISIONING_PROFILE_SPECIFIER="465f3957-3f75-418d-ab03-cb77360ee9f2" \
 		archive
 	@xcodebuild \
 		-quiet \
