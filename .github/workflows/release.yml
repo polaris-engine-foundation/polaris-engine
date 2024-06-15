@@ -14,7 +14,7 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
       - name: Build
         env:
-          DIV_ID_CERTIFICATE: ${{ secrets.DEV_ID }}
+          DEV_ID_CERTIFICATE: ${{ secrets.DEV_ID }}
           DEV_ID_PASSWORD: ${{ secrets.DEV_ID_PW }}
           KEYCHAIN_PASSWORD: ${{ secrets.PASSWD }}
           RUNTIME_PROFILE: ${{ secrets.RUNTIME_PROFILE }}
