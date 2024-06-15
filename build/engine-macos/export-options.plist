@@ -6,6 +6,8 @@
     <string>upload</string>
     <key>method</key>
     <string>developer-id</string>
+    <key>signingCertificate</key>
+    <string>8791B1BF3393E633CC3AC91E80F381994ABCF073</string>
     <key>signingStyle</key>
     <string>automatic</string>
     <key>teamID</key>

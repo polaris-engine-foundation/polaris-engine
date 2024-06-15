@@ -2,11 +2,6 @@
 
 set -eu
 
-if [ `uname -m` = "x86_64" ]; then
-    echo 'You need an arm64 host to build Universal Binary.';
-    exit 1;
-fi
-
 PREFIX=`pwd`/libroot
 
 export MACOSX_DEPLOYMENT_TARGET=10.13
@@ -18,9 +13,11 @@ cd tmp
 
 echo 'Building brotli...'
 tar xzf ../../libsrc/brotli-1.1.0.tar.gz
-cp ../brotli.mk brotli-1.1.0/Makefile
 cd brotli-1.1.0
+cmake -DBUILD_SHARED_LIBS="off" -DCMAKE_C_FLAGS="-arch arm64 -arch x86_64" .
 make
+cp libbrotlidec.a libbrotlicommon.a ../../libroot/lib
+cp -R c/include/brotli ../../libroot/include/
 cd ..
 
 echo 'building zlib...'
