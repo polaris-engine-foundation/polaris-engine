@@ -10,9 +10,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Install Homebrew
         uses: Homebrew/actions/setup-homebrew@master
-      - name: Install Certificate
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.DEV_ID }}
           KEYCHAIN_PASSWORD: ${{ secrets.PASSWD }}
