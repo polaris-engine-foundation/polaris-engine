@@ -14,7 +14,7 @@ cd tmp
 echo 'Building brotli...'
 tar xzf ../../libsrc/brotli-1.1.0.tar.gz
 cd brotli-1.1.0
-cmake -DBUILD_SHARED_LIBS="off" .
+cmake -DBUILD_SHARED_LIBS="off" -DCMAKE_C_FLAGS="-arch arm64 -arch x86_64" .
 make
 cp libbrotlidec.a libbrotlicommon.a ../../libroot/lib
 cp -R c/include/brotli ../../libroot/include/
