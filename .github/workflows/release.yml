@@ -18,8 +18,8 @@ jobs:
           KEYCHAIN_PASSWORD: ${{ secrets.PASSWD }}
       - run: |
         # Preparation
-        env LANG=en_US.UTF-8
-        env LANGUAGE=english
+        LANG=en_US.UTF-8
+        LANGUAGE=english
 
         # Setup Certificate
         CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
