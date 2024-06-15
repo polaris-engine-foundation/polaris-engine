@@ -33,6 +33,7 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		DEVELOPMENT_TEAM="DT727R68TR" \
 		CODE_SIGN_STYLE="manual" \
 		CODE_SIGN_IDENTITY="Developer ID Application" \
+		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="YES" \
 		PROVISIONING_PROFILE_SPECIFIER="02d79750-7036-42ae-83a4-fa8ac48c2fda" \
 		archive
 	@echo 'archiving...'
