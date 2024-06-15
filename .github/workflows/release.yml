@@ -10,11 +10,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Setup HomeBrew
         uses: Homebrew/actions/setup-homebrew@master
+      - name: Build
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.DEV_ID }}
           KEYCHAIN_PASSWORD: ${{ secrets.PASSWD }}
-      - run: |
+        run: |
           LANG=en_US.UTF-8
           LANGUAGE=english
 
