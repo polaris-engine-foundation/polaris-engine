@@ -28,6 +28,7 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		-scheme engine-macos \
 		-project engine-macos.xcodeproj \
 		-configuration Release \
+		-allowProvisioningUpdates \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 		archive
 	@echo 'archiving...'
@@ -42,6 +43,7 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		xcodebuild \
 			-quiet \
 			-exportNotarizedApp \
+			-allowProvisioningUpdates \
 			-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 			-exportPath `pwd`/build/Release > /dev/null 2>&1; \
 	do \
