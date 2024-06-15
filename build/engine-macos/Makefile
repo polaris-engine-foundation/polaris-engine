@@ -27,7 +27,7 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		DEVELOPMENT_TEAM="DT727R68TR" \
 		CODE_SIGN_STYLE="manual" \
 		CODE_SIGN_IDENTITY="Developer ID Application" \
-		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
+		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="YES" \
 		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
 		-scheme engine-macos \
 		-project engine-macos.xcodeproj \
@@ -37,11 +37,6 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		archive
 	@echo 'uploading...'
 	@xcodebuild \
-		DEVELOPMENT_TEAM="DT727R68TR" \
-		CODE_SIGN_STYLE="manual" \
-		CODE_SIGN_IDENTITY="Developer ID Application" \
-		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
-		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
 		-exportArchive \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 		-allowProvisioningUpdates \
