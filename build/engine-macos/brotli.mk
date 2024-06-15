@@ -21,10 +21,10 @@ OBJ_COMMON = $(SRC_COMMON:c/common/%.c=%.o)
 OBJ_DEC = $(SRC_DEC:c/dec/%.c=%.o)
 
 %.o: c/common/%.c
-	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+	$(CC) -arch arm64 -arch x86_64 -c $(CPPFLAGS) $(CFLAGS) $<
 
 %.o: c/dec/%.c
-	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+	$(CC) -arch arm64 -arch x86_64 -c $(CPPFLAGS) $(CFLAGS) $<
 
 all: libbrotlicommon.a libbrotlidec.a
 	cp -R c/include/brotli ../../libroot/include/
