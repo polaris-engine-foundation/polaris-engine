@@ -22,10 +22,28 @@ FILES_APPLE = \
 game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 	@echo "Building Game.app"
 	@rm -rf build
-	@xcodebuild -quiet -scheme engine-macos -project engine-macos.xcodeproj -configuration Release -archivePath `pwd`/build/Release/engine-macos.xcarchive archive
-	@xcodebuild -quiet -exportArchive -archivePath `pwd`/build/Release/engine-macos.xcarchive -exportOptionsPlist export-options.plist
+	@xcodebuild \
+		-quiet \
+		-scheme engine-macos \
+		-project engine-macos.xcodeproj \
+		-configuration Release \
+		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
+		-allowProvisioningUpdates \
+		archive
+	@xcodebuild \
+		-quiet \
+		-exportArchive \
+		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
+		-allowProvisioningUpdates \
+		-exportOptionsPlist export-options.plist
 	@until \
-		xcodebuild -quiet -exportNotarizedApp -archivePath `pwd`/build/Release/engine-macos.xcarchive -exportPath `pwd`/build/Release > /dev/null 2>&1; \
+		xcodebuild \
+			-quiet \
+			-exportNotarizedApp \
+			-archivePath `pwd`/build/Release/engine-macos.xcarchive \
+			-exportPath `pwd`/build/Release \
+			-allowProvisioningUpdates \
+		> /dev/null 2>&1; \
 	do \
 		echo "Waiting 10 seconds for notarization..."; \
 		sleep 10; \
