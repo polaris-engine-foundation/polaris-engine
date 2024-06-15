@@ -1,6 +1,5 @@
-CC = clang
-CPPFLAGS = -Ic/include
-CFLAGS = -arch arm64 -arch x86_64
+CPPFLAGS=-Ic/include
+CFLAGS=-arch arm64 -arch x86_64
 
 SRC_COMMON = \
 	c/common/constants.c \
@@ -21,16 +20,16 @@ OBJ_COMMON = $(SRC_COMMON:c/common/%.c=%.o)
 OBJ_DEC = $(SRC_DEC:c/dec/%.c=%.o)
 
 %.o: c/common/%.c
-	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
 
 %.o: c/dec/%.c
-	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
 
 all: libbrotlicommon.a libbrotlidec.a
 	cp -R c/include/brotli ../../libroot/include/
 
 libbrotlicommon.a: $(OBJ_COMMON)
-	$(AR) -rcu ../../libroot/lib/libbrotlicommon.a $(OBJ_COMMON)
+	$(AR) rcu ../../libroot/lib/libbrotlicommon.a $(OBJ_COMMON)
 
 libbrotlidec.a: $(OBJ_DEC)
-	$(AR) -rcu ../../libroot/lib/libbrotlidec.a $(OBJ_DEC)
+	$(AR) rcu ../../libroot/lib/libbrotlidec.a $(OBJ_DEC)

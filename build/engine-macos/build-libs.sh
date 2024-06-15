@@ -13,9 +13,11 @@ cd tmp
 
 echo 'Building brotli...'
 tar xzf ../../libsrc/brotli-1.1.0.tar.gz
-cp ../brotli.mk brotli-1.1.0/Makefile
 cd brotli-1.1.0
+cmake -DBUILD_SHARED_LIBS="off" .
 make
+cp libbrotlidec.a libbrotlicommon.a ../../libroot/lib
+cp -R c/include/brotli ../../libroot/include/
 cd ..
 
 echo 'building zlib...'

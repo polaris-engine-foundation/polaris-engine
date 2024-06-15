@@ -30,7 +30,7 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
 
-          brew install mingw-w64 gsed coreutils emscripten makensis create-dmg
+          brew install mingw-w64 gsed coreutils emscripten makensis create-dmg cmake
           echo 'Building libraries...'
           cd build/engine-windows
           ./build-libs.sh
