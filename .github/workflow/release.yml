@@ -1,0 +1,165 @@
+on:
+  push:
+    branches: ['master']
+    paths: ['ChangeLog']
+
+jobs:
+  release:
+    name: Release
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Install Certificate
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.DEV_ID }}
+          KEYCHAIN_PASSWORD: ${{ secrets.PASSWD }}
+      - run: |
+        # Preparation
+        export LANG=en_US.UTF-8
+        export LANGUAGE=english
+
+        # Setup Certificate
+        CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+        KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+        echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+        security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+        security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+        security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+        security import $CERTIFICATE_PATH -P "" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+        security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+        security list-keychain -d user -s $KEYCHAIN_PATH
+
+        # Installing Homebrew Dependencies
+        brew install mingw-w64 gsed coreutils emscripten makensis create-dmg
+        echo 'Building libraries...'
+        cd build/engine-windows
+        ./build-libs.sh
+        cd ../..
+        cd build/engine-windows-64
+        ./build-libs.sh
+        cd ../..
+        cd build/engine-macos
+        ./build-libs.sh
+        cd ../..
+        cd build/engine-ios
+        ./build-libs-device.sh
+        ./build-libs-sim.sh
+        cd ../..
+        cp -Ra build/engine-windows/libroot build/pro-windows/
+        cp -Ra build/engine-macos/libroot build/pro-macos/
+
+        # Get the release version number
+        VERSION=`grep -a1 '<!-- BEGIN-LATEST-JP -->' ChangeLog | tail -n1`
+        VERSION=`echo $VERSION | cut -d ' ' -f 3`
+
+        # Get the release notes.
+        NOTE_JP=`cat ChangeLog | awk '/BEGIN-LATEST-JP/,/END-LATEST-JP/' | tail -n +2 | ghead -n -1`
+        NOTE_EN=`cat ChangeLog | awk '/BEGIN-LATEST-EN/,/END-LATEST-EN/' | tail -n +2 | ghead -n -1`
+
+        # Do an interactive confirmation.
+        echo "Going to release version $VERSION"
+        echo ""
+        echo "[Japanese Note]"
+        echo "$NOTE_JP"
+        echo ""
+        echo "[English Note]"
+        echo "$NOTE_EN"
+        echo ""
+
+        # Build "game.exe".
+        echo "Building game.exe"
+        cd build/engine-windows
+        make clean
+        make -j8
+        cd ../..
+
+        # Build the Wasm files.
+        echo "Building Wasm files."
+        cd build/engine-wasm
+        make clean
+        make
+        cd ../..
+
+        # Build the macOS app and source tree.
+        echo "Building macOS source tree."
+        cd build/engine-macos
+        make
+        make src > /dev/null
+        cd ../..
+
+        # Build the iOS source tree.
+        echo "Building iOS source tree."
+        cd build/engine-ios
+        make src > /dev/null
+        cd ../..
+
+        # Build the Android source tree.
+        echo "Building Android source tree."
+        cd build/engine-android
+        make debug > /dev/null
+        make src > /dev/null
+        cd ../..
+
+        # Build the Unity source tree.
+        echo "Building Unity source tree."
+        cd build/engine-unity
+        make clean
+        make
+        cd ../..
+
+        # Build "polaris-engine.exe".
+        echo "Building polaris-engine.exe"
+        cd pro-windows
+        make clean
+        make -j8 VERSION="$VERSION"
+        cd ../..
+
+        # Build "web-test.exe"
+        echo "Building web-test.exe"
+        cd tools/web-test
+        make
+        cd ../..
+
+        # Make an installer for Windows.
+        echo "Creating an installer for Windows."
+        cp -v build/pro-windows/polaris-engine.exe build/installer-windows/polaris-engine.exe
+        mkdir build/installer-windows/games
+        cp tools/library/orbis.txt games/japanese-light/txt/library/
+        cp tools/library/orbis.txt games/japanese-dark/txt/library/
+        cp tools/library/orbis.txt games/japanese-tategaki/txt/library/
+        cp -R games/japanese-light build/installer-windows/games/
+        cp -R games/japanese-dark build/installer-windows/games/
+        cp -R games/japanese-novel build/installer-windows/games/
+        cp -R games/japanese-tategaki build/installer-windows/games/
+        cp -R games/english build/installer-windows/games/
+        cp -R games/english-novel build/installer-windows/games/
+        mkdir -p build/installer-windows/tools
+        cp build/engine-windows/game.exe build/installer-windows/tools/
+        cp build/engine-macos/game.dmg build/installer-windows/tools/
+        cp -R build/engine-macos/macos-src build/installer-windows/tools/macos-src
+        cp -R build/engine-ios/ios-src build/installer-windows/tools/ios-src
+        cp -R build/engine-android/android-src build/installer-windows/tools/android-src
+        cp -R build/engine-unity/unity-src build/installer-windows/tools/
+        mkdir -p build/installer-windows/tools/web
+        cp build/engine-wasm/html/index.html build/installer-windows/tools/web/index.html
+        cp build/engine-wasm/html/index.js build/installer-windows/tools/web/index.js
+        cp build/engine-wasm/html/index.wasm build/installer-windows/tools/web/index.wasm
+        cp tools/web-test/web-test.exe build/installer-windows/tools/web-test.exe
+        cd build/installer-windows
+        make
+        cd ../..
+
+        # Build "polaris-engine.app".
+        echo "Building polaris-engine.app (polaris-engine.dmg)"
+        cd build/pro-macos
+        make
+        cd ../..
+
+        # Make a release on GitHub.
+        echo "Making a release on GitHub."
+        mv build/installer-windows/polaris-engine-installer.exe "polaris-engine-$VERSION.exe"
+        mv build/pro-macos/polaris-engine.dmg "polaris-engine-$VERSION.dmg"
+        yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_EN" "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
