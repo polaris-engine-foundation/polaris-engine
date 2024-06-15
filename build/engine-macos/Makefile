@@ -24,34 +24,36 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 	@rm -rf build
 	@echo 'building...'
 	@xcodebuild \
-		-quiet \
+		DEVELOPMENT_TEAM="DT727R68TR" \
+		CODE_SIGN_STYLE="manual" \
+		CODE_SIGN_IDENTITY="Developer ID Application" \
+		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
+		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
 		-scheme engine-macos \
 		-project engine-macos.xcodeproj \
 		-configuration Release \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 		-allowProvisioningUpdates \
-		DEVELOPMENT_TEAM="DT727R68TR" \
-		CODE_SIGN_STYLE="manual" \
-		CODE_SIGN_IDENTITY="Developer ID Application" \
-		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
-		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
 		archive
 	@echo 'archiving...'
 	@xcodebuild \
-		-quiet \
-		-exportArchive \
-		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
-		-allowProvisioningUpdates \
 		DEVELOPMENT_TEAM="DT727R68TR" \
 		CODE_SIGN_STYLE="manual" \
 		CODE_SIGN_IDENTITY="Developer ID Application" \
 		CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
 		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
+		-exportArchive \
+		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
+		-allowProvisioningUpdates \
 		-exportOptionsPlist export-options.plist
 	@echo 'exporting...'
 	@until \
 		xcodebuild \
-			-quiet \
+			DEVELOPMENT_TEAM="DT727R68TR" \
+			CODE_SIGN_STYLE="manual" \
+			CODE_SIGN_IDENTITY="Developer ID Application" \
+			CODE_SIGN_INJECT_BASE_ENTITLEMENTS="NO" \
+			PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
 			-exportNotarizedApp \
 			-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 			-exportPath `pwd`/build/Release > /dev/null 2>&1; \
