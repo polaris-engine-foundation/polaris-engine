@@ -230,22 +230,6 @@ yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_EN" "p
 rm "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
 
 #
-# Update the Web site.
-#
-echo ""
-echo "Updating the Web site."
-say "Webページを更新するにはリターンキーを押してください" &
-read str
-say "Webページを更新中です"
-SAVE_DIR=`pwd`
-cd ../../site
-./update-version.sh
-git add -u
-git commit -m "updated"
-git push github main
-cd "$SAVE_DIR"
-
-#
 # Finish.
 #
 echo ""

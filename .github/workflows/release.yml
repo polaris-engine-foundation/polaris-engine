@@ -19,6 +19,7 @@ jobs:
           RUNTIME_PROFILE: ${{ secrets.RUNTIME_PROFILE }}
           DEVTOOL_PROFILE: ${{ secrets.DEVTOOL_PROFILE }}
           AUTH_KEY: ${{ secrets.AUTH_KEY }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           echo 'Setting Languages...'
           LANG=en_US.UTF-8
@@ -165,4 +166,4 @@ jobs:
           echo "Making a release on GitHub."
           mv build/installer-windows/polaris-engine-installer.exe "polaris-engine-$VERSION.exe"
           mv build/pro-macos/polaris-engine.dmg "polaris-engine-$VERSION.dmg"
-          yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_EN" "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
+          yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP" "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
