@@ -164,6 +164,6 @@ jobs:
           cd ../..
 
           echo "Making a release on GitHub."
-          mv build/installer-windows/polaris-engine-installer.exe "polaris-engine-$VERSION.exe"
-          mv build/pro-macos/polaris-engine.dmg "polaris-engine-$VERSION.dmg"
-          yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP" "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
+          mv build/installer-windows/polaris-engine-installer.exe "polaris-engine.exe"
+          mv build/pro-macos/polaris-engine.dmg "polaris-engine.dmg"
+          yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP<br>$NOTE_EN" polaris-engine.exe polaris-engine.dmg
