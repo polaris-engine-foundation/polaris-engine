@@ -1,17 +1,21 @@
 // -*- mode: text; -*-
-
-This file is referred by the automatic release script.
+// This file is referred by the CI/CD pipeline.
 
 [Release History (Japanese)]
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 1.99.0 2024/6/16
+  <ul>
+    <li>GitHubのみの開発体制に移行</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 1.4.6 2024/6/15
   <ul>
     <li>GitHubでの自動ビルドに変更</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 1.4.5 2024/6/15
   <ul>
     <li>GitHubにアップロードするように変更</li>
@@ -21,13 +25,18 @@ This file is referred by the automatic release script.
 [Release History (English)]
 
 <!-- BEGIN-LATEST-EN -->
+<li>Polaris Engine 1.99.0 2024/6/16
+  <ul>
+    <li>Moved to GitHub-only development</li>
+  </ul>
+</li>
+<!-- END-LATEST-EN -->
+
 <li>Polaris Engine 1.4.6 2024/6/15
   <ul>
     <li>Changed to auto build on GitHub</li>
   </ul>
 </li>
-<!-- END-LATEST-EN -->
-
 <li>Polaris Engine 1.4.5 2024/6/14
   <ul>
     <li>Changed to upload to GitHub</li>
