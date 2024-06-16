@@ -33,8 +33,8 @@ jobs:
           echo -n "$DEV_ID_CERTIFICATE" | base64 --decode -o $CERTIFICATE_PATH
           echo -n "$RUNTIME_PROFILE" | base64 --decode -o $PP_RT_PATH
           echo -n "$DEVTOOL_PROFILE" | base64 --decode -o $PP_DT_PATH
-          echo -n "AUTH_KEY" | base64 --decode -o $AUTH_KEY_RT_PATH
-          echo -n "AUTH_KEY" | base64 --decode -o $AUTH_KEY_DT_PATH
+          echo -n "$AUTH_KEY" | base64 --decode -o $AUTH_KEY_RT_PATH
+          echo -n "$AUTH_KEY" | base64 --decode -o $AUTH_KEY_DT_PATH
 
           echo 'Creating KeyChain...'
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
