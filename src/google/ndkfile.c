@@ -196,7 +196,7 @@ void rewind_rfile(struct rfile *rf)
  */
 void close_rfile(struct rfile *rf)
 {
-#ifndef XENGINE_TARGET_ANDROID
+#ifndef POLARIS_ENGINE_TARGET_ANDROID
 	(*jni_env)->ReleaseByteArrayElements(jni_env, rf->array, (jbyte *)rf->buf, JNI_ABORT);
 	(*jni_env)->DeleteGlobalRef(jni_env, rf[i]->array);
 	free(delayed_rfile_free_slot);

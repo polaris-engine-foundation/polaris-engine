@@ -9,8 +9,8 @@
  * Event handlers that are called from HALs
  */
 
-#ifndef XENGINE_EVENT_H
-#define XENGINE_EVENT_H
+#ifndef POLARIS_ENGINE_EVENT_H
+#define POLARIS_ENGINE_EVENT_H
 
 #include "types.h"
 

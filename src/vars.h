@@ -9,8 +9,8 @@
  * Variable management
  */
 
-#ifndef XENGINE_VARS_H
-#define XENGINE_VARS_H
+#ifndef POLARIS_ENGINE_VARS_H
+#define POLARIS_ENGINE_VARS_H
 
 #include "types.h"
 

@@ -5,8 +5,8 @@
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-#ifndef XENGINE_ASOUND_H
-#define XENGINE_ASOUND_H
+#ifndef POLARIS_ENGINE_ASOUND_H
+#define POLARIS_ENGINE_ASOUND_H
 
 /* Initialize ALSA. */
 bool init_asound(void);

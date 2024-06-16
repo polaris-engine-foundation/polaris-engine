@@ -9,8 +9,8 @@
  * History management (to be moved to main.c)
  */
 
-#ifndef XENGINE_HISTORY_H
-#define XENGINE_HISTORY_H
+#ifndef POLARIS_ENGINE_HISTORY_H
+#define POLARIS_ENGINE_HISTORY_H
 
 #include "types.h"
 

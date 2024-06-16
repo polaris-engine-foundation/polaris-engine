@@ -260,7 +260,7 @@ bool init_stage(void)
 {
 	int i;
 
-#ifdef XENGINE_DLL
+#ifdef POLARIS_ENGINE_DLL
 	/* DLLが再利用されたときのために初期化する */
 	cleanup_stage();
 #endif

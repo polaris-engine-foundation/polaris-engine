@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.4.1)
-project(xengine-lib)
+project(polarisengine-lib)
 
 # Find Android NDK log library.
 find_library(log-lib log)
 
-# We make libxengine.so
+# We make libpolarisengine.so
 add_compile_definitions(
   USE_EDITOR
 )
 add_library(
-  xengine
+  polarisengine
   SHARED
 
   # HAL
@@ -78,7 +78,7 @@ add_library(
 if(AWK)
   # On the Mac and Linux versions of Android Studio
   target_link_libraries(
-    xengine
+    polarisengine
     GLESv3
     png
     jpeg
@@ -96,7 +96,7 @@ if(AWK)
 else()
   # On the Windows version of Android Studio
   target_link_libraries(
-    xengine
+    polarisengine
     GLESv3
     png_shared
     jpeg

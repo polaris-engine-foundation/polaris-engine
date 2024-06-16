@@ -9,8 +9,8 @@
  * Animation Subsystem
  */
 
-#ifndef XENGINE_ANIME_H
-#define XENGINE_ANIME_H
+#ifndef POLARIS_ENGINE_ANIME_H
+#define POLARIS_ENGINE_ANIME_H
 
 #include "types.h"
 #include "image.h"

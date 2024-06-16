@@ -9,8 +9,8 @@
  * A HAL API extension for Polaris Engine editor
  */
 
-#ifndef XENGINE_PRO_H
-#define XENGINE_PRO_H
+#ifndef POLARIS_ENGINE_PRO_H
+#define POLARIS_ENGINE_PRO_H
 
 #if defined(USE_EDITOR)
 
@@ -71,4 +71,4 @@ void on_update_variable(void);
 
 #endif /* defined(USE_EDITOR) */
 
-#endif /* XENGINE_PRO_H */
+#endif /* POLARIS_ENGINE_PRO_H */

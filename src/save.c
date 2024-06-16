@@ -18,7 +18,7 @@
 /* セーブデータの互換性バージョン(Suika2 12.42で導入) */
 #define SAVE_VER	(0x010216)
 
-#ifdef XENGINE_TARGET_WASM
+#ifdef POLARIS_ENGINE_TARGET_WASM
 #include <emscripten/emscripten.h>
 #endif
 
@@ -335,7 +335,7 @@ bool quick_save(bool extra)
 	/* クイックセーブの時刻を更新する */
 	quick_save_time = (time_t)timestamp;
 
-#ifdef XENGINE_TARGET_WASM
+#ifdef POLARIS_ENGINE_TARGET_WASM
 	EM_ASM_({
 		if (window.navigator.userAgent.indexOf('iPad') != -1 || window.navigator.userAgent.indexOf('iPhone') != -1) {
 			FS.syncfs(function (err) {});
@@ -371,7 +371,7 @@ bool execute_save(int index)
 	/* 時刻を保存する */
 	save_time[index] = (time_t)timestamp;
 
-#ifdef XENGINE_TARGET_WASM
+#ifdef POLARIS_ENGINE_TARGET_WASM
 	EM_ASM_({
 		if (window.navigator.userAgent.indexOf('iPad') != -1 || window.navigator.userAgent.indexOf('iPhone') != -1) {
 			FS.syncfs(function (err) {});

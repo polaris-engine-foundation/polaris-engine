@@ -18,7 +18,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class XEngineScript : MonoBehaviour
+public class PolarisEngineScript : MonoBehaviour
 {
 	//
 	// For Rendering
@@ -130,7 +130,7 @@ public class XEngineScript : MonoBehaviour
 	//
 	// The Sole Instance
 	//
-	private static XEngineScript _instance;
+	private static PolarisEngineScript _instance;
 
 	//
 	// HAL delegate types.
@@ -845,26 +845,26 @@ public class XEngineScript : MonoBehaviour
 	static unsafe void play_sound(int stream, byte *wave)
 	{
 		if (stream == 0)
-			GameObject.Find("BGM").GetComponent<XEngineAudio>().SetSource(wave);
+			GameObject.Find("BGM").GetComponent<PolarisEngineAudio>().SetSource(wave);
 		else if (stream == 1)
-			GameObject.Find("SE").GetComponent<XEngineAudio>().SetSource(wave);
+			GameObject.Find("SE").GetComponent<PolarisEngineAudio>().SetSource(wave);
 		else if (stream == 2)
-			GameObject.Find("CV").GetComponent<XEngineAudio>().SetSource(wave);
+			GameObject.Find("CV").GetComponent<PolarisEngineAudio>().SetSource(wave);
 		else
-			GameObject.Find("SYSSE").GetComponent<XEngineAudio>().SetSource(wave);
+			GameObject.Find("SYSSE").GetComponent<PolarisEngineAudio>().SetSource(wave);
 	}
 
 	[AOT.MonoPInvokeCallback(typeof(delegate_stop_sound))]
 	static unsafe void stop_sound(int stream)
 	{
 		if (stream == 0)
-			GameObject.Find("BGM").GetComponent<XEngineAudio>().SetSource(null);
+			GameObject.Find("BGM").GetComponent<PolarisEngineAudio>().SetSource(null);
 		else if (stream == 1)
-			GameObject.Find("SE").GetComponent<XEngineAudio>().SetSource(null);
+			GameObject.Find("SE").GetComponent<PolarisEngineAudio>().SetSource(null);
 		else if (stream == 2)
-			GameObject.Find("CV").GetComponent<XEngineAudio>().SetSource(null);
+			GameObject.Find("CV").GetComponent<PolarisEngineAudio>().SetSource(null);
 		else
-			GameObject.Find("SYSSE").GetComponent<XEngineAudio>().SetSource(null);
+			GameObject.Find("SYSSE").GetComponent<PolarisEngineAudio>().SetSource(null);
 	}
 
 	[AOT.MonoPInvokeCallback(typeof(delegate_set_sound_volume))]

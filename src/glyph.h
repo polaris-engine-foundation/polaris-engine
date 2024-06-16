@@ -9,8 +9,8 @@
  * Glyph rendering and text layout subsystem
  */
 
-#ifndef XENGINE_GLYPH_H
-#define XENGINE_GLYPH_H
+#ifndef POLARIS_ENGINE_GLYPH_H
+#define POLARIS_ENGINE_GLYPH_H
 
 #include "image.h"
 

@@ -18,7 +18,7 @@ if [ ! -d llvm ]; then
 			tar xJf llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz;
 			mv llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz llvm;
 		else
-			curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz;
+			curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz;
 			tar xJf llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz;
 			mv llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz llvm;
 		fi;

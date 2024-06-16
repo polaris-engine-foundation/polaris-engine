@@ -9,8 +9,8 @@
  * Scenario Script Model
  */
 
-#ifndef XENGINE_SCRIPT_H
-#define XENGINE_SCRIPT_H
+#ifndef POLARIS_ENGINE_SCRIPT_H
+#define POLARIS_ENGINE_SCRIPT_H
 
 #include "types.h"
 

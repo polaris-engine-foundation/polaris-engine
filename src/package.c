@@ -15,7 +15,7 @@
 /* Obfuscation Key */
 #include "key.h"
 
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 #include <windows.h>
 #else
 #include <dirent.h>
@@ -60,7 +60,7 @@ static bool write_file_bodies(const char *base_dir, FILE *fp);
 static void set_random_seed(uint64_t index);
 static char get_next_random(void);
 
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 const wchar_t *conv_utf8_to_utf16(const char *utf8_message);
 const char *conv_utf16_to_utf8(const wchar_t *utf16_message);
 #endif
@@ -96,7 +96,7 @@ bool create_package(const char *base_dir)
 	return true;
 }
 
-#if defined(XENGINE_TARGET_WIN32)
+#if defined(POLARIS_ENGINE_TARGET_WIN32)
 /*
  * For Windows:
  */
@@ -341,7 +341,7 @@ static bool get_file_sizes(const char *base_dir)
 		/*
 		 * Make a path and open the file.
 		 */
-#if defined(XENGINE_TARGET_WIN32)
+#if defined(POLARIS_ENGINE_TARGET_WIN32)
 		/* Make a path on Windows. */
 		char *path = strdup(entry[i].name);
 		char *slash;
@@ -389,7 +389,7 @@ static bool write_archive_file(const char *base_dir)
 	FILE *fp;
 	bool success;
 
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 	fp = fopen(PACKAGE_FILE, "wb");
 	UNUSED_PARAMETER(base_dir);
 #else
@@ -454,7 +454,7 @@ static bool write_file_bodies(const char *base_dir, FILE *fp)
 	size_t len, obf;
 
 	for (i = 0; i < file_count; i++) {
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 		char *path = strdup(entry[i].name);
 		char *slash;
 		if (path == NULL) {

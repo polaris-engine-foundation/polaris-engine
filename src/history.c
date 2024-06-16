@@ -46,7 +46,7 @@ static char tmp_text[TEXT_SIZE];
  */
 bool init_history(void)
 {
-#ifdef XENGINE_DLL
+#ifdef POLARIS_ENGINE_DLL
 	/* DLLが再利用されたときのために初期化する */
 	clear_history();
 #endif

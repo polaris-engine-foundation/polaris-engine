@@ -9,8 +9,8 @@
  * Save data management.
  */
 
-#ifndef XENGINE_SAVE_H
-#define XENGINE_SAVE_H
+#ifndef POLARIS_ENGINE_SAVE_H
+#define POLARIS_ENGINE_SAVE_H
 
 #include "types.h"
 

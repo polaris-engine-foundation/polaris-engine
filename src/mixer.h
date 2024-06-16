@@ -9,8 +9,8 @@
  * Audio Mixer
  */
 
-#ifndef XENGINE_MIXER_H
-#define XENGINE_MIXER_H
+#ifndef POLARIS_ENGINE_MIXER_H
+#define POLARIS_ENGINE_MIXER_H
 
 #include "wave.h"
 

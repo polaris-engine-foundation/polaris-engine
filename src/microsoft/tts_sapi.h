@@ -7,8 +7,8 @@
  * Text to speech.
  */
 
-#ifndef XENGINE_TTS_SAPI_H
-#define XENGINE_TTS_SAPI_H
+#ifndef POLARIS_ENGINE_TTS_SAPI_H
+#define POLARIS_ENGINE_TTS_SAPI_H
 
 #ifdef __cplusplus
 extern "C" {

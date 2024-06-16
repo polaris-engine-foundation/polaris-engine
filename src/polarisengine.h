@@ -9,8 +9,8 @@
  * Main Header
  */
 
-#ifndef XENGINE_XENGINE_H
-#define XENGINE_XENGINE_H
+#ifndef POLARIS_ENGINE_POLARIS_ENGINE_H
+#define POLARIS_ENGINE_POLARIS_ENGINE_H
 
  /* Compiler-specific features */
 #include "types.h"

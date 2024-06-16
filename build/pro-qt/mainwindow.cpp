@@ -516,7 +516,7 @@ void MainWindow::on_actionNew_Project_Japanese_Tategaki_triggered()
 void MainWindow::startWithTemplateGame(QString name)
 {
     // Open a project file.
-    QString filename = QFileDialog::getSaveFileName(this, "Create", QString("game.polarisengine"), QObject::tr("Polaris Engine Project (*.polarisengine)"), nullptr);
+    QString filename = QFileDialog::getSaveFileName(this, "Create", QString("game.polaris"), QObject::tr("Polaris Engine Project (*.polaris)"), nullptr);
     if (filename.isEmpty())
         return;
 
@@ -545,7 +545,7 @@ void MainWindow::startWithTemplateGame(QString name)
 bool MainWindow::copyNewTemplateGame(const QString& name)
 {
     QDir src = QApplication::applicationDirPath();
-    src.cd("../share/Polaris Engine/" + name);
+    src.cd("../share/polaris-engine/" + name);
 
     // Copy a template directory.
     if (!copyFiles(src.path(), QDir::current().canonicalPath()))

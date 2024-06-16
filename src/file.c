@@ -11,7 +11,7 @@
 #define strcasecmp _stricmp
 #endif
 
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 #include <fcntl.h>
 #endif
 
@@ -65,7 +65,7 @@ static uint64_t entry_count;
 /* パッケージファイルのパス */
 static char *package_path;
 
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 const wchar_t *conv_utf8_to_utf16(const char *s);
 #endif
 
@@ -101,7 +101,7 @@ bool init_file(void)
 		return false;
 
 	/* パッケージファイルを開いてみる */
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	fp = _wfopen(conv_utf8_to_utf16(package_path), L"r");
 #else
@@ -110,7 +110,7 @@ bool init_file(void)
 	if (fp == NULL) {
 		free(package_path);
 		package_path = NULL;
-#if defined(XENGINE_TARGET_IOS) || defined(XENGINE_TARGET_WASM)
+#if defined(POLARIS_ENGINE_TARGET_IOS) || defined(POLARIS_ENGINE_TARGET_WASM)
 		/* 開ける必要がある */
 		return false;
 #else
@@ -175,7 +175,7 @@ bool check_file_exist(const char *dir, const char *file)
 	FILE *fp;
 	uint64_t i;
 
-#if !defined(XENGINE_TARGET_IOS) || !defined(XENGINE_TARGET_WASM)
+#if !defined(POLARIS_ENGINE_TARGET_IOS) || !defined(POLARIS_ENGINE_TARGET_WASM)
 	/* まずファイルシステム上のファイルを開いてみる */
 	char *real_path;
 	real_path = make_valid_path(dir, file);
@@ -183,7 +183,7 @@ bool check_file_exist(const char *dir, const char *file)
 		log_memory();
 		return NULL;
 	}
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	fp = _wfopen(conv_utf8_to_utf16(real_path), L"r");
 #else
@@ -240,7 +240,7 @@ struct rfile *open_rfile(
 	}
 
 	/* まずファイルシステム上のファイルを開いてみる */
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	rf->fp = _wfopen(conv_utf8_to_utf16(real_path), L"r");
 #else
@@ -287,7 +287,7 @@ struct rfile *open_rfile(
 	}
 
 	/* みつかった場合、パッケージファイルを別なファイルポインタで開く */
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	rf->fp = _wfopen(conv_utf8_to_utf16(package_path), L"r");
 #else
@@ -591,7 +591,7 @@ struct wfile *open_wfile(const char *dir, const char *file)
 	}
 
 	/* ファイルをオープンする */
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	wf->fp = _wfopen(conv_utf8_to_utf16(path), L"w");
 #else

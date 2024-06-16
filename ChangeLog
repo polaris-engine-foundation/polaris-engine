@@ -5,13 +5,18 @@
 <ul>
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 1.99.2 2024/6/16
+  <ul>
+    <li>リブランド時に未変更だったファイル名の変更</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 1.99.1 2024/6/16
   <ul>
     <li>GitHubの整理</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 1.99.0 2024/6/16
   <ul>
     <li>GitHubのみの開発体制に移行</li>

@@ -12,17 +12,17 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.x-engine</string>
+				<string>public.polaris-engine</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>x-engine Project</string>
+			<string>Polaris Engine Project</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.x-engine.pro-macos</string>
+			<string>com.polaris-engine.pro-macos</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>xengine</string>
+					<string>polaris</string>
 				</array>
 			</dict>
 		</dict>

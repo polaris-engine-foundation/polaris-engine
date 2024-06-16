@@ -1,5 +1,5 @@
-CC="YOUR_SDK_CC"
-AR="YOUR_SDK_AR"
+CC=cc
+AR=ar
 
 SRCS = \
 	halwrap.c \
@@ -60,17 +60,17 @@ SRCS = \
 	cmd_wms.c
 
 all:
-	rm -rf *.o libroot-switch ../Assets/libxengine.nso
+	rm -rf *.o libroot-switch ../Assets/libpolarisengine.nso
 	./build-libs.sh \
 		"switch" \
 		"$CC" \
 		"$AR"
 	"$CC" \
 		-shared \
-		-o ../Assets/libxengine.nso \
+		-o ../Assets/libpolarisengine.nso \
 		-O2 \
 		-fPIC \
-		-DXENGINE_TARGET_UNITY \
+		-DPOLARIS_ENGINE_TARGET_UNITY \
 		-DNO_CDECL \
 		-I./libroot-switch/include \
 		-I./libroot-switch/include/png \

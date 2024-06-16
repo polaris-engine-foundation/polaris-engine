@@ -419,7 +419,7 @@ bool s2_pop_stage(struct wms_runtime *rt);
  */
 bool init_gui(void)
 {
-#ifdef XENGINE_DLL
+#ifdef POLARIS_ENGINE_DLL
 	/* DLLが再利用されたときのために初期化する */
 	cleanup_gui();
 #endif
@@ -2847,7 +2847,7 @@ static void draw_history_button(int index)
 
 	b = &button[index];
 
-#if defined(XENGINE_TARGET_WASM)
+#if defined(POLARIS_ENGINE_TARGET_WASM)
 	/* フォント描画に時間がかかる場合のために、サウンドバッファのフィルを行う */
 	void fill_sound_buffer(void);
 	fill_sound_buffer();

@@ -9,8 +9,8 @@
  * GStreamer video playback
  */
 
-#ifndef XENGINE_GSTPLAY_H
-#define XENGINE_GSTPLAY_H
+#ifndef POLARIS_ENGINE_GSTPLAY_H
+#define POLARIS_ENGINE_GSTPLAY_H
 
 #include <X11/Xlib.h>
 

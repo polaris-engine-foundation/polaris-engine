@@ -9,8 +9,8 @@
  * GUI
  */
 
-#ifndef XENGINE_GUI_H
-#define XENGINE_GUI_H
+#ifndef POLARIS_ENGINE_GUI_H
+#define POLARIS_ENGINE_GUI_H
 
 #include "types.h"
 

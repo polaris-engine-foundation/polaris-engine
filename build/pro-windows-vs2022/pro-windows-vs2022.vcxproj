@@ -105,7 +105,7 @@
     <ClInclude Include="..\..\src\script.h" />
     <ClInclude Include="..\..\src\seen.h" />
     <ClInclude Include="..\..\src\stage.h" />
-    <ClInclude Include="..\..\src\xengine.h" />
+    <ClInclude Include="..\..\src\polarisengine.h" />
     <ClInclude Include="..\..\src\types.h" />
     <ClInclude Include="..\..\src\uimsg.h" />
     <ClInclude Include="..\..\src\vars.h" />

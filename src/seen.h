@@ -9,8 +9,8 @@
  * "seen" flag management
  */
 
-#ifndef XENGINE_SEEN_H
-#define XENGINE_SEEN_H
+#ifndef POLARIS_ENGINE_SEEN_H
+#define POLARIS_ENGINE_SEEN_H
 
 #include "types.h"
 

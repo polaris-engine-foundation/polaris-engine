@@ -101,7 +101,7 @@ static bool create_audio_unit(void)
 
     /* オーディオコンポーネントを取得する */
     cd.componentType = kAudioUnitType_Output;
-#ifdef XENGINE_TARGET_IOS
+#ifdef POLARIS_ENGINE_TARGET_IOS
     cd.componentSubType = kAudioUnitSubType_RemoteIO;
 #else
     cd.componentSubType = kAudioUnitSubType_DefaultOutput;

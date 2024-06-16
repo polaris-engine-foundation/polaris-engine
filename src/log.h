@@ -9,8 +9,8 @@
  * Logging
  */
 
-#ifndef XENGINE_LOG_H
-#define XENGINE_LOG_H
+#ifndef POLARIS_ENGINE_LOG_H
+#define POLARIS_ENGINE_LOG_H
 
 /*
  * ログを出力してよいのはメインスレッドのみとする。

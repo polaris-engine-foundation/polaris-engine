@@ -104,7 +104,7 @@ static bool pre_dispatch(void);
  */
 void init_game_loop(void)
 {
-#ifdef XENGINE_DLL
+#ifdef POLARIS_ENGINE_DLL
 	/* DLLが再利用されたときのために初期化する */
 	is_left_button_pressed = false;
 	is_right_button_pressed = false;

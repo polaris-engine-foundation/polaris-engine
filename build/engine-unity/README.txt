@@ -2,7 +2,7 @@
 ========================
 
 ## 注意事項
-* x-engineの開発者はゲーム機のSDKを持っていないです
+* `Polaris Engine` の開発者はゲーム機のSDKを持っていないです
 * なので想像だけで開発されています
 * Windowsでの動作以外は一切確認されていません
 
@@ -17,5 +17,5 @@
     * `dll-src/switch.mk` の先頭2行、`CC=`と`AR=`について、実際のコマンド名に書き換えてください
 * `make`を実行してください
 * そのあとでUnityで開いてください
-* `Script`を`XEngineScript.cs`と紐づけしてください
-* `BGM`, `SE`, `Voice`, `SysSE`を`XEngineAudio.cs`と紐づけしてください
+* `Script` を `PolarisEngineScript.cs` と紐づけしてください
+* `BGM`, `SE`, `Voice`, `SysSE` を `PolarisEngineAudio.cs`と紐づけしてください

@@ -84,7 +84,7 @@
 		26715D4F2BB4B11A00F11697 /* ciel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ciel.h; path = ../../src/ciel.h; sourceTree = "<group>"; };
 		26715D502BB4B11A00F11697 /* ciel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ciel.c; path = ../../src/ciel.c; sourceTree = "<group>"; };
 		268A097E2BC8DD2800802099 /* pro-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "pro-ios.entitlements"; sourceTree = "<group>"; };
-		268A097F2BC8DE3E00802099 /* xengine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xengine.h; path = ../../src/xengine.h; sourceTree = "<group>"; };
+		268A097F2BC8DE3E00802099 /* polarisengine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = polarisengine.h; path = ../../src/polarisengine.h; sourceTree = "<group>"; };
 		268AD8BC2B38CB1D00B48542 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		26E7F0832B2E979B0076C82C /* x-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "x-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E7F0862B2E979B0076C82C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 		26E7F09F2B2E9AC80076C82C /* x-engine */ = {
 			isa = PBXGroup;
 			children = (
-				268A097F2BC8DE3E00802099 /* xengine.h */,
+				268A097F2BC8DE3E00802099 /* polarisengine.h */,
 				26E7F13F2B2EA67D0076C82C /* aunit.c */,
 				26E7F13B2B2EA67D0076C82C /* aunit.h */,
 				26E7F13D2B2EA67D0076C82C /* GameRenderer.h */,

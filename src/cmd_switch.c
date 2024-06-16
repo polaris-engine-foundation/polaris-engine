@@ -427,7 +427,7 @@ bool init(void)
 	reset_lap_timer(&bomb_sw);
 
 	/* Android NDKの場合、画像を破棄する */
-#ifdef XENGINE_TARGET_ANDROID
+#ifdef POLARIS_ENGINE_TARGET_ANDROID
 	for (int i = 0; i < CHOOSE_COUNT; i++) {
 		if (parent_button[i].img_idle != NULL)
 			destroy_image(parent_button[i].img_idle);

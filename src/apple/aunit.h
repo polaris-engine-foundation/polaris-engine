@@ -9,8 +9,8 @@
  * Audio Unit Sound Output
  */
 
-#ifndef XENGINE_AUNIT_H
-#define XENGINE_AUNIT_H
+#ifndef POLARIS_ENGINE_AUNIT_H
+#define POLARIS_ENGINE_AUNIT_H
 
 bool init_aunit(void);
 void cleanup_aunit(void);

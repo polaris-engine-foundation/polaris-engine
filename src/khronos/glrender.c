@@ -18,7 +18,7 @@
 /*
  * Android (OpenGL ES 3.0)
  */
-#if defined(XENGINE_TARGET_ANDROID)
+#if defined(POLARIS_ENGINE_TARGET_ANDROID)
 #include <GLES3/gl3.h>
 #include <GLES2/gl2ext.h>
 #endif
@@ -26,7 +26,7 @@
 /*
  * Emscripten (We use OpenGL ES 3.0)
  */
-#if defined(XENGINE_TARGET_WASM)
+#if defined(POLARIS_ENGINE_TARGET_WASM)
 #include <GLES3/gl3.h>
 #include <GLES2/gl2ext.h>
 #endif
@@ -34,7 +34,7 @@
 /*
  * Console samples (OpenGL ES 3.0)
  */
-#if defined(XENGINE_TARGET_SDL2)
+#if defined(POLARIS_ENGINE_TARGET_SDL2)
 #include <GL/gl.h>
 #include "glhelper.h"
 #endif
@@ -42,7 +42,7 @@
 /*
  * Linux and POSIX (OpenGL 3.2)
  */
-#if defined(XENGINE_TARGET_POSIX)
+#if defined(POLARIS_ENGINE_TARGET_POSIX)
 #include <GL/gl.h>
 #include "glhelper.h"
 #endif
@@ -57,7 +57,7 @@
 /*
  * Windows (OpenGL fallback) (OpenGL 3.2)
  */
-#if defined(XENGINE_TARGET_WIN32)
+#if defined(POLARIS_ENGINE_TARGET_WIN32)
 #include <windows.h>
 #include <GL/gl.h>
 #include "glhelper.h"
@@ -66,7 +66,7 @@
 /*
  * GLUT on macOS (for testing)
  */
-#if defined(XENGINE_TARGET_MACOS)
+#if defined(POLARIS_ENGINE_TARGET_MACOS)
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
 #include "glhelper.h"
@@ -195,7 +195,7 @@ static GLuint ibo_melt;
 
 /* The source string. */
 static const char *vertex_shader_src =
-#if !defined(XENGINE_TARGET_WASM) && !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_WASM) && !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"#version 100                 \n"
 #endif
 	"attribute vec4 a_position;   \n" /* FIXME: vec3? */
@@ -216,13 +216,13 @@ static const char *vertex_shader_src =
 
 /* The normal alpha blending shader. */
 static const char *fragment_shader_src_normal =
-#if !defined(XENGINE_TARGET_WASM) && !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_WASM) && !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"#version 100                                        \n"
 #endif
 #if defined(USE_QT)
 	"#undef mediump                                      \n"
 #endif
-#if !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"precision mediump float;                            \n"
 #endif
 	"varying vec2 v_texCoord;                            \n"
@@ -237,13 +237,13 @@ static const char *fragment_shader_src_normal =
 
 /* The character dimming shader. (RGB 50%) */
 static const char *fragment_shader_src_dim =
-#if !defined(XENGINE_TARGET_WASM) && !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_WASM) && !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"#version 100                                        \n"
 #endif
 #if defined(USE_QT)
 	"#undef mediump                                      \n"
 #endif
-#if !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"precision mediump float;                            \n"
 #endif
 	"varying vec2 v_texCoord;                            \n"
@@ -259,13 +259,13 @@ static const char *fragment_shader_src_dim =
 
 /* The rule shader. (1-bit universal transition) */
 static const char *fragment_shader_src_rule =
-#if !defined(XENGINE_TARGET_WASM) && !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_WASM) && !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"#version 100                                        \n"
 #endif
 #if defined(USE_QT)
 	"#undef mediump                                      \n"
 #endif
-#if !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"precision mediump float;                            \n"
 #endif
 	"varying vec2 v_texCoord;                            \n"
@@ -282,13 +282,13 @@ static const char *fragment_shader_src_rule =
 
 /* The melt shader. (8-bit universal transition) */
 static const char *fragment_shader_src_melt =
-#if !defined(XENGINE_TARGET_WASM) && !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_WASM) && !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"#version 100                                        \n"
 #endif
 #if defined(USE_QT)
 	"#undef mediump                                      \n"
 #endif
-#if !defined(XENGINE_TARGET_MACOS)
+#if !defined(POLARIS_ENGINE_TARGET_MACOS)
 	"precision mediump float;                            \n"
 #endif
 	"varying vec2 v_texCoord;                            \n"
@@ -361,7 +361,7 @@ static void update_texture_if_needed(struct image *img);
  */
 bool init_opengl(void)
 {
-#ifdef XENGINE_TARGET_ANDROID
+#ifdef POLARIS_ENGINE_TARGET_ANDROID
 	cleanup_opengl();
 #endif
 
@@ -1127,7 +1127,7 @@ static void update_texture_if_needed(struct image *img)
 	/* Create or update an OpenGL texture. */
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	glBindTexture(GL_TEXTURE_2D, id);
-#ifdef XENGINE_TARGET_WASM
+#ifdef POLARIS_ENGINE_TARGET_WASM
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 #else
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

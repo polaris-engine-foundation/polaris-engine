@@ -341,7 +341,7 @@ const char *get_ui_message(int id)
 			return U8("No game data.");
 		}
 		break;
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 	case UIMSG_WIN32_NO_DIRECT3D:
 		switch (conf_locale) {
 		case LOCALE_EN:

@@ -6,7 +6,11 @@ PREFIX="/usr/local"
 # Parse options
 case $1 in
     -h | --help)
-        echo './configure --prefix=/usr/local'
+        echo '[Usage]'
+        echo '  ./configure --prefix=/usr/local'
+        echo '  make setup'
+        echo '  make'
+        echo '  sudo make install'
 	exit 0
         ;;
     --prefix=*)

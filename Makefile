@@ -1,8 +1,8 @@
-DESTDIR=/Users/ktabata/polaris-engine-foundation/x-engine/build/engine-windows-64/libroot
+DESTDIR=/usr/local
 
-build: x-engine-runtime x-engine
+build: polaris-engine-runtime polaris-engine
 
-x-engine-runtime:
+polaris-engine-runtime:
 	@# Guard if macOS.
 	@if [ ! -z "`uname | grep Darwin`" ]; then \
 		echo 'You cannot run Makefile on macOS.'; \
@@ -37,7 +37,7 @@ x-engine-runtime:
 		cd ../..; \
 	fi
 
-x-engine:
+polaris-engine:
 	@if [ ! -z "`uname | grep Darwin`" ]; then \
 		echo 'You cannot run Makefile on macOS.'; \
 		exit 1; \
@@ -49,51 +49,51 @@ x-engine:
 		cd build && \
 		cmake .. $(CMAKE_FLAGS) && \
 		make && \
-		cp x-engine ../../../ && \
+		cp polaris-engine ../../../ && \
 		cd ../../..
 
 install: build
 	@install -v -d $(DESTDIR)/bin
-	@install -v x-engine-runtime $(DESTDIR)/bin/x-engine-runtime
-	@install -v x-engine $(DESTDIR)/bin/x-engine
+	@install -v polaris-engine-runtime $(DESTDIR)/bin/polaris-engine-runtime
+	@install -v polaris-engine $(DESTDIR)/bin/polaris-engine
 
 	@install -v -d $(DESTDIR)/share
-	@install -v -d $(DESTDIR)/share/x-engine
+	@install -v -d $(DESTDIR)/share/polaris-engine
 
-	@install -v -d $(DESTDIR)/share/x-engine/export-linux
-	@install -v x-engine-runtime $(DESTDIR)/share/x-engine/export-linux/x-engine-runtime
+	@install -v -d $(DESTDIR)/share/polaris-engine/export-linux
+	@install -v polaris-engine-runtime $(DESTDIR)/share/polaris-engine/export-linux/polaris-engine-runtime
 
-	@install -v -d $(DESTDIR)/share/x-engine/export-web
-	@if [ -e build/engine-wasm/html/index.html ]; then install -v build/engine-wasm/html/index.html $(DESTDIR)/share/x-engine/export-web; fi
-	@if [ -e build/engine-wasm/html/index.js ]; then install -v build/engine-wasm/html/index.js $(DESTDIR)/share/x-engine/export-web; fi
-	@if [ -e build/engine-wasm/html/index.wasm ]; then install -v build/engine-wasm/html/index.wasm $(DESTDIR)/share/x-engine/export-web; fi
+	@install -v -d $(DESTDIR)/share/polaris-engine/export-web
+	@if [ -e build/engine-wasm/html/index.html ]; then install -v build/engine-wasm/html/index.html $(DESTDIR)/share/polaris-engine/export-web; fi
+	@if [ -e build/engine-wasm/html/index.js ]; then install -v build/engine-wasm/html/index.js $(DESTDIR)/share/polaris-engine/export-web; fi
+	@if [ -e build/engine-wasm/html/index.wasm ]; then install -v build/engine-wasm/html/index.wasm $(DESTDIR)/share/polaris-engine/export-web; fi
 
-	@install -v -d $(DESTDIR)/share/x-engine/japanese-light
-	@cd games/japanese-light && find . -type d -exec install -v -d "$(DESTDIR)/share/x-engine/japanese-light/{}" ';' && cd ../..
-	@cd games/japanese-light && find . -type f -exec install -v "{}" "$(DESTDIR)/share/x-engine/japanese-light/{}" ';' && cd ../..
+	@install -v -d $(DESTDIR)/share/polaris-engine/japanese-light
+	@cd games/japanese-light && find . -type d -exec install -v -d "$(DESTDIR)/share/polaris-engine/japanese-light/{}" ';' && cd ../..
+	@cd games/japanese-light && find . -type f -exec install -v "{}" "$(DESTDIR)/share/polaris-engine/japanese-light/{}" ';' && cd ../..
 
-	@install -v -d $(DESTDIR)/share/x-engine/japanese-dark
-	@cd games/japanese-dark && find . -type d -exec install -v -d "$(DESTDIR)/share/x-engine/japanese-dark/{}" ';' && cd ../..
-	@cd games/japanese-dark && find . -type f -exec install -v "{}" "$(DESTDIR)/share/x-engine/japanese-dark/{}" ';' && cd ../..
+	@install -v -d $(DESTDIR)/share/polaris-engine/japanese-dark
+	@cd games/japanese-dark && find . -type d -exec install -v -d "$(DESTDIR)/share/polaris-engine/japanese-dark/{}" ';' && cd ../..
+	@cd games/japanese-dark && find . -type f -exec install -v "{}" "$(DESTDIR)/share/polaris-engine/japanese-dark/{}" ';' && cd ../..
 
-	@install -v -d $(DESTDIR)/share/x-engine/japanese-novel
-	@cd games/japanese-novel && find . -type d -exec install -v -d "$(DESTDIR)/share/x-engine/japanese-novel/{}" ';' && cd ../..
-	@cd games/japanese-novel && find . -type f -exec install -v "$(DESTDIR)/share/x-engine/japanese-novel/{}" "{}" ';' && cd ../..
+	@install -v -d $(DESTDIR)/share/polaris-engine/japanese-novel
+	@cd games/japanese-novel && find . -type d -exec install -v -d "$(DESTDIR)/share/polaris-engine/japanese-novel/{}" ';' && cd ../..
+	@cd games/japanese-novel && find . -type f -exec install -v "$(DESTDIR)/share/polaris-engine/japanese-novel/{}" "{}" ';' && cd ../..
 
-	@install -v -d $(DESTDIR)/share/x-engine/japanese-tategaki
-	@cd games/japanese-tategaki && find . -type d -exec install -v -d "$(DESTDIR)/share/x-engine/japanese-tategaki/{}" ';' && cd ../..
-	@cd games/japanese-tategaki && find . -type f -exec install -v "{}" "$(DESTDIR)/share/x-engine/japanese-tategaki/{}" ';' && cd ../..
+	@install -v -d $(DESTDIR)/share/polaris-engine/japanese-tategaki
+	@cd games/japanese-tategaki && find . -type d -exec install -v -d "$(DESTDIR)/share/polaris-engine/japanese-tategaki/{}" ';' && cd ../..
+	@cd games/japanese-tategaki && find . -type f -exec install -v "{}" "$(DESTDIR)/share/polaris-engine/japanese-tategaki/{}" ';' && cd ../..
 
-	@install -v -d $(DESTDIR)/share/x-engine/english
-	@cd games/english && find . -type d -exec install -v -d "$(DESTDIR)/share/x-engine/english/{}" ';' && cd ../..
-	@cd games/english && find . -type f -exec install -v "{}" "$(DESTDIR)/share/x-engine/english/{}" ';' && cd ../..
+	@install -v -d $(DESTDIR)/share/polaris-engine/english
+	@cd games/english && find . -type d -exec install -v -d "$(DESTDIR)/share/polaris-engine/english/{}" ';' && cd ../..
+	@cd games/english && find . -type f -exec install -v "{}" "$(DESTDIR)/share/polaris-engine/english/{}" ';' && cd ../..
 
-	@install -v -d $(DESTDIR)/share/x-engine/english-novel
-	@cd games/english-novel && find . -type d -exec install -v -d "$(DESTDIR)/share/x-engine/english-novel/{}" ';' && cd ../..
-	@cd games/english-novel && find . -type f -exec install -v "{}" "$(DESTDIR)/share/x-engine/english-novel/{}" ';' && cd ../..
+	@install -v -d $(DESTDIR)/share/polaris-engine/english-novel
+	@cd games/english-novel && find . -type d -exec install -v -d "$(DESTDIR)/share/polaris-engine/english-novel/{}" ';' && cd ../..
+	@cd games/english-novel && find . -type f -exec install -v "{}" "$(DESTDIR)/share/polaris-engine/english-novel/{}" ';' && cd ../..
 
 clean:
-	rm -f x-engine-runtime x-engine
+	rm -f polaris-engine-runtime polaris-engine
 
 ##
 ## dev internal
@@ -122,7 +122,7 @@ setup:
 	@if [ ! -z "`uname -a | grep Debian`" ]; then \
 		echo 'Installing dependencies...'; \
 		sudo apt-get update; \
-		sudo apt-get install build-essential cmake libasound2-dev libx11-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libxpm-dev mesa-common-dev zlib1g-dev libpng-dev libjpeg-dev libwebp-dev libbz2-dev libogg-dev libvorbis-dev libfreetype-dev cmake qt6-base-dev qt6-multimedia-dev libqt6core6 libqt6gui6 libqt6widgets6 libqt6opengl6-dev libqt6openglwidgets6 libqt6multimedia6 libqt6multimediawidgets6 mingw-w64; \
+		sudo apt-get install build-essential cmake libasound2-dev libx11-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libxpm-dev mesa-common-dev zlib1g-dev libpng-dev libjpeg-dev libwebp-dev libbz2-dev libogg-dev libvorbis-dev libfreetype-dev cmake qt6-base-dev qt6-multimedia-dev libqt6core6 libqt6gui6 libqt6widgets6 libqt6opengl6-dev libqt6openglwidgets6 libqt6multimedia6 libqt6multimediawidgets6 mingw-w64 autoconf automake; \
 		echo "Building libraries..."; \
 		cd build/engine-windows && ./build-libs.sh && cd ../..; \
 		cp -Ra build/engine-windows/libroot build/pro-windows/; \
@@ -183,6 +183,6 @@ engine-wasm:
 pro-wasm:
 	cd build/pro-wasm  && make && cd ../..
 
-engine-linux: x-engine-runtime
+engine-linux: polaris-engine-runtime
 
-pro-linux: x-engine
+pro-linux: polaris-engine

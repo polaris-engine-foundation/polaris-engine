@@ -9,8 +9,8 @@
  * MIDI playback
  */
 
-#ifndef XENGINE_D3D_H
-#define XENGINE_D3D_H
+#ifndef POLARIS_ENGINE_D3D_H
+#define POLARIS_ENGINE_D3D_H
 
 #include "../polarisengine.h"
 

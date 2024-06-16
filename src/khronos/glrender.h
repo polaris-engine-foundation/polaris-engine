@@ -9,10 +9,10 @@
  * The HAL for OpenGL
  */
 
-#ifndef XENGINE_GLRENDER_H
-#define XENGINE_GLRENDER_H
+#ifndef POLARIS_ENGINE_GLRENDER_H
+#define POLARIS_ENGINE_GLRENDER_H
 
-#if !defined(USE_QT) && !defined(XENGINE_TARGET_ANDROID)
+#if !defined(USE_QT) && !defined(POLARIS_ENGINE_TARGET_ANDROID)
 #include "../polarisengine.h"
 #else
 #include "polarisengine.h"

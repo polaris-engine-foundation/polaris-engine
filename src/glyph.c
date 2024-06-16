@@ -17,7 +17,7 @@
 #include <ft2build.h>
 
 #include FT_FREETYPE_H
-#ifdef XENGINE_TARGET_WASM
+#ifdef POLARIS_ENGINE_TARGET_WASM
 #include <ftstroke.h>
 #else
 #include <freetype/ftstroke.h>
@@ -98,7 +98,7 @@ bool init_glyph(void)
 	FT_Error err;
 	int i;
 
-#ifdef XENGINE_DLL
+#ifdef POLARIS_ENGINE_DLL
 	/* DLLが再利用されたときのために初期化する */
 	cleanup_glyph();
 #endif

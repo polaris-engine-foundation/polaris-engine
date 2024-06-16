@@ -9,8 +9,8 @@
  * DirectSound Output (DirectSound 5.0)
  */
 
-#ifndef XENGINE_DSOUND_H
-#define XENGINE_DSOUND_H
+#ifndef POLARIS_ENGINE_DSOUND_H
+#define POLARIS_ENGINE_DSOUND_H
 
 #include <windows.h>
 

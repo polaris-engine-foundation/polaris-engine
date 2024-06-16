@@ -38,7 +38,7 @@ static bool is_var_changed[LOCAL_VAR_SIZE + GLOBAL_VAR_SIZE];
  */
 void init_vars(void)
 {
-#ifdef XENGINE_DLL
+#ifdef POLARIS_ENGINE_DLL
 	int i;
 	/* Androidでは再利用されるので初期化する */
 	for (i = 0; i < LOCAL_VAR_SIZE; i++)

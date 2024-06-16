@@ -1,5 +1,5 @@
-CC="YOUR_SDK_CC"
-AR="YOUR_SDK_AR"
+CC=cc
+AR=ar
 
 SRCS = \
 	halwrap.c \
@@ -60,17 +60,17 @@ SRCS = \
 	cmd_wms.c
 
 all:
-	rm -rf *.o libroot-ps45 ../Assets/libxengine.so
+	rm -rf *.o libroot-ps45 ../Assets/libpolarisengine.so
 	./build-libs.sh \
 		"ps45" \
 		"$CC" \
 		"$AR"
 	"$CC" \
 		-shared \
-		-o ../Assets/libxengine.so \
+		-o ../Assets/libpolarisengine.so \
 		-O2 \
 		-fPIC \
-		-DXENGINE_TARGET_UNITY \
+		-DPOLARIS_ENGINE_TARGET_UNITY \
 		-DNO_CDECL \
 		-I./libroot-ps45/include \
 		-I./libroot-ps45/include/png \

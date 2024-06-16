@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(x-engine VERSION 0.1 LANGUAGES CXX C)
+project(polaris-engine VERSION 0.1 LANGUAGES CXX C)
 
 # We use .ui file translation.
 set(CMAKE_AUTOUIC ON)
@@ -45,16 +45,16 @@ include_directories(deps .)
 
 # The following is our output executable.
 qt_add_executable(
-  x-engine
+  polaris-engine
   MANUAL_FINALIZATION
   ${PROJECT_SOURCES}
 )
 
 # Dynamic linking for a self compilation on Linux:
 target_link_libraries(
-  x-engine
+  polaris-engine
   PRIVATE
-  xengine
+  polarisengine
   png
   jpeg
   webp
@@ -76,4 +76,4 @@ target_link_libraries(
 )
 
 # Finish.
-qt_finalize_executable(x-engine)
+qt_finalize_executable(polaris-engine)

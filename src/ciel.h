@@ -9,8 +9,8 @@
  * The Ciel Direction System (Designed by Asatsuki and ktabata)
  */
 
-#ifndef XENGINE_CIEL_H
-#define XENGINE_CIEL_H
+#ifndef POLARIS_ENGINE_CIEL_H
+#define POLARIS_ENGINE_CIEL_H
 
 #include "file.h"
 

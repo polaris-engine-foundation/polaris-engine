@@ -4,8 +4,8 @@ set(CMAKE_AUTOUIC OFF)
 set(CMAKE_AUTOMOC OFF)
 set(CMAKE_AUTORCC OFF)
 
-# Target "xengine"
-project(xengine VERSION 0.1 LANGUAGES C)
+# Target "polaris-engine"
+project(polaris-engine VERSION 0.1 LANGUAGES C)
 
 # Preprocessor macros
 add_compile_definitions(
@@ -111,7 +111,7 @@ set(PROJECT_SOURCES
 
 # Target
 add_library(
-  xengine
+  polarisengine
   STATIC
   ${PROJECT_SOURCES}
 )

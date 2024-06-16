@@ -5,8 +5,8 @@
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-#ifndef XENGINE_NDKMAIN_H
-#define XENGINE_NDKMAIN_H
+#ifndef POLARIS_ENGINE_NDKMAIN_H
+#define POLARIS_ENGINE_NDKMAIN_H
 
 #include "types.h"
 #include <jni.h>

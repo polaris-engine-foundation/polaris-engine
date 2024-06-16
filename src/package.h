@@ -9,8 +9,8 @@
  * Packager
  */
 
-#ifndef XENGINE_PACKAGE_H
-#define XENGINE_PACKAGE_H
+#ifndef POLARIS_ENGINE_PACKAGE_H
+#define POLARIS_ENGINE_PACKAGE_H
 
 #include "types.h"
 

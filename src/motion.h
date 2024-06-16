@@ -9,8 +9,8 @@
  * Abstract Motion API (to be implemented)
  */
 
-#ifndef XENGINE_MOTION_H
-#define XENGINE_MOTION_H
+#ifndef POLARIS_ENGINE_MOTION_H
+#define POLARIS_ENGINE_MOTION_H
 
 #include "types.h"
 
@@ -74,4 +74,4 @@ static __inline void set_motion_rotate(int index, float rot)
 
 #endif /* defined(USE_MOTION) */
 
-#endif /* XENGINE_MOTION_H */
+#endif /* POLARIS_ENGINE_MOTION_H */

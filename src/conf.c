@@ -1893,7 +1893,7 @@ static bool overwrite_config_font_file(const char *val);
  */
 bool init_conf(void)
 {
-#ifdef XENGINE_DLL
+#ifdef POLARIS_ENGINE_DLL
 	/* DLLが再利用されたときのために初期化する */
 	cleanup_conf();
 #endif

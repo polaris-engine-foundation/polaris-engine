@@ -9,8 +9,8 @@
 // GameShaderTypes: The Metal version of the shaders for Polaris Engine
 //
 
-#ifndef XENGINE_GAMESHADERTYPES_H
-#define XENGINE_GAMESHADERTYPES_H
+#ifndef POLARIS_ENGINE_GAMESHADERTYPES_H
+#define POLARIS_ENGINE_GAMESHADERTYPES_H
 
 #include <simd/simd.h>
 

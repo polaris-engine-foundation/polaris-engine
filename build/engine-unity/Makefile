@@ -11,7 +11,7 @@ OBJS = $(SRCS_UNITY:../../src/%.c=%.o)
 #
 # Make a source tree
 #
-all: libxengine-win64.dll libxengine-macos.dylib
+all: libpolarisengine-win64.dll libpolarisengine-macos.dylib
 	@rm -rf unity-src
 	@mkdir unity-src
 	@cp -v -R ProjectSettings unity-src/
@@ -19,13 +19,13 @@ all: libxengine-win64.dll libxengine-macos.dylib
 	@cp -v -R Library unity-src/
 	@mkdir unity-src/Assets
 	@cp -v Assets/MainScene.unity unity-src/Assets/
-	@cp -v Assets/XEngineScript.cs unity-src/Assets/
-	@cp -v Assets/XEngineAudio.cs unity-src/Assets/
+	@cp -v Assets/PolarisEngineScript.cs unity-src/Assets/
+	@cp -v Assets/PolarisEngineAudio.cs unity-src/Assets/
 	@mkdir unity-src/Assets/Resources
 	@mkdir unity-src/Assets/Resources/StreamingAssets
 	@cp -v Assets/Resources/NormalShader.shader unity-src/Assets/Resources/
-	@cp libxengine-win64.dll unity-src/
-	@cp libxengine-macos.dylib unity-src/
+	@cp libpolarisengine-win64.dll unity-src/
+	@cp libpolarisengine-macos.dylib unity-src/
 	@cp README.txt unity-src/
 	@mkdir unity-src/dll-src
 	@cp build-libs.sh unity-src/dll-src/
@@ -39,14 +39,14 @@ all: libxengine-win64.dll libxengine-macos.dylib
 #
 # Windows 64bit DLL for Test Run
 #
-libxengine-win64.dll: $(SRCS_UNITY)
-	rm -rf *.o libroot-x86_64 libxengine-win64.dll
+libpolarisengine-win64.dll: $(SRCS_UNITY)
+	rm -rf *.o libroot-x86_64 libpolarisengine-win64.dll
 	../engine-windows-64/llvm/bin/x86_64-w64-mingw32-gcc \
 		-shared \
 		-fPIC \
-		-o libxengine-win64.dll \
+		-o libpolarisengine-win64.dll \
 		-O2 \
-		-DXENGINE_TARGET_UNITY \
+		-DPOLARIS_ENGINE_TARGET_UNITY \
 		-DNO_CDECL \
 		-I../engine-windows-64/libroot/include \
 		-I../engine-windows-64/libroot/include/png \
@@ -67,15 +67,15 @@ libxengine-win64.dll: $(SRCS_UNITY)
 #
 # macOS DLL for Test Run
 #
-libxengine-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
+libpolarisengine-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
 	/usr/bin/clang \
 		-O2 \
 		-arch arm64 \
 		-arch x86_64 \
 		-dynamiclib \
 		-undefined dynamic_lookup \
-		-o libxengine-macos.dylib \
-		-DXENGINE_TARGET_UNITY \
+		-o libpolarisengine-macos.dylib \
+		-DPOLARIS_ENGINE_TARGET_UNITY \
 		-I../engine-macos/libroot/include \
 		-I../engine-macos/libroot/include/freetype2 \
 		$(SRCS_UNITY) \
@@ -91,10 +91,10 @@ libxengine-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
 		../engine-macos/libroot/lib/libogg.a \
 		../engine-macos/libroot/lib/libbz2.a \
 		../engine-macos/libroot/lib/libz.a
-	rm -rf libxengine-macos.dylib.dSYM
+	rm -rf libpolarisengine-macos.dylib.dSYM
 
 #
 # Cleanup
 #
 clean:
-	@rm -rf libxengine-win64.dll libxengine-macos.dylib libroot* *.o
+	@rm -rf libpolarisengine-win64.dll libpolarisengine-macos.dylib libroot* *.o

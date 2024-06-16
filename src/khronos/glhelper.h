@@ -14,8 +14,8 @@
  * our dependencies.
  */
 
-#ifndef XENGINE_GLHELPER_H
-#define XENGINE_GLHELPER_H
+#ifndef POLARIS_ENGINE_GLHELPER_H
+#define POLARIS_ENGINE_GLHELPER_H
 
 #if defined(_MSC_VER)
 #include <BaseTsd.h>
@@ -66,7 +66,7 @@ typedef ssize_t GLsizeiptr;
  *
  * With Qt, we use replacement macros and don't define the API symbols directly.
  */
-#if (defined(XENGINE_TARGET_POSIX) && !defined(USE_QT)) || defined(XENGINE_TARGET_WIN32)
+#if (defined(POLARIS_ENGINE_TARGET_POSIX) && !defined(USE_QT)) || defined(POLARIS_ENGINE_TARGET_WIN32)
 extern GLuint (APIENTRY *glCreateShader)(GLenum type);
 extern void (APIENTRY *glShaderSource)(GLuint shader, GLsizei count, const GLchar *const *string, const GLint *length);
 extern void (APIENTRY *glCompileShader)(GLuint shader);
@@ -92,11 +92,11 @@ extern void (APIENTRY *glDeleteShader)(GLuint shader);
 extern void (APIENTRY *glDeleteProgram)(GLuint program);
 extern void (APIENTRY *glDeleteVertexArrays)(GLsizei n, const GLuint *arrays);
 extern void (APIENTRY *glDeleteBuffers)(GLsizei n, const GLuint *buffers);
-#ifdef XENGINE_TARGET_WIN32
+#ifdef POLARIS_ENGINE_TARGET_WIN32
 /* Note: only Windows lacks glActiveTexture(), libOpenGL.so exports one that actually works. */
 extern void (APIENTRY *glActiveTexture)(GLenum texture);
 #endif
-#endif /* if defined(XENGINE_TARGET_WIN32) || (defined(LINUX) && !defined(USE_QT) */
+#endif /* if defined(POLARIS_ENGINE_TARGET_WIN32) || (defined(LINUX) && !defined(USE_QT) */
 
 /*
  * With Qt, we use a wrapper to call the Qt's OpenGL functions.

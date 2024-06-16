@@ -9,8 +9,8 @@
  * Stage Rendering
  */
 
-#ifndef XENGINE_STAGE_H
-#define XENGINE_STAGE_H
+#ifndef POLARIS_ENGINE_STAGE_H
+#define POLARIS_ENGINE_STAGE_H
 
 #include "image.h"
 

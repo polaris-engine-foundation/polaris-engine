@@ -9,8 +9,8 @@
  * The game loop handler
  */
 
-#ifndef XENGINE_MAIN_H
-#define XENGINE_MAIN_H
+#ifndef POLARIS_ENGINE_MAIN_H
+#define POLARIS_ENGINE_MAIN_H
 
 #include "types.h"
 
@@ -230,4 +230,4 @@ int dbg_get_parse_error_count(void);
 
 #endif	/* USE_EDITOR */
 
-#endif	/* XENGINE_MAIN_H */
+#endif	/* POLARIS_ENGINE_MAIN_H */

@@ -95,7 +95,7 @@ struct image *create_image_from_file_jpeg(const char *dir, const char *file)
 
 	/* 行ごとにデコードする */
 	p = img->pixels;
-#if defined(XENGINE_TARGET_WIN32)
+#if defined(POLARIS_ENGINE_TARGET_WIN32)
 	if (is_opengl_byte_order()) {
 		for (y = 0; y < height; y++) {
 			/* 1行デコードする */

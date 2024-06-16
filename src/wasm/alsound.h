@@ -5,8 +5,8 @@
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-#ifndef XENGINE_EMOPENAL_H
-#define XENGINE_EMOPENAL_H
+#ifndef POLARIS_ENGINE_EMOPENAL_H
+#define POLARIS_ENGINE_EMOPENAL_H
 
 #include "../polarisengine.h"
 

@@ -819,7 +819,7 @@ static bool s2_play_midi(struct wms_runtime *rt)
 	if (!wms_get_str_value(rt, file_name, &file_name_s))
 		return false;
 
-#if defined(XENGINE_TARGET_WIN32) && defined(USE_EDITOR)
+#if defined(POLARIS_ENGINE_TARGET_WIN32) && defined(USE_EDITOR)
 	bool play_midi(const char *dir, const char *fname);
 	play_midi("bgm", file_name_s);
 #endif

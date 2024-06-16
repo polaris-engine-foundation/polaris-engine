@@ -9,8 +9,8 @@
  * Ogg Vorbis decoder
  */
 
-#ifndef XENGINE_WAVE_H
-#define XENGINE_WAVE_H
+#ifndef POLARIS_ENGINE_WAVE_H
+#define POLARIS_ENGINE_WAVE_H
 
 #include "types.h"
 

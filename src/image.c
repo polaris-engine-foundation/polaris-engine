@@ -11,7 +11,7 @@
 
 #include "polarisengine.h"
 
-#if defined(XENGINE_TARGET_WIN32)
+#if defined(POLARIS_ENGINE_TARGET_WIN32)
 #include <malloc.h>	/* _aligned_mallo() */
 #endif
 
@@ -53,7 +53,7 @@ struct image *create_image(int w, int h)
 	}
 
 	/* ピクセル列のメモリを確保する */
-#if defined(XENGINE_TARGET_WIN32)
+#if defined(POLARIS_ENGINE_TARGET_WIN32)
 	pixels = _aligned_malloc((size_t)w * (size_t)h * sizeof(pixel_t), 64);
 	if (pixels == NULL) {
 		log_memory();
@@ -148,7 +148,7 @@ void destroy_image(struct image *img)
 	notify_image_free(img);
 
 	/* ピクセル列のメモリを解放する */
-#if defined(XENGINE_TARGET_WIN32)
+#if defined(POLARIS_ENGINE_TARGET_WIN32)
 	_aligned_free(img->pixels);
 #else
 	free(img->pixels);

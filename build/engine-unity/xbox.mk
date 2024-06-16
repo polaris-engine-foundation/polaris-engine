@@ -1,5 +1,5 @@
-CC="YOUR_SDK_CC"
-AR="YOUR_SDK_AR"
+CC=cc
+AR=ar
 
 SRCS = \
 	halwrap.c \
@@ -60,17 +60,17 @@ SRCS = \
 	cmd_wms.c
 
 all:
-	rm -rf *.o libroot-xbox ../Assets/libxengine.dll
+	rm -rf *.o libroot-xbox ../Assets/libpolarisengine.dll
 	./build-libs.sh \
 		"xbox" \
 		"$CC" \
 		"$AR"
 	"$CC" \
 		-shared \
-		-o ../Assets/libxengine.dll \
+		-o ../Assets/libpolarisengine.dll \
 		-O2 \
 		-fPIC \
-		-DXENGINE_TARGET_UNITY \
+		-DPOLARIS_ENGINE_TARGET_UNITY \
 		-DNO_CDECL \
 		-I./libroot-xbox/include \
 		-I./libroot-xbox/include/png \

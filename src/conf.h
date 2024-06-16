@@ -5,8 +5,8 @@
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-#ifndef XENGINE_CONF_H
-#define XENGINE_CONF_H
+#ifndef POLARIS_ENGINE_CONF_H
+#define POLARIS_ENGINE_CONF_H
 
 #include "types.h"
 #include "vars.h"

@@ -10,7 +10,7 @@ fi
 # Copy dependency source files to $DEPS directory.
 DEPS=deps
 
-# Set x-engine root direcotry
+# Set polaris-engine the root direcotry
 X_ENGINE_ROOT="../.."
 
 # Reconstruct $DEPS
@@ -24,7 +24,7 @@ SRC="\
 	khronos/glhelper.h \
 	linux/asound.h \
 	linux/asound.c \
-	xengine.h \
+	polarisengine.h \
 	pro.h \
 	cmd_anime.c \
 	cmd_bg.c \
@@ -117,7 +117,7 @@ for file in $SRC; do
 done
 
 # Copy the engine's CMakeLists.txt
-cp cmake/xengine.txt "$DEPS/CMakeLists.txt"
+cp cmake/polarisengine.txt "$DEPS/CMakeLists.txt"
 
 # Copy libogg source files
 tar xzf "$X_ENGINE_ROOT/build/libsrc/libogg-1.3.3.tar.gz" -C "$DEPS"

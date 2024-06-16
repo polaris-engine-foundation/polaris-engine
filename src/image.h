@@ -9,8 +9,8 @@
  * Image Manipulation
  */
 
-#ifndef XENGINE_IMAGE_H
-#define XENGINE_IMAGE_H
+#ifndef POLARIS_ENGINE_IMAGE_H
+#define POLARIS_ENGINE_IMAGE_H
 
 #include "types.h"
 
@@ -47,7 +47,7 @@ struct image {
  * ピクセル値の操作
  */
 
-#if defined(XENGINE_TARGET_WIN32) || defined(XENGINE_TARGET_MACOS) || defined(XENGINE_TARGET_IOS)
+#if defined(POLARIS_ENGINE_TARGET_WIN32) || defined(POLARIS_ENGINE_TARGET_MACOS) || defined(POLARIS_ENGINE_TARGET_IOS)
 /* Direct3D, Metalの場合はRGBA形式 */
 #define ORDER_RGBA
 #else
@@ -218,4 +218,4 @@ bool clip_by_source(int src_cx, int src_cy, int *cx, int *cy, int *dst_x,
 bool clip_by_dest(int dst_cx, int dst_cy, int *cx, int *cy, int *dst_x,
 		  int *dst_y, int *src_x, int *src_y);
 
-#endif /* XENGINE_IMAGE_H */
+#endif /* POLARIS_ENGINE_IMAGE_H */

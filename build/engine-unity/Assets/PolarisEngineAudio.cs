@@ -12,7 +12,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class XEngineAudio : MonoBehaviour
+public class PolarisEngineAudio : MonoBehaviour
 {
 	unsafe byte *wave;
 
@@ -37,7 +37,7 @@ public class XEngineAudio : MonoBehaviour
 		short[] intData = new short[samples * 2];
 		fixed(short *unsafePointer = intData)
 		{
-			XEngineScript.get_wave_samples(wave, (uint *)unsafePointer, samples);
+			PolarisEngineScript.get_wave_samples(wave, (uint *)unsafePointer, samples);
 			if (channels == 2)
 			{
 				for (int i = 0; i < samples * 2; i++)
@@ -51,7 +51,7 @@ public class XEngineAudio : MonoBehaviour
 		}
 
 		// Stop if we reached to an end-of-stream.
-		if (XEngineScript.is_wave_eos(wave))
+		if (PolarisEngineScript.is_wave_eos(wave))
 			wave = null;
 	}
 }

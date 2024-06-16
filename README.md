@@ -19,12 +19,14 @@ Polaris Engine
 * 応援してくださる方々に対して、可能な限り恩返しとして開発とメンテナンスを継続します
 
 ## Polaris Engineの特徴
-* 強力な開発環境があり、予算に合わせて Windows, Mac, Chromebook, Linuxで開発可能 (iPhone, iPad, Androidは復活に向けて準備中)
-* iPhoneアプリ, Androidアプリ, Windowsアプリ, Webアプリなどの出力が1クリックで可能、しかも多言語対応
+* 強力な開発環境があり、予算に合わせて Windows, Mac, Chromebook, Linux で開発可能
+  * iPhone, iPad, Android での開発環境は復活に向けて準備中
+* たった1クリックで魔法のように iPhoneアプリ, Androidアプリ, Windowsアプリ, Webアプリ などなどを出力可能
 * ゲーム開発への入門に最適で、覚えることはUnityの10000分の1以下
-* 視覚的操作しかできないノーコードツールとは異なり、実用的で効率的に、しかも簡単に開発できる
+* 実用的で効率的に、しかも簡単に開発できる
 * ストア公開で収益化が可能で、エンジン利用料は永遠にゼロ
 * 作品の人気が出たらインディー制作から商業制作へPolaris Engineのままシフトが可能 (家庭用ゲーム機も！)
+* ゲームの多言語対応も簡単で、Steamでの販売に最適
 * <a href="https://github.com/polaris-engine-foundation/polaris-engine/wiki/チュートリアル">かんたんなチュートリアル</a>に取り組めば、その日のうちに使いこなせる
 * 開発環境がシンプルで使いやすい
 * 作品のデバッグがとても楽
@@ -48,18 +50,20 @@ Polaris Engine制作のゲームはほぼすべてのデバイスに対応して
 * 商業のゲームクリエイタを目指している方
 * ご自分のスマホやタブレットで動作させてみたい方 (ストア審査なし)
 * App Store / Google Playストア / Steam などにデビューしてみたい方 (ストア審査あり)
-* WindowsだけでなくMac, iPhone, iPad, Android, Chromebook, Linuxでもゲーム開発してみたい方
+* Windows だけでなく Mac や Linux でもゲーム開発してみたい方
 
 ## アプリラインナップ
 
 ### デスクトップ版 Polaris Engine 開発環境
-* Windows, Mac, Chromebook, Linuxで利用できる、Polaris Engineのメイン開発環境です
+* Polaris Engine のメイン開発環境です
+* Windows, Mac, Chromebook, Linuxで利用できます
 * 概要
-  * ベースの小説を書いた上で、右クリックして演出を追加すれば、ゲームとして動き始めます
-  * 作ったゲームは、「エクスポート機能」を使うことで、ワンクリックでiPhone, Android, Windows, macOS, Web, 家庭用ゲーム機のゲームとして出力できます
+  * 文芸部スタイル: ベースの小説を書いた上で、右クリックして演出を追加すれば、ゲームとして動き始めます
+  * 美術部スタイル: ベースの絵を描いた上で、文章を付けると、ゲームとして動き始めます
+  * 作ったゲームは「エクスポート機能」を使うことで、ワンクリックでiPhone, Android, Windows, macOS, Web, 家庭用ゲーム機のゲームとして出力できます
   * さらにデバッグ支援として、1行ずつ目視しながら実行できる機能や、フラグの変化を確認する機能もあります
 * 動作環境はWindowsだけでなく、Macはもちろん、Linuxなど多様なOSでフル機能が利用できます
-  * 1万円で買えるPCやChromebookでもPolaris Engineの開発環境を利用できます
+  * 1万円未満で買える中古PCやChromebookでもPolaris Engineの開発環境を利用できます
   * これにはPolaris Engine開発者の「どのような境遇にあっても才能を発揮してほしい」という思いが込められています
 * 動作環境
   * Microsoft Windows
@@ -76,7 +80,7 @@ Polaris Engine制作のゲームはほぼすべてのデバイスに対応して
     * macOS 14 Sonoma
     * CPU: Apple Silicon, Intel Core
     * SDK: C, AppKit (Ojective-C), Metal
-  * Linux / BSD / Other POSIX OS
+  * Linux / BSD
     * CPU: Any
     * OS: Linux / FreeBSD / NetBSD / OpenBSD
     * SDK: C, Qt6 (C++), Wayland or XCB, OpenGL 3.2

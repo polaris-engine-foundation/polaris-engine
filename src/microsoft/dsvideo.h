@@ -9,8 +9,8 @@
  * DirectShow video playback
  */
 
-#ifndef XENGINE_DSVIDEO_H
-#define XENGINE_DSVIDEO_H
+#ifndef POLARIS_ENGINE_DSVIDEO_H
+#define POLARIS_ENGINE_DSVIDEO_H
 
 #include "../polarisengine.h"
 

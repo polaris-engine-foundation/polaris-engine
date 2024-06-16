@@ -10,8 +10,8 @@
  * 走査変換バッファ
  */
 
-#ifndef XENGINE_SCBUF_H
-#define XENGINE_SCBUF_H
+#ifndef POLARIS_ENGINE_SCBUF_H
+#define POLARIS_ENGINE_SCBUF_H
 
 #include "types.h"
 
@@ -41,4 +41,4 @@ void scan_edge_max(int x1, int y1, int x2, int y2);
 /* 指定した走査線の最小値と最大値を取得する */
 void get_scan_line(int y, int *min, int *max);
 
-#endif /* XENGINE_SCBUF_H */
+#endif /* POLARIS_ENGINE_SCBUF_H */
