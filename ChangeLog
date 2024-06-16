@@ -1,17 +1,18 @@
-<html>
-<body>
-<h1>Release Notes</h1>
-<p>This file is referred by the CI/CD pipeline.</p>
-<ul>
+<html><head></head><body>
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 1.99.3 2024/6/17
+  <ul>
+    <li>軽微な修正</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 1.99.2 2024/6/16
   <ul>
     <li>リブランド時に未変更だったファイル名の変更</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 1.99.1 2024/6/16
   <ul>
     <li>GitHubの整理</li>
@@ -3124,6 +3125,4 @@
   </ul>
 </li>
 
-</ul>
-</body>
-</html>
+</ul></body></html>
