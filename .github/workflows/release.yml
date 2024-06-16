@@ -119,7 +119,7 @@ jobs:
           cd ../..
 
           echo "Building polaris-engine.exe"
-          cd pro-windows
+          cd build/pro-windows
           make clean
           make -j8 VERSION="$VERSION"
           cd ../..
