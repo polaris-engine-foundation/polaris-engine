@@ -1,6 +1,7 @@
 on:
   push:
     branches: ['master']
+    files: ['ChangeLog']
 
 jobs:
   release:
@@ -74,14 +75,10 @@ jobs:
           VERSION=`grep -a1 '<!-- BEGIN-LATEST-JP -->' ChangeLog | tail -n1`
           VERSION=`echo $VERSION | cut -d ' ' -f 3`
           NOTE_JP=`cat ChangeLog | awk '/BEGIN-LATEST-JP/,/END-LATEST-JP/' | tail -n +2 | ghead -n -1`
-          NOTE_EN=`cat ChangeLog | awk '/BEGIN-LATEST-EN/,/END-LATEST-EN/' | tail -n +2 | ghead -n -1`
           echo "Going to release version $VERSION"
           echo ""
           echo "[Japanese Note]"
           echo "$NOTE_JP"
-          echo ""
-          echo "[English Note]"
-          echo "$NOTE_EN"
           echo ""
 
           echo "Building game.exe"
@@ -166,4 +163,4 @@ jobs:
           echo "Making a release on GitHub."
           mv build/installer-windows/polaris-engine-installer.exe polaris-engine-installer-windows.exe
           mv build/pro-macos/polaris-engine.dmg polaris-engine-installer-macos.dmg
-          yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP<br>$NOTE_EN" polaris-engine-installer-windows.exe polaris-engine-installer-macos.dmg
+          yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_JP" polaris-engine-installer-windows.exe polaris-engine-installer-macos.dmg

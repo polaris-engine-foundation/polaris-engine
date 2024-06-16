@@ -41,7 +41,6 @@ VERSION=`echo $VERSION | cut -d ' ' -f 3`
 # Get the release notes.
 #
 NOTE_JP=`cat ../ChangeLog | awk '/BEGIN-LATEST-JP/,/END-LATEST-JP/' | tail -n +2 | $HEAD -n -1`
-NOTE_EN=`cat ../ChangeLog | awk '/BEGIN-LATEST-EN/,/END-LATEST-EN/' | tail -n +2 | $HEAD -n -1`
 
 #
 # Do an interactive confirmation.
@@ -51,9 +50,6 @@ echo "Are you sure you want to release version $VERSION?"
 echo ""
 echo "[Japanese Note]"
 echo "$NOTE_JP"
-echo ""
-echo "[English Note]"
-echo "$NOTE_EN"
 echo ""
 echo "(press enter to proceed)"
 read str
@@ -224,10 +220,10 @@ say "GitHubでリリースを作成中です"
 git push github master
 git tag -a "v$VERSION" -m "release"
 git push github "v$VERSION"
-mv installer-windows/polaris-engine-installer.exe "polaris-engine-$VERSION.exe"
-mv pro-macos/polaris-engine.dmg "polaris-engine-$VERSION.dmg"
-yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_EN" "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
-rm "polaris-engine-$VERSION.exe" "polaris-engine-$VERSION.dmg"
+mv installer-windows/polaris-engine-installer.exe polaris-engine-installer-windows.exe
+mv pro-macos/polaris-engine.dmg polaris-engine-installer-macos.dmg
+yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_EN" polaris-engine-installer-windows.exe polaris-engine-macos.dmg
+rm polaris-engine-installer-windows.exe polaris-engine-macos.dmg
 
 #
 # Finish.
