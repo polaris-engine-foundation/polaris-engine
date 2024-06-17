@@ -1,10 +1,10 @@
 {
-    "name": "x-engine-extension",
-    "displayName": "x-engine Extension",
-    "description": "x-engine Extension",
+    "name": "polaris-engine-extension",
+    "displayName": "polaris-engine Extension",
+    "description": "polaris-engine Extension",
     "version": "0.0.3",
     "publisher": "xdev-001",
-    "repository": "https://github.com/xdev-001/x-engine",
+    "repository": "https://github.com/polaris-engine-foundation/polaris-engine",
     "engines": {
         "vscode": "^1.28.0"
     },
@@ -13,75 +13,75 @@
     ],
     "contributes": {
         "languages": [{
-            "id": "x-engine-scenario",
+            "id": "polaris-engine-scenario",
             "extensions": [
                 ".txt"
             ],
             "aliases": [
-                "x-engine Scenario",
+                "polaris-engine Scenario",
                 "txt"
             ],
             "configuration": "./language-scenario.json"
         },
         {
-            "id": "x-engine-gui",
+            "id": "polaris-engine-gui",
             "extensions": [
                 ".txt"
             ],
             "aliases": [
-                "x-engine GUI",
+                "polaris-engine GUI",
                 "txt"
             ],
             "configuration": "./language-gui.json"
         },
         {
-            "id": "x-engine-wms",
+            "id": "polaris-engine-wms",
             "extensions": [
                 ".txt"
             ],
             "aliases": [
-                "x-engine WMS",
+                "polaris-engine WMS",
                 "txt"
             ],
             "configuration": "./language-wms.json"
         },
         {
-            "id": "x-engine-anime",
+            "id": "polaris-engine-anime",
             "extensions": [
                 ".txt"
             ],
             "aliases": [
-                "x-engine Anime",
+                "polaris-engine Anime",
                 "txt"
             ],
             "configuration": "./language-anime.json"
         }],
         "grammars": [
             {
-            "language": "x-engine-scenario",
+            "language": "polaris-engine-scenario",
             "scopeName": "source-sc.txt",
-            "path": "./syntaxes/x-engine-scenario.tmLanguage.json"
+            "path": "./syntaxes/polaris-engine-scenario.tmLanguage.json"
             },
             {
-                "language": "x-engine-wms",
+                "language": "polaris-engine-wms",
                 "scopeName": "source-wms.txt",
-                "path": "./syntaxes/x-engine-wms.tmLanguage.json"
+                "path": "./syntaxes/polaris-engine-wms.tmLanguage.json"
             }
         ],
         "snippets": [{
-            "language": "x-engine-scenario",
+            "language": "polaris-engine-scenario",
             "path": "./snippets-scenario.json"
         },
         {
-            "language": "x-engine-gui",
+            "language": "polaris-engine-gui",
             "path": "./snippets-gui.json"
         },
         {
-            "language": "x-engine-wms",
+            "language": "polaris-engine-wms",
             "path": "./snippets-wms.json"
         },
         {
-            "language": "x-engine-anime",
+            "language": "polaris-engine-anime",
             "path": "./snippets-anime.json"
         }]
     }

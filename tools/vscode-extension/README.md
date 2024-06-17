@@ -1,3 +1,3 @@
-# x-engine Extension
+# Polaris Engine Extension
 
-The official `x-engine` Extension.
+The official `Polaris Engine` Extension.
