@@ -111,7 +111,8 @@ setup:
 		echo 'Installing build tools...'; \
 		brew install mingw-w64 gsed cmake coreutils emscripten makensis create-dmg; \
 		echo "Building libraries..."; \
-		cd build/engine-windows && ./build-libs.sh && cd ../..; \		cp -Ra build/engine-windows/libroot build/pro-windows/; \
+		cd build/engine-windows && ./build-libs.sh && cd ../..; \
+		cp -Ra build/engine-windows/libroot build/pro-windows/; \
 		cd build/engine-windows-64 && ./build-libs.sh && cd ../..; \
 		cd build/engine-macos && ./build-libs.sh && cd ../..; \
 		cd build/engine-ios && ./build-libs-device.sh && ./build-libs-sim.sh && cd ../..; \
