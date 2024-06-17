@@ -216,7 +216,7 @@ rm ../games/japanese-tategaki/txt/library/orbis.txt
 #
 echo ""
 echo "Making a release on GitHub."
-say "GitHubでリリースを作成しますか？"
+say "GitHubでリリースを作成するにはリターンキーを押してください"
 read str
 say "GitHubでリリースを作成中です"
 git push github master
