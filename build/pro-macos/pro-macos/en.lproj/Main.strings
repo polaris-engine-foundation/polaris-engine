@@ -65,8 +65,8 @@
 /* Class = "NSMenuItem"; title = "Center"; ObjectID = "CuQ-Dw-f40"; */
 "CuQ-Dw-f40.title" = "Center";
 
-/* Class = "NSMenuItem"; title = "x-engine Help"; ObjectID = "EB8-K8-Je8"; */
-"EB8-K8-Je8.title" = "x-engine Help";
+/* Class = "NSMenuItem"; title = "Polaris Engine Help"; ObjectID = "EB8-K8-Je8"; */
+"EB8-K8-Je8.title" = "Polaris Engine Help";
 
 /* Class = "NSMenu"; title = "Run"; ObjectID = "FCx-re-lDJ"; */
 "FCx-re-lDJ.title" = "Run";
@@ -128,8 +128,8 @@
 /* Class = "NSButtonCell"; title = "..."; ObjectID = "PzB-CR-MjL"; */
 "PzB-CR-MjL.title" = "...";
 
-/* Class = "NSMenuItem"; title = "Hide x-engine"; ObjectID = "QJg-TJ-Hwe"; */
-"QJg-TJ-Hwe.title" = "Hide x-engine";
+/* Class = "NSMenuItem"; title = "Hide Polaris Engine"; ObjectID = "QJg-TJ-Hwe"; */
+"QJg-TJ-Hwe.title" = "Hide Polaris Engine";
 
 /* Class = "NSMenuItem"; title = "Run"; ObjectID = "QMk-Ey-jOt"; */
 "QMk-Ey-jOt.title" = "Run";
@@ -164,17 +164,17 @@
 /* Class = "NSMenuItem"; title = "Music"; ObjectID = "Zg1-fR-VSk"; */
 "Zg1-fR-VSk.title" = "Music";
 
-/* Class = "NSMenuItem"; title = "x-engine"; ObjectID = "a6d-Ci-fPe"; */
-"a6d-Ci-fPe.title" = "x-engine";
+/* Class = "NSMenuItem"; title = "Polaris Engine"; ObjectID = "a6d-Ci-fPe"; */
+"a6d-Ci-fPe.title" = "Polaris Engine";
 
 /* Class = "NSButtonCell"; title = "Continue"; ObjectID = "aAa-5x-ufg"; */
 "aAa-5x-ufg.title" = "Continue";
 
-/* Class = "NSMenu"; title = "x-engine"; ObjectID = "akB-3L-oog"; */
-"akB-3L-oog.title" = "x-engine";
+/* Class = "NSMenu"; title = "Polaris Engine"; ObjectID = "akB-3L-oog"; */
+"akB-3L-oog.title" = "Polaris Engine";
 
-/* Class = "NSMenuItem"; title = "About x-engine"; ObjectID = "avs-le-99L"; */
-"avs-le-99L.title" = "About x-engine";
+/* Class = "NSMenuItem"; title = "About Polaris Engine"; ObjectID = "avs-le-99L"; */
+"avs-le-99L.title" = "About Polaris Engine";
 
 /* Class = "NSMenuItem"; title = "Stop"; ObjectID = "b6D-6C-JWV"; */
 "b6D-6C-JWV.title" = "Stop";
@@ -245,8 +245,8 @@
 /* Class = "NSButtonCell"; title = "Move"; ObjectID = "pQe-OI-VM5"; */
 "pQe-OI-VM5.title" = "Move";
 
-/* Class = "NSMenuItem"; title = "Quit x-engine"; ObjectID = "qNM-vx-ZCV"; */
-"qNM-vx-ZCV.title" = "Quit x-engine";
+/* Class = "NSMenuItem"; title = "Quit Polaris Engine"; ObjectID = "qNM-vx-ZCV"; */
+"qNM-vx-ZCV.title" = "Quit Polaris Engine";
 
 /* Class = "NSMenuItem"; title = "Character"; ObjectID = "su8-dn-muC"; */
 "su8-dn-muC.title" = "Character";

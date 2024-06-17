@@ -12,11 +12,11 @@
                 <application id="MGu-Rm-jbE" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="Edm-AM-oaz">
                         <items>
-                            <menuItem title="x-engine" id="pU9-Ul-rHW">
+                            <menuItem title="Polaris Engine" id="pU9-Ul-rHW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="x-engine" systemMenu="apple" id="QlC-Ic-WmO">
+                                <menu key="submenu" title="Polaris Engine" systemMenu="apple" id="QlC-Ic-WmO">
                                     <items>
-                                        <menuItem title="About x-engine" id="a6J-6S-gH3">
+                                        <menuItem title="About Polaris Engine" id="a6J-6S-gH3">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="1DA-IN-1bO"/>
@@ -25,7 +25,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="shQ-pW-UQw"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="E9b-vE-gKg"/>
-                                        <menuItem title="Hide x-engine" keyEquivalent="h" id="YXM-dg-JAi"/>
+                                        <menuItem title="Hide Polaris Engine" keyEquivalent="h" id="YXM-dg-JAi"/>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="Pek-LO-TEZ">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                         </menuItem>
@@ -33,7 +33,7 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eT8-I2-3fe"/>
-                                        <menuItem title="Quit x-engine" keyEquivalent="q" id="Cys-Vz-Zwv"/>
+                                        <menuItem title="Quit Polaris Engine" keyEquivalent="q" id="Cys-Vz-Zwv"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -48,7 +48,7 @@
         <scene sceneID="JGG-II-FdY">
             <objects>
                 <windowController id="QDa-Uy-LJl" customClass="WindowController" sceneMemberID="viewController">
-                    <window key="window" title="x-engine" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="kiB-pv-QHe" userLabel="x-engine">
+                    <window key="window" title="Polaris Engine" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="kiB-pv-QHe" userLabel="Polaris Engine">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="315" width="856" height="405"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4WV-uO-TSw">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4WV-uO-TSw">
                                         <rect key="frame" x="20" y="320" width="371" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Or select a template:" id="kw6-Qf-ReF">
@@ -223,7 +223,7 @@
                                             <action selector="onOpenScriptButton:" target="rdk-rJ-M5M" id="yTo-7w-aqh"/>
                                         </connections>
                                     </button>
-                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcA-e7-8fq">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcA-e7-8fq">
                                         <rect key="frame" x="20" y="651" width="334" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Lvg-TU-u5j">
@@ -257,7 +257,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6P-a3-plD">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6P-a3-plD">
                                         <rect key="frame" x="20" y="20" width="297" height="71"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="4dU-oN-Bbm">
@@ -277,7 +277,7 @@
                                             <action selector="onUpdateVariablesButton:" target="rdk-rJ-M5M" id="VWj-33-XPA"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="09a-2y-TLU">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="09a-2y-TLU">
                                         <rect key="frame" x="20" y="99" width="267" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Changed Variables (non-initial values only):" id="wJ8-Id-DCW">
@@ -325,11 +325,11 @@
                 <customObject id="Pmy-G7-ne3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu title="Main Menu" systemMenu="main" id="LdR-EW-Rrm">
                     <items>
-                        <menuItem title="x-engine" id="XTj-Xt-vvH">
+                        <menuItem title="Polaris Engine" id="XTj-Xt-vvH">
                             <modifierMask key="keyEquivalentModifierMask"/>
-                            <menu key="submenu" title="x-engine" systemMenu="apple" id="vet-ut-3HJ">
+                            <menu key="submenu" title="Polaris Engine" systemMenu="apple" id="vet-ut-3HJ">
                                 <items>
-                                    <menuItem title="About x-engine" id="O6U-wH-vt0">
+                                    <menuItem title="About Polaris Engine" id="O6U-wH-vt0">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="onAbout:" target="rdk-rJ-M5M" id="noe-zq-b9d"/>
@@ -341,7 +341,7 @@
                                         <menu key="submenu" title="Services" systemMenu="services" id="kmi-mK-1rS"/>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="kio-d2-z2C"/>
-                                    <menuItem title="Hide x-engine" keyEquivalent="h" id="hSY-Qw-OLi"/>
+                                    <menuItem title="Hide Polaris Engine" keyEquivalent="h" id="hSY-Qw-OLi"/>
                                     <menuItem title="Hide Others" keyEquivalent="h" id="QqN-z3-2zS">
                                         <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                     </menuItem>
@@ -349,7 +349,7 @@
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="1YM-VI-MHJ"/>
-                                    <menuItem title="Quit x-engine" keyEquivalent="q" id="GpZ-A9-bxc">
+                                    <menuItem title="Quit Polaris Engine" keyEquivalent="q" id="GpZ-A9-bxc">
                                         <connections>
                                             <action selector="onQuit:" target="rdk-rJ-M5M" id="NfH-8g-JSR"/>
                                         </connections>
@@ -916,7 +916,7 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="Help" systemMenu="help" id="4j6-yJ-ICH">
                                 <items>
-                                    <menuItem title="x-engine Help" state="on" keyEquivalent="?" id="YeR-y6-Mlf">
+                                    <menuItem title="Polarie Engine Help" state="on" keyEquivalent="?" id="YeR-y6-Mlf">
                                         <connections>
                                             <action selector="onHelp:" target="rdk-rJ-M5M" id="EZN-q4-WVI"/>
                                         </connections>
