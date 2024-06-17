@@ -17,7 +17,7 @@ FILES_MACOS = \
 	../../src/apple/GameShaders.metal
 
 polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
-	@echo "Building polaris-engine.app"
+	@echo "Building Polaris Engine.app"
 	@rm -rf build
 	@echo 'archiving...'
 	@xcodebuild \
@@ -46,7 +46,7 @@ polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 		-exportArchive \
 		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
 		-exportOptionsPlist export-options.plist
-	@rm -rf "build/Release/polaris-engine.app"
+	@rm -rf "build/Release/Polaris\ Engine.app"
 	@echo 'exporting...'
 	@until \
 		xcodebuild \
@@ -65,9 +65,9 @@ polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 	@echo "Successfully notarized."
 	@rm -rf tmp *.dmg
 	@mkdir tmp
-	@cp -Ra "build/Release/polaris-engine.app" "tmp/polaris-engine.app"
+	@cp -Ra "build/Release/Polaris Engine.app" "tmp/Polaris Engine.app"
 	@echo "Creating a dmg file."
-	@hdiutil create -fs APFS -format UDBZ -srcfolder tmp -volname "polaris-engine" "polaris-engine.dmg"
+	@hdiutil create -fs APFS -format UDBZ -srcfolder tmp -volname "Polaris Engine" "polaris-engine.dmg"
 	@echo "Signing the dmg file."
 	@codesign --sign 'Developer ID Application' polaris-engine.dmg
 	@rm -rf tmp
