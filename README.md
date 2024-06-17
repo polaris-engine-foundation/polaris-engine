@@ -66,100 +66,53 @@ Polaris Engine制作のゲームはほぼすべてのデバイスに対応して
   * 1万円未満で買える中古PCや、安価なChromebookでも、Polaris Engineの開発環境を利用できます
   * 発展途上国で使われている20年以上前のPCでも動作するように工夫して設計されています
   * これらのことには「どのような境遇にあっても才能を発揮してほしい」という思いが込められています
-* 動作環境
+* 幅広い動作環境
   * Microsoft Windows版
-    * OS:
-      * Windows 11
-      * Windows 10 (32bit/64bit)
-      * Windows 8.1 (32bit/64bit)
-      * Windows 8 (32bit/64bit)
-      * Windows 7 (32bit/64bit)
-      * Windows Vista (32bit/64bit)
-      * Windows XP (32bit/64bit)
-    * CPU:
-      * Intel x86 互換プロセッサ
-      * Arm64 互換プロセッサ
-    * SDK:
-      * ANSI C (1989)
-      * Win32 API (1993)
-      * DirectSound 5.0 (1997)
-      * MSVCRT.DLL (2001)
-      * Direct3D 9.0 (2002)
+    * OS: Windows 11, 10, 8.1, 8, 7, Vista, XP (すべてで32bit動作)
+    * CPU: Intel/AMD/Arm64
+    * 利用技術: ANSI C (1989), Win32 API (1993), DirectSound 5.0 (1997), Direct3D 9.0 (2002)
   * Apple macOS版
-    * OS:
-      * macOS 10.13 High Sierra
-      * macOS 10.14 Mojave
-      * macOS 10.15 Catalina
-      * macOS 11 Big Sur
-      * macOS 12 Monterey
-      * macOS 13 Ventura
-      * macOS 14 Sonoma
-    * CPU:
-      * Intel Core (-2021)
-      * Apple Silicon (2021-)
-    * SDK:
-      * ANSI C (1989)
-      * AppKit Ojective-C 2.0 (2007)
-      * Metal (2019)
-  * Linux / BSD 版
+    * OS: macOS 10.13, 10.14, 10.15, 11, 12, 13, 14
+    * CPU: Intel Core (-2021), Apple Silicon (2021-)
+    * 利用技術: ANSI C (1989), AppKit Ojective-C 2.0 (2007), Metal (2019)
+  * Linux / BSD 版 (Chromebook含む)
     * CPU: Any
-    * OS:
-      * Linux (Debian, Ubuntu, etc.)
-      * FreeBSD
-    * SDK:
-      * ANSI C (1989)
-      * OpenGL 3.0 (2008)
-      * Qt6 C++17 (2020)
+    * OS: Linux (Debian, Ubuntu, etc.), FreeBSD
+    * 利用技術: ANSI C (1989), OpenGL 3.0 (2008), Qt6 C++17 (2020)
 
 ### モバイル版 Polaris Engine 開発環境
 * iPhone, iPad, Android, Chromebook で動作します
-  * 現在、再公開に向けて調整中です
-  * Polaris Engineのモバイル版を利用すれば、編集とプレビューについて外出先でも行えます
-  * iCloud Driveなどのクラウドストレージを使い、イラスト制作ソフトやテキストエディタと組み合わせてご利用ください
+  * 現在、ストアでの再公開に向けて準備中です
+* Polaris Engineのモバイル版を利用すれば、編集とプレビューについて外出先でも行えます
+  * iCloud Driveなどのクラウドストレージが必要です
+  * イラスト制作ソフトやテキストエディタと組み合わせてご利用ください
   * あなたのお気に入りのデバイスで、どこにいてもクリエイティブに
 * 動作環境
   * iOS
-    * iCloud Driveが必須
-    * iOS 13 / iPadOS 13
-    * iOS 14 / iPadOS 14
-    * iOS 15 / iPadOS 15
-    * iOS 16 / iPadOS 16
-    * iOS 17 / iPadOS 17
-    * visionOS 1.0
-    * visionOS 1.1
-    * SDK: C, UIKit (Objective-C), Metal
+    * iOS/iPadOS 13, 14, 15, 16, 17, visionOS 1.0, 1.1 (iCloud Driveが必須)
+    * 利用技術: ANSI C, UIKit Objective-C 2.0, Metal
   * Android / Chromebook
-    * Android 10 (ファイル操作の都合上、Android 10以降が必須)
-    * Android 11
-    * Android 12
-    * Android 13
-    * Android 14
-    * SDK: C (Android NDK), Java, OpenGL ES 2.0
+    * Android 10, 11, 12, 13, 14 (ファイル操作の都合上、Android 10以降が必須)
+    * 利用技術: ANSI C (Android NDK), Java, OpenGL ES 2.0
 
 ### Windows版ゲーム
-* Polaris Engineで作ったゲームは、ワンクリックでエクスポートすると、Windows版ゲームになります
-* Microsoft StoreやSteamでの有償公開が可能です
+* Polaris Engineで作ったゲームは、たった1クリックでWindows版ゲームとして出力されます
+* SteamやMicrosoft Storeでの有償公開が可能です
 * 動作環境
-  * OS: Windows 11, Windows 10, Windows 8.1, Windows 8, Windows 7, Windows Vista, Windows XP (すべて32bit動作)
+  * OS: Windows 11, 10, 8.1, 8, 7, Vista, XP (すべてで32bit動作)
   * CPU: Intel/AMD/Arm64
-  * SDK: C, COM (C++), Win32 API, Direct3D 9, MSVCRT.DLL
+  * 利用技術: C, COM (C++), Win32 API, Direct3D 9, DirectSound 5.0, MSVCRT.DLL
 
 ### iOS版ゲーム
 * Polaris Engineで作ったゲームは、わずか1クリックでiOSアプリのIPAファイルに変換できます (看板に偽りなし)
   * ご自分のiPhoneへのインストールはAirDropでIPAファイルを送るだけです
-  * App Storeでの有償公開が可能です
-  * USB接続で配布すればストア審査なしで即売会で100台までad-hoc配布できます
   * iPhoneとiPadだけでなくApple Vision Proにも完全対応しています
+* 配布方法
+  * App Storeでの公開が基本です
+  * 例外として、MacとのUSB接続で配布すれば、ストア審査なしで100台までad-hoc配布できます
 * 動作環境
-  * iOS 11
-  * iOS 12
-  * iOS 13 / iPadOS 13
-  * iOS 14 / iPadOS 14
-  * iOS 15 / iPadOS 15
-  * iOS 16 / iPadOS 16
-  * iOS 17 / iPadOS 17
-  * visionOS 1.0
-  * visionOS 1.1
+  * iOS/iPadOS 11, 12, 13, 14, 15, 16, 17
+  * visionOS 1.0, 1.1
   * SDK: C, UIKit (Objective-C), Metal
 
 ### Android版ゲーム
@@ -168,44 +121,30 @@ Polaris Engine制作のゲームはほぼすべてのデバイスに対応して
   * Google Playでの有償公開も可能です
   * Androidスマホやタブレットだけでなく、ChromebookやAndroid TVにも配信できます (ストアごとに設定に差異あり)
 * 動作環境
-  * Android 4.4
-  * Android 5
-  * Android 6
-  * Android 7
-  * Android 8
-  * Android 9
-  * Android 10
-  * Android 11
-  * Android 12
-  * Android 13
-  * Android 14
+  * Android 4.4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
   * SDK: C (Android NDK), Java, OpenGL ES 2.0
 
 ### Webブラウザ版ゲーム
-* Polaris Engineで作ったゲームは、たった1クリックでWeb用にエクスポートできて、そのままWebブラウザ用に公開できます (看板に偽りなし)
+* Polaris Engineで作ったゲームは、たった1クリックでWebブラウザ用にエクスポートできます (看板に偽りなし)
   * 画像のWebP化、音源圧縮、フォントのWOFF化などの工夫をすれば、最大200MB程度の大きさのゲームをWebで提供できます
-  * 外出中のユーザーにもインストール不要で遊んでいただけるので、製品のデモや体験版にも最適です
+  * 外出中のユーザーにもインストール不要で遊んでいただけるので、製品のデモや体験版に最適です
 * ページ読み込みの段階でゲームデータを一括ダウンロードする仕様です
   * 電車移動中などにスマホでプレイした際、通信品質が変わっても影響を受けません
   * マウスの右クリックがなくてもタッチだけで使えるように、右上のシステムメニューをはじめとするUIを整備してあります
 * ブラウザ版の公開は<a href="https://www.freem.ne.jp">ふりーむ！</a>様へどうぞ
-  * 本ソフトウェアとふりーむ！様は一切関係ありませんが、才能の発掘というビジョンに共感し、さらに、長年の応援に感謝しております
+  * 本ソフトウェアとふりーむ！様は一切関係ありませんが、長年の応援に感謝しております
   * ユーザーが将来的にストア審査をクリアしていく上で、ふりーむ！様での審査が貴重な経験になるでしょう
 * 動作ブラウザ
-  * Safari
-  * Google Chrome
-  * Chromium
-  * Microsoft Edge
-  * Mozilla Firefox
-  * SDK: C, Emscripten, WebGL 2
+  * Safari, Google Chrome, Chromium, Microsoft Edge, Mozilla Firefox
+  * 利用技術: C, Emscripten, WebGL 2
 
 ### Mac版ゲーム
 * Polaris Engineで作ったゲームは、たった1クリックでMac向けにエクスポートできます (看板に偽りなし)
   * プログラミングが苦手な方でも、ビルド済みのアプリを簡単に出力できます (アプリとデータファイルを分離した形式)
   * Xcodeでビルドできるソースコード一式も出力できます (単一アプリに統合した形式)
-  * Mac App Store や Steam での有償公開が可能です
+  * Mac App StoreやSteamでの公開が可能です
   * ZIPでの無償配布も可能です
-  * 参考情報: iOS版をApp Storeで配信することで、2021年以降発売のMacへの配信も可能です (Designed for iPadと呼ぶ)
+  * 参考情報: iOS版をApp Storeで配信することで、2021年以降発売のMacへの配信も可能です (Designed for iPad)
 * 動作環境
   * macOS 10.13 High Sierra
   * macOS 10.14 Mojave
@@ -220,11 +159,11 @@ Polaris Engine制作のゲームはほぼすべてのデバイスに対応して
 ## ライセンス
 * ライセンスが自由なのがPolaris Engineの魅力の一つです
 * Polaris Engineは`MITライセンス`の下で公開されています
-* Polaris Engineの著作権者らが、ユーザによる用途を限定することは、ライセンス上、禁止されています
+* Polaris Engineの著作権者らが、ユーザによる用途を限定することは、ライセンス上できません
 * つまり、商用/非商用/ジャンル/年齢指定を問わず誰でも無償で自由にPolaris Engineを利用できます
 
 ## Polaris Engineの歴史
-* 2001年 開発開始 (独自JavaVMとして出発)
+* 2001年 開発を開始 (独自JavaVMとして出発)
 * 2002年 最初の公開 (GUI編集のみ)
 * 2003年 改善版の公開 (GUI/スクリプトのハイブリッド編集)
 * 2004年 移植性の追求開始 (以後10年以上に渡って何度も失敗)
@@ -261,7 +200,7 @@ Polaris Engine制作のゲームはほぼすべてのデバイスに対応して
 * 第二に、流行の言語やプラットフォームに流されなかったためです
 
 ## 連絡先
-* 開発者 `dev@polaris-engine.com`
+* `info@polaris-engine.org`
 
 ## 免責事項
 * 本ソフトウェアは、ダウンロードできる「現状のまま」で提供され、何らの保証も行われません
