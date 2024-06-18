@@ -1,8 +1,8 @@
 {
     "files.associations": {
-        "**/txt/*.txt": "x-engine-scenario",
-        "**/gui/*.txt": "x-engine-gui",
-        "**/wms/*.txt": "x-engine-wms",
-        "**/anime/*.txt": "x-engine-anime"
+        "**/txt/*.txt": "polaris-engine-scenario",
+        "**/gui/*.txt": "polaris-engine-gui",
+        "**/wms/*.txt": "polaris-engine-wms",
+        "**/anime/*.txt": "polaris-engine-anime"
     }
 }
