@@ -14,7 +14,7 @@ SRC=\
 	pack.c
 
 all:
-	@echo 'This is a command line packager for x-engine!'
+	@echo 'This is a command line packager for Polaris Engine!'
 	@echo 
 	@echo 'You can type the following commands:'
 	@echo '  make pack-linux'

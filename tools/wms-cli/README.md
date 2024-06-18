@@ -1,7 +1,7 @@
 WMS (Watermelon Script)
 =======================
 
-WMS (Watermelon Script) is a plugin language for x-engine.
+WMS (Watermelon Script) is a plugin language for Polaris Engine.
 It is designed to be intuitive and easily written by anyone who has any experience with programming.
 
 This directory provides a command line interface (CLI) for WMS.
