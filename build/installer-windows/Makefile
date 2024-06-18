@@ -2,4 +2,4 @@ all:
 	makensis -INPUTCHARSET UTF8 install-script.nsi
 
 clean:
-	rm -rf x-engine.exe games tools x-engine-installer.exe
+	rm -rf polaris-engine.exe games tools polaris-engine-installer.exe

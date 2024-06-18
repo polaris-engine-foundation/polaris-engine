@@ -1,13 +1,18 @@
 <html><head></head><body>
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 1.99.6 2024/6/18
+  <ul>
+    <li>エンジン名のtypoを修正</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 1.99.5 2024/6/17
   <ul>
     <li>Mac版の日本語訳を修正</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 1.99.4 2024/6/17
   <ul>
     <li>アイコンの修正</li>

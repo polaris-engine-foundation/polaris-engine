@@ -4,12 +4,12 @@
 <dict>
 	<key>NSUbiquitousContainers</key>
 	<dict>
-		<key>iCloud.com.x-engine.pro-ios</key>
+		<key>iCloud.com.polaris-engine.pro-ios</key>
 		<dict>
 			<key>NSUbiquitousContainerIsDocumentScopePublic</key>
 			<true/>
 			<key>NSUbiquitousContainerName</key>
-			<string>x-engine</string>
+			<string>polaris-engine</string>
 			<key>NSUbiquitousContainerSupportedFolderLevels</key>
 			<string>Any</string>
 		</dict>

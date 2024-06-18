@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.4.1)
-project(xengine-lib)
+project(polarisengine-lib)
 
 # Find Android NDK log library.
 find_library(log-lib log)
 
-# We make libxengine.so
+# We make libpolarisengine.so
 add_library(
-  xengine
+  polarisengine
   SHARED
 
   # HAL
@@ -109,7 +109,7 @@ include_directories(src/main/cpp/libvorbis/include)
 
 # Link all into a DLL
 target_link_libraries(
-  xengine
+  polarisengine
   GLESv3
   $<TARGET_NAME_IF_EXISTS:png>
   $<TARGET_NAME_IF_EXISTS:png_shared>

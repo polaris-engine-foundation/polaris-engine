@@ -245,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				26A5FFFA2B29E4A500C1ED7D /* engine-ios */,
-				26BF12CC2B29E290006A0F6E /* x-engine */,
+				26BF12CC2B29E290006A0F6E /* Polaris Engine */,
 				267492BC2BCDB2FC00943F71 /* Resources */,
 				26BF12B12B29E225006A0F6E /* Products */,
 			);
@@ -259,7 +259,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		26BF12CC2B29E290006A0F6E /* x-engine */ = {
+		26BF12CC2B29E290006A0F6E /* Polaris Engine */ = {
 			isa = PBXGroup;
 			children = (
 				260EDAE12B2A7C21006C214F /* apple */,
@@ -347,7 +347,7 @@
 				26BF12DE2B29E2EA006A0F6E /* wms_parser.tab.h */,
 				26BF131A2B29E2EB006A0F6E /* wms.h */,
 			);
-			name = "x-engine";
+			name = "Polaris Engine";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,7 +366,7 @@
 			dependencies = (
 			);
 			name = Game;
-			productName = "x-engine";
+			productName = "Polaris Engine";
 			productReference = 26BF12B02B29E225006A0F6E /* Game.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -649,7 +649,7 @@
 					"-lbrotlidec",
 					"-lbrotlicommon",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.x-engine.engine-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polaris-engine.engine-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -698,7 +698,7 @@
 					"-lbrotlidec",
 					"-lbrotlicommon",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.x-engine.engine-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polaris-engine.engine-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

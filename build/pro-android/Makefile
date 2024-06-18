@@ -94,7 +94,7 @@ setup:
 	@cp ../../src/seen.h app/src/main/cpp/
 	@cp ../../src/stage.c app/src/main/cpp/
 	@cp ../../src/stage.h app/src/main/cpp/
-	@cp ../../src/xengine.h app/src/main/cpp/
+	@cp ../../src/polarisengine.h app/src/main/cpp/
 	@cp ../../src/uimsg.h app/src/main/cpp/
 	@cp ../../src/uimsg.c app/src/main/cpp/
 	@cp ../../src/types.h app/src/main/cpp/

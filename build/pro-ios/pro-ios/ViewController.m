@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; indent-tabs-mode: nil; tab-width: 4; c-basic-offset: 4; -*- */
 
 /*
- * x-engine
+ * Polaris Engine
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
@@ -89,7 +89,7 @@ static void setStoppedState(void);
         return;
     }
 
-    // Initialize the x-engine.
+    // Initialize the engine.
     init_locale_code();
     if(!init_file())
         exit(1);

@@ -86,7 +86,7 @@
 		268A097E2BC8DD2800802099 /* pro-ios.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "pro-ios.entitlements"; sourceTree = "<group>"; };
 		268A097F2BC8DE3E00802099 /* polarisengine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = polarisengine.h; path = ../../src/polarisengine.h; sourceTree = "<group>"; };
 		268AD8BC2B38CB1D00B48542 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		26E7F0832B2E979B0076C82C /* x-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "x-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26E7F0832B2E979B0076C82C /* polaris-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "polaris-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E7F0862B2E979B0076C82C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		26E7F0872B2E979B0076C82C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		26E7F0892B2E979B0076C82C /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				26E7F0852B2E979B0076C82C /* pro-ios */,
-				26E7F09F2B2E9AC80076C82C /* x-engine */,
+				26E7F09F2B2E9AC80076C82C /* Polaris Engine */,
 				26E7F1442B2EA6BA0076C82C /* Resources */,
 				26E7F0842B2E979B0076C82C /* Products */,
 			);
@@ -218,7 +218,7 @@
 		26E7F0842B2E979B0076C82C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				26E7F0832B2E979B0076C82C /* x-engine.app */,
+				26E7F0832B2E979B0076C82C /* polaris-engine.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,7 +246,7 @@
 			path = "pro-ios";
 			sourceTree = "<group>";
 		};
-		26E7F09F2B2E9AC80076C82C /* x-engine */ = {
+		26E7F09F2B2E9AC80076C82C /* Polaris Engine */ = {
 			isa = PBXGroup;
 			children = (
 				268A097F2BC8DE3E00802099 /* polarisengine.h */,
@@ -343,7 +343,7 @@
 				26E7F0D42B2E9AF70076C82C /* wms_parser.tab.h */,
 				26E7F0A82B2E9AF70076C82C /* wms.h */,
 			);
-			name = x-engine;
+			name = "Polaris Engine";
 			sourceTree = "<group>";
 		};
 		26E7F1442B2EA6BA0076C82C /* Resources */ = {
@@ -357,9 +357,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		26E7F0822B2E979B0076C82C /* x-engine */ = {
+		26E7F0822B2E979B0076C82C /* polaris-engine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 26E7F09C2B2E979D0076C82C /* Build configuration list for PBXNativeTarget "x-engine" */;
+			buildConfigurationList = 26E7F09C2B2E979D0076C82C /* Build configuration list for PBXNativeTarget "polaris-engine" */;
 			buildPhases = (
 				26E7F07F2B2E979B0076C82C /* Sources */,
 				26E7F0802B2E979B0076C82C /* Frameworks */,
@@ -369,9 +369,9 @@
 			);
 			dependencies = (
 			);
-			name = "x-engine";
+			name = "polaris-engine";
 			productName = "pro-ios";
-			productReference = 26E7F0832B2E979B0076C82C /* x-engine.app */;
+			productReference = 26E7F0832B2E979B0076C82C /* polaris-engine.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -402,7 +402,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				26E7F0822B2E979B0076C82C /* x-engine */,
+				26E7F0822B2E979B0076C82C /* polaris-engine */,
 			);
 		};
 /* End PBXProject section */
@@ -648,7 +648,7 @@
 				DEVELOPMENT_TEAM = DT727R68TR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pro-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "x-engine";
+				INFOPLIST_KEY_CFBundleDisplayName = "Polaris Engine";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -683,7 +683,7 @@
 					"-lbrotlidec",
 					"-lbrotlicommon",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.x-engine.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polaris-engine.pro-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -706,7 +706,7 @@
 				DEVELOPMENT_TEAM = DT727R68TR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pro-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "x-engine";
+				INFOPLIST_KEY_CFBundleDisplayName = "Polaris Engine";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -741,7 +741,7 @@
 					"-lbrotlidec",
 					"-lbrotlicommon",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.x-engine.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.polaris-engine.pro-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -764,7 +764,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		26E7F09C2B2E979D0076C82C /* Build configuration list for PBXNativeTarget "x-engine" */ = {
+		26E7F09C2B2E979D0076C82C /* Build configuration list for PBXNativeTarget "polaris-engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				26E7F09D2B2E979D0076C82C /* Debug */,

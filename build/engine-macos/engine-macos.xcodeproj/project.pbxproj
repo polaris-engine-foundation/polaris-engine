@@ -225,7 +225,7 @@
 			children = (
 				26EAF2592B1F9B1F003530F4 /* engine-macos */,
 				269C49C52BCD9FDC00D02C14 /* Resources */,
-				26EAF2712B202CA6003530F4 /* x-engine */,
+				26EAF2712B202CA6003530F4 /* Polaris Engine */,
 				26EAF2582B1F9B1F003530F4 /* Products */,
 				26EAF3082B2049DE003530F4 /* Frameworks */,
 			);
@@ -256,7 +256,7 @@
 			path = "engine-macos";
 			sourceTree = "<group>";
 		};
-		26EAF2712B202CA6003530F4 /* x-engine */ = {
+		26EAF2712B202CA6003530F4 /* Polaris Engine */ = {
 			isa = PBXGroup;
 			children = (
 				2662CFD12B2A7BBA00CB3DBE /* apple */,
@@ -344,7 +344,7 @@
 				26EAF2C02B202D86003530F4 /* wms_parser.tab.h */,
 				26EAF2E32B202D87003530F4 /* wms.h */,
 			);
-			name = "x-engine";
+			name = "Polaris Engine";
 			sourceTree = "<group>";
 		};
 		26EAF3082B2049DE003530F4 /* Frameworks */ = {

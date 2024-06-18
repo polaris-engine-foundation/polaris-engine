@@ -6,12 +6,12 @@
                 xmlns:asmv2="urn:schemas-microsoft-com:asm.v2"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-  <assemblyIdentity name="x-engine"
+  <assemblyIdentity name="polaris-engine"
                     processorArchitecture="x86"
                     version="1.0.0.0"
                     type="win32"/>
 
-  <description>x-engine</description>
+  <description>Polaris Engine</description>
 
   <!-- Visual styles -->
   <dependency>

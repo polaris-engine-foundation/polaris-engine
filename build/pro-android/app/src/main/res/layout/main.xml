@@ -10,7 +10,7 @@
 
         <view
             android:id="@+id/gameView"
-            class="com.xengine.proandroid.GameView"
+            class="com.polarisengine.proandroid.GameView"
             android:layout_width="match_parent"
             android:layout_height="267dp" />
 
