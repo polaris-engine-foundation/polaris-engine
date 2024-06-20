@@ -46,7 +46,7 @@ NOTE_JP=`cat ../ChangeLog | awk '/BEGIN-LATEST-JP/,/END-LATEST-JP/' | tail -n +2
 # Do an interactive confirmation.
 #
 echo ""
-echo "Are you sure you want to release version $VERSION?"
+echo "Are you sure you want to build binaries for version $VERSION?"
 echo ""
 echo "[Japanese Note]"
 echo "$NOTE_JP"

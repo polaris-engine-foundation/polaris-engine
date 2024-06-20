@@ -5,8 +5,7 @@ build: polaris-engine-runtime polaris-engine
 polaris-engine-runtime:
 	@# For macOS.
 	@if [ ! -z "`uname | grep Darwin`" ]; then \
-		echo 'You cannot run Makefile on macOS.'; \
-		echo 'Run \'make make-release\' instead.'; \
+		echo 'On macOS, run make release instead.'; \
 		exit 1; \
 	fi;
 	@# For Linux:
@@ -40,8 +39,7 @@ polaris-engine-runtime:
 
 polaris-engine:
 	@if [ ! -z "`uname | grep Darwin`" ]; then \
-		echo 'You cannot run Makefile on macOS.'; \
-		echo 'Run \'make make-release\' instead.'; \
+		echo 'On macOS, run make release instead.'; \
 		exit 1; \
 	fi;
 	@cd build/pro-qt && \
@@ -101,8 +99,10 @@ clean:
 ## dev internal
 ##
 
-make-release:
+release:
 	@cd build && ./make-release.sh && cd ..
+	mv build/installer-windows/polaris-engine-installer.exe polaris-engine-installer-windows.exe
+	mv build/pro-macos/polaris-engine.dmg polaris-engine-installer-macos.dmg
 
 setup:
 	@if [ ! -z "`uname -a | grep Darwin`" ]; then \

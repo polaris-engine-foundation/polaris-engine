@@ -1,7 +1,7 @@
 HOW TO BUILD
 ============
  
-This document provides instructions for building various `Polaris Engine` apps from the source code.
+This document provides instructions to build various `Polaris Engine` apps from the source code.
 
 ## Getting Started
 
@@ -9,7 +9,9 @@ Firstly, you have to get the `Polaris Engine` repository using `Git`.
 
 * From the terminal, run the following command:
 ```
-git clone https://github.com/xdev-001/Polaris Engine.git
+git clone https://github.com/polaris-engine-foundation/polaris-engine.git
+cd polaris-engine
+make setup
 ```
 
 # Game Runtime (the main engine)
@@ -20,10 +22,6 @@ This method will build a Windows app on Ubuntu or macOS.
 
 * Prerequisite
   * Use Ubuntu or macOS
-  * From the terminal, navigate to the source code directory and run the following command:
-  ```
-  make setup
-  ```
 
 * Build (x86, 32-bit, recommended)
   * From the terminal, navigate to the source code directory and run the following command:
@@ -75,11 +73,7 @@ This method will build the Wasm version of `Polaris Engine`.
 This method will build a Linux app.
 
 * Prerequisite
-  * Use Ubuntu
-  * From the terminal, navigate to the source code directory and run the following command:
-  ```
-  make setup
-  ```
+  * Use Ubuntu or Debian
 
 * Build
   * From the terminal, navigate to the source code directory and run the following command:
@@ -100,15 +94,12 @@ This method will utilize `Xcode` and terminal to build an iOS app.
 
 ## Android Game
 
-* Method 1
-  * Run `Polaris Engine` and export an Android source code tree
-  * Press YES to the "Would you like to build APK?" dialog
-* Method 2
-  * This method requires `Android Studio` to build the Android app.
-  * Install `Android Studio`
-  * Run `Polaris Engine` and export an Android source code tree
-  * Open the exported project from `Android Studio`
-  * Build the project
+This method requires `Android Studio` to build the Android app.
+
+* Install `Android Studio`
+* Run `Polaris Engine` and export an Android source code tree
+* Open the exported project from `Android Studio`
+* Build the project
 
 # Development Tool
 
@@ -118,10 +109,6 @@ This method will build an app of `Polaris Engine` for Windows on Ubuntu or macOS
 
 * Prerequisite
   * Use Ubuntu or macOS
-  * From the terminal, navigate to the source code directory and run the following command:
-  ```
-  make setup
-  ```
 
 * Build
   * From the terminal, navigate to the source code directory and run the following command:
@@ -153,11 +140,7 @@ This method will utilize `Xcode` to build an iOS Pro app.
 This method will build a Linux version of Polaris Engine using Qt6.
 
 * Prerequisite
-  * Use Ubuntu
-  * From the terminal, navigate to the source code directory and run the following command:
-  ```
-  make setup
-  ```
+  * Use Ubuntu or Debian
 
 * Build
   * From the terminal, navigate to the source code directory and run the following command:
@@ -218,3 +201,12 @@ make valgrind
     device /dev/mixer
   }
   ```
+
+# Release
+
+A release is fully automated on GitHub actions CI/CD.
+However, you can make release binaries on macOS manually.
+To do so, type:
+```
+make release
+```
