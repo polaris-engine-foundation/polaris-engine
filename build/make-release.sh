@@ -212,24 +212,8 @@ rm ../games/japanese-dark/txt/library/orbis.txt
 rm ../games/japanese-tategaki/txt/library/orbis.txt
 
 #
-# Make a release on GitHub.
-#
-echo ""
-echo "Making a release on GitHub."
-say "GitHubでリリースを作成するにはリターンキーを押してください"
-read str
-say "GitHubでリリースを作成中です"
-git push github master
-git tag -a "v$VERSION" -m "release"
-git push github "v$VERSION"
-mv installer-windows/polaris-engine-installer.exe polaris-engine-installer-windows.exe
-mv pro-macos/polaris-engine.dmg polaris-engine-installer-macos.dmg
-yes "" | gh release create "v$VERSION" --title "v$VERSION" --notes "$NOTE_EN" polaris-engine-installer-windows.exe polaris-engine-macos.dmg
-rm polaris-engine-installer-windows.exe polaris-engine-macos.dmg
-
-#
 # Finish.
 #
 echo ""
-echo "Finished. $VERSION was released!"
-say "リリースが完了しました"
+echo "Finished. $VERSION was built!"
+say "リリースビルドが完了しました"
