@@ -1,13 +1,18 @@
 <html><head></head><body>
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 2.0.0-beta1 2024/6/20
+  <ul>
+    <li>特に問題がなければこの内容で2024年6月21日に2.0.0をリリース</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 1.99.7 2024/6/20
   <ul>
     <li>リリース方法の注記を追加 build/README.md</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 1.99.6 2024/6/18
   <ul>
     <li>エンジン名のtypoを修正</li>
