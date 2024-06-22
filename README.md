@@ -2,6 +2,8 @@ Polaris Engine
 ==============
 `Polaris Engine`はビジュアルノベルを制作するための開発ツールです。
 
+コンテスト情報は[こちら](https://polaris-engine.com/award2024.html)
+
 ## Polaris Engineとは？
 * Polaris Engineはノベルアプリを制作するためのソフトウェアです
   * ノベルアプリとは、小説、イラスト、サウンドを駆使したインタラクティブな創作物のことです
