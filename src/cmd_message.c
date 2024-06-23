@@ -3311,6 +3311,8 @@ static void init_lip_sync(void)
 {
 	int chpos;
 
+	if (get_command_type() == COMMAND_SERIF)
+		return;
 	if (gui_sys_flag || gui_gosub_flag)
 		return;
 

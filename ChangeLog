@@ -1,14 +1,19 @@
 <html><head></head><body>
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 2.0.1 2024/6/24
+  <ul>
+    <li>セリフでないメッセージでリップシンクが動作するバグを修正</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 2.0.0 2024/6/21
   <ul>
     <li><code>Polaris Engine 2.0.0 (Honeydew Melon)</code> をリリース</li>
     <li><a href="https://polaris-engine.com/award2024.html">コンテスト再告知はこちら</a></li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 2.0.0-beta1 2024/6/20
   <ul>
     <li>特に問題がなければこの内容で2024年6月21日に2.0.0をリリース</li>
