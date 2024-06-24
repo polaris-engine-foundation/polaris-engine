@@ -3,7 +3,7 @@
 "0CS-J2-e1h.title" = "左";
 
 /* Class = "NSMenuItem"; title = "Reload Script"; ObjectID = "1lD-O9-yil"; */
-"1lD-O9-yil.title" = "スクリプトをリロードする";
+"1lD-O9-yil.title" = "スクリプトをリロード";
 
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "1qa-08-GOe"; */
 "1qa-08-GOe.title" = "検索…";
@@ -18,7 +18,7 @@
 "2wm-hK-Wrq.title" = "演出";
 
 /* Class = "NSMenuItem"; title = "Change Background Only"; ObjectID = "38H-Po-2Hw"; */
-"38H-Po-2Hw.title" = "背景のみを変更する";
+"38H-Po-2Hw.title" = "背景のみを変更";
 
 /* Class = "NSButtonCell"; title = "Open Existing Game"; ObjectID = "4JV-pZ-yQu"; */
 "4JV-pZ-yQu.title" = "既存のゲームを開く";
@@ -33,19 +33,19 @@
 "55j-Il-COD.title" = "すべてを選択";
 
 /* Class = "NSMenuItem"; title = "Export for macOS"; ObjectID = "5Ow-a0-jLH"; */
-"5Ow-a0-jLH.title" = "macOS用にエクスポートする";
+"5Ow-a0-jLH.title" = "macOS用にエクスポート";
 
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "5cE-WU-oB4"; */
 "5cE-WU-oB4.title" = "Check Grammar With Spelling";
 
 /* Class = "NSMenuItem"; title = "Show"; ObjectID = "5ey-Fa-8ou"; */
-"5ey-Fa-8ou.title" = "表示する";
+"5ey-Fa-8ou.title" = "表示";
 
 /* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "5g6-zg-v7R"; */
 "5g6-zg-v7R.title" = "Check Document Now";
 
 /* Class = "NSMenuItem"; title = "Stop"; ObjectID = "5z6-ia-VK7"; */
-"5z6-ia-VK7.title" = "停止する";
+"5z6-ia-VK7.title" = "停止";
 
 /* Class = "NSMenuItem"; title = "Volume"; ObjectID = "6Ef-b3-751"; */
 "6Ef-b3-751.title" = "音量";
@@ -75,13 +75,13 @@
 "9sk-0j-E9m.title" = "再生";
 
 /* Class = "NSMenuItem"; title = "Export Package Only"; ObjectID = "A4T-hz-oYB"; */
-"A4T-hz-oYB.title" = "パッケージのみをエクスポートする";
+"A4T-hz-oYB.title" = "パッケージのみをエクスポート";
 
 /* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "ATj-gk-rWy"; */
 "ATj-gk-rWy.title" = "Paste and Match Style";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "AfT-cx-hk0"; */
-"AfT-cx-hk0.title" = "すべて表示する";
+"AfT-cx-hk0.title" = "すべて表示";
 
 /* Class = "NSMenuItem"; title = "Multiple"; ObjectID = "Ale-82-6dC"; */
 "Ale-82-6dC.title" = "複数";
@@ -99,7 +99,7 @@
 "CZS-Kd-Jg6.title" = "Find and Replace…";
 
 /* Class = "NSMenuItem"; title = "Stop"; ObjectID = "CcH-2y-hus"; */
-"CcH-2y-hus.title" = "停止する";
+"CcH-2y-hus.title" = "停止";
 
 /* Class = "NSMenuItem"; title = "Choice"; ObjectID = "Cdi-y8-CYh"; */
 "Cdi-y8-CYh.title" = "選択肢";
@@ -108,7 +108,7 @@
 "CxE-ce-4uI.title" = "ファイル";
 
 /* Class = "NSMenuItem"; title = "Quit Polaris Engine"; ObjectID = "Cys-Vz-Zwv"; */
-"Cys-Vz-Zwv.title" = "Polaris Engine を終了する";
+"Cys-Vz-Zwv.title" = "Polaris Engine を終了";
 
 /* Class = "NSMenuItem"; title = "Wait For Click"; ObjectID = "DVv-Jf-Ko4"; */
 "DVv-Jf-Ko4.title" = "クリックを待つ";
@@ -117,7 +117,7 @@
 "Dhc-wh-Ka2.title" = "エクスポート";
 
 /* Class = "NSMenuItem"; title = "Show Background"; ObjectID = "DxW-gi-Y4T"; */
-"DxW-gi-Y4T.title" = "背景を表示する";
+"DxW-gi-Y4T.title" = "背景を表示";
 
 /* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "Dzs-Jl-ett"; */
 "Dzs-Jl-ett.title" = "Check Spelling While Typing";
@@ -129,7 +129,7 @@
 "ECc-Gf-Ufq.title" = "効果音";
 
 /* Class = "NSMenuItem"; title = "Play Video"; ObjectID = "EQK-T0-CC6"; */
-"EQK-T0-CC6.title" = "動画を再生する";
+"EQK-T0-CC6.title" = "動画を再生";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "Edm-AM-oaz"; */
 "Edm-AM-oaz.title" = "Main Menu";
@@ -150,10 +150,10 @@
 "Fwo-I8-v2T.title" = "音楽";
 
 /* Class = "NSMenuItem"; title = "Quit Polaris Engine"; ObjectID = "GpZ-A9-bxc"; */
-"GpZ-A9-bxc.title" = "Polaris Engine を終了する";
+"GpZ-A9-bxc.title" = "Polaris Engine を終了";
 
 /* Class = "NSButtonCell"; title = "Next"; ObjectID = "Gvm-BD-NCE"; */
-"Gvm-BD-NCE.title" = "次へ";
+"Gvm-BD-NCE.title" = "1行実行";
 
 /* Class = "NSMenuItem"; title = "Volume"; ObjectID = "HFO-PY-bAZ"; */
 "HFO-PY-bAZ.title" = "音量";
@@ -177,10 +177,10 @@
 "Ig0-JE-SUJ.title" = "Smart Links";
 
 /* Class = "NSMenuItem"; title = "Export for Unity + DLL"; ObjectID = "J7k-ob-Zxo"; */
-"J7k-ob-Zxo.title" = "Unity + DLL をエクスポートする";
+"J7k-ob-Zxo.title" = "Unity + DLL をエクスポート";
 
 /* Class = "NSMenuItem"; title = "Export for Web Browsers"; ObjectID = "K8O-sG-ldc"; */
-"K8O-sG-ldc.title" = "Webブラウザ用に出力する";
+"K8O-sG-ldc.title" = "Webブラウザ用にエクスポート";
 
 /* Class = "NSMenuItem"; title = "Open Script"; ObjectID = "KMv-ZU-nCb"; */
 "KMv-ZU-nCb.title" = "スクリプトを開く";
@@ -237,10 +237,10 @@
 "RMT-gu-6DZ.title" = "ウィンドウ";
 
 /* Class = "NSMenuItem"; title = "Export for Windows"; ObjectID = "Sgm-Aw-pWh"; */
-"Sgm-Aw-pWh.title" = "Windows用に出力する";
+"Sgm-Aw-pWh.title" = "Windows用にエクスポート";
 
 /* Class = "NSMenuItem"; title = "Stop"; ObjectID = "UDI-5d-E9L"; */
-"UDI-5d-E9L.title" = "停止する";
+"UDI-5d-E9L.title" = "停止";
 
 /* Class = "NSMenu"; title = "Voice"; ObjectID = "UVE-GV-oNz"; */
 "UVE-GV-oNz.title" = "ボイス";
@@ -249,7 +249,7 @@
 "VbE-Hx-f71.title" = "Delete";
 
 /* Class = "NSMenuItem"; title = "Export for Android"; ObjectID = "Vq6-BU-x0v"; */
-"Vq6-BU-x0v.title" = "Android用に出力する";
+"Vq6-BU-x0v.title" = "Android用にエクスポート";
 
 /* Class = "NSMenuItem"; title = "Save…"; ObjectID = "Vws-wD-PaF"; */
 "Vws-wD-PaF.title" = "保存…";
@@ -258,13 +258,13 @@
 "VxL-3M-lsf.title" = "移動";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "W96-wc-96c"; */
-"W96-wc-96c.title" = "すべて表示する";
+"W96-wc-96c.title" = "すべて表示";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "WQ6-df-zN4"; */
 "WQ6-df-zN4.title" = "Spelling and Grammar";
 
 /* Class = "NSMenuItem"; title = "Stop"; ObjectID = "WlQ-2e-3b6"; */
-"WlQ-2e-3b6.title" = "停止する";
+"WlQ-2e-3b6.title" = "停止";
 
 /* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "WqA-Bb-y4o"; */
 "WqA-Bb-y4o.title" = "Show Spelling and Grammar";
@@ -279,10 +279,10 @@
 "XTj-Xt-vvH.title" = "Polaris Engine";
 
 /* Class = "NSMenuItem"; title = "Export for iOS"; ObjectID = "XWR-OQ-8Gs"; */
-"XWR-OQ-8Gs.title" = "iOS用に出力する";
+"XWR-OQ-8Gs.title" = "iOS用にエクスポート";
 
 /* Class = "NSButtonCell"; title = "Stop"; ObjectID = "YDs-Um-wfM"; */
-"YDs-Um-wfM.title" = "停止する";
+"YDs-Um-wfM.title" = "停止";
 
 /* Class = "NSMenuItem"; title = "Right"; ObjectID = "YJN-Jg-hFM"; */
 "YJN-Jg-hFM.title" = "右";
@@ -330,7 +330,7 @@
 "dtf-ed-7MP.title" = "ボイス";
 
 /* Class = "NSMenuItem"; title = "Show"; ObjectID = "elz-TN-xOm"; */
-"elz-TN-xOm.title" = "表示する";
+"elz-TN-xOm.title" = "表示";
 
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "eoy-7p-ZwH"; */
 "eoy-7p-ZwH.title" = "アンドゥ";
@@ -348,7 +348,7 @@
 "g72-Da-IOX.title" = "右中央";
 
 /* Class = "NSMenuItem"; title = "Show"; ObjectID = "gAj-m6-qtR"; */
-"gAj-m6-qtR.title" = "表示する";
+"gAj-m6-qtR.title" = "表示";
 
 /* Class = "NSMenuItem"; title = "Character"; ObjectID = "gaS-MB-3MK"; */
 "gaS-MB-3MK.title" = "キャラクタ";
@@ -381,7 +381,7 @@
 "jvF-WS-bpJ.title" = "Find Previous";
 
 /* Class = "NSMenuItem"; title = "Run"; ObjectID = "k3c-UI-Xu4"; */
-"k3c-UI-Xu4.title" = "実行する";
+"k3c-UI-Xu4.title" = "実行";
 
 /* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "k4p-Zg-aLN"; */
 "k4p-Zg-aLN.title" = "Make Lower Case";
@@ -396,7 +396,7 @@
 "kmi-mK-1rS.title" = "Services";
 
 /* Class = "NSMenuItem"; title = "Show"; ObjectID = "kqa-ek-Dfa"; */
-"kqa-ek-Dfa.title" = "表示する";
+"kqa-ek-Dfa.title" = "表示";
 
 /* Class = "NSTextFieldCell"; title = "Or select a template:"; ObjectID = "kw6-Qf-ReF"; */
 "kw6-Qf-ReF.title" = "テンプレートから選ぶ:";
@@ -405,7 +405,7 @@
 "l33-mC-vkx.title" = "隠す";
 
 /* Class = "NSMenuItem"; title = "Play"; ObjectID = "lUX-vP-j3P"; */
-"lUX-vP-j3P.title" = "再生する";
+"lUX-vP-j3P.title" = "再生";
 
 /* Class = "NSMenuItem"; title = "Hide"; ObjectID = "lls-dw-0ck"; */
 "lls-dw-0ck.title" = "隠す";
@@ -456,10 +456,10 @@
 "qpF-9t-xgp.title" = "右";
 
 /* Class = "NSMenuItem"; title = "Play"; ObjectID = "rjC-EW-mlO"; */
-"rjC-EW-mlO.title" = "再生する";
+"rjC-EW-mlO.title" = "再生";
 
 /* Class = "NSMenuItem"; title = "Move to Other Script"; ObjectID = "rxM-3G-A5R"; */
-"rxM-3G-A5R.title" = "他のスクリプトに移動する";
+"rxM-3G-A5R.title" = "他のスクリプトに移動";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "shQ-pW-UQw"; */
 "shQ-pW-UQw.title" = "Services";
@@ -486,7 +486,7 @@
 "wU4-5G-k7z.title" = "Jump to Selection";
 
 /* Class = "NSButtonCell"; title = "Continue"; ObjectID = "wzY-fz-Q6i"; */
-"wzY-fz-Q6i.title" = "続ける";
+"wzY-fz-Q6i.title" = "連続実行";
 
 /* Class = "NSMenuItem"; title = "One Option"; ObjectID = "xbS-0y-QtT"; */
 "xbS-0y-QtT.title" = "１つの選択肢";

@@ -202,6 +202,10 @@ static int kirakira_y;
 /* 開始時刻 */
 static uint64_t sw_kirakira;
 
+#if defined(USE_EDITOR)
+static bool prev_sysmenu_drawn;
+#endif
+
 /*
  * 前方参照
  */
@@ -1759,6 +1763,10 @@ void render_sysmenu(bool is_auto_enabled,
 				    conf_sysmenu_custom2_height,
 				    255);
 	}
+
+#if defined(USE_EDITOR)
+	prev_sysmenu_drawn = true;
+#endif
 }
 
 /*
@@ -1872,6 +1880,10 @@ void render_collapsed_sysmenu(bool is_pointed)
 				    -1, -1,
 				    255);
 	}
+
+#if defined(USE_EDITOR)
+	prev_sysmenu_drawn = true;
+#endif
 }
 
 /*
@@ -4614,4 +4626,21 @@ void write_layers_to_files(void)
 }
 #if defined(__GNUC__) && !defined(__llvm__)
 #pragma GCC diagnostic pop
+#endif
+
+#if defined(USE_EDITOR)
+
+void clear_sysmenu_drawn(void)
+{
+	prev_sysmenu_drawn = false;
+}
+
+bool get_sysmenu_drawn(void)
+{
+	if (!prev_sysmenu_drawn)
+		return false;
+
+	return true;
+}
+
 #endif

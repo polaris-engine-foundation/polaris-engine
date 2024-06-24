@@ -95,6 +95,9 @@ static bool dbg_runtime_error;
 /* エラーカウント */
 static int dbg_error_count;
 
+/* 前回ディスパッチしたコマンドの種類 */
+static int prev_command_type;
+
 /* 前方参照 */
 static bool pre_dispatch(void);
 #endif
@@ -208,8 +211,11 @@ bool game_loop_iter(void)
 	if (!pre_dispatch()) {
 		/* 停止中で実行されない場合、ステージを描画してフレームを終了する */
 		render_stage();
-		if (conf_sysmenu_hidden != 2 && is_non_interruptible())
+
+		/* 前のコマンドがシステムメニューを表示した場合 */
+		if (get_sysmenu_drawn() || prev_command_type == COMMAND_MESSAGE)
 			render_collapsed_sysmenu(false);
+
 		return true;
 	}
 
@@ -223,6 +229,18 @@ bool game_loop_iter(void)
 	if (!is_gui_mode()) {
 		/* GUI実行中でない場合 */
 		do {
+			/* システムメニューの描画状況をクリアする */
+			clear_sysmenu_drawn();
+
+			/* 前回のコマンドを設定する */
+			prev_command_type = get_command_type();
+			if (prev_command_type == COMMAND_MESSAGE) {
+				/* '\erase'であればメッセージとして認識しないようにする */
+				const char *s = get_string_param(MESSAGE_PARAM_MESSAGE);
+				if (strcasecmp(s, "\\erase") == 0 || strcmp(s, "\\E") == 0)
+					prev_command_type = COMMAND_INVALID;
+			}
+
 			/* ディスパッチする */
 			if (!dispatch_command(&need_dummy_render)) {
 				/* 実行時エラーの場合、エラー終了をキャンセルする */
@@ -289,7 +307,9 @@ bool game_loop_iter(void)
 	if (need_dummy_render) {
 		/* 実行中でないので画面を再描画する */
 		render_stage();
-		if (conf_sysmenu_hidden != 2 && is_non_interruptible())
+
+		/* 前のコマンドがシステムメニューを表示した場合 */
+		if (get_sysmenu_drawn() || prev_command_type == COMMAND_MESSAGE)
 			render_collapsed_sysmenu(false);
 	}
 

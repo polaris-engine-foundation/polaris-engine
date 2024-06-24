@@ -546,4 +546,9 @@ bool set_layer_text(int textlayer_index, const char *msg);
  */
 void write_layers_to_files(void);
 
+#if defined(USE_EDITOR)
+void clear_sysmenu_drawn(void);
+bool get_sysmenu_drawn(void);
+#endif
+
 #endif
