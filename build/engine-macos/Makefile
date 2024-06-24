@@ -31,6 +31,9 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		PROVISIONING_PROFILE_SPECIFIER="05189468-cfae-4be4-87d2-ee463555d66b" \
 		-quiet \
 		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 		-scheme engine-macos \
 		-project engine-macos.xcodeproj \
 		-configuration Release \
@@ -40,6 +43,9 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 	@xcodebuild \
 		-quiet \
 		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 		-exportArchive \
 		-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 		-exportOptionsPlist export-options.plist
@@ -48,6 +54,9 @@ game.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_APPLE)
 		xcodebuild \
 			-quiet \
 			-allowProvisioningUpdates \
+			-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+			-authenticationKeyID K7DHBQG97K \
+			-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 			-exportNotarizedApp \
 			-archivePath `pwd`/build/Release/engine-macos.xcarchive \
 			-exportPath `pwd`/build/Release; \

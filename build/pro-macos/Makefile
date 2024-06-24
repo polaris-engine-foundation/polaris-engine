@@ -28,6 +28,9 @@ polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 		PROVISIONING_PROFILE_SPECIFIER="465f3957-3f75-418d-ab03-cb77360ee9f2" \
 		-quiet \
 		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 		-scheme pro-macos \
 		-project pro-macos.xcodeproj \
 		-configuration Release \
@@ -37,6 +40,9 @@ polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 	@xcodebuild \
 		-quiet \
 		-allowProvisioningUpdates \
+		-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+		-authenticationKeyID K7DHBQG97K \
+		-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 		-exportArchive \
 		-archivePath `pwd`/build/Release/pro-macos.xcarchive \
 		-exportOptionsPlist export-options.plist
@@ -46,6 +52,9 @@ polaris-engine.dmg: libroot $(SRCS_MAIN) $(HDRS_MAIN) $(FILES_MACOS)
 		xcodebuild \
 			-quiet \
 			-allowProvisioningUpdates \
+			-authenticationKeyIssuerID 05438fb4-2c59-4b68-94f6-be04ef2c6f80 \
+			-authenticationKeyID K7DHBQG97K \
+			-authenticationKeyPath `pwd`/AuthKey_K7DHBQG97K.p8 \
 			-exportNotarizedApp \
 			-archivePath `pwd`/build/Release/pro-macos.xcarchive \
 			-exportPath `pwd`/build/Release > /dev/null 2>&1; \
