@@ -5,9 +5,9 @@ include ../common.mk
 #
 
 # For cross compilation
-CC = ./llvm/bin/x86_64-w64-mingw32-gcc
-CXX = ./llvm/bin/x86_64-w64-mingw32-g++
-WINDRES = ./llvm/bin/x86_64-w64-mingw32-windres
+CC = x86_64-w64-mingw32-gcc
+CXX = x86_64-w64-mingw32-g++
+WINDRES = x86_64-w64-mingw32-windres
 
 # For MSYS2:
 #WINDRES = windres

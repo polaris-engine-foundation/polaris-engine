@@ -26,6 +26,9 @@ public class PolarisEngineScript : MonoBehaviour
 	private static int viewportWidth = 1280;
 	private static int viewportHeight = 720;
 	private Shader _normalShader;
+	private Shader _dimShader;
+	private Shader _ruleShader;
+	private Shader _meltShader;
 	private CommandBuffer _commandBuffer;
 
 	//
@@ -44,8 +47,11 @@ public class PolarisEngineScript : MonoBehaviour
 		// Save the instance.
 		_instance = this;
 
-		// Get the shaders. (TODO: other shaders)
+		// Get the shaders.
 		_normalShader = Resources.Load<Shader>("NormalShader");
+		_dimShader = Resources.Load<Shader>("DimShader");
+		_ruleShader = Resources.Load<Shader>("RuleShader");
+		_meltShader = Resources.Load<Shader>("MeltShader");
 
 		// Make a command buffer.
 		_commandBuffer = new CommandBuffer();
@@ -748,7 +754,7 @@ public class PolarisEngineScript : MonoBehaviour
 			new Vector3(dst_left / 1280.0f - 0.5f, 0.5f - dst_top / 720.0f, 0),
 			new Vector3((dst_left + dst_width) / 1280.0f - 0.5f, 0.5f - dst_top / 720.0f, 0),
 			new Vector3(dst_left / 1280.0f - 0.5f, 0.5f - (dst_top + dst_height) / 720.0f, 0),
-			new Vector3((dst_left + dst_width) / 1280.0f - 0.5f, 0.5f - (dst_top + dst_height) / 720.0f)
+			new Vector3((dst_left + dst_width) / 1280.0f - 0.5f, 0.5f - (dst_top + dst_height) / 720.0f, 0)
 		};
 
 		Vector2[] uv = new Vector2[] {
@@ -798,34 +804,246 @@ public class PolarisEngineScript : MonoBehaviour
 	[AOT.MonoPInvokeCallback(typeof(delegate_render_image_dim))]
 	static unsafe void render_image_dim(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha)
 	{
-		// TODO
-		render_image_normal(dst_left, dst_top, dst_width, dst_height, src_img, src_left, src_top, src_width, src_height, alpha);
+		ManagedImage srcImage = imageDict[src_img];
+		if (srcImage.need_upload)
+		{
+			srcImage.texture.SetPixels(srcImage.pixels, 0);
+			srcImage.texture.Apply();
+			srcImage.need_upload = false;
+		}
+
+		Vector3[] vertices = new Vector3[] {
+			new Vector3(dst_left / 1280.0f - 0.5f, 0.5f - dst_top / 720.0f, 0),
+			new Vector3((dst_left + dst_width) / 1280.0f - 0.5f, 0.5f - dst_top / 720.0f, 0),
+			new Vector3(dst_left / 1280.0f - 0.5f, 0.5f - (dst_top + dst_height) / 720.0f, 0),
+			new Vector3((dst_left + dst_width) / 1280.0f - 0.5f, 0.5f - (dst_top + dst_height) / 720.0f)
+		};
+
+		Vector2[] uv = new Vector2[] {
+			new Vector2((float)src_left / (float)srcImage.width, (float)src_top / (float)srcImage.height),
+			new Vector2((float)(src_left + src_width) / (float)srcImage.width, (float)src_top / (float)srcImage.height),
+			new Vector2((float)src_left / (float)srcImage.width, (float)(src_top + src_height) / (float)srcImage.height),
+			new Vector2((float)(src_left + src_width) / (float)srcImage.width, (float)(src_top + src_height) / (float)srcImage.height)
+		};
+
+		Color[] colors = new Color[] {
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f)
+		};
+
+		int[] triangles = new int[] {0, 1, 2, 1, 3, 2};
+
+		Vector3[] normals = new Vector3[] {
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1)
+		};
+
+		Material material = new Material(_instance._dimShader);
+		material.mainTexture = srcImage.texture;
+
+		Mesh mesh = new Mesh();
+		mesh.vertices = vertices;
+		mesh.triangles = triangles;
+		mesh.uv = uv;
+		mesh.colors = colors;
+		mesh.normals = normals;
+		mesh.RecalculateBounds();
+
+		_instance._commandBuffer.DrawMesh(mesh, Matrix4x4.identity, material);
 	}
 
 	[AOT.MonoPInvokeCallback(typeof(delegate_render_image_rule))]
 	static unsafe void render_image_rule(int src_img, int rule_img, int threshold)
 	{
-		// TODO
-		render_image_normal(0, 0, 1280, 720, src_img, 0, 0, 1280, 720, threshold);
+		ManagedImage srcImage = imageDict[src_img];
+		if (srcImage.need_upload)
+		{
+			srcImage.texture.SetPixels(srcImage.pixels, 0);
+			srcImage.texture.Apply();
+			srcImage.need_upload = false;
+		}
+
+		ManagedImage ruleImage = imageDict[rule_img];
+		if (ruleImage.need_upload)
+		{
+			ruleImage.texture.SetPixels(ruleImage.pixels, 0);
+			ruleImage.texture.Apply();
+			ruleImage.need_upload = false;
+		}
+
+		Vector3[] vertices = new Vector3[] {
+			new Vector3(-0.5f, 0.5f, 0),
+			new Vector3(0.5f, 0.5f, 0),
+			new Vector3(-0.5f, -0.5f, 0),
+			new Vector3(0.5f, -0.5f, 0)
+		};
+
+		Vector2[] uv = new Vector2[] {
+			new Vector2(0, 0),
+			new Vector2(1, 0),
+			new Vector2(0, 1),
+			new Vector2(1, 1)
+		};
+
+		Color[] colors = new Color[] {
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f)
+		};
+
+		int[] triangles = new int[] {0, 1, 2, 1, 3, 2};
+
+		Vector3[] normals = new Vector3[] {
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1)
+		};
+
+		Material material = new Material(_instance._ruleShader);
+		material.mainTexture = srcImage.texture;
+		material.bumpMap = ruleImage.texture;
+
+		Mesh mesh = new Mesh();
+		mesh.vertices = vertices;
+		mesh.triangles = triangles;
+		mesh.uv = uv;
+		mesh.colors = colors;
+		mesh.normals = normals;
+		mesh.RecalculateBounds();
+
+		_instance._commandBuffer.DrawMesh(mesh, Matrix4x4.identity, material);
 	}
 
 	[AOT.MonoPInvokeCallback(typeof(delegate_render_image_melt))]
 	static unsafe void render_image_melt(int src_img, int rule_img, int progress)
 	{
-		// TODO
-		render_image_normal(0, 0, 1280, 720, src_img, 0, 0, 1280, 720, progress);
+		ManagedImage srcImage = imageDict[src_img];
+		if (srcImage.need_upload)
+		{
+			srcImage.texture.SetPixels(srcImage.pixels, 0);
+			srcImage.texture.Apply();
+			srcImage.need_upload = false;
+		}
+
+		ManagedImage ruleImage = imageDict[rule_img];
+		if (ruleImage.need_upload)
+		{
+			ruleImage.texture.SetPixels(ruleImage.pixels, 0);
+			ruleImage.texture.Apply();
+			ruleImage.need_upload = false;
+		}
+
+		Vector3[] vertices = new Vector3[] {
+			new Vector3(-0.5f, 0.5f, 0),
+			new Vector3(0.5f, 0.5f, 0),
+			new Vector3(-0.5f, -0.5f, 0),
+			new Vector3(0.5f, -0.5f, 0)
+		};
+
+		Vector2[] uv = new Vector2[] {
+			new Vector2(0, 0),
+			new Vector2(1, 0),
+			new Vector2(0, 1),
+			new Vector2(1, 1)
+		};
+
+		Color[] colors = new Color[] {
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f)
+		};
+
+		int[] triangles = new int[] {0, 1, 2, 1, 3, 2};
+
+		Vector3[] normals = new Vector3[] {
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1)
+		};
+
+		Material material = new Material(_instance._meltShader);
+		material.mainTexture = srcImage.texture;
+		material.bumpMap = ruleImage.texture;
+
+		Mesh mesh = new Mesh();
+		mesh.vertices = vertices;
+		mesh.triangles = triangles;
+		mesh.uv = uv;
+		mesh.colors = colors;
+		mesh.normals = normals;
+		mesh.RecalculateBounds();
+
+		_instance._commandBuffer.DrawMesh(mesh, Matrix4x4.identity, material);
 	}
 
 	[AOT.MonoPInvokeCallback(typeof(delegate_render_image_3d_normal))]
 	static unsafe void render_image_3d_normal(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha)
 	{
-		// TODO
+		ManagedImage srcImage = imageDict[src_img];
+		if (srcImage.need_upload)
+		{
+			srcImage.texture.SetPixels(srcImage.pixels, 0);
+			srcImage.texture.Apply();
+			srcImage.need_upload = false;
+		}
+
+		Vector3[] vertices = new Vector3[] {
+			new Vector3(x1 / 1280.0f - 0.5f, 0.5f - y1 / 720.0f, 0),
+			new Vector3(x2 / 1280.0f - 0.5f, 0.5f - y2 / 720.0f, 0),
+			new Vector3(x3 / 1280.0f - 0.5f, 0.5f - y3 / 720.0f, 0),
+			new Vector3(x4 / 1280.0f - 0.5f, 0.5f - y4 / 720.0f, 0)
+		};
+
+		Vector2[] uv = new Vector2[] {
+			new Vector2((float)x1 / (float)srcImage.width, (float)y1 / (float)srcImage.height),
+			new Vector2((float)x2 / (float)srcImage.width, (float)y2 / (float)srcImage.height),
+			new Vector2((float)x3 / (float)srcImage.width, (float)y3 / (float)srcImage.height),
+			new Vector2((float)x4 / (float)srcImage.width, (float)y4 / (float)srcImage.height)
+		};
+
+		Color[] colors = new Color[] {
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f),
+			new Color(0, 0, 0, alpha / 255.0f)
+		};
+
+		int[] triangles = new int[] {0, 1, 2, 1, 3, 2};
+
+		Vector3[] normals = new Vector3[] {
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1),
+			new Vector3(0, 0, -1)
+		};
+
+		Material material = new Material(_instance._normalShader);
+		material.mainTexture = srcImage.texture;
+
+		Mesh mesh = new Mesh();
+		mesh.vertices = vertices;
+		mesh.triangles = triangles;
+		mesh.uv = uv;
+		mesh.colors = colors;
+		mesh.normals = normals;
+		mesh.RecalculateBounds();
+
+		_instance._commandBuffer.DrawMesh(mesh, Matrix4x4.identity, material);
 	}
 
 	[AOT.MonoPInvokeCallback(typeof(delegate_render_image_3d_add))]
 	static unsafe void render_image_3d_add(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha)
 	{
 		// TODO
+		render_image_3d_normal(x1, y1, x2, y2, x3, y3, x4, y4, src_img, src_left, src_top, src_width, src_height, alpha);
 	}
 
 	[AOT.MonoPInvokeCallback(typeof(delegate_reset_lap_timer))]

@@ -3,29 +3,13 @@
 PREFIX=`pwd`/libroot
 PATH=`pwd`/llvm/bin:$PATH
 INCLUDE=`pwd`/llvm/aarch64-w64-mingw32/include
-CC=aarch64-w64-mingw32-gcc
-LD=aarch64-w64-mingw32-ld
-WINDRES=aarch64-w64-mingw32-windres
+CC=x86_64-w64-mingw32-gcc
+LD=x86_64-w64-mingw32-ld
+WINDRES=x86_64-w64-mingw32-windres
 
 rm -rf tmp libroot llvm
 mkdir -p tmp libroot
 mkdir -p libroot/include libroot/lib
-
-if [ ! -z "`uname | grep Linux`" ]; then
-	if [ ! -z "`uname -a | grep x86`" ]; then
-		curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz;
-		tar xJf llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz;
-		mv llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz llvm;
-	else
-		curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz;
-		tar xJf llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz;
-		mv llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz llvm;
-	fi;
-else
-	curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-macos-universal.tar.xz;
-	tar xJf llvm-mingw-20240518-ucrt-macos-universal.tar.xz;
-	mv llvm-mingw-20240518-ucrt-macos-universal llvm;
-fi
 
 rm -rf tmp libroot
 mkdir -p tmp libroot

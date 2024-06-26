@@ -1,4 +1,4 @@
-Shader "Polaris Engine/Normal Shader"
+Shader "Polaris Engine/Dim Shader"
 {
     Properties
     {
@@ -55,6 +55,9 @@ Shader "Polaris Engine/Normal Shader"
             float4 frag (v2f i) : SV_Target
             {
                 float4 col = tex2D(_MainTex, i.uv);
+                col.r *= 0.5;
+                col.g *= 0.5;
+                col.b *= 0.5;
                 col.a *= i.color.a;
                 return col;
             }

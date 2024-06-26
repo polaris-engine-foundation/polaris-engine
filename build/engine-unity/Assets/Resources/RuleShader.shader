@@ -3,6 +3,7 @@ Shader "Polaris Engine/Normal Shader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _RuleTex ("Texture", 2D) = "white" {}
     }
 
     SubShader
@@ -41,7 +42,7 @@ Shader "Polaris Engine/Normal Shader"
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_ST;
+            sampler2D _BumpTex;
 
             v2f vert (appdata v)
             {
@@ -54,9 +55,10 @@ Shader "Polaris Engine/Normal Shader"
 
             float4 frag (v2f i) : SV_Target
             {
-                float4 col = tex2D(_MainTex, i.uv);
-                col.a *= i.color.a;
-                return col;
+                float4 col1 = tex2D(_MainTex, i.uv);
+                float4 col2 = tex2D(_BumpMap, i.uv);
+                col1.a = 1.0 - step(i.color.a, col2.b);
+                return col1;
             }
             ENDCG
         }

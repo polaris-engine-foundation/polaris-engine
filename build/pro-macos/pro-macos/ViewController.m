@@ -1390,7 +1390,7 @@ static ViewController *theViewController;
     NSArray *subfolderArray = @[@"anime", @"bg", @"bgm", @"cg", @"ch", @"conf", @"cv", @"font", @"gui", @"mov", @"rule", @"se", @"txt", @"wms"];
     for (NSString *sub in subfolderArray) {
         if (![fileManager copyItemAtPath:[NSString stringWithFormat:@"%@/%@", [fileManager currentDirectoryPath], sub]
-                                  toPath:[NSString stringWithFormat:@"%@/export-unity/Assets/Resources/StreamingAssets/%@", exportPath, sub]
+                                  toPath:[NSString stringWithFormat:@"%@/Assets/Resources/StreamingAssets/%@", exportPath, sub]
                                    error:nil]) {
             log_warn("Copy error (4).");
             return;

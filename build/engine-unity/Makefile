@@ -24,6 +24,9 @@ all: libpolarisengine-win64.dll libpolarisengine-macos.dylib
 	@mkdir unity-src/Assets/Resources
 	@mkdir unity-src/Assets/Resources/StreamingAssets
 	@cp -v Assets/Resources/NormalShader.shader unity-src/Assets/Resources/
+	@cp -v Assets/Resources/DimShader.shader unity-src/Assets/Resources/
+	@cp -v Assets/Resources/RuleShader.shader unity-src/Assets/Resources/
+	@cp -v Assets/Resources/MeltShader.shader unity-src/Assets/Resources/
 	@cp libpolarisengine-win64.dll unity-src/
 	@cp libpolarisengine-macos.dylib unity-src/
 	@cp README.txt unity-src/
@@ -41,7 +44,7 @@ all: libpolarisengine-win64.dll libpolarisengine-macos.dylib
 #
 libpolarisengine-win64.dll: $(SRCS_UNITY)
 	rm -rf *.o libroot-x86_64 libpolarisengine-win64.dll
-	../engine-windows-64/llvm/bin/x86_64-w64-mingw32-gcc \
+	x86_64-w64-mingw32-gcc \
 		-shared \
 		-fPIC \
 		-o libpolarisengine-win64.dll \
@@ -87,6 +90,7 @@ libpolarisengine-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
 		../engine-macos/libroot/lib/libsharpyuv.a \
 		../engine-macos/libroot/lib/libpng.a \
 		../engine-macos/libroot/lib/libjpeg.a \
+		../engine-macos/libroot/lib/libvorbisfile.a \
 		../engine-macos/libroot/lib/libvorbis.a \
 		../engine-macos/libroot/lib/libogg.a \
 		../engine-macos/libroot/lib/libbz2.a \
