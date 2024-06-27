@@ -42,7 +42,7 @@ Shader "Polaris Engine/Normal Shader"
             };
 
             sampler2D _MainTex;
-            sampler2D _BumpTex;
+            sampler2D _RuleTex;
 
             v2f vert (appdata v)
             {
@@ -56,7 +56,7 @@ Shader "Polaris Engine/Normal Shader"
             float4 frag (v2f i) : SV_Target
             {
                 float4 col1 = tex2D(_MainTex, i.uv);
-                float4 col2 = tex2D(_BumpMap, i.uv);
+                float4 col2 = tex2D(_RuleTex, i.uv);
                 col1.a = 1.0 - step(i.color.a, col2.b);
                 return col1;
             }

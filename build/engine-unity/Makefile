@@ -21,8 +21,8 @@ all: libpolarisengine-win64.dll libpolarisengine-macos.dylib
 	@cp -v Assets/MainScene.unity unity-src/Assets/
 	@cp -v Assets/PolarisEngineScript.cs unity-src/Assets/
 	@cp -v Assets/PolarisEngineAudio.cs unity-src/Assets/
+	@mkdir unity-src/Assets/StreamingAssets
 	@mkdir unity-src/Assets/Resources
-	@mkdir unity-src/Assets/Resources/StreamingAssets
 	@cp -v Assets/Resources/NormalShader.shader unity-src/Assets/Resources/
 	@cp -v Assets/Resources/DimShader.shader unity-src/Assets/Resources/
 	@cp -v Assets/Resources/RuleShader.shader unity-src/Assets/Resources/
@@ -72,11 +72,12 @@ libpolarisengine-win64.dll: $(SRCS_UNITY)
 #
 libpolarisengine-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
 	/usr/bin/clang \
-		-O2 \
+		-O0 -g3 \
 		-arch arm64 \
 		-arch x86_64 \
 		-dynamiclib \
 		-undefined dynamic_lookup \
+		-fPIC \
 		-o libpolarisengine-macos.dylib \
 		-DPOLARIS_ENGINE_TARGET_UNITY \
 		-I../engine-macos/libroot/include \

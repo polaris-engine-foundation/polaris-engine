@@ -529,7 +529,8 @@ bool draw_glyph(struct image *img,
 						  is_dim);
 	}
 	font_type = translate_font_type(font_type);
-	apply_font_size(font_type, font_size);
+	if (!apply_font_size(font_type, font_size))
+		return true;
 
 	/* アウトライン(内側)を描画する */
 	FT_Stroker_New(library, &stroker);
@@ -628,7 +629,10 @@ static bool draw_glyph_without_outline(struct image *img,
 	int descent;
 
 	font_type = translate_font_type(font_type);
-	apply_font_size(font_type, font_size);
+	if (face[font_type] == NULL)
+		return true;
+	if (!apply_font_size(font_type, font_size))
+		return true;
 
 	/* 文字をグレースケールビットマップとして取得する */
 	err = FT_Load_Char(face[font_type], codepoint, FT_LOAD_RENDER);
@@ -720,6 +724,11 @@ static bool apply_font_size(int font_type, int size)
 	FT_Error err;
 
 	font_type = translate_font_type(font_type);
+
+	if (face[font_type] == NULL)
+		return true;
+	if (size < 0)
+		size = 1;
 
 	/* 文字サイズをセットする */
 	err = FT_Set_Pixel_Sizes(face[font_type], 0, (FT_UInt)size);

@@ -47,6 +47,7 @@ void POLARISENGINEAPI (*wrap_get_system_locale)(intptr_t dst, int len);
 void POLARISENGINEAPI (*wrap_speak_text)(intptr_t text);
 void POLARISENGINEAPI (*wrap_set_continuous_swipe_enabled)(bool is_enabled);
 void POLARISENGINEAPI (*wrap_free_shared)(intptr_t p);
+bool POLARISENGINEAPI (*wrap_check_file_exist)(intptr_t file_name);
 intptr_t POLARISENGINEAPI (*wrap_get_file_contents)(intptr_t file_name, intptr_t len);
 void POLARISENGINEAPI (*wrap_open_save_file)(intptr_t file_name);
 void POLARISENGINEAPI (*wrap_write_save_file)(int b);
@@ -90,6 +91,7 @@ void init_hal_func_table
 	void POLARISENGINEAPI (*p_speak_text)(intptr_t text),
 	void POLARISENGINEAPI (*p_set_continuous_swipe_enabled)(bool is_enabled),
 	void POLARISENGINEAPI (*p_free_shared)(intptr_t p),
+	bool POLARISENGINEAPI (*p_check_file_exist)(intptr_t file_name),
 	intptr_t POLARISENGINEAPI (*p_get_file_contents)(intptr_t file_name, intptr_t len),
 	void POLARISENGINEAPI (*p_open_save_file)(intptr_t file_name),
 	void POLARISENGINEAPI (*p_write_save_file)(int b),
@@ -128,6 +130,7 @@ void init_hal_func_table
 	wrap_speak_text = p_speak_text;
 	wrap_set_continuous_swipe_enabled = p_set_continuous_swipe_enabled;
 	wrap_free_shared = p_free_shared;
+	wrap_check_file_exist = p_check_file_exist;
 	wrap_get_file_contents = p_get_file_contents;
 	wrap_open_save_file = p_open_save_file;
 	wrap_write_save_file = p_write_save_file;
@@ -406,23 +409,20 @@ void cleanup_file(void)
 
 bool check_file_exist(const char *dir, const char *file)
 {
-	intptr_t p;
 	char *path;
-	int len;
+	bool ret;
 
 	path = make_valid_path(dir, file);
 	if (path == NULL)
 		return false;
 
-	p = wrap_get_file_contents((intptr_t)path, (intptr_t)&len);
+	ret = wrap_check_file_exist((intptr_t)path);
 	free(path);
 
-	if (p != 0) {
-		wrap_free_shared((intptr_t)p);
-		return true;
-	}
+	if (!ret)
+		return false;
 
-	return false;
+	return true;
 }
 
 struct rfile *open_rfile(const char *dir, const char *file, bool save_data)

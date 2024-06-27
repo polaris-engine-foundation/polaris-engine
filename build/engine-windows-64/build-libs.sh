@@ -11,9 +11,21 @@ rm -rf tmp libroot llvm
 mkdir -p tmp libroot
 mkdir -p libroot/include libroot/lib
 
-rm -rf tmp libroot
-mkdir -p tmp libroot
-mkdir -p libroot/include libroot/lib
+# if [ ! -z "`uname | grep Linux`" ]; then
+# 	if [ ! -z "`uname -a | grep x86`" ]; then
+# 		curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz;
+# 		tar xJf llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz;
+# 		mv llvm-mingw-20240518-ucrt-ubuntu-20.04-x86_64.tar.xz llvm;
+# 	else
+# 		curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz;
+# 		tar xJf llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz;
+# 		mv llvm-mingw-20240518-ucrt-ubuntu-20.04-aarch64.tar.xz llvm;
+# 	fi;
+# else
+# 	curl -L -O https://github.com/mstorsjo/llvm-mingw/releases/download/20240518/llvm-mingw-20240518-ucrt-macos-universal.tar.xz;
+# 	tar xJf llvm-mingw-20240518-ucrt-macos-universal.tar.xz;
+# 	mv llvm-mingw-20240518-ucrt-macos-universal llvm;
+# fi
 
 cd tmp
 

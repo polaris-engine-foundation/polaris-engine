@@ -39,40 +39,47 @@ public class PolarisEngineScript : MonoBehaviour
 	private static AudioSource _audioSourceVoice;
 	private static AudioSource _audioSourceSys;
 
-	//
-	// Game Initialization
-	//
-	private void Awake()
-	{
-		// Save the instance.
-		_instance = this;
-
-		// Get the shaders.
-		_normalShader = Resources.Load<Shader>("NormalShader");
-		_dimShader = Resources.Load<Shader>("DimShader");
-		_ruleShader = Resources.Load<Shader>("RuleShader");
-		_meltShader = Resources.Load<Shader>("MeltShader");
-
-		// Make a command buffer.
-		_commandBuffer = new CommandBuffer();
-		_commandBuffer.name = "FrameCommand";
-		_commandBuffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget);
-		_commandBuffer.SetViewport(new Rect(0, 0, viewportWidth, viewportHeight));
-		_commandBuffer.SetViewMatrix(Matrix4x4.TRS(new Vector3(-1f, -1f, 0), Quaternion.identity, new Vector3(2f / viewportWidth, 2f / viewportHeight, 1f)));
-		_commandBuffer.ClearRenderTarget(true, true, Color.black);
-
-		// Make a camera.
-		Camera camera = Camera.main;
-		camera.clearFlags = CameraClearFlags.SolidColor;
-		camera.backgroundColor = new Color(0, 0, 0, 0);
-		camera.AddCommandBuffer(CameraEvent.BeforeForwardAlpha, _commandBuffer);
-	}
+	// Initialization
+	private bool _isInitialized = false;
 
 	//
 	// Frame Update
 	//
 	unsafe void Update()
 	{
+		// Run at the first frame only.
+		if (!_isInitialized)
+		{
+            // Save the instance.
+            _instance = this;
+
+            // Get the shaders.
+            _normalShader = Resources.Load<Shader>("NormalShader");
+            _dimShader = Resources.Load<Shader>("DimShader");
+            _ruleShader = Resources.Load<Shader>("RuleShader");
+            _meltShader = Resources.Load<Shader>("MeltShader");
+
+            // Make a command buffer.
+            _commandBuffer = new CommandBuffer();
+            _commandBuffer.name = "FrameCommand";
+            _commandBuffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget);
+            _commandBuffer.SetViewport(new Rect(0, 0, viewportWidth, viewportHeight));
+            _commandBuffer.SetViewMatrix(Matrix4x4.TRS(new Vector3(-1f, -1f, 0), Quaternion.identity, new Vector3(2f / viewportWidth, 2f / viewportHeight, 1f)));
+            _commandBuffer.ClearRenderTarget(true, true, Color.black);
+
+            // Make a camera.
+            Camera camera = Camera.main;
+            camera.clearFlags = CameraClearFlags.SolidColor;
+            camera.backgroundColor = new Color(0, 0, 0, 0);
+            camera.AddCommandBuffer(CameraEvent.BeforeForwardAlpha, _commandBuffer);
+            
+			// Do unsafe code initialization.            
+            if (!InitFirstFrame())
+				return;
+
+			_isInitialized = true;
+        }
+
 		int KEY_CONTROL = 0;
 		int KEY_SPACE = 1;
 		int KEY_RETURN = 2;
@@ -173,6 +180,7 @@ public class PolarisEngineScript : MonoBehaviour
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_speak_text(byte *text);
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_set_continuous_swipe_enabled(int is_enabled);
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_free_shared(IntPtr p);
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate int delegate_check_file_exist(byte *pFileName);
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate IntPtr delegate_get_file_contents(byte *pFileName, int *len);
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_open_save_file(byte *pFileName);
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_write_save_file(int b);
@@ -214,6 +222,7 @@ public class PolarisEngineScript : MonoBehaviour
 													  IntPtr speak_text,
 													  IntPtr set_continuous_swipe_enabled,
 													  IntPtr free_shared,
+													  IntPtr check_file_exist,
 													  IntPtr get_file_contents,
 													  IntPtr open_save_file,
 													  IntPtr write_save_file,
@@ -223,16 +232,26 @@ public class PolarisEngineScript : MonoBehaviour
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate int delegate_on_event_init();
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_cleanup();
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate int delegate_on_event_frame();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_key_press(int key);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_key_release(int key);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_mouse_press(int button, int x, int y);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_mouse_release(int button, int x, int y);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_mouse_move(int x, int y);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_touch_cancel();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_swipe_down();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate void delegate_on_event_swipe_up();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate int delegate_get_wave_samples(byte* w, uint* buf, int samples);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] unsafe delegate bool delegate_is_wave_eos(byte* w);
 
 	//
-	// Delegate objects for C code calls.
-	//
-	static delegate_log_info d_log_info;
-	static delegate_log_warn d_log_warn;
-	static delegate_log_error d_log_error;
-	static delegate_make_sav_dir d_make_sav_dir;
-	static delegate_make_valid_path d_make_valid_path;
-	static delegate_notify_image_update d_notify_image_update;
+    // Delegate objects for C code calls.
+    //
+    static delegate_log_info d_log_info;
+    static delegate_log_warn d_log_warn;
+    static delegate_log_error d_log_error;
+    static delegate_make_sav_dir d_make_sav_dir;
+    static delegate_make_valid_path d_make_valid_path;
+    static delegate_notify_image_update d_notify_image_update;
 	static delegate_notify_image_free d_notify_image_free;
 	static delegate_render_image_normal d_render_image_normal;
 	static delegate_render_image_add d_render_image_add;
@@ -259,6 +278,7 @@ public class PolarisEngineScript : MonoBehaviour
 	static delegate_speak_text d_speak_text;
 	static delegate_set_continuous_swipe_enabled d_set_continuous_swipe_enabled;
 	static delegate_free_shared d_free_shared;
+	static delegate_check_file_exist d_check_file_exist;
 	static delegate_get_file_contents d_get_file_contents;
 	static delegate_open_save_file d_open_save_file;
 	static delegate_write_save_file d_write_save_file;
@@ -269,11 +289,21 @@ public class PolarisEngineScript : MonoBehaviour
 	static delegate_on_event_init d_on_event_init;
 	static delegate_on_event_cleanup d_on_event_cleanup;
 	static delegate_on_event_frame d_on_event_frame;
+    static delegate_on_event_key_press d_on_event_key_press;
+    static delegate_on_event_key_release d_on_event_key_release;
+    static delegate_on_event_mouse_press d_on_event_mouse_press;
+    static delegate_on_event_mouse_release d_on_event_mouse_release;
+    static delegate_on_event_mouse_move d_on_event_mouse_move;
+    static delegate_on_event_touch_cancel d_on_event_touch_cancel;
+    static delegate_on_event_swipe_down d_on_event_swipe_down;
+    static delegate_on_event_swipe_up d_on_event_swipe_up;
+    static delegate_get_wave_samples d_get_wave_samples;
+    static delegate_is_wave_eos d_is_wave_eos;
 
-	//
-	// Delegate pointers.
-	//
-	static IntPtr p_log_info;
+    //
+    // Delegate pointers.
+    //
+    static IntPtr p_log_info;
 	static IntPtr p_log_warn;
 	static IntPtr p_log_error;
 	static IntPtr p_make_sav_dir;
@@ -305,6 +335,7 @@ public class PolarisEngineScript : MonoBehaviour
 	static IntPtr p_speak_text;
 	static IntPtr p_set_continuous_swipe_enabled;
 	static IntPtr p_free_shared;
+	static IntPtr p_check_file_exist;
 	static IntPtr p_get_file_contents;
 	static IntPtr p_open_save_file;
 	static IntPtr p_write_save_file;
@@ -314,12 +345,22 @@ public class PolarisEngineScript : MonoBehaviour
 	static IntPtr p_init_locale_code;
 	static IntPtr p_on_event_init;
 	static IntPtr p_on_event_cleanup;
-	static IntPtr p_on_event_frame;
+    static IntPtr p_on_event_frame;
+    static IntPtr p_on_event_key_press;
+    static IntPtr p_on_event_key_release;
+    static IntPtr p_on_event_mouse_press;
+    static IntPtr p_on_event_mouse_release;
+    static IntPtr p_on_event_mouse_move;
+    static IntPtr p_on_event_touch_cancel;
+    static IntPtr p_on_event_swipe_down;
+    static IntPtr p_on_event_swipe_up;
+    static IntPtr p_get_wave_samples;
+    static IntPtr p_is_wave_eos;
 
-	//
-	// C# Image structure.
-	//
-	public struct ManagedImage {
+    //
+    // C# Image structure.
+    //
+    public struct ManagedImage {
 		public int width;
 		public int height;
 		public Color[] pixels;
@@ -335,12 +376,12 @@ public class PolarisEngineScript : MonoBehaviour
 	//
 	// Initialize the calling bridges on loading.
 	//
-	unsafe void Start()
+	unsafe bool InitFirstFrame()
 	{
 		GC.KeepAlive(this);
 
-		// Set delegate objects.
-		d_log_info = new delegate_log_info(log_info);
+        // Set delegate objects.
+        d_log_info = new delegate_log_info(log_info);
 		d_log_warn = new delegate_log_warn(log_warn);
 		d_log_error = new delegate_log_error(log_error);
 		d_make_sav_dir = new delegate_make_sav_dir(make_sav_dir);
@@ -372,6 +413,7 @@ public class PolarisEngineScript : MonoBehaviour
 		d_speak_text = new delegate_speak_text(speak_text);
 		d_set_continuous_swipe_enabled = new delegate_set_continuous_swipe_enabled(set_continuous_swipe_enabled);
 		d_free_shared = new delegate_free_shared(free_shared);
+		d_check_file_exist = new delegate_check_file_exist(check_file_exist);
 		d_get_file_contents = new delegate_get_file_contents(get_file_contents);
 		d_open_save_file = new delegate_open_save_file(open_save_file);
 		d_write_save_file = new delegate_write_save_file(write_save_file);
@@ -382,9 +424,19 @@ public class PolarisEngineScript : MonoBehaviour
 		d_on_event_init = new delegate_on_event_init(on_event_init);
 		d_on_event_cleanup = new delegate_on_event_cleanup(on_event_cleanup);
 		d_on_event_frame = new delegate_on_event_frame(on_event_frame);
+        d_on_event_key_press = new delegate_on_event_key_press(on_event_key_press);
+        d_on_event_key_release = new delegate_on_event_key_release(on_event_key_release);
+        d_on_event_mouse_press = new delegate_on_event_mouse_press(on_event_mouse_press);
+        d_on_event_mouse_release = new delegate_on_event_mouse_release(on_event_mouse_release);
+        d_on_event_mouse_move = new delegate_on_event_mouse_move(on_event_mouse_move);
+        d_on_event_touch_cancel = new delegate_on_event_touch_cancel(on_event_touch_cancel);
+        d_on_event_swipe_down = new delegate_on_event_swipe_down(on_event_swipe_down);
+        d_on_event_swipe_up = new delegate_on_event_swipe_up(on_event_swipe_up);
+        d_get_wave_samples = new delegate_get_wave_samples(get_wave_samples);
+        d_is_wave_eos = new delegate_is_wave_eos(is_wave_eos);
 
-		// Get function pointers by resolving the native library.
-		p_log_info = Marshal.GetFunctionPointerForDelegate(d_log_info);
+        // Get function pointers by resolving the native library.
+        p_log_info = Marshal.GetFunctionPointerForDelegate(d_log_info);
 		p_log_warn = Marshal.GetFunctionPointerForDelegate(d_log_warn);
 		p_log_error = Marshal.GetFunctionPointerForDelegate(d_log_error);
 		p_make_sav_dir = Marshal.GetFunctionPointerForDelegate(d_make_sav_dir);
@@ -416,6 +468,7 @@ public class PolarisEngineScript : MonoBehaviour
 		p_speak_text = Marshal.GetFunctionPointerForDelegate(d_speak_text);
 		p_set_continuous_swipe_enabled = Marshal.GetFunctionPointerForDelegate(d_set_continuous_swipe_enabled);
 		p_free_shared = Marshal.GetFunctionPointerForDelegate(d_free_shared);
+		p_check_file_exist = Marshal.GetFunctionPointerForDelegate(d_check_file_exist);
 		p_get_file_contents = Marshal.GetFunctionPointerForDelegate(d_get_file_contents);
 		p_open_save_file = Marshal.GetFunctionPointerForDelegate(d_open_save_file);
 		p_write_save_file = Marshal.GetFunctionPointerForDelegate(d_write_save_file);
@@ -426,9 +479,19 @@ public class PolarisEngineScript : MonoBehaviour
 		p_on_event_init = Marshal.GetFunctionPointerForDelegate(d_on_event_init);
 		p_on_event_cleanup = Marshal.GetFunctionPointerForDelegate(d_on_event_cleanup);
 		p_on_event_frame = Marshal.GetFunctionPointerForDelegate(d_on_event_frame);
+		p_on_event_key_press = Marshal.GetFunctionPointerForDelegate(d_on_event_key_press);
+		p_on_event_key_release = Marshal.GetFunctionPointerForDelegate(d_on_event_key_release);
+		p_on_event_mouse_press = Marshal.GetFunctionPointerForDelegate(d_on_event_mouse_press);
+		p_on_event_mouse_release = Marshal.GetFunctionPointerForDelegate(d_on_event_mouse_release);
+		p_on_event_mouse_move = Marshal.GetFunctionPointerForDelegate(d_on_event_mouse_move);
+		p_on_event_touch_cancel = Marshal.GetFunctionPointerForDelegate(d_on_event_touch_cancel);
+		p_on_event_swipe_down = Marshal.GetFunctionPointerForDelegate(d_on_event_swipe_down);
+		p_on_event_swipe_up = Marshal.GetFunctionPointerForDelegate(d_on_event_swipe_up);
+		p_get_wave_samples = Marshal.GetFunctionPointerForDelegate(d_get_wave_samples);
+		p_is_wave_eos = Marshal.GetFunctionPointerForDelegate(d_is_wave_eos);
 
-		// Lock function pointers by Alloc().
-		GCHandle.Alloc(p_log_info, GCHandleType.Pinned);
+        // Lock function pointers by Alloc().
+        GCHandle.Alloc(p_log_info, GCHandleType.Pinned);
 		GCHandle.Alloc(p_log_warn, GCHandleType.Pinned);
 		GCHandle.Alloc(p_log_error, GCHandleType.Pinned);
 		GCHandle.Alloc(p_make_sav_dir, GCHandleType.Pinned);
@@ -460,6 +523,7 @@ public class PolarisEngineScript : MonoBehaviour
 		GCHandle.Alloc(p_speak_text, GCHandleType.Pinned);
 		GCHandle.Alloc(p_set_continuous_swipe_enabled, GCHandleType.Pinned);
 		GCHandle.Alloc(p_free_shared, GCHandleType.Pinned);
+		GCHandle.Alloc(p_check_file_exist, GCHandleType.Pinned);
 		GCHandle.Alloc(p_get_file_contents, GCHandleType.Pinned);
 		GCHandle.Alloc(p_open_save_file, GCHandleType.Pinned);
 		GCHandle.Alloc(p_write_save_file, GCHandleType.Pinned);
@@ -471,9 +535,19 @@ public class PolarisEngineScript : MonoBehaviour
 		GCHandle.Alloc(p_on_event_init, GCHandleType.Pinned);
 		GCHandle.Alloc(p_on_event_cleanup, GCHandleType.Pinned);
 		GCHandle.Alloc(p_on_event_frame, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_key_press, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_key_release, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_mouse_press, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_mouse_release, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_mouse_move, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_touch_cancel, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_swipe_down, GCHandleType.Pinned);
+        GCHandle.Alloc(p_on_event_swipe_up, GCHandleType.Pinned);
+        GCHandle.Alloc(p_get_wave_samples, GCHandleType.Pinned);
+        GCHandle.Alloc(p_is_wave_eos, GCHandleType.Pinned);
 
-		// Lock function pointers by KeepAlive().
-		GC.KeepAlive(p_log_info);
+        // Lock function pointers by KeepAlive().
+        GC.KeepAlive(p_log_info);
 		GC.KeepAlive(p_log_warn);
 		GC.KeepAlive(p_log_error);
 		GC.KeepAlive(p_make_sav_dir);
@@ -505,13 +579,27 @@ public class PolarisEngineScript : MonoBehaviour
 		GC.KeepAlive(p_speak_text);
 		GC.KeepAlive(p_set_continuous_swipe_enabled);
 		GC.KeepAlive(p_free_shared);
+		GC.KeepAlive(p_check_file_exist);
 		GC.KeepAlive(p_get_file_contents);
 		GC.KeepAlive(p_open_save_file);
 		GC.KeepAlive(p_write_save_file);
 		GC.KeepAlive(p_close_save_file);
+        GC.KeepAlive(p_on_event_init);
+        GC.KeepAlive(p_on_event_cleanup);
+        GC.KeepAlive(p_on_event_frame);
+        GC.KeepAlive(p_on_event_key_press);
+        GC.KeepAlive(p_on_event_key_release);
+        GC.KeepAlive(p_on_event_mouse_press);
+        GC.KeepAlive(p_on_event_mouse_release);
+        GC.KeepAlive(p_on_event_mouse_move);
+        GC.KeepAlive(p_on_event_touch_cancel);
+        GC.KeepAlive(p_on_event_swipe_down);
+        GC.KeepAlive(p_on_event_swipe_up);
+        GC.KeepAlive(p_get_wave_samples);
+        GC.KeepAlive(p_is_wave_eos);
 
-		// Initialize the HAL function table.
-		d_init_hal_func_table(
+        // Initialize the HAL function table.
+        d_init_hal_func_table(
 			p_log_info,
 			p_log_warn,
 			p_log_error,
@@ -544,6 +632,7 @@ public class PolarisEngineScript : MonoBehaviour
 			p_speak_text,
 			p_set_continuous_swipe_enabled,
 			p_free_shared,
+			p_check_file_exist,
 			p_get_file_contents,
 			p_open_save_file,
 			p_write_save_file,
@@ -555,12 +644,20 @@ public class PolarisEngineScript : MonoBehaviour
 		GC.KeepAlive(this);
 
 		// Initialize the config subsystem.
-		d_init_conf();
+		if (d_init_conf() == 0) {
+			Debug.Log("Failed to load config.");
+			return false;
+		}
 		GC.KeepAlive(this);
 
 		// Initialize the event subsystem.
-		d_on_event_init();
+		if (d_on_event_init() == 0) {
+			Debug.Log("Failed to initialize.");
+			return false;
+		}
 		GC.KeepAlive(this);
+
+		return true;
 	}
 
 	//
@@ -568,7 +665,8 @@ public class PolarisEngineScript : MonoBehaviour
 	//
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void init_hal_func_table(
+    [AOT.MonoPInvokeCallback(typeof(delegate_init_hal_func_table))]
+    static extern unsafe void init_hal_func_table(
 		IntPtr log_info,
 		IntPtr log_warn,
 		IntPtr log_error,
@@ -601,55 +699,71 @@ public class PolarisEngineScript : MonoBehaviour
 		IntPtr speak_text,
 		IntPtr set_continuous_swipe_enabled,
 		IntPtr free_shared,
+		IntPtr check_file_exist,
 		IntPtr get_file_contents,
 		IntPtr open_save_file,
 		IntPtr write_save_file,
 		IntPtr close_save_file);
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void init_locale_code();
+    [AOT.MonoPInvokeCallback(typeof(delegate_init_locale_code))]
+    static extern unsafe void init_locale_code();
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe int init_conf();
+    [AOT.MonoPInvokeCallback(typeof(delegate_init_conf))]
+    static extern unsafe int init_conf();
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe int on_event_init();
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_init))]
+    static extern unsafe int on_event_init();
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_cleanup();
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_cleanup))]
+    static extern unsafe void on_event_cleanup();
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe int on_event_frame();
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_frame))]
+    static extern unsafe int on_event_frame();
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_key_press(int key);
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_key_press))]
+    static extern unsafe void on_event_key_press(int key);
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_key_release(int key);
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_key_release))]
+    static extern unsafe void on_event_key_release(int key);
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_mouse_press(int button, int x, int y);
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_mouse_press))]
+    static extern unsafe void on_event_mouse_press(int button, int x, int y);
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_mouse_release(int button, int x, int y);
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_mouse_release))]
+    static extern unsafe void on_event_mouse_release(int button, int x, int y);
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_mouse_move(int x, int y);
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_mouse_move))]
+    static extern unsafe void on_event_mouse_move(int x, int y);
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_touch_cancel();
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_touch_cancel))]
+    static extern unsafe void on_event_touch_cancel();
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_swipe_down();
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_swipe_down))]
+    static extern unsafe void on_event_swipe_down();
 
 	[DllImport("libpolarisengine")]
-	static extern unsafe void on_event_swipe_up();
+    [AOT.MonoPInvokeCallback(typeof(delegate_on_event_swipe_up))]
+    static extern unsafe void on_event_swipe_up();
 
 	[DllImport("libpolarisengine")]
-	public static extern unsafe int get_wave_samples(byte *w, uint *buf, int samples);
+    [AOT.MonoPInvokeCallback(typeof(delegate_get_wave_samples))]
+    public static extern unsafe int get_wave_samples(byte *w, uint *buf, int samples);
 
 	[DllImport("libpolarisengine")]
-	public static extern unsafe bool is_wave_eos(byte *w);
+    [AOT.MonoPInvokeCallback(typeof(delegate_is_wave_eos))]
+    public static extern unsafe bool is_wave_eos(byte *w);
 
 	//
 	// HAL functions
@@ -890,10 +1004,10 @@ public class PolarisEngineScript : MonoBehaviour
 		};
 
 		Color[] colors = new Color[] {
-			new Color(0, 0, 0, alpha / 255.0f),
-			new Color(0, 0, 0, alpha / 255.0f),
-			new Color(0, 0, 0, alpha / 255.0f),
-			new Color(0, 0, 0, alpha / 255.0f)
+			new Color(0, 0, 0, threshold / 255.0f),
+			new Color(0, 0, 0, threshold / 255.0f),
+			new Color(0, 0, 0, threshold / 255.0f),
+			new Color(0, 0, 0, threshold / 255.0f)
 		};
 
 		int[] triangles = new int[] {0, 1, 2, 1, 3, 2};
@@ -907,7 +1021,7 @@ public class PolarisEngineScript : MonoBehaviour
 
 		Material material = new Material(_instance._ruleShader);
 		material.mainTexture = srcImage.texture;
-		material.bumpMap = ruleImage.texture;
+		material.SetTexture("_RuleTex", ruleImage.texture);
 
 		Mesh mesh = new Mesh();
 		mesh.vertices = vertices;
@@ -954,10 +1068,10 @@ public class PolarisEngineScript : MonoBehaviour
 		};
 
 		Color[] colors = new Color[] {
-			new Color(0, 0, 0, alpha / 255.0f),
-			new Color(0, 0, 0, alpha / 255.0f),
-			new Color(0, 0, 0, alpha / 255.0f),
-			new Color(0, 0, 0, alpha / 255.0f)
+			new Color(0, 0, 0, progress / 255.0f),
+			new Color(0, 0, 0, progress / 255.0f),
+			new Color(0, 0, 0, progress / 255.0f),
+			new Color(0, 0, 0, progress / 255.0f)
 		};
 
 		int[] triangles = new int[] {0, 1, 2, 1, 3, 2};
@@ -971,7 +1085,7 @@ public class PolarisEngineScript : MonoBehaviour
 
 		Material material = new Material(_instance._meltShader);
 		material.mainTexture = srcImage.texture;
-		material.bumpMap = ruleImage.texture;
+		material.SetTexture("_RuleTex", ruleImage.texture);
 
 		Mesh mesh = new Mesh();
 		mesh.vertices = vertices;
@@ -1189,6 +1303,25 @@ public class PolarisEngineScript : MonoBehaviour
 		Marshal.FreeCoTaskMem(p);
 	}
 
+    [AOT.MonoPInvokeCallback(typeof(delegate_check_file_exist))]
+    static unsafe int check_file_exist(byte *pFileName)
+	{
+		string FileName = BytePtrToString(pFileName);
+		if (FileName.StartsWith("sav/"))
+		{
+			string s = PlayerPrefs.GetString(FileName.Split("/")[1], "");
+			if (s == "")
+				return 0;
+			return 1;
+		}
+		else
+		{
+			if (!System.IO.File.Exists(Application.streamingAssetsPath + "/" + FileName))
+				return 0;
+			return 1;
+		}
+    }
+
     [AOT.MonoPInvokeCallback(typeof(delegate_get_file_contents))]
     static unsafe IntPtr get_file_contents(byte *pFileName, int *len)
 	{
@@ -1219,6 +1352,7 @@ public class PolarisEngineScript : MonoBehaviour
 			}
 			catch(Exception)
 			{
+				Debug.Log(Application.streamingAssetsPath + "/" + FileName + " not found.");
 			}
 		}
 

@@ -42,7 +42,7 @@ Shader "X Engine/Normal Shader"
             };
 
             sampler2D _MainTex;
-            sampler2D _BumpMap;
+            sampler2D _RuleTex;
 
             v2f vert (appdata v)
             {
@@ -56,7 +56,7 @@ Shader "X Engine/Normal Shader"
             float4 frag (v2f i) : SV_Target
             {
                 float4 col1 = tex2D(_MainTex, i.uv);
-                float4 col2 = tex2D(_BumpMap, i.uv);
+                float4 col2 = tex2D(_RuleTex, i.uv);
                 col1.a = clamp((1.0 - col2.b) + (i.color.a * 2.0 - 1.0), 0.0, 1.0);
                 return col1;
             }

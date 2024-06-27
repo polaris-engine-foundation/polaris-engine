@@ -430,6 +430,7 @@ extern void init_hal_func_table(
 	void POLARISENGINEAPI (*p_speak_text)(intptr_t text),
 	void POLARISENGINEAPI (*p_set_continuous_swipe_enabled)(bool is_enabled),
 	void POLARISENGINEAPI (*p_free_shared)(intptr_t p),
+	bool POLARISENGINEAPI (*p_check_file_exist)(intptr_t file_name),
 	intptr_t POLARISENGINEAPI (*p_get_file_contents)(intptr_t file_name, intptr_t len),
 	void POLARISENGINEAPI (*p_open_save_file)(intptr_t file_name),
 	void POLARISENGINEAPI (*p_write_save_file)(int b),
