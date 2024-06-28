@@ -5,13 +5,6 @@
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
-/*
- * [Changes]
- *  - 2022-10-24 Created.
- *  - 2024-03-31 Added avoidance for LGPL (NO_GST)
- *  - 2024-04-11 Polaris Engine
- */
-
 #include "gstplay.h"
 
 #ifndef NO_GST

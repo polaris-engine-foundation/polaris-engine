@@ -9,83 +9,72 @@
  * The HAL for X11
  */
 
-/* Xlib */
+/*
+ * Xlib
+ */
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/xpm.h>
 #include <X11/Xatom.h>
 #include <X11/Xlocale.h>
 
-/* POSIX */
+/*
+ * POSIX
+ */
 #include <sys/types.h>
 #include <sys/stat.h>	/* stat(), mkdir() */
 #include <sys/time.h>	/* gettimeofday() */
 #include <unistd.h>	/* usleep(), access() */
 
-/* Polaris Engine Base */
+/* Base */
 #include "../polarisengine.h"
 
-/* Polaris Engine HAL implementation for sound output */
-#include "asound.h"
-
-/* Polaris Engine HAL implementation for video playback */
-#include "gstplay.h"
-
-/* Polaris Engine HAL implementation for graphics */
+/*
+ * HAL implementation for OpenGL 3.0
+ */
 #include <GL/gl.h>
 #include <GL/glx.h>
 #include "../khronos/glrender.h"
 
-/* Polaris Engine Capture */
-#ifdef USE_CAPTURE
-#include "capture.h"
-#endif
+/* HAL implementation for ALSA sound */
+#include "asound.h"
 
-/* Polaris Engine Replay */
-#ifdef USE_REPLAY
-#include "replay.h"
-#endif
+/* HAL implementation for Gstreamer video */
+#include "gstplay.h"
 
 /* App Icon */
 #include "icon.xpm"
 
 /*
- * 色の情報
+ * Color Format
  */
 #define DEPTH		(24)
 #define BPP		(32)
 
 /*
- * フレーム調整のための時間
+ * Frame Time
  */
 #define FRAME_MILLI	(16)	/* 1フレームの時間 */
 #define SLEEP_MILLI	(5)	/* 1回にスリープする時間 */
 
 /*
- * ログ1行のサイズ
- */
-#define LOG_BUF_SIZE	(4096)
-
-/*
- * GLXオブジェクト
+ * GLX Objects
  */
 static GLXWindow glx_window = None;
 static GLXContext glx_context = None;
 
-/* OpenGL 3.2 API */
+/*
+ * OpenGL 3.0 API
+ */
 GLuint (APIENTRY *glCreateShader)(GLenum type);
-void (APIENTRY *glShaderSource)(GLuint shader, GLsizei count,
-				const GLchar *const*string,
-				const GLint *length);
+void (APIENTRY *glShaderSource)(GLuint shader, GLsizei count, const GLchar *const*string, const GLint *length);
 void (APIENTRY *glCompileShader)(GLuint shader);
 void (APIENTRY *glGetShaderiv)(GLuint shader, GLenum pname, GLint *params);
-void (APIENTRY *glGetShaderInfoLog)(GLuint shader, GLsizei bufSize,
-				    GLsizei *length, GLchar *infoLog);
+void (APIENTRY *glGetShaderInfoLog)(GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
 void (APIENTRY *glAttachShader)(GLuint program, GLuint shader);
 void (APIENTRY *glLinkProgram)(GLuint program);
 void (APIENTRY *glGetProgramiv)(GLuint program, GLenum pname, GLint *params);
-void (APIENTRY *glGetProgramInfoLog)(GLuint program, GLsizei bufSize,
-				     GLsizei *length, GLchar *infoLog);
+void (APIENTRY *glGetProgramInfoLog)(GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
 GLuint (APIENTRY *glCreateProgram)(void);
 void (APIENTRY *glUseProgram)(GLuint program);
 void (APIENTRY *glGenVertexArrays)(GLsizei n, GLuint *arrays);
@@ -93,20 +82,18 @@ void (APIENTRY *glBindVertexArray)(GLuint array);
 void (APIENTRY *glGenBuffers)(GLsizei n, GLuint *buffers);
 void (APIENTRY *glBindBuffer)(GLenum target, GLuint buffer);
 GLint (APIENTRY *glGetAttribLocation)(GLuint program, const GLchar *name);
-void (APIENTRY *glVertexAttribPointer)(GLuint index, GLint size,
-				       GLenum type, GLboolean normalized,
-				       GLsizei stride, const void *pointer);
+void (APIENTRY *glVertexAttribPointer)(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
 void (APIENTRY *glEnableVertexAttribArray)(GLuint index);
 GLint (APIENTRY *glGetUniformLocation)(GLuint program, const GLchar *name);
 void (APIENTRY *glUniform1i)(GLint location, GLint v0);
-void (APIENTRY *glBufferData)(GLenum target, GLsizeiptr size, const void *data,
-			      GLenum usage);
+void (APIENTRY *glBufferData)(GLenum target, GLsizeiptr size, const void *data, GLenum usage);
 void (APIENTRY *glDeleteShader)(GLuint shader);
 void (APIENTRY *glDeleteProgram)(GLuint program);
 void (APIENTRY *glDeleteVertexArrays)(GLsizei n, const GLuint *arrays);
 void (APIENTRY *glDeleteBuffers)(GLsizei n, const GLuint *buffers);
-/*void (APIENTRY *glActiveTexture)(GLenum texture);*/
-
+#if 0
+void (APIENTRY *glActiveTexture)(GLenum texture);
+#endif
 struct API
 {
 	void **func;
@@ -139,11 +126,13 @@ static struct API api[] =
 	{(void **)&glDeleteProgram, "glDeleteProgram"},
 	{(void **)&glDeleteVertexArrays, "glDeleteVertexArrays"},
 	{(void **)&glDeleteBuffers, "glDeleteBuffers"},
-/*	{(void **)&glActiveTexture, "glActiveTexture"}, */
+#if 0
+	{(void **)&glActiveTexture, "glActiveTexture"},
+#endif
 };
 
 /*
- * X11オブジェクト
+ * X11 Objects
  */
 static Display *display;
 static Window window = BadAlloc;
@@ -151,33 +140,26 @@ static Pixmap icon = BadAlloc;
 static Pixmap icon_mask = BadAlloc;
 static Atom delete_message = BadAlloc;
 
-/*
- * フレーム開始時刻
- */
+/* Frame Start Time */
 static struct timeval tv_start;
 
 /*
- * ログファイル
+ * Log File
  */
+#define LOG_BUF_SIZE	(4096)
 static FILE *log_fp;
 
 /*
- * ウィンドウタイトルのバッファ
+ * Window Title Buffer
  */
 #define TITLE_BUF_SIZE	(1024)
 static char title_buf[TITLE_BUF_SIZE];
 
-/*
- * 動画を再生中かどうか
- */
+/* Flag to indicate whether we are playing a video or not */
 static bool is_gst_playing;
 
-/*
- * 動画のスキップ可能かどうか
- */
-#if !defined(USE_REPLAY) && !defined(USE_CAPTURE)
+/* Flag to indicate whether a video is skippable or not */
 static bool is_gst_skippable;
-#endif
 
 /*
  * forward declaration
@@ -206,7 +188,7 @@ static void event_button_release(XEvent *event);
 static void event_motion_notify(XEvent *event);
 
 /*
- * メイン
+ * Main
  */
 int main(int argc, char *argv[])
 {
@@ -215,145 +197,122 @@ int main(int argc, char *argv[])
 	setlocale(LC_ALL, "");
 	setlocale(LC_NUMERIC, "C");
 
-	/* 互換レイヤの初期化処理を行う */
-	if (init(argc, argv)) {
-		/* アプリケーション本体の初期化処理を行う */
+	/* Initialize HAL. */
+	if (init_hal(argc, argv)) {
+		/* Initialize app. */
 		if (on_event_init()) {
-			/* ゲームループを実行する */
+			/* Run game loop. */
 			run_game_loop();
 
-			/* 成功 */
+			/* Success. */
 			ret = 0;
 		} else {
-			/* 失敗 */
+			/* Failure. */
 			ret = 1;
 		}
 
-		/* アプリケーション本体の終了処理を行う */
+		/* Cleanup app. */
 		on_event_cleanup();
 	} else {
-		/* エラーメッセージを表示する */
+		/* Print an error message. */
 		if (log_fp != NULL)
 			printf("Check " LOG_FILE "\n");
 
-		/* 失敗 */
+		/* Failure. */
 		ret = 1;
 	}
 
-	/* 互換レイヤの終了処理を行う */
-	cleanup();
+	/* Cleanup HAL. */
+	cleanup_hal();
 
 	return ret;
 }
 
-/* 互換レイヤの初期化処理を行う */
-static bool init(int argc, char *argv[])
+/* Initialize the subsystems. */
+static bool init_all_subsystems(int argc, char *argv[])
 {
-#ifdef SSE_VERSIONING
-	/* ベクトル命令の対応を確認する */
-	x86_check_cpuid_flags();
-#endif
-
-	/* ロケールを初期化する */
+	/* Initialize locale. */
 	init_locale_code();
 
-	/* ログファイルを開く */
+	/* Open the log file. */
 	if (!open_log_file())
 		return false;
 
-	/* ファイル読み書きの初期化処理を行う */
+	/* Initialize the file subsystem. */
 	if (!init_file())
 		return false;
 
-	/* コンフィグの初期化処理を行う */
+	/* Initialize the config subsystem. */
 	if (!init_conf())
 		return false;
 
-#if !defined(USE_REPLAY) && !defined(USE_CAPTURE)
-	/* ALSAの使用を開始する */
+	/* Initialize the ALSA sound output. */
 	if (!init_asound())
 		log_warn("Can't initialize sound.\n");
-#endif
 
-	/* ディスプレイをオープンする */
+	/* Open an X11 display. */
 	if (!open_display()) {
 		log_error("Can't open display.\n");
 		return false;
 	}
 
-	/* OpenGLを初期化する */
+	/* Initialize GLX. */
 	if (!init_glx()) {
 		log_error("Failed to initialize OpenGL.");
 		return false;
 	}
 
-	/* ウィンドウを作成する */
+	/* Create a window. */
 	if (!create_window()) {
 		log_error("Can't open window.\n");
 		return false;
 	}
 
-	/* アイコンを作成する */
+	/* Create an icon. */
 	if (!create_icon_image()) {
 		log_error("Can't create icon.\n");
 		return false;
 	}
 
-
-#if !defined(USE_REPLAY) && !defined(USE_CAPTURE)
+	/* Initialize Gstreamer. */
 	gstplay_init(argc, argv);
-#endif
-
-#ifdef USE_CAPTURE
-	UNUSED_PARAMETER(argc);
-	UNUSED_PARAMETER(argv);
-	if (!init_capture())
-		return false;
-#endif
-
-#ifdef USE_REPLAY
-	if (!init_replay(argc, argv))
-		return false;
-#endif
 
 	return true;
 }
 
-/* 互換レイヤの終了処理を行う */
-static void cleanup(void)
+/* Cleanup all subsystems. */
+static void cleanup_all_subsystems(void)
 {
-#if !defined(USE_REPLAY) && !defined(USE_CAPTURE)
-	/* ALSAの使用を終了する */
+	/* Cleanup ALSA. */
 	cleanup_asound();
-#endif
 
-	/* OpenGLの利用を終了する */
+	/* Cleanup GLX. */
 	cleanup_glx();
 
-	/* ウィンドウを破棄する */
+	/* Destroy the window. */
 	destroy_window();
 
-	/* アイコンを破棄する */
+	/* Destroy the icon. */
 	destroy_icon_image();
 
-	/* ディスプレイをクローズする */
+	/* Close the display. */
 	close_display();
 
-	/* コンフィグの終了処理を行う */
+	/* Cleanup the config subsystem. */
 	cleanup_conf();
 
-	/* ファイル読み書きの終了処理を行う */
+	/* Cleanup the file subsystem. */
 	cleanup_file();
 
-	/* ログファイルを閉じる */
+	/* Close the log file. */
 	close_log_file();
 }
 
 /*
- * ログ
+ * Logging
  */
 
-/* ログをオープンする */
+/* Open the log file. */
 static bool open_log_file(void)
 {
 	if (log_fp == NULL) {
@@ -366,7 +325,7 @@ static bool open_log_file(void)
 	return true;
 }
 
-/* ログをクローズする */
+/* Close the log file. */
 static void close_log_file(void)
 {
 	if (log_fp != NULL)
@@ -377,7 +336,7 @@ static void close_log_file(void)
  * X11
  */
 
-/* ディスプレイをオープンする */
+/* Open an X11 display. */
 static bool open_display(void)
 {
 	display = XOpenDisplay(NULL);
@@ -388,23 +347,22 @@ static bool open_display(void)
 	return true;
 }
 
-/* ディスプレイをクローズする */
+/* Close the X11 display. */
 static void close_display(void)
 {
 	if (display != NULL)
 		XCloseDisplay(display);
 }
 
-/* ウィンドウを作成する */
+/* Create a window. */
 static bool create_window(void)
 {
 	XSizeHints *sh;
 	XTextProperty tp;
 	int ret;
 
-	/* ウィンドウのタイトルを設定する */
-	ret = XmbTextListToTextProperty(display, &conf_window_title, 1,
-					XCompoundTextStyle, &tp);
+	/* Set the window title. */
+	ret = XmbTextListToTextProperty(display, &conf_window_title, 1, XCompoundTextStyle, &tp);
 	if (ret == XNoMemory || ret == XLocaleNotSupported) {
 		log_api_error("XmbTextListToTextProperty");
 		return false;
@@ -412,14 +370,14 @@ static bool create_window(void)
 	XSetWMName(display, window, &tp);
 	XFree(tp.value);
 
-	/* ウィンドウを表示する */
+	/* Show the window. */
 	ret = XMapWindow(display, window);
 	if (ret == BadWindow) {
 		log_api_error("XMapWindow");
 		return false;
 	}
 
-	/* ウィンドウのサイズを固定する */
+	/* Set the fixed window size. */
 	sh = XAllocSizeHints();
 	sh->flags = PMinSize | PMaxSize;
 	sh->min_width = conf_window_width;
@@ -429,25 +387,29 @@ static bool create_window(void)
 	XSetWMSizeHints(display, window, sh, XA_WM_NORMAL_HINTS);
 	XFree(sh);
 
-	/* イベントマスクを設定する */
-	ret = XSelectInput(display, window, KeyPressMask | ExposureMask |
-		     ButtonPressMask | ButtonReleaseMask | KeyReleaseMask |
-		     PointerMotionMask);
+	/* Set the event mask. */
+	ret = XSelectInput(display,
+			   window,
+			   KeyPressMask |
+			   ExposureMask |
+			   ButtonPressMask |
+			   ButtonReleaseMask |
+			   KeyReleaseMask |
+			   PointerMotionMask);
 	if (ret == BadWindow) {
 		log_api_error("XSelectInput");
 		return false;
 	}
 
-	/* 可能なら閉じるボタンのイベントを受け取る */
+	/* Capture close button events if possible. */
 	delete_message = XInternAtom(display, "WM_DELETE_WINDOW", True);
-	if (delete_message != None && delete_message != BadAlloc &&
-	    delete_message != BadValue)
+	if (delete_message != None && delete_message != BadAlloc && delete_message != BadValue)
 		XSetWMProtocols(display, window, &delete_message, 1);
 
 	return true;
 }
 
-/* ウィンドウを破棄する */
+/* Destroy the window. */
 static void destroy_window(void)
 {
 	if (display != NULL)
@@ -455,7 +417,7 @@ static void destroy_window(void)
 			XDestroyWindow(display, window);
 }
 
-/* アイコンを作成する */
+/* Create an icon image. */
 static bool create_icon_image(void)
 {
 	XWMHints *win_hints;
@@ -463,7 +425,7 @@ static bool create_icon_image(void)
 	Colormap cm;
 	int ret;
 
-	/* カラーマップを作成する */
+	/* Create a color map. */
 	cm = XCreateColormap(display, window,
 			     DefaultVisual(display, DefaultScreen(display)),
 			     AllocNone);
@@ -473,37 +435,36 @@ static bool create_icon_image(void)
 		return false;
 	}
 
-	/* Pixmapを作成する */
+	/* Create a pixmap. */
 	attr.valuemask = XpmColormap;
 	attr.colormap = cm;
-	ret = XpmCreatePixmapFromData(display, window, icon_xpm, &icon,
-				      &icon_mask, &attr);
+	ret = XpmCreatePixmapFromData(display, window, icon_xpm, &icon, &icon_mask, &attr);
 	if (ret != XpmSuccess) {
 		log_api_error("XpmCreatePixmapFromData");
 		XFreeColormap(display, cm);
 		return false;
 	}
 
-	/* WMHintsを確保する */
+	/* Allocate for a WMHints. */
 	win_hints = XAllocWMHints();
 	if (!win_hints) {
 		XFreeColormap(display, cm);
 		return false;
 	}
 
-	/* アイコンを設定する */
+	/* Set the icon. */
 	win_hints->flags = IconPixmapHint | IconMaskHint;
 	win_hints->icon_pixmap = icon;
 	win_hints->icon_mask = icon_mask;
 	XSetWMHints(display, window, win_hints);
 
-	/* オブジェクトを解放する */
+	/* Free the temporary objects. */
 	XFree(win_hints);
 	XFreeColormap(display,cm);
 	return true;
 }
 
-/* アイコンを破棄する */
+/* Destroy the icon image. */
 static void destroy_icon_image(void)
 {
 	if (display != NULL) {
@@ -515,10 +476,10 @@ static void destroy_icon_image(void)
 }
 
 /*
- * OpenGL
+ * OpenGL (GLX)
  */
 
-/* OpenGLを初期化する */
+/* Initialize GLX. */
 static bool init_glx(void)
 {
 	int pix_attr[] = {
@@ -548,54 +509,59 @@ static bool init_glx(void)
 	XEvent event;
 	int i, n;
 
-	/* フレームバッファの形式を選択する */
-	config = glXChooseFBConfig(display, DefaultScreen(display), pix_attr,
-				   &n);
+	/* Choose a framebuffer format. */
+	config = glXChooseFBConfig(display, DefaultScreen(display), pix_attr, &n);
 	if (config == NULL)
 		return false;
 	vi = glXGetVisualFromFBConfig(display, config[0]);
 
-	/* ウィンドウを作成する */
+	/* Create a window. */
 	swa.border_pixel = 0;
 	swa.event_mask = StructureNotifyMask;
-	swa.colormap = XCreateColormap(display, RootWindow(display, vi->screen),
-				       vi->visual, AllocNone);
-	window = XCreateWindow(display, RootWindow(display, vi->screen), 0, 0,
+	swa.colormap = XCreateColormap(display,
+				       RootWindow(display, vi->screen),
+				       vi->visual,
+				       AllocNone);
+	window = XCreateWindow(display,
+			       RootWindow(display, vi->screen),
+			       0,
+			       0,
 			       (unsigned int)conf_window_width,
 			       (unsigned int)conf_window_height,
-			       0, vi->depth, InputOutput, vi->visual,
-			       CWBorderPixel | CWColormap | CWEventMask, &swa);
+			       0,
+			       vi->depth,
+			       InputOutput,
+			       vi->visual,
+			       CWBorderPixel | CWColormap | CWEventMask,
+			       &swa);
 	XFree(vi);
 
-	/* GLXコンテキストを作成する */
-	glXCreateContextAttribsARB = (void *)glXGetProcAddress(
-			(const unsigned char *)"glXCreateContextAttribsARB");
+	/* Create a GLX context. */
+	glXCreateContextAttribsARB = (void *)glXGetProcAddress((const unsigned char *)"glXCreateContextAttribsARB");
 	if (glXCreateContextAttribsARB == NULL) {
 		XDestroyWindow(display, window);
 		return false;
 	}
-	glx_context = glXCreateContextAttribsARB(display, config[0], 0, True,
-						 ctx_attr);
+	glx_context = glXCreateContextAttribsARB(display, config[0], 0, True, ctx_attr);
 	if (glx_context == NULL) {
 		XDestroyWindow(display, window);
 		return false;
 	}
 
-	/* GLXウィンドウを作成する */
+	/* Create a GLX window. */
 	glx_window = glXCreateWindow(display, config[0], window, NULL);
 	XFree(config);
 
-	/* ウィンドウをスクリーンにマップして表示されるのを待つ */
+	/* Map the window to the screen, and wait for showing. */
 	XMapWindow(display, window);
 	XNextEvent(display, &event);
 
-	/* GLXコンテキストをウィンドウにバインドする */
+	/* Bind the GLX context to the window. */
 	glXMakeContextCurrent(display, glx_window, glx_window, glx_context);
 
-	/* APIのポインタを取得する */
+	/* Get the API pointers. */
 	for (i = 0; i < (int)(sizeof(api)/sizeof(struct API)); i++) {
-		*api[i].func = (void *)glXGetProcAddress(
-			(const unsigned char *)api[i].name);
+		*api[i].func = (void *)glXGetProcAddress((const unsigned char *)api[i].name);
 		if(*api[i].func == NULL) {
 			log_info("Failed to get %s", api[i].name);
 			glXMakeContextCurrent(display, None, None, None);
@@ -607,7 +573,7 @@ static bool init_glx(void)
 		}
 	}
 
-	/* OpenGLの初期化を行う */
+	/* Initialize the OpenGL rendering subsystem. */
 	if (!init_opengl()) {
 		glXMakeContextCurrent(display, None, None, None);
 		glXDestroyContext(display, glx_context);
@@ -620,7 +586,7 @@ static bool init_glx(void)
 	return true;
 }
 
-/* OpenGLの終了処理を行う */
+/* Cleanup GLX. */
 static void cleanup_glx(void)
 {
 	glXMakeContextCurrent(display, None, None, None);
@@ -637,20 +603,18 @@ static void cleanup_glx(void)
 }
 
 /*
- * X11のイベント処理
+ * X11 Event Handling
  */
 
-/* イベントループ */
+/* Run the event loop. */
 static void run_game_loop(void)
 {
-	bool cont;
-
-	/* フレームの開始時刻を取得する */
+	/* Get the frame start time. */
 	gettimeofday(&tv_start, NULL);
 
-	cont = true;
-	while (1) {
-#if !defined(USE_REPLAY) && !defined(USE_CAPTURE)
+	/* Main Loop. */
+	while (true) {
+		/* Process video playback. */
 		if (is_gst_playing) {
 			gstplay_loop_iteration();
 			if (!gstplay_is_playing()) {
@@ -658,33 +622,16 @@ static void run_game_loop(void)
 				is_gst_playing = false;
 			}
 		}
-#endif
-
-#if defined(USE_CAPTURE) || defined(USE_REPLAY)
-		/* 入力のキャプチャ/リプレイを行う */
-		if (!capture_input())
-			break;
-#endif
 
 		/* Run a frame. */
 		if (!run_frame())
-			cont = false;
-
-#if defined(USE_CAPTURE) || defined(USE_REPLAY)
-		/* 出力のキャプチャを行う */
-		if (!capture_output())
-			break;
-#endif
-
-		/* スクリプトの終端に達した */
-		if (!cont)
 			break;
 
-		/* 次のフレームを待つ */
+		/* Wait for the next frame timing. */
 		if (!wait_for_next_frame())
-			break;	/* 閉じるボタンが押された */
+			break;	/* Close button was pressed. */
 
-		/* フレームの開始時刻を取得する */
+		/* Get the frame start time. */
 		gettimeofday(&tv_start, NULL);
 	}
 }
@@ -694,15 +641,15 @@ static bool run_frame(void)
 {
 	bool cont;
 
-	/* レンダリングを開始する */
+	/* Start rendering. */
 	if (!is_gst_playing) {
 		opengl_start_rendering();
 	}
 
-	/* フレームイベントを呼び出す */
+	/* Call a frame event. */
 	cont = on_event_frame();
 
-	/* レンダリングを終了する */
+	/* End rendering. */
 	if (!is_gst_playing) {
 		opengl_end_rendering();
 		glXSwapBuffers(display, glx_window);
@@ -711,7 +658,7 @@ static bool run_frame(void)
 	return cont;
 }
 
-/* フレームの描画を行う */
+/* Wait for the next frame timing. */
 static bool wait_for_next_frame(void)
 {
 	struct timeval tv_end;
@@ -719,43 +666,36 @@ static bool wait_for_next_frame(void)
 
 	span = FRAME_MILLI;
 
-	/* 次のフレームの開始時刻になるまでイベント処理とスリープを行う */
+	/* Do event processing and sleep until the time of next frame start. */
 	do {
-		/* イベントがある場合は処理する */
+		/* Process events if exist. */
 		while (XEventsQueued(display, QueuedAfterFlush) > 0)
 			if (!next_event())
 				return false;
 
-#ifdef USE_REPLAY
-		UNUSED_PARAMETER(tv_end);
-		UNUSED_PARAMETER(lap);
-		UNUSED_PARAMETER(span);
-		usleep(1);
-		break;
-#else
-		/* 経過時刻を取得する */
+		/* Get a lap time. */
 		gettimeofday(&tv_end, NULL);
 		lap = (uint32_t)((tv_end.tv_sec - tv_start.tv_sec) * 1000 +
 				 (tv_end.tv_usec - tv_start.tv_usec) / 1000);
 
-		/* 次のフレームの開始時刻になった場合はスリープを終了する */
+		/* Break if the time has come. */
 		if (lap > span) {
 			tv_start = tv_end;
 			break;
 		}
 
-		/* スリープする時間を求める */
+		/* Calc a sleep time. */
 		wait = (span - lap > SLEEP_MILLI) ? SLEEP_MILLI : span - lap;
 
-		/* スリープする */
+		/* Do sleep. */
 		usleep(wait * 1000);
-#endif
+
 	} while(wait > 0);
 
 	return true;
 }
 
-/* イベントを1つ処理する */
+/* Process an event. */
 static bool next_event(void)
 {
 	XEvent event;
@@ -781,7 +721,7 @@ static bool next_event(void)
 		XRefreshKeyboardMapping(&event.xmapping);
 		break;
 	case ClientMessage:
-		/* 閉じるボタンが押された */
+		/* Close button was pressed. */
 		if ((Atom)event.xclient.data.l[0] == delete_message)
 			return false;
 		break;
@@ -789,26 +729,26 @@ static bool next_event(void)
 	return true;
 }
 
-/* KeyPressイベントを処理する */
+/* Process a KeyPress event. */
 static void event_key_press(XEvent *event)
 {
 	int key;
 
-	/* キーコードを取得する */
+	/* Get a key code. */
 	key = get_key_code(event);
 	if (key == -1)
 		return;
 
-	/* イベントハンドラを呼び出す */
+	/* Call an event handler. */
 	on_event_key_press(key);
 }
 
-/* KeyReleaseイベントを処理する */
+/* Process a KeyRelease event. */
 static void event_key_release(XEvent *event)
 {
 	int key;
 
-	/* オートリピートのイベントを無視する */
+	/* Ignore auto repeat events. */
 	if (XEventsQueued(display, QueuedAfterReading) > 0) {
 		XEvent next;
 		XPeekEvent(display, &next);
@@ -820,25 +760,25 @@ static void event_key_release(XEvent *event)
 		}
 	}
 
-	/* キーコードを取得する */
+	/* Get a key code. */
 	key = get_key_code(event);
 	if (key == -1)
 		return;
 
-	/* イベントハンドラを呼び出す */
+	/* Call an event handler. */
 	on_event_key_release(key);
 }
 
-/* KeySymからenum key_codeに変換する */
+/* Convert 'KeySym' to 'enum key_code'. */
 static int get_key_code(XEvent *event)
 {
 	char text[255];
 	KeySym keysym;
 
-	/* キーシンボルを取得する */
+	/* Get a KeySym. */
 	XLookupString(&event->xkey, text, sizeof(text), &keysym, 0);
 
-	/* キーコードに変換する */
+	/* Convert to key_code. */
 	switch (keysym) {
 	case XK_Return:
 	case XK_KP_Enter:
@@ -863,17 +803,19 @@ static int get_key_code(XEvent *event)
 	return -1;
 }
 
-/* ButtonPressイベントを処理する */
+/* Process a ButtonPress event. */
 static void event_button_press(XEvent *event)
 {
-	/* ボタンの種類ごとにディスパッチする */
+	/* See the button type and dispatch. */
 	switch (event->xbutton.button) {
 	case Button1:
-		on_event_mouse_press(MOUSE_LEFT, event->xbutton.x,
+		on_event_mouse_press(MOUSE_LEFT,
+				     event->xbutton.x,
 				     event->xbutton.y);
 		break;
 	case Button3:
-		on_event_mouse_press(MOUSE_RIGHT, event->xbutton.x,
+		on_event_mouse_press(MOUSE_RIGHT,
+				     event->xbutton.x,
 				     event->xbutton.y);
 		break;
 	case Button4:
@@ -889,26 +831,28 @@ static void event_button_press(XEvent *event)
 	}
 }
 
-/* ButtonPressイベントを処理する */
+/* Process a ButtonPress event. */
 static void event_button_release(XEvent *event)
 {
-	/* ボタンの種類ごとにディスパッチする */
+	/* See the button type and dispatch. */
 	switch (event->xbutton.button) {
 	case Button1:
-		on_event_mouse_release(MOUSE_LEFT, event->xbutton.x,
+		on_event_mouse_release(MOUSE_LEFT,
+				       event->xbutton.x,
 				       event->xbutton.y);
 		break;
 	case Button3:
-		on_event_mouse_release(MOUSE_RIGHT, event->xbutton.x,
+		on_event_mouse_release(MOUSE_RIGHT,
+				       event->xbutton.x,
 				       event->xbutton.y);
 		break;
 	}
 }
 
-/* MotionNotifyイベントを処理する */
+/* Process a MotionNotify event. */
 static void event_motion_notify(XEvent *event)
 {
-	/* イベントをディスパッチする */
+	/* Call an event handler. */
 	on_event_mouse_move(event->xmotion.x, event->xmotion.y);
 }
 
@@ -917,7 +861,7 @@ static void event_motion_notify(XEvent *event)
  */
 
 /*
- * INFOログを出力する
+ * Put an INFO log.
  */
 bool log_info(const char *s, ...)
 {
@@ -925,20 +869,20 @@ bool log_info(const char *s, ...)
 	va_list ap;
 
 	va_start(ap, s);
+	vsnprintf(buf, sizeof(buf), s, ap);
+	va_end(ap);
+
 	if (log_fp != NULL) {
-		vsnprintf(buf, sizeof(buf), s, ap);
 		fprintf(log_fp, "%s\n", buf);
 		fflush(log_fp);
 		if (ferror(log_fp))
 			return false;
 	}
-	vfprintf(stderr, s, ap);
-	va_end(ap);
 	return true;
 }
 
 /*
- * WARNログを出力する
+ * Put a WARN log.
  */
 bool log_warn(const char *s, ...)
 {
@@ -946,41 +890,41 @@ bool log_warn(const char *s, ...)
 	va_list ap;
 
 	va_start(ap, s);
+	vsnprintf(buf, sizeof(buf), s, ap);
+	va_end(ap);
+
 	if (log_fp != NULL) {
-		vsnprintf(buf, sizeof(buf), s, ap);
 		fprintf(log_fp, "%s\n", buf);
 		fflush(log_fp);
 		if (ferror(log_fp))
 			return false;
 	}
-	vfprintf(stderr, s, ap);
-	va_end(ap);
 	return true;
 }
 
 /*
- * ERRORログを出力する
+ * Put an ERROR log.
  */
 bool log_error(const char *s, ...)
 {
-	va_list ap;
 	char buf[LOG_BUF_SIZE];
+	va_list ap;
 
 	va_start(ap, s);
+	vsnprintf(buf, sizeof(buf), s, ap);
+	va_end(ap);
+
 	if (log_fp != NULL) {
-		vsnprintf(buf, sizeof(buf), s, ap);
 		fprintf(log_fp, "%s\n", buf);
 		fflush(log_fp);
 		if (ferror(log_fp))
 			return false;
 	}
-	vfprintf(stderr, s, ap);
-	va_end(ap);
 	return true;
 }
 
 /*
- * イメージの更新を通知する
+ * Notify an image update.
  */
 void notify_image_update(struct image *img)
 {
@@ -988,7 +932,7 @@ void notify_image_update(struct image *img)
 }
 
 /*
- * イメージの破棄を通知する
+ * Notify an image free.
  */
 void notify_image_free(struct image *img)
 {
@@ -996,7 +940,7 @@ void notify_image_free(struct image *img)
 }
 
 /*
- * イメージをレンダリングする
+ * Render an image to the screen with the normal pipeline.
  */
 void render_image_normal(int dst_left,
 			 int dst_top,
@@ -1022,7 +966,7 @@ void render_image_normal(int dst_left,
 }
 
 /*
- * イメージをレンダリングする
+ * Render an image to the screen with the add pipeline.
  */
 void render_image_add(int dst_left,
 		      int dst_top,
@@ -1048,7 +992,7 @@ void render_image_add(int dst_left,
 }
 
 /*
- * イメージを暗くレンダリングする
+ * Render an image to the screen with the dim pipeline.
  */
 void render_image_dim(int dst_left,
 		      int dst_top,
@@ -1074,7 +1018,7 @@ void render_image_dim(int dst_left,
 }
 
 /*
- * 画面にイメージをルール付きでレンダリングする
+ * Render an image to the screen with the rule pipeline.
  */
 void render_image_rule(struct image *src_img,
 		       struct image *rule_img,
@@ -1084,7 +1028,7 @@ void render_image_rule(struct image *src_img,
 }
 
 /*
- * 画面にイメージをルール付き(メルト)でレンダリングする
+ * Render an image to the screen with the melt pipeline.
  */
 void render_image_melt(struct image *src_img,
 		       struct image *rule_img,
@@ -1094,7 +1038,7 @@ void render_image_melt(struct image *src_img,
 }
 
 /*
- * Renders an image to the screen with the "normal" shader pipeline.
+ * Render an image to the screen with the normal pipeline.
  */
 void
 render_image_3d_normal(
@@ -1130,7 +1074,7 @@ render_image_3d_normal(
 }
 
 /*
- * Renders an image to the screen with the "add" shader pipeline.
+ * Render an image to the screen with the add pipeline.
  */
 void
 render_image_3d_add(
@@ -1166,7 +1110,7 @@ render_image_3d_add(
 }
 
 /*
- * セーブディレクトリを作成する
+ * Make a save directory.
  */
 bool make_sav_dir(void)
 {
@@ -1179,7 +1123,7 @@ bool make_sav_dir(void)
 }
 
 /*
- * データファイルのディレクトリ名とファイル名を指定して有効なパスを取得する
+ * Make an effective path from a directory name and a file name.
  */
 char *make_valid_path(const char *dir, const char *fname)
 {
@@ -1206,28 +1150,22 @@ char *make_valid_path(const char *dir, const char *fname)
 }
 
 /*
- * タイマをリセットする
+ * Reset a timer.
  */
 void reset_lap_timer(uint64_t *t)
 {
-#ifndef USE_REPLAY
 	struct timeval tv;
 
 	gettimeofday(&tv, NULL);
 
 	*t = (uint64_t)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
-#else
-	extern uint64_t sim_time;
-	*t = sim_time;
-#endif
 }
 
 /*
- * タイマのラップをミリ秒単位で取得する
+ * Get a timer lap.
  */
 uint64_t get_lap_timer_millisec(uint64_t *t)
 {
-#ifndef USE_REPLAY
 	struct timeval tv;
 	uint64_t end;
 	
@@ -1236,14 +1174,10 @@ uint64_t get_lap_timer_millisec(uint64_t *t)
 	end = (uint64_t)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
 
 	return (uint64_t)(end - *t);
-#else
-	extern uint64_t sim_time;
-	return (uint64_t)(sim_time - *t);
-#endif
 }
 
 /*
- * 終了ダイアログを表示する
+ * Show a exit dialog.
  */
 bool exit_dialog(void)
 {
@@ -1252,7 +1186,7 @@ bool exit_dialog(void)
 }
 
 /*
- * タイトルに戻るダイアログを表示する
+ * Show a back-to-title dialog.
  */
 bool title_dialog(void)
 {
@@ -1261,7 +1195,7 @@ bool title_dialog(void)
 }
 
 /*
- * 削除ダイアログを表示する
+ * Show a delete confirmation dialog.
  */
 bool delete_dialog(void)
 {
@@ -1270,7 +1204,7 @@ bool delete_dialog(void)
 }
 
 /*
- * 上書きダイアログを表示する
+ * Show an overwrite confirmation dialog.
  */
 bool overwrite_dialog(void)
 {
@@ -1279,7 +1213,7 @@ bool overwrite_dialog(void)
 }
 
 /*
- * 初期設定ダイアログを表示する
+ * Show a reset-to-default dialog.
  */
 bool default_dialog(void)
 {
@@ -1288,11 +1222,10 @@ bool default_dialog(void)
 }
 
 /*
- * ビデオを再生する
+ * Play a video.
  */
 bool play_video(const char *fname, bool is_skippable)
 {
-#if !defined(USE_REPLAY) && !defined(USE_CAPTURE)
 	char *path;
 
 	path = make_valid_path(MOV_DIR, fname);
@@ -1303,27 +1236,22 @@ bool play_video(const char *fname, bool is_skippable)
 	gstplay_play(path, window);
 
 	free(path);
-#else
-	UNUSED_PARAMETER(fname);
-	UNUSED_PARAMETER(is_skippable);
-#endif
 
 	return true;
 }
 
 /*
- * ビデオを停止する
+ * Stop the video.
  */
 void stop_video(void)
 {
-#if !defined(USE_REPLAY) && !defined(USE_CAPTURE)
 	gstplay_stop();
-#endif
+
 	is_gst_playing = false;
 }
 
 /*
- * ビデオが再生中か調べる
+ * Check whether a video is playing.
  */
 bool is_video_playing(void)
 {
@@ -1331,7 +1259,7 @@ bool is_video_playing(void)
 }
 
 /*
- * ウィンドウタイトルを更新する
+ * Update the window title.
  */
 void update_window_title(void)
 {
@@ -1340,21 +1268,20 @@ void update_window_title(void)
 	const char *sep;
 	int ret;
 
-	/* セパレータを取得する */
+	/* Get the separator. */
 	sep = conf_window_title_separator;
 	if (sep == NULL)
 		sep = " ";
 
-	/* タイトルを作成する */
+	/* Make a title. */
 	strncpy(title_buf, conf_window_title, TITLE_BUF_SIZE - 1);
 	strncat(title_buf, sep, TITLE_BUF_SIZE - 1);
 	strncat(title_buf, get_chapter_name(), TITLE_BUF_SIZE - 1);
 	title_buf[TITLE_BUF_SIZE - 1] = '\0';
 
-	/* ウィンドウのタイトルを設定する */
+	/* Set the title for the window. */
 	buf = title_buf;
-	ret = XmbTextListToTextProperty(display, &buf, 1,
-					XCompoundTextStyle, &tp);
+	ret = XmbTextListToTextProperty(display, &buf, 1, XCompoundTextStyle, &tp);
 	if (ret == XNoMemory || ret == XLocaleNotSupported) {
 		log_api_error("XmbTextListToTextProperty");
 		return;
@@ -1364,7 +1291,7 @@ void update_window_title(void)
 }
 
 /*
- * フルスクリーンモードがサポートされるか調べる
+ * Check whether full screen mode is supported.
  */
 bool is_full_screen_supported(void)
 {
@@ -1372,7 +1299,7 @@ bool is_full_screen_supported(void)
 }
 
 /*
- * フルスクリーンモードであるか調べる
+ * Check whether we are in full screen mode.
  */
 bool is_full_screen_mode(void)
 {
@@ -1380,7 +1307,7 @@ bool is_full_screen_mode(void)
 }
 
 /*
- * フルスクリーンモードを開始する
+ * Enter full screen mode.
  */
 void enter_full_screen_mode(void)
 {
@@ -1388,7 +1315,7 @@ void enter_full_screen_mode(void)
 }
 
 /*
- * フルスクリーンモードを終了する
+ * Leave full screen mode.
  */
 void leave_full_screen_mode(void)
 {
@@ -1396,7 +1323,7 @@ void leave_full_screen_mode(void)
 }
 
 /*
- * システムのロケールを取得する
+ * Get the system locale.
  */
 const char *get_system_locale(void)
 {
@@ -1431,31 +1358,10 @@ const char *get_system_locale(void)
 	return "other";
 }
 
+/*
+ * Text-to-speach.
+ */
 void speak_text(const char *msg)
 {
 	UNUSED_PARAMETER(msg);
 }
-
-#if defined(USE_CAPTURE) || defined(USE_REPLAY)
-/*
- * ミリ秒の時刻を取得する
- */
-uint64_t get_tick_count64(void)
-{
-	struct timeval tv;
-
-	gettimeofday(&tv, NULL);
-
-	return (uint64_t)tv.tv_sec * 1000LL + (uint64_t)tv.tv_usec / 1000LL;
-}
-
-/*
- * 出力データのディレクトリを作り直す
- */
-bool reconstruct_dir(const char *dir)
-{
-	remove(dir);
-	mkdir(dir, 0700); 
-	return true;
-}
-#endif
