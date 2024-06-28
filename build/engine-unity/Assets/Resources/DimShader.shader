@@ -1,4 +1,4 @@
-Shader "Polaris Engine/Dim Shader"
+Shader "PolarisEngine/DimShader"
 {
     Properties
     {

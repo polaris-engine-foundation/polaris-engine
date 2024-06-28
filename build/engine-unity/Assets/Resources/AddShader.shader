@@ -1,9 +1,8 @@
-Shader "PolarisEngine/MeltShader"
+Shader "PolarisEngine/AddShader"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _RuleTex ("Texture", 2D) = "white" {}
     }
 
     SubShader
@@ -42,9 +41,7 @@ Shader "PolarisEngine/MeltShader"
             };
 
             sampler2D _MainTex;
-            sampler2D _RuleTex;
             float4 _MainTex_ST;
-            float4 _RuleTex_ST;
 
             v2f vert (appdata v)
             {
@@ -57,10 +54,9 @@ Shader "PolarisEngine/MeltShader"
 
             float4 frag (v2f i) : SV_Target
             {
-                float4 col1 = tex2D(_MainTex, i.uv);
-                float4 col2 = tex2D(_RuleTex, i.uv);
-                col1.a = clamp((1.0 - col2.b) + (i.color.a * 2.0 - 1.0), 0.0, 1.0);
-                return col1;
+                float4 col = tex2D(_MainTex, i.uv);
+                col.a *= i.color.a;
+                return col;
             }
             ENDCG
         }

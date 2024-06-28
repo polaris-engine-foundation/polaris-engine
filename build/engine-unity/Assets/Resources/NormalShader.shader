@@ -1,4 +1,4 @@
-Shader "Polaris Engine/Normal Shader"
+Shader "PolarisEngine/NormalShader"
 {
     Properties
     {

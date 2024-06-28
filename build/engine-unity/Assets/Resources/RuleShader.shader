@@ -1,4 +1,4 @@
-Shader "Polaris Engine/Normal Shader"
+Shader "PolarisEngine/RuleShader"
 {
     Properties
     {
@@ -43,6 +43,8 @@ Shader "Polaris Engine/Normal Shader"
 
             sampler2D _MainTex;
             sampler2D _RuleTex;
+            float4 _MainTex_ST;
+            float4 _RuleTex_ST;
 
             v2f vert (appdata v)
             {
