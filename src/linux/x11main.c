@@ -164,8 +164,8 @@ static bool is_gst_skippable;
 /*
  * forward declaration
  */
-static bool init(int argc, char *argv[]);
-static void cleanup(void);
+static bool init_subsystems(int argc, char *argv[]);
+static void cleanup_subsystems(void);
 static bool open_log_file(void);
 static void close_log_file(void);
 static bool open_display(void);
@@ -197,8 +197,8 @@ int main(int argc, char *argv[])
 	setlocale(LC_ALL, "");
 	setlocale(LC_NUMERIC, "C");
 
-	/* Initialize HAL. */
-	if (init_hal(argc, argv)) {
+	/* Initialize all subsystems. */
+	if (init_subsystems(argc, argv)) {
 		/* Initialize app. */
 		if (on_event_init()) {
 			/* Run game loop. */
@@ -222,14 +222,14 @@ int main(int argc, char *argv[])
 		ret = 1;
 	}
 
-	/* Cleanup HAL. */
-	cleanup_hal();
+	/* Cleanup the subsystems. */
+	cleanup_subsystems();
 
 	return ret;
 }
 
 /* Initialize the subsystems. */
-static bool init_all_subsystems(int argc, char *argv[])
+static bool init_subsystems(int argc, char *argv[])
 {
 	/* Initialize locale. */
 	init_locale_code();
@@ -280,8 +280,8 @@ static bool init_all_subsystems(int argc, char *argv[])
 	return true;
 }
 
-/* Cleanup all subsystems. */
-static void cleanup_all_subsystems(void)
+/* Cleanup the subsystems. */
+static void cleanup_subsystems(void)
 {
 	/* Cleanup ALSA. */
 	cleanup_asound();
