@@ -116,6 +116,7 @@ setup:
 		cd build/engine-windows && ./build-libs.sh && cd ../..; \
 		cp -Ra build/engine-windows/libroot build/pro-windows/; \
 		cd build/engine-windows-64 && ./build-libs.sh && cd ../..; \
+		cd build/engine-windows-arm64 && ./build-libs.sh && cd ../..; \
 		cd build/engine-macos && ./build-libs.sh && cd ../..; \
 		cd build/engine-ios && ./build-libs-device.sh && ./build-libs-sim.sh && cd ../..; \
 		cp -Ra build/engine-macos/libroot build/pro-macos/; \

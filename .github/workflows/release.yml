@@ -62,6 +62,9 @@ jobs:
           cd build/engine-windows-64
           ./build-libs.sh
           cd ../..
+          cd build/engine-windows-arm64
+          ./build-libs.sh
+          cd ../..
           cd build/engine-macos
           ./build-libs.sh
           cd ../..

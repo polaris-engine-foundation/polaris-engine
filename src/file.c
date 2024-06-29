@@ -7,10 +7,12 @@
 
 #include "polarisengine.h"
 
+/* Replace strcasecmp() to _stricmp() on MSVC. */
 #ifdef _MSC_VER
 #define strcasecmp _stricmp
 #endif
 
+/* fcntl.h is required on Win32. */
 #ifdef POLARIS_ENGINE_TARGET_WIN32
 #include <fcntl.h>
 #endif
@@ -18,6 +20,9 @@
 /* Obfuscation Key */
 #include "key.h"
 
+/*
+ * "Obfuscattion Key" is stored with obfuscation.
+ */
 static volatile uint64_t key_obfuscated =
 	~((((OBFUSCATION_KEY >> 56) & 0xff) << 0) |
 	  (((OBFUSCATION_KEY >> 48) & 0xff) << 8) |
@@ -30,27 +35,29 @@ static volatile uint64_t key_obfuscated =
 static volatile uint64_t key_reversed;
 static volatile uint64_t *key_ref = &key_reversed;
 
-/* ファイル読み込みストリーム */
+/* File Read Stream */
 struct rfile {
-	/* パッケージ内のファイルであるか */
+	/* Is a packaged file? */
 	bool is_packaged;
 
-	/* 難読化されているか */
+	/* Is obfuscated? */
 	bool is_obfuscated;
 
-	/* パッケージファイルもしくは個別のファイルへのファイルポインタ */
+	/* stdio FILE pointer */
 	FILE *fp;
 
-	/* パッケージ内のファイルを使う場合にのみ用いる情報 */
+	/* Obfuscation parameters */
+	uint64_t next_random;
+	uint64_t prev_random;
+
+	/* Effective for a packaged file: */
 	uint64_t index;
 	uint64_t size;
 	uint64_t offset;
 	uint64_t pos;
-	uint64_t next_random;
-	uint64_t prev_random;
 };
 
-/* ファイル書き込みストリーム */
+/* File Write Stream */
 struct wfile {
 	FILE *fp;
 	uint64_t next_random;
