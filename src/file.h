@@ -11,121 +11,94 @@
 #include "types.h"
 
 /*
+ * File System Abstraction
+ *  - file.c, the common implementation of file.h, uses stdio library.
+ *  - Following ports use separate implementations, not file.c:
+ *    - engine-android
+ *    - engine-unity
+ *    - engine-wasm
+ */
+
+/*
  * [Archive File Design]
- * 
+ *
  * struct header {
  *     u64 file_count;
  *     struct file_entry {
- *         u8  file_name[256]; // Encrypted
+ *         u8  file_name[256]; // Obfuscated
  *         u64 file_size;
  *         u64 file_offset;
  *     } [file_count];
  * };
- * u8 file_body[file_count][file_length]; // Encrypted
+ * u8 file_body[file_count][file_length]; // Obfuscated
  */
 
-/*
- * パッケージファイル名
- */
+/* Package file name. */
 #define PACKAGE_FILE		"data01.arc"
 
-/*
- * パッケージ内のファイルエントリの最大数
- */
+/* Maximum entries in a package. */
 #define FILE_ENTRY_SIZE		(65536)
 
-/*
- * パッケージ内のファイル名のサイズ
- */
+/* File name length for an entry. */
 #define FILE_NAME_SIZE		(256)
 
 /*
- * パッケージ内のファイルエントリ
+ * File entry.
  */
 struct file_entry {
-	/* ファイル名 */
+	/* File name. */
 	char name[FILE_NAME_SIZE];
 
-	/* ファイルサイズ */
+	/* File size. */
 	uint64_t size;
 
-	/* パッケージ内のファイルオフセット */
+	/* Offset in the package file. */
 	uint64_t offset;
 };
 
-/*
- * ファイル読み込みストリーム
- */
+/* File read stream. */
 struct rfile;
 
-/*
- * ファイル書き込みストリーム
- */
+/* File write stream. */
 struct wfile;
 
-/*
- * ファイル読み書きの初期化処理を行う
- */
+/* Initialize the file subsystem. */
 bool init_file(void);
 
-/*
- * ファイル読み書きの初期化処理を行う
- */
+/* Cleanup the file subsystem. */
 void cleanup_file(void);
 
-/*
- * ファイルがあるか調べる
- */
+/* Check whether file exists. */
 bool check_file_exist(const char *dir, const char *file);
 
-/*
- * ファイル読み込みストリームを開く
- */
+/* Open file read stream. */
 struct rfile *open_rfile(const char *dir, const char *file, bool save_data);
 
-/*
- * ファイルのサイズを取得する
- */
+/* Get a file size. */
 size_t get_rfile_size(struct rfile *rf);
 
-/*
- * ファイル読み込みストリームから読み込む
- */
+/* Read from a file stream. */
 size_t read_rfile(struct rfile *rf, void *buf, size_t size);
 
-/*
- * ファイル読み込みストリームから1行読み込む
- */
+/* Read a line from a file stream. */
 const char *gets_rfile(struct rfile *rf, char *buf, size_t size);
 
-/*
- * ファイル読み込みストリームを閉じる
- */
+/* Close a file stream. */
 void close_rfile(struct rfile *rf);
 
-/*
- * ファイル読み込みストリームを先頭まで巻き戻す
- */
+/* Go back to the top of a file stream. */
 void rewind_rfile(struct rfile *rf);
 
-/*
- * ファイル書き込みストリームを開く
- */
+/* Open a write file stream. */
 struct wfile *open_wfile(const char *dir, const char *file);
 
-/*
- * ファイル書き込みストリームに書き込む
- */
+/* Write to a file stream. */
 size_t write_wfile(struct wfile *wf, const void *buf, size_t size);
 
-/*
- * ファイル読み込みストリームを閉じる
- */
+/* Close a write file stream. */
 void close_wfile(struct wfile *wf);
 
-/*
- * ファイルを削除する
- */
+/* Remove a file. */
 void remove_file(const char *dir, const char *file);
 
 #endif
