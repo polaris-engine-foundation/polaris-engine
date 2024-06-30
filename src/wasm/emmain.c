@@ -74,8 +74,8 @@ int main(void)
 
 	/* IDBFSのセーブデータをマウントする */
 	EM_ASM_({
-		FS.mkdir("Polaris Engine-sav");
-		FS.mount(IDBFS, {}, "Polaris Engine-sav");
+		FS.mkdir("polaris-engine-sav");
+		FS.mount(IDBFS, {}, "polaris-engine-sav");
 		FS.syncfs(true, function (err) { Module.ccall('main_continue', 'v'); });
 	});
 

@@ -5,14 +5,28 @@
  * Copyright (C) 2024, The Authors. All rights reserved.
  */
 
+/*
+ * The ANSI C Implementation of The File Subsystem
+ *  - On most platforms, we use this stdio-based code for file access.
+ *  - On some platforms, we use alternative implementations instead of this code:
+ *    - Android: ndkfile.c (Resources)
+ *    - Wasm: emfile.c (Emscripten's FS)
+ *    - Unity: PolarisEngineScript.cs (StreamingAssets)
+ */
+
+/* Base */
 #include "polarisengine.h"
 
-/* Replace strcasecmp() to _stricmp() on MSVC. */
+/*
+ * Replace POSIX strcasecmp() to DOS _stricmp() on MSVC.
+ */
 #ifdef _MSC_VER
 #define strcasecmp _stricmp
 #endif
 
-/* fcntl.h is required on Win32. */
+/*
+ * fcntl.h is required on Win32.
+ */
 #ifdef POLARIS_ENGINE_TARGET_WIN32
 #include <fcntl.h>
 #endif
@@ -35,7 +49,15 @@ static volatile uint64_t key_obfuscated =
 static volatile uint64_t key_reversed;
 static volatile uint64_t *key_ref = &key_reversed;
 
-/* File Read Stream */
+/*
+ * These keys are not secrets.
+ */
+#define NEXT_MASK1	0xafcb8f2ff4fff33f
+#define NEXT_MASK2	0xfcbfaff8f2f4f3f0
+
+/*
+ * File read stream
+ */
 struct rfile {
 	/* Is a packaged file? */
 	bool is_packaged;
@@ -57,27 +79,32 @@ struct rfile {
 	uint64_t pos;
 };
 
-/* File Write Stream */
+/*
+ * File write stream.
+ */
 struct wfile {
 	FILE *fp;
 	uint64_t next_random;
 };
 
-/* パッケージのファイルエントリ */
+/* File entries in the package. */
 static struct file_entry entry[FILE_ENTRY_SIZE];
 
-/* パッケージのファイルエントリ数 */
+/* File entry count. */
 static uint64_t entry_count;
 
-/* パッケージファイルのパス */
+/* Package file path. */
 static char *package_path;
 
+/*
+ * Use utf-8 to utf-16 conversion on Win32.
+ */
 #ifdef POLARIS_ENGINE_TARGET_WIN32
 const wchar_t *conv_utf8_to_utf16(const char *s);
 #endif
 
 /*
- * 前方参照
+ * Forward declarations.
  */
 static void warn_file_name_case(const char *dir, const char *file);
 static void ungetc_rfile(struct rfile *rf, char c);
@@ -86,28 +113,28 @@ static char get_next_random(uint64_t *next_random, uint64_t *prev_random);
 static void rewind_random(uint64_t *next_random, uint64_t *prev_random);
 
 /*
- * 初期化
+ * Initialization
  */
 
 /*
- * ファイル読み込みの初期化処理を行う
+ * Initialize the file subsystem.
  */
 bool init_file(void)
 {
 #if defined(USE_EDITOR)
-	/* ユーザの気持ちを考えて、エディタではパッケージを開けない */
+	/* Disable the feature to open packages on the editor apps. */
 	return true;
 #else
 	FILE *fp;
 	uint64_t i, next_random;
 	int j;
 
-	/* パッケージファイルのパスを求める */
+	/* Get the actual path to "data01.arc". */
 	package_path = make_valid_path(NULL, PACKAGE_FILE);
 	if (package_path == NULL)
 		return false;
 
-	/* パッケージファイルを開いてみる */
+	/* Try opening a package file "data01.arc". */
 #ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	fp = _wfopen(conv_utf8_to_utf16(package_path), L"r");
@@ -115,18 +142,19 @@ bool init_file(void)
 	fp = fopen(package_path, "r");
 #endif
 	if (fp == NULL) {
+		/* Failed to open. */
 		free(package_path);
 		package_path = NULL;
 #if defined(POLARIS_ENGINE_TARGET_IOS) || defined(POLARIS_ENGINE_TARGET_WASM)
-		/* 開ける必要がある */
+		/* Fail: On iOS and Wasm, we need to open "data01.arc". */
 		return false;
 #else
-		/* 開けなくてもよい */
+		/* On other platforms, we don't need "data01.arc". */
 		return true;
 #endif
 	}
 
-	/* パッケージのファイルエントリ数を取得する */
+	/* Read the number of the file entries. */
 	if (fread(&entry_count, sizeof(uint64_t), 1, fp) < 1) {
 		log_package_file_error();
 		fclose(fp);
@@ -138,7 +166,7 @@ bool init_file(void)
 		return false;
 	}
 
-	/* パッケージのファイルエントリを読み込む */
+	/* Read the file entries. */
 	for (i = 0; i < entry_count; i++) {
 		if (fread(&entry[i].name, FILE_NAME_SIZE, 1, fp) < 1)
 			break;
@@ -156,13 +184,15 @@ bool init_file(void)
 		return false;
 	}
 
+	/* Close the package for now; we will open one FILE pointer per an input stream.*/
 	fclose(fp);
+
 	return true;
 #endif
 }
 
 /*
- * ファイル読み込みの終了処理を行う
+ * Cleanup the file subsystem.
  */
 void cleanup_file(void)
 {
@@ -170,11 +200,11 @@ void cleanup_file(void)
 }
 
 /*
- * 読み込み
+ * Read
  */
 
 /*
- * ファイルがあるか調べる
+ * Check whether a file exists.
  */
 bool check_file_exist(const char *dir, const char *file)
 {
@@ -183,7 +213,7 @@ bool check_file_exist(const char *dir, const char *file)
 	uint64_t i;
 
 #if !defined(POLARIS_ENGINE_TARGET_IOS) || !defined(POLARIS_ENGINE_TARGET_WASM)
-	/* まずファイルシステム上のファイルを開いてみる */
+	/* Check a file on the real file system first. */
 	char *real_path;
 	real_path = make_valid_path(dir, file);
 	if (real_path == NULL) {
@@ -197,27 +227,27 @@ bool check_file_exist(const char *dir, const char *file)
 	fp = fopen(real_path, "r");
 #endif
 	if (fp != NULL) {
-		/* ファイルが存在する */
+		/* File exists. */
 		fclose(fp);
 		return true;
 	}
 #endif
 
-	/* 次にパッケージ上のファイルエントリを探す */
+	/* Check whether a package entry exists. */
 	snprintf(entry_name, FILE_NAME_SIZE, "%s/%s", dir, file);
 	for (i = 0; i < entry_count; i++) {
 		if (strcasecmp(entry[i].name, entry_name) == 0){
-			/* ファイルが存在する */
+			/* Entry exists. */
 			return true;
 		}
 	}
 
-	/* ファイルが存在しない */
+	/* File does not exist. */
 	return false;
 }
 
 /*
- * ファイル読み込みストリームを開く
+ * Open a read file stream.
  */
 struct rfile *open_rfile(
 	const char *dir,
@@ -231,14 +261,14 @@ struct rfile *open_rfile(
 
 	warn_file_name_case(dir, file);
 
-	/* rfile構造体のメモリを確保する */
+	/* Allocate a rfile struct. */
 	rf = malloc(sizeof(struct rfile));
 	if (rf == NULL) {
 		log_memory();
 		return NULL;
 	}
 
-	/* パスを生成する */
+	/* Make an effective path on the real file system. */
 	real_path = make_valid_path(dir, file);
 	if (real_path == NULL) {
 		log_memory();
@@ -246,7 +276,7 @@ struct rfile *open_rfile(
 		return NULL;
 	}
 
-	/* まずファイルシステム上のファイルを開いてみる */
+	/* Try a real file first. */
 #ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	rf->fp = _wfopen(conv_utf8_to_utf16(real_path), L"r");
@@ -254,7 +284,7 @@ struct rfile *open_rfile(
 	rf->fp = fopen(real_path, "r");
 #endif
 	if (rf->fp != NULL) {
-		/* 開けた場合、ファイルシステム上のファイルを用いる */
+		/* Opened: use a real file. */
 		free(real_path);
 		rf->is_packaged = false;
 		if (save_data) {
@@ -267,33 +297,33 @@ struct rfile *open_rfile(
 	}
 	free(real_path);
 
-	/* セーブデータはパッケージから探さない */
+	/* If the file is save data, we don't search from the package. */
 	if (save_data) {
 		free(rf);
 		return NULL;
 	}
 
-	/* パッケージがなければ開けなかったことする */
+	/* If we don't have a package, we failed to open a file. */
 	if (package_path == NULL) {
 		log_dir_file_open(dir, file);
 		free(rf);
 		return NULL;
 	}
 
-	/* 次にパッケージ上のファイルエントリを探す(TODO: sort and search) */
+	/* Search a file entry on the package. */
 	snprintf(entry_name, FILE_NAME_SIZE, "%s/%s", dir, file);
 	for (i = 0; i < entry_count; i++) {
 		if (strcasecmp(entry[i].name, entry_name) == 0)
 			break;
 	}
 	if (i == entry_count) {
-		/* みつからなかった場合 */
+		/* Not found. */
 		log_dir_file_open(dir, file);
 		free(rf);
 		return NULL;
 	}
 
-	/* みつかった場合、パッケージファイルを別なファイルポインタで開く */
+	/* Found: open a new FILE pointer to "data01.arc". */
 #ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	rf->fp = _wfopen(conv_utf8_to_utf16(package_path), L"r");
@@ -306,7 +336,7 @@ struct rfile *open_rfile(
 		return NULL;
 	}
 
-	/* 読み込み位置にシークする */
+	/* Seek to the offset. */
 	if (fseek(rf->fp, (long)entry[i].offset, SEEK_SET) != 0) {
 		log_package_file_error();
 		fclose(rf->fp);
@@ -314,6 +344,7 @@ struct rfile *open_rfile(
 		return 0;
 	}
 
+	/* Setup the rfile struct. */
 	rf->is_packaged = true;
 	rf->is_obfuscated = true;
 	rf->index = i;
@@ -323,10 +354,11 @@ struct rfile *open_rfile(
 	set_random_seed(i, &rf->next_random);
 	rf->prev_random = 0;
 
+	/* Return a pointer to a rfile. */
 	return rf;
 }
 
-/* ファイル名に大文字が含まれていれば警告する */
+/* Warn if a file name contains any upper case ASCII character. */
 static void warn_file_name_case(const char *dir, const char *file)
 {
 	const char *c;
@@ -335,7 +367,9 @@ static void warn_file_name_case(const char *dir, const char *file)
 	c = file;
 	after_dot = false;
 	while (*c != '\0') {
+		/* Decode utf-8. */
 		if (((*c) & 0x80) == 0) {
+			/* 1-byte length */
 			if (!after_dot) {
 				if (*c == '.')
 					after_dot = true;
@@ -348,30 +382,31 @@ static void warn_file_name_case(const char *dir, const char *file)
 			}
 			c++;
 		} else if(((*c) & 0xe0) == 0xc0) {
-			/* 2-byte */
+			/* 2-byte length */
 			c += 2;
 		} else if(((*c) & 0xf0) == 0xe0) {
-			/* 3-byte */
+			/* 3-byte length */
 			c += 3;
 		} else if (((*c) & 0xf8) == 0xf0) {
-			/* 4-byte */
+			/* 4-byte length */
 			c += 4;
 		} else {
-			/* Encode Error */
+			/* Decode Error */
 			return;
 		}
 	}
 }
 
 /*
- * ファイルのサイズを取得する
+ * Get a file size.
  */
 size_t get_rfile_size(struct rfile *rf)
 {
 	long pos, len;
 
-	/* ファイルシステム上のファイルの場合 */
+	/* If the rfile points to a real file. */
 	if (!rf->is_packaged) {
+		/* Return the file size. */
 		pos = ftell(rf->fp);
 		fseek(rf->fp, 0, SEEK_END);
 		len = ftell(rf->fp);
@@ -379,12 +414,12 @@ size_t get_rfile_size(struct rfile *rf)
 		return (size_t)len;
 	}
 
-	/* パッケージ内のファイルの場合 */
+	/* If the rfile points to a package entry. */
 	return (size_t)rf->size;
 }
 
 /*
- * ファイル読み込みストリームから読み込む
+ * Read bytes from a read file stream.
  */
 size_t read_rfile(struct rfile *rf, void *buf, size_t size)
 {
@@ -394,19 +429,24 @@ size_t read_rfile(struct rfile *rf, void *buf, size_t size)
 	assert(rf->fp != NULL);
 
 	if (!rf->is_packaged) {
-		/* ファイルシステム上のファイルの場合 */
+		/*
+		 * For the case the rfile points to a real file.
+		 */
+
+		/* Read. */
 		len = fread(buf, 1, size, rf->fp);
 
-		/* 難読化を解除する */
+		/* If the file is a save file, do obfuscation decode. */
 		if (rf->is_obfuscated) {
-			for (obf = 0; obf < len; obf++) {
-				*(((char *)buf) + obf) ^=
-					get_next_random(&rf->next_random,
-							NULL);
-			}
+			for (obf = 0; obf < len; obf++)
+				*(((char *)buf) + obf) ^= get_next_random(&rf->next_random, NULL);
 		}
 	} else {
-		/* パッケージ内のファイルの場合 */
+		/*
+		 * For the case the rfile points to a package entry.
+		 */
+
+		/* Read. */
 		if (rf->pos + size > rf->size)
 			size = (size_t)(rf->size - rf->pos);
 		if (size == 0)
@@ -414,19 +454,16 @@ size_t read_rfile(struct rfile *rf, void *buf, size_t size)
 		len = fread(buf, 1, size, rf->fp);
 		rf->pos += len;
 
-		/* 難読化を解除する */
-		for (obf = 0; obf < len; obf++) {
-			*(((char *)buf) + obf) ^=
-				get_next_random(&rf->next_random,
-						&rf->prev_random);
-		}
+		/* Do obfuscation decode. */
+		for (obf = 0; obf < len; obf++)
+			*(((char *)buf) + obf) ^= get_next_random(&rf->next_random, &rf->prev_random);
 	}
 
 	return len;
 }
 
 /*
- * ファイル読み込みストリームから1行読み込む
+ * Read a line from a read file stream.
  */
 const char *gets_rfile(struct rfile *rf, char *buf, size_t size)
 {
@@ -471,17 +508,17 @@ const char *gets_rfile(struct rfile *rf, char *buf, size_t size)
 	return buf;
 }
 
-/* ファイル読み込みストリームに1文字戻す */
+/* Push back a character to a read file stream. */
 static void ungetc_rfile(struct rfile *rf, char c)
 {
 	assert(rf != NULL);
 	assert(rf->fp != NULL);
 
 	if (!rf->is_packaged) {
-		/* ファイルシステム上のファイルの場合 */
+		/* If a real file. */
 		ungetc(c, rf->fp);
 	} else {
-		/* パッケージ内のファイルの場合 */
+		/* If a package entry. */
 		assert(rf->pos != 0);
 		ungetc(c, rf->fp);
 		rf->pos--;
@@ -490,7 +527,7 @@ static void ungetc_rfile(struct rfile *rf, char c)
 }
 
 /*
- * ファイル読み込みストリームを閉じる
+ * Close a read file stream.
  */
 void close_rfile(struct rfile *rf)
 {
@@ -502,7 +539,7 @@ void close_rfile(struct rfile *rf)
 }
 
 /*
- * ファイル読み込みストリームを先頭まで巻き戻す
+ * Rewind a read file stream.
  */
 void rewind_rfile(struct rfile *rf)
 {
@@ -510,22 +547,25 @@ void rewind_rfile(struct rfile *rf)
 	assert(rf->fp != NULL);
 
 	if (!rf->is_packaged) {
+		/* If a real file. */
 		rewind(rf->fp);
 		rf->pos = 0;
 		return;
 	}
 
+	/* If a package entry. */
 	fseek(rf->fp, (long)rf->offset, SEEK_SET);
 	rf->pos = 0;
 	set_random_seed(rf->index, &rf->next_random);
 	rf->prev_random = 0;
 }
 
-/* ファイルの乱数シードを設定する */
+/* Set a random seed. */
 static void set_random_seed(uint64_t index, uint64_t *next_random)
 {
 	uint64_t i, next, lsb;
 
+	/* The key is shuffled so that decompilers cannot read it directly. */
 	key_reversed = ((((key_obfuscated >> 56) & 0xff) << 0) |
 			(((key_obfuscated >> 48) & 0xff) << 8) |
 			(((key_obfuscated >> 40) & 0xff) << 16) |
@@ -536,7 +576,8 @@ static void set_random_seed(uint64_t index, uint64_t *next_random)
 			(((key_obfuscated >> 0)  & 0xff) << 56));
 	next = ~(*key_ref);
 	for (i = 0; i < index; i++) {
-		next ^= 0xafcb8f2ff4fff33f;
+		/* This XOR mask is not a secret. */
+		next ^= NEXT_MASK1;
 		lsb = next >> 63;
 		next = (next << 1) | lsb;
 	}
@@ -544,26 +585,26 @@ static void set_random_seed(uint64_t index, uint64_t *next_random)
 	*next_random = next;
 }
 
-/* 乱数を取得する */
+/* Get a next random mask. */
 static char get_next_random(uint64_t *next_random, uint64_t *prev_random)
 {
 	uint64_t next;
 	char ret;
 
-	/* ungetc()用 */
+	/* For ungetc(). */
 	if (prev_random != NULL)
 		*prev_random = *next_random;
 
 	ret = (char)(*next_random);
 	next = *next_random;
 	next = (((~(*key_ref) & 0xff00) * next + (~(*key_ref) & 0xff)) %
-		~(*key_ref)) ^ 0xfcbfaff8f2f4f3f0;
+		~(*key_ref)) ^ NEXT_MASK2;
 	*next_random = next;
 
 	return ret;
 }
 
-/* 乱数を1つ元に戻す */
+/* Go back to the previous random mask. */
 static void rewind_random(uint64_t *next_random, uint64_t *prev_random)
 {
 	*next_random = *prev_random;
@@ -571,25 +612,25 @@ static void rewind_random(uint64_t *next_random, uint64_t *prev_random)
 }
 
 /*
- * 書き込み
+ * Write
  */
 
 /*
- * ファイル書き込みストリームを開く
+ * Open a write file stream.
  */
 struct wfile *open_wfile(const char *dir, const char *file)
 {
 	char *path;
 	struct wfile *wf;
 
-	/* wfile構造体のメモリを確保する */
+	/* Allocate wfile struct. */
 	wf = malloc(sizeof(struct wfile));
 	if (wf == NULL) {
 		log_memory();
 		return NULL;
 	}
 
-	/* パスを生成する */
+	/* Make a real file path. */
 	path = make_valid_path(dir, file);
 	if (path == NULL) {
 		log_memory();
@@ -597,7 +638,7 @@ struct wfile *open_wfile(const char *dir, const char *file)
 		return NULL;
 	}
 
-	/* ファイルをオープンする */
+	/* Open a real file. */
 #ifdef POLARIS_ENGINE_TARGET_WIN32
 	_fmode = _O_BINARY;
 	wf->fp = _wfopen(conv_utf8_to_utf16(path), L"w");
@@ -612,14 +653,14 @@ struct wfile *open_wfile(const char *dir, const char *file)
 	}
 	free(path);
 
-	/* 乱数シードを初期化する */
+	/* Initialize the random seed. */
 	set_random_seed(0, &wf->next_random);
 
 	return wf;
 }
 
 /*
- * ファイル書き込みストリームに書き込む
+ * Write bytes to a write file stream.
  */
 size_t write_wfile(struct wfile *wf, const void *buf, size_t size)
 {
@@ -633,19 +674,17 @@ size_t write_wfile(struct wfile *wf, const void *buf, size_t size)
 	src = buf;
 	total = 0;
 	while (size > 0) {
-		/* ブロックのサイズを求める(最大1024バイト) */
+		/* Get the block size. (Max. 1024 bytes) */
 		if (size > sizeof(obf))
 			block_size = sizeof(obf);
 		else
 			block_size = size;
 
-		/* ブロックを難読化する */
-		for (i = 0; i < block_size; i++) {
-			obf[i] = *src++ ^ get_next_random(&wf->next_random,
-							  NULL);
-		}
+		/* Obfuscate the block. */
+		for (i = 0; i < block_size; i++)
+			obf[i] = *src++ ^ get_next_random(&wf->next_random, NULL);
 
-		/* ブロックを書き出す */
+		/* Write the block to the stream. */
 		out = fwrite(obf, 1, block_size, wf->fp);
 		if (out != block_size)
 			return total + out;
@@ -656,7 +695,7 @@ size_t write_wfile(struct wfile *wf, const void *buf, size_t size)
 }
 
 /*
- * ファイル読み込みストリームを閉じる
+ * Close a write file stream.
  */
 void close_wfile(struct wfile *wf)
 {
@@ -669,22 +708,22 @@ void close_wfile(struct wfile *wf)
 }
 
 /*
- * ファイルを削除する
+ * Remove a real file.
  */
 void remove_file(const char *dir, const char *file)
 {
 	char *path;
 
-	/* パスを生成する */
+	/* Make a real path. */
 	path = make_valid_path(dir, file);
 	if (path == NULL) {
 		log_memory();
 		return;
 	}
 
-	/* ファイルを削除する */
+	/* Remove the file from the file system. */
 	remove(path);
 
-	/* パスの文字列を解放する */
+	/* Free the memory of the path. */
 	free(path);
 }
