@@ -70,7 +70,8 @@ all:
 		-o ../Assets/libpolarisengine.so \
 		-O2 \
 		-fPIC \
-		-DPOLARIS_ENGINE_TARGET_UNITY \
+		-DUSE_UNITY \
+		-DUSE_DLL \
 		-DNO_CDECL \
 		-I./libroot-ps45/include \
 		-I./libroot-ps45/include/png \

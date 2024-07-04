@@ -1814,6 +1814,11 @@ char *make_valid_path(const char *dir, const char *fname)
     }
 }
 
+void set_continuous_swipe_enabled(bool is_enabled)
+{
+    UNUSED_PARAMETER(is_enabled);
+}
+
 //
 // Pro HAL
 //

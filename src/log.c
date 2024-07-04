@@ -78,6 +78,28 @@ void log_dir_file_open(const char *dir, const char *file)
 }
 
 /*
+ * ディレクトリがみつからない際のエラーを記録する
+ */
+void log_dir_not_found(const char *dir)
+{
+	if (is_english_mode())
+		log_info("Folder \'%s\' not found.", dir);
+	else
+		log_info(U8("フォルダ\'%s\'がみつかりません。"), dir);
+}
+
+/*
+ * パッケージするファイルの数が多すぎる際のエラーを記録する
+ */
+void log_too_many_files(void)
+{
+	if (is_english_mode())
+		log_info("Too many files to package.");
+	else
+		log_info(U8("パッケージするファイル数が多すぎます。"));
+}
+
+/*
  * ファイルオープンエラーを記録する
  */
 void log_file_open(const char *fname)
@@ -1035,25 +1057,4 @@ void log_script_line_size(void)
 		log_info(U8("スクリプトの行数が大きすぎます。"));
 }
 
-/*
- * ディレクトリがみつからない際のエラーを記録する
- */
-void log_dir_not_found(const char *dir)
-{
-	if (is_english_mode())
-		log_info("Folder \'%s\' not found.", dir);
-	else
-		log_info(U8("フォルダ\'%s\'がみつかりません。"), dir);
-}
-
-/*
- * パッケージするファイルの数が多すぎる際のエラーを記録する
- */
-void log_too_many_files(void)
-{
-	if (is_english_mode())
-		log_info("Too many files to package.");
-	else
-		log_info(U8("パッケージするファイル数が多すぎます。"));
-}
 #endif

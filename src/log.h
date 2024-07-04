@@ -21,6 +21,8 @@
 void log_api_error(const char *api);
 void log_audio_file_error(const char *dir, const char *file);
 void log_dir_file_open(const char *dir, const char *file);
+void log_dir_not_found(const char *dir);
+void log_too_many_files(void);
 void log_file_name_case(const char *dir, const char *file);
 void log_file_open(const char *fname);
 void log_file_read(const char *dir, const char *file);
@@ -102,8 +104,6 @@ void log_cl_invalid_action(const char *action);
 #ifdef USE_EDITOR
 void log_inform_translated_commands(void);
 void log_script_line_size(void);
-void log_dir_not_found(const char *dir);
-void log_too_many_files(void);
 #endif
 
 #endif

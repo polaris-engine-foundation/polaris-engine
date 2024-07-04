@@ -380,93 +380,130 @@ void speak_text(const char *text);
 /*
  * Enable/disable message skip by touch move.
  */
-#if defined(POLARIS_ENGINE_TARGET_IOS) || defined(POLARIS_ENGINE_TARGET_ANDROID) || defined(POLARIS_ENGINE_TARGET_WASM)
 void set_continuous_swipe_enabled(bool is_enabled);
+
+/*
+ * Foreign Languages Support (Swift and C#)
+ */
+#ifdef USE_DLL
+
+/*
+ * Use cdecl for DLL export functions.
+ */
+#if !defined(NO_CDECL)
+#define CDECL __cdecl
 #else
-static inline void set_continuous_swipe_enabled(bool is_enabled) { UNUSED_PARAMETER(is_enabled); }
+#define CDECL
 #endif
 
 /*
- * For Foreign Languages (Swift and C#)
+ * Define unsafe pointer wrapper.
  */
-#ifdef POLARIS_ENGINE_DLL
-
-#ifndef NO_CDECL
-#define POLARISENGINEAPI __cdecl
+#if defined(USE_SWIFT)
+#define UNSAFEPTR(t)  t	/* For Swift */
 #else
-#define POLARISENGINEAPI
+#define UNSAFEPTR(t)  intptr_t	/* For C# */
 #endif
 
-extern void init_hal_func_table(
-	void POLARISENGINEAPI (*p_log_info)(intptr_t s),
-	void POLARISENGINEAPI (*p_log_warn)(intptr_t s),
-	void POLARISENGINEAPI (*p_log_error)(intptr_t s),
-	void POLARISENGINEAPI (*p_make_sav_dir)(void),
-	void POLARISENGINEAPI (*p_make_valid_path)(intptr_t dir, intptr_t fname, intptr_t dst, int len),
-	void POLARISENGINEAPI (*p_notify_image_update)(int id, int width, int height, intptr_t pixels),
-	void POLARISENGINEAPI (*p_notify_image_free)(int id),
-	void POLARISENGINEAPI (*p_render_image_normal)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
-	void POLARISENGINEAPI (*p_render_image_add)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
-	void POLARISENGINEAPI (*p_render_image_dim)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
-	void POLARISENGINEAPI (*p_render_image_rule)(int src_img, int rule_img, int threshold),
-	void POLARISENGINEAPI (*p_render_image_melt)(int src_img, int rule_img, int progress),
-	void POLARISENGINEAPI (*p_render_image_3d_normal)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
-	void POLARISENGINEAPI (*p_render_image_3d_add)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
-	void POLARISENGINEAPI (*p_reset_lap_timer)(intptr_t origin),
-	int64_t POLARISENGINEAPI (*p_get_lap_timer_millisec)(intptr_t origin),
-	void POLARISENGINEAPI (*p_play_sound)(int stream, intptr_t wave),
-	void POLARISENGINEAPI (*p_stop_sound)(int stream),
-	void POLARISENGINEAPI (*p_set_sound_volume)(int stream, float vol),
-	bool POLARISENGINEAPI (*p_is_sound_finished)(int stream),
-	bool POLARISENGINEAPI (*p_play_video)(intptr_t fname, bool is_skippable),
-	void POLARISENGINEAPI (*p_stop_video)(void),
-	bool POLARISENGINEAPI (*p_is_video_playing)(void),
-	void POLARISENGINEAPI (*p_update_window_title)(void),
-	bool POLARISENGINEAPI (*p_is_full_screen_supported)(void),
-	bool POLARISENGINEAPI (*p_is_full_screen_mode)(void),
-	void POLARISENGINEAPI (*p_enter_full_screen_mode)(void),
-	void POLARISENGINEAPI (*p_leave_full_screen_mode)(void),
-	void POLARISENGINEAPI (*p_get_system_locale)(intptr_t dst, int len),
-	void POLARISENGINEAPI (*p_speak_text)(intptr_t text),
-	void POLARISENGINEAPI (*p_set_continuous_swipe_enabled)(bool is_enabled),
-	void POLARISENGINEAPI (*p_free_shared)(intptr_t p),
-	bool POLARISENGINEAPI (*p_check_file_exist)(intptr_t file_name),
-	intptr_t POLARISENGINEAPI (*p_get_file_contents)(intptr_t file_name, intptr_t len),
-	void POLARISENGINEAPI (*p_open_save_file)(intptr_t file_name),
-	void POLARISENGINEAPI (*p_write_save_file)(int b),
-	void POLARISENGINEAPI (*p_close_save_file)(void));
-extern void POLARISENGINEAPI (*wrap_log_info)(intptr_t s);
-extern void POLARISENGINEAPI (*wrap_log_warn)(intptr_t s);
-extern void POLARISENGINEAPI (*wrap_log_error)(intptr_t s);
-extern void POLARISENGINEAPI (*wrap_make_sav_dir)(void);
-extern void POLARISENGINEAPI (*wrap_make_valid_path)(intptr_t dir, intptr_t fname, intptr_t dst, int len);
-extern void POLARISENGINEAPI (*wrap_notify_image_update)(int id, int width, int height, intptr_t pixels);
-extern void POLARISENGINEAPI (*wrap_notify_image_free)(int id);
-extern void POLARISENGINEAPI (*wrap_render_image_normal)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
-extern void POLARISENGINEAPI (*wrap_render_image_add)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
-extern void POLARISENGINEAPI (*wrap_render_image_dim)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
-extern void POLARISENGINEAPI (*wrap_render_image_rule)(int src_img, int rule_img, int threshold);
-extern void POLARISENGINEAPI (*wrap_render_image_melt)(int src_img, int rule_img, int progress);
-extern void POLARISENGINEAPI (*wrap_render_image_3d_normal)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
-extern void POLARISENGINEAPI (*wrap_render_image_3d_add)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
-extern void POLARISENGINEAPI (*wrap_reset_lap_timer)(intptr_t origin);
-extern int64_t POLARISENGINEAPI (*wrap_get_lap_timer_millisec)(intptr_t origin);
-extern void POLARISENGINEAPI (*wrap_play_sound)(int stream, intptr_t wave);
-extern void POLARISENGINEAPI (*wrap_stop_sound)(int stream);
-extern void POLARISENGINEAPI (*wrap_set_sound_volume)(int stream, float vol);
-extern bool POLARISENGINEAPI (*wrap_is_sound_finished)(int stream);
-extern bool POLARISENGINEAPI (*wrap_play_video)(intptr_t fname, bool is_skippable);
-extern void POLARISENGINEAPI (*wrap_stop_video)(void);
-extern bool POLARISENGINEAPI (*wrap_is_video_playing)(void);
-extern void POLARISENGINEAPI (*wrap_update_window_title)(void);
-extern bool POLARISENGINEAPI (*wrap_is_full_screen_supported)(void);
-extern bool POLARISENGINEAPI (*wrap_is_full_screen_mode)(void);
-extern void POLARISENGINEAPI (*wrap_enter_full_screen_mode)(void);
-extern void POLARISENGINEAPI (*wrap_leave_full_screen_mode)(void);
-extern void POLARISENGINEAPI (*wrap_get_system_locale)(intptr_t dst, int len);
-extern void POLARISENGINEAPI (*wrap_speak_text)(intptr_t text);
-extern void POLARISENGINEAPI (*wrap_set_continuous_swipe_enabled)(bool is_enabled);
+/*
+ * For Swift
+ */
+#if defined(USE_SWIFT)
+extern void CDECL (*wrap_log_info)(UNSAFEPTR(const char *) s);
+extern void CDECL (*wrap_log_warn)(UNSAFEPTR(const char *) s);
+extern void CDECL (*wrap_log_error)(UNSAFEPTR(const char *) s);
+extern void CDECL (*wrap_make_sav_dir)(void);
+extern void CDECL (*wrap_make_valid_path)(UNSAFEPTR(const char *) dir, UNSAFEPTR(const char *) fname, UNSAFEPTR(const char *) dst, int len);
+extern void CDECL (*wrap_notify_image_update)(int id, int width, int height, UNSAFEPTR(const uint32_t *) pixels);
+extern void CDECL (*wrap_notify_image_free)(int id);
+extern void CDECL (*wrap_render_image_normal)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
+extern void CDECL (*wrap_render_image_add)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
+extern void CDECL (*wrap_render_image_dim)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
+extern void CDECL (*wrap_render_image_rule)(int src_img, int rule_img, int threshold);
+extern void CDECL (*wrap_render_image_melt)(int src_img, int rule_img, int progress);
+extern void CDECL (*wrap_render_image_3d_normal)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
+extern void CDECL (*wrap_render_image_3d_add)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha);
+extern void CDECL (*wrap_reset_lap_timer)(UNSAFEPTR(uint64_t *) origin);
+extern uint64_t CDECL (*wrap_get_lap_timer_millisec)(UNSAFEPTR(uint64_t *) origin);
+extern void CDECL (*wrap_play_sound)(int stream, UNSAFEPTR(void *) wave);
+extern void CDECL (*wrap_stop_sound)(int stream);
+extern void CDECL (*wrap_set_sound_volume)(int stream, float vol);
+extern int CDECL (*wrap_is_sound_finished)(int stream);
+extern bool CDECL (*wrap_play_video)(UNSAFEPTR(const char *) fname, bool is_skippable);
+extern void CDECL (*wrap_stop_video)(void);
+extern bool CDECL (*wrap_is_video_playing)(void);
+extern void CDECL (*wrap_update_window_title)(void);
+extern bool CDECL (*wrap_is_full_screen_supported)(void);
+extern bool CDECL (*wrap_is_full_screen_mode)(void);
+extern void CDECL (*wrap_enter_full_screen_mode)(void);
+extern void CDECL (*wrap_leave_full_screen_mode)(void);
+extern void CDECL (*wrap_get_system_locale)(UNSAFEPTR(char *) dst, int len);
+extern void CDECL (*wrap_speak_text)(UNSAFEPTR(const char *) text);
+extern void CDECL (*wrap_set_continuous_swipe_enabled)(bool is_enabled);
+extern void CDECL (*wrap_free_shared)(UNSAFEPTR(void *) p);
+extern bool CDECL (*wrap_check_file_exist)(UNSAFEPTR(const char *) file_name);
+extern UNSAFEPTR(void *) CDECL (*wrap_get_file_contents)(UNSAFEPTR(const char *) file_name, UNSAFEPTR(int *) len);
+extern void CDECL (*wrap_open_save_file)(UNSAFEPTR(const char *) file_name);
+extern void CDECL (*wrap_write_save_file)(int b);
+extern void CDECL (*wrap_close_save_file)(void);
+extern void CDECL (*wrap_set_continuous_swipe_enabled)(bool is_enabled);
+extern bool CDECL (*wrap_is_continue_pushed)(void);
+extern bool CDECL (*wrap_is_next_pushed)(void);
+extern bool CDECL (*wrap_is_stop_pushed)(void);
+extern bool CDECL (*wrap_is_script_opened)(void);
+extern UNSAFEPTR(const char *) CDECL (*wrap_get_opened_script)(void);
+extern bool CDECL (*wrap_is_exec_line_changed)(void);
+extern bool CDECL (*wrap_get_changed_exec_line)(void);
+extern void CDECL (*wrap_on_change_running_state)(int running, int request_stop);
+extern void CDECL (*wrap_on_load_script)(void);
+extern void CDECL (*wrap_on_change_position)(void);
+extern void CDECL (*wrap_on_update_variable)(void);
+#endif /* defined(USE_SWIFT) */
 
+/*
+ * For C#
+ */
+#if defined(USE_CSHARP)
+void init_hal_func_table(
+	void CDECL (*p_log_info)(UNSAFEPTR(const char *) s),
+	void CDECL (*p_log_warn)(UNSAFEPTR(const char *) s),
+	void CDECL (*p_log_error)(UNSAFEPTR(const char *) s),
+	void CDECL (*p_make_sav_dir)(void),
+	void CDECL (*p_make_valid_path)(UNSAFEPTR(const char *) dir, UNSAFEPTR(const char *) fname, UNSAFEPTR(const char *) dst, int len),
+	void CDECL (*p_notify_image_update)(int id, int width, int height, UNSAFEPTR(const uint32_t *) pixels),
+	void CDECL (*p_notify_image_free)(int id),
+	void CDECL (*p_render_image_normal)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
+	void CDECL (*p_render_image_add)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
+	void CDECL (*p_render_image_dim)(int dst_left, int dst_top, int dst_width, int dst_height, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
+	void CDECL (*p_render_image_rule)(int src_img, int rule_img, int threshold),
+	void CDECL (*p_render_image_melt)(int src_img, int rule_img, int progress),
+	void CDECL (*p_render_image_3d_normal)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
+	void CDECL (*p_render_image_3d_add)(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int src_img, int src_left, int src_top, int src_width, int src_height, int alpha),
+	void CDECL (*p_reset_lap_timer)(UNSAFEPTR(uint64_t *) origin),
+	uint64_t CDECL (*p_get_lap_timer_millisec)(UNSAFEPTR(uint64_t *) origin),
+	void CDECL (*p_play_sound)(int stream, UNSAFEPTR(void *) wave),
+	void CDECL (*p_stop_sound)(int stream),
+	void CDECL (*p_set_sound_volume)(int stream, float vol),
+	bool CDECL (*p_is_sound_finished)(int stream),
+	bool CDECL (*p_play_video)(UNSAFEPTR(const char *) fname, bool is_skippable),
+	void CDECL (*p_stop_video)(void),
+	bool CDECL (*p_is_video_playing)(void),
+	void CDECL (*p_update_window_title)(void),
+	bool CDECL (*p_is_full_screen_supported)(void),
+	bool CDECL (*p_is_full_screen_mode)(void),
+	void CDECL (*p_enter_full_screen_mode)(void),
+	void CDECL (*p_leave_full_screen_mode)(void),
+	void CDECL (*p_get_system_locale)(UNSAFEPTR(char *) dst, int len),
+	void CDECL (*p_speak_text)(UNSAFEPTR(const char *) text),
+	void CDECL (*p_set_continuous_swipe_enabled)(bool is_enabled),
+	void CDECL (*)(UNSAFEPTR(void *) p),
+	bool CDECL (*p_check_file_exist)(UNSAFEPTR(const char *) file_name),
+	UNSAFEPTR(void *) CDECL (*p_get_file_contents)(UNSAFEPTR(const char *) file_name, PTR len),
+	void CDECL (*p_open_save_file)(UNSAFEPTR(const char *) file_name),
+	void CDECL (*p_write_save_file)(int b),
+	void CDECL (*p_close_save_file)(void)
+);
+#endif /* deinfed(USE_CSHARP) */
 #endif /* POLARIS_ENGINE_DLL */
 
 #endif /* POLARIS_ENGINE_HAL_H */

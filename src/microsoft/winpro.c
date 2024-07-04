@@ -2940,6 +2940,11 @@ const char *get_system_locale(void)
 	return "other";
 }
 
+void set_continuous_swipe_enabled(bool is_enabled)
+{
+	UNUSED_PARAMETER(is_enabled);
+}
+
 /*
  * TTSによる読み上げを行う
  */

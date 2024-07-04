@@ -25,7 +25,6 @@
  *  - POLARIS_ENGINE_TARGET_ANDROID for Android (armv8/armv7/x86_64)
  *  - POLARIS_ENGINE_TARGET_WASM    for Wasm with Emscripten
  *  - POLARIS_ENGINE_TARGET_POSIX   for Linux and *BSD
- *  - POLARIS_ENGINE_TARGET_SDL2    for SDL2
  */
 #if defined(__APPLE__) && __has_include(<TargetConditionals.h>)
 #include <TargetConditionals.h>
@@ -40,26 +39,23 @@
 #define POLARIS_ENGINE_TARGET_ANDROID
 #elif defined(__EMSCRIPTEN__)
 #define POLARIS_ENGINE_TARGET_WASM
-#elif !defined(POLARIS_ENGINE_TARGET_UNITY) && !defined(POLARIS_ENGINE_TARGET_SDL2)
-#define POLARIS_ENGINE_TARGET_POSIX
-#endif
-
-#if defined(POLARIS_ENGINE_TARGET_ANDROID) || defined(POLARIS_ENGINE_TARGET_UNITY)
-#define POLARIS_ENGINE_DLL
+#elif defined(USE_UNITY)
+#define POLARIS_ENGINE_TARGET_UNITY
+#else
+#error "No target detected."
 #endif
 
 /*
  * For GCC and LLVM/Clang
  */
 #if defined(__GNUC__) || defined(__llvm__)
-
- /*
-  * Define a macro that indicates a target architecture.
-  *  - POLARIS_ENGINE_ARCH_X86 for ia32 (x86)
-  *  - POLARIS_ENGINE_ARCH_X86_64 for amd64 (x86_64)
-  *  - POLARIS_ENGINE_ARCH_ARM32 for armv7
-  *  - POLARIS_ENGINE_ARCH_ARM64 for armv8
-  */
+/*
+ * Define a macro that indicates a target architecture.
+ *  - POLARIS_ENGINE_ARCH_X86 for ia32 (x86)
+ *  - POLARIS_ENGINE_ARCH_X86_64 for amd64 (x86_64)
+ *  - POLARIS_ENGINE_ARCH_ARM32 for armv7
+ *  - POLARIS_ENGINE_ARCH_ARM64 for armv8
+ */
 #if defined(__i386__) && !defined(__x86_64__)
 #define POLARIS_ENGINE_ARCH_X86
 #elif defined(__x86_64__)
@@ -81,13 +77,12 @@
  * For MSVC
  */
 #ifdef _MSC_VER
-
- /*
-  * Define a macro that indicates a target architecture.
-  *  - POLARIS_ENGINE_ARCH_X86    for ia32 (x86)
-  *  - POLARIS_ENGINE_ARCH_X86_64 for amd64 (x86_64)
-  *  - POLARIS_ENGINE_ARCH_ARM64  for armv8
-  */
+/*
+ * Define a macro that indicates a target architecture.
+ *  - POLARIS_ENGINE_ARCH_X86    for ia32 (x86)
+ *  - POLARIS_ENGINE_ARCH_X86_64 for amd64 (x86_64)
+ *  - POLARIS_ENGINE_ARCH_ARM64  for armv8
+ */
 #if defined(_M_IX86)
 #define POLARIS_ENGINE_ARCH_X86
 #elif defined(_M_X64)

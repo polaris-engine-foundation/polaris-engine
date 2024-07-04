@@ -70,7 +70,8 @@ all:
 		-o ../Assets/libpolarisengine.nso \
 		-O2 \
 		-fPIC \
-		-DPOLARIS_ENGINE_TARGET_UNITY \
+		-DUSE_UNITY \
+		-DUSE_DLL \
 		-DNO_CDECL \
 		-I./libroot-switch/include \
 		-I./libroot-switch/include/png \

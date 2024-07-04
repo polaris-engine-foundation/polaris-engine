@@ -314,3 +314,8 @@ char *make_valid_path(const char *dir, const char *fname)
         return strdup("dummy");
     }
 }
+
+void set_continuous_swipe_enabled(bool is_enabled)
+{
+	isContinuousSwipeEnabled = is_enabled;
+}

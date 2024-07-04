@@ -1,14 +1,19 @@
 <html><head></head><body>
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 2.0.5 2024/7/4
+  <ul>
+    <li>Swift対応の影響を受けた部分の修正 (機能的な変更はないが、出力ソースに変更あり)</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 2.0.4 2024/6/29
   <ul>
     <li>Unity版の修正</li>
     <li>Unity版にWindows Arm64のDLLを添付</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 2.0.3 2024/6/28
   <ul>
     <li>Unity版が動作しなくなっていたのを修正</li>

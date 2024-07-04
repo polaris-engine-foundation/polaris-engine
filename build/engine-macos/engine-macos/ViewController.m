@@ -714,3 +714,7 @@ static FILE *openLog(void)
     return fp;
 }
 
+void set_continuous_swipe_enabled(bool is_enabled)
+{
+    UNUSED_PARAMETER(is_enabled);
+}

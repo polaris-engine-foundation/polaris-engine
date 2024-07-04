@@ -208,4 +208,4 @@ Polaris Engineで制作されたゲームは現行世代のほぼすべてのゲ
     * スクリプト言語 `WMS` は、あえてAPIに制限をかけて、ストーリー分岐のロジック記述用に特化させています
 
 ## 連絡先
-* `info@polaris-engine.org`
+* メンテナ `info@polaris-engine.com`

@@ -47,7 +47,8 @@ libpolarisengine-win64.dll: $(SRCS_UNITY)
 		-fPIC \
 		-o libpolarisengine-win64.dll \
 		-O2 \
-		-DPOLARIS_ENGINE_TARGET_UNITY \
+		-DUSE_UNITY \
+		-DUSE_DLL \
 		-DNO_CDECL \
 		-I../engine-windows-64/libroot/include \
 		-I../engine-windows-64/libroot/include/png \
@@ -74,7 +75,8 @@ libpolarisengine-arm64.dll: $(SRCS_UNITY)
 		-fPIC \
 		-o libpolarisengine-arm64.dll \
 		-O2 \
-		-DPOLARIS_ENGINE_TARGET_UNITY \
+		-DUSE_UNITY \
+		-DUSE_DLL \
 		-DNO_CDECL \
 		-I../engine-windows-arm64/libroot/include \
 		-I../engine-windows-arm64/libroot/include/png \
@@ -104,7 +106,8 @@ libpolarisengine-macos.dylib: ../engine-macos/libroot $(SRCS_UNITY)
 		-undefined dynamic_lookup \
 		-fPIC \
 		-o libpolarisengine-macos.dylib \
-		-DPOLARIS_ENGINE_TARGET_UNITY \
+		-DUSE_UNITY \
+		-DUSE_DLL \
 		-I../engine-macos/libroot/include \
 		-I../engine-macos/libroot/include/freetype2 \
 		$(SRCS_UNITY) \

@@ -4,6 +4,9 @@ project(polarisengine-lib)
 # Find Android NDK log library.
 find_library(log-lib log)
 
+# CFLAGS
+add_definitions(-DUSE_DLL)
+
 # We make libpolarisengine.so
 add_library(
   polarisengine

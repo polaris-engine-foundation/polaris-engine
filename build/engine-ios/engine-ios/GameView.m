@@ -103,8 +103,3 @@ static bool isContinuousSwipeEnabled;
 }
 
 @end
-
-void set_continuous_swipe_enabled(bool is_enabled)
-{
-	isContinuousSwipeEnabled = is_enabled;
-}
