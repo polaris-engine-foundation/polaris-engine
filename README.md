@@ -2,6 +2,11 @@ Polaris Engine
 ==============
 `Polaris Engine`はビジュアルノベルを制作するための開発ツールです。
 
+## お知らせ
+* 他の開発者によって当プロジェクトの fork が作成されました！
+* fork 先のプロジェクトは https://github.com/hrkzfjsr/OpenNovel です
+* 応援しています！
+
 ## Polaris Engineとは？
 * Polaris Engineは「ノベルアプリ」を制作するためのソフトウェアを自称しています
   * ノベルアプリとは、小説、イラスト、サウンドを駆使したインタラクティブな創作物のことです
