@@ -4,7 +4,7 @@ Polaris Engine
 
 ## お知らせ
 * 他の開発者によって当プロジェクトの fork が作成されました！
-* fork 先のプロジェクトは https://github.com/hrkzfjsr/OpenNovel です
+* fork 先のプロジェクトは https://github.com/OpenNovelOrg/OpenNovel です
 * 応援しています！
 
 ## Polaris Engineとは？
