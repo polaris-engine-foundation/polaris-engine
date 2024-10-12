@@ -1,13 +1,18 @@
 <html><head></head><body>
 
 <!-- BEGIN-LATEST-JP -->
+<li>Polaris Engine 2.0.6 2024/10/12
+  <ul>
+    <li>Webでセーブできないバグを修正</li>
+  </ul>
+</li>
+<!-- END-LATEST-JP -->
+
 <li>Polaris Engine 2.0.5 2024/7/4
   <ul>
     <li>Swift対応の影響を受けた部分の修正 (機能的な変更はないが、出力ソースに変更あり)</li>
   </ul>
 </li>
-<!-- END-LATEST-JP -->
-
 <li>Polaris Engine 2.0.4 2024/6/29
   <ul>
     <li>Unity版の修正</li>
