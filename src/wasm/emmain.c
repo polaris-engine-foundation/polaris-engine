@@ -743,7 +743,7 @@ char *make_valid_path(const char *dir, const char *fname)
 		if (conf_sav_name[0] == '/')
 			conf_sav_name[0] = '_';
 
-		snprintf(buf, sizeof(buf), "Polaris Engine-sav/%s-%s", conf_sav_name, fname);
+		snprintf(buf, sizeof(buf), "polaris-engine-sav/%s-%s", conf_sav_name, fname);
 		ret = strdup(buf);
 		if (ret == NULL) {
 			log_memory();
